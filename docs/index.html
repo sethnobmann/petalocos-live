@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Petalocos live</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+  :root{--bg:#0F1115;--card:#1A1D23;--line:#2A2E36;--ink:#F2F2F0;--mute:#A3A9B3;--dim:#6B717A;--gold:#F0B43C;--red:#E06C5A;--bar:#4A505A}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Barlow,system-ui,sans-serif}
+  body{padding:16px 16px 32px;max-width:520px;margin:0 auto}
+  h1{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:28px;letter-spacing:.04em;margin:0}
+  .sub{color:var(--mute);font-size:13px;margin-top:2px}
+  .tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--gold);text-transform:uppercase}
+  .live{color:#4CD964}.live::before{content:"●";margin-right:6px;animation:p 1.4s infinite}
+  @keyframes p{50%{opacity:.3}}
+  h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;margin:22px 0 10px;letter-spacing:.02em}
+  .card{background:var(--card);border-radius:14px;padding:12px 14px;margin-bottom:10px}
+  .mu{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
+  .mu .side{min-width:0}
+  .mu .side.r{text-align:right}
+  .mu .team{font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mu .mgr{color:var(--mute);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mu .pts{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:30px;line-height:1;margin-top:4px}
+  .mu .proj{color:var(--dim);font-size:11px}
+  .mu .vs{color:var(--dim);font-size:12px;font-weight:600}
+  .lead .pts{color:var(--gold)}
+  .row{display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+  .row:last-child{border-bottom:0}
+  .rk{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;color:var(--mute);text-align:center}
+  .rk.one{color:var(--gold)}.rk.last{color:var(--red)}
+  .nm{min-width:0}.nm .team{font-weight:600;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .nm .mgr{color:var(--mute);font-size:12px}
+  .bar{height:4px;border-radius:2px;background:var(--bar);margin-top:5px;max-width:200px}
+  .bar i{display:block;height:4px;border-radius:2px;background:var(--gold)}
+  .num{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;text-align:right}
+  .num small{display:block;font-family:Barlow;font-weight:400;font-size:11px;color:var(--dim)}
+  .warn{color:var(--red);font-size:12px;margin-top:8px}
+  .foot{color:var(--dim);font-size:11px;margin-top:20px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <h1>PETALOCOS</h1>
+  <div class="sub" id="sub">Loading…</div>
+</header>
+<div id="app"></div>
+<div class="foot" id="foot"></div>
+<script>
+const fmt = n => n == null ? "–" : (Math.round(n * 10) / 10).toLocaleString();
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function render(d){
+  const upd = new Date(d.updated);
+  const ageMin = (Date.now() - upd) / 60000;
+  const isLive = ageMin < 20;
+  document.getElementById('sub').innerHTML =
+    `<span class="tag ${isLive ? 'live' : ''}">${isLive ? 'Live' : 'Last update'} · Week ${d.week}</span>` +
+    ` <span>· ${d.season} season #25</span>`;
+
+  let h = '';
+  if (d.matchups && d.matchups.length){
+    h += '<h2>Head to head</h2>';
+    for (const m of d.matchups){
+      const hl = m.home_pts != null && m.away_pts != null && m.home_pts > m.away_pts;
+      const al = m.home_pts != null && m.away_pts != null && m.away_pts > m.home_pts;
+      h += `<div class="card mu">
+        <div class="side ${hl?'lead':''}"><div class="team">${esc(m.home)}</div><div class="mgr">${esc(m.home_manager)}</div>
+          <div class="pts">${fmt(m.home_pts)}</div>${m.home_proj!=null?`<div class="proj">proj ${fmt(m.home_proj)}</div>`:''}</div>
+        <div class="vs">vs</div>
+        <div class="side r ${al?'lead':''}"><div class="team">${esc(m.away)}</div><div class="mgr">${esc(m.away_manager)}</div>
+          <div class="pts">${fmt(m.away_pts)}</div>${m.away_proj!=null?`<div class="proj">proj ${fmt(m.away_proj)}</div>`:''}</div>
+      </div>`;
+    }
+  }
+
+  const wk = [...d.teams].sort((a,b)=>a.week_rank-b.week_rank);
+  const top = Math.max(1, ...wk.map(t=>t.week_pts));
+  h += `<h2>This week</h2><div class="card">`;
+  for (const t of wk){
+    const cls = t.week_rank===1?'one':(t.week_rank===wk.length?'last':'');
+    h += `<div class="row"><div class="rk ${cls}">${t.week_rank}</div>
+      <div class="nm"><div class="team">${esc(t.team)}</div><div class="mgr">${esc(t.manager)}</div>
+        <div class="bar"><i style="width:${Math.round(100*t.week_pts/top)}%"></i></div></div>
+      <div class="num">${fmt(t.week_pts)}${t.week_proj!=null?`<small>proj ${fmt(t.week_proj)}</small>`:''}</div></div>`;
+  }
+  h += '</div>';
+
+  const se = [...d.teams].sort((a,b)=>a.season_rank-b.season_rank);
+  h += `<h2>Season standings</h2><div class="card">`;
+  for (let i=0;i<se.length;i++){
+    const t = se[i];
+    const back = i ? se[0].season_pts - t.season_pts : 0;
+    const cls = t.season_rank===1?'one':(t.season_rank===se.length?'last':'');
+    h += `<div class="row"><div class="rk ${cls}">${t.season_rank}</div>
+      <div class="nm"><div class="team">${esc(t.team)}</div><div class="mgr">${esc(t.manager)}</div></div>
+      <div class="num">${fmt(t.season_pts)}<small>${i?`${fmt(back)} back`:'leader'}</small></div></div>`;
+  }
+  h += '</div>';
+
+  if (d.unmapped_teams && d.unmapped_teams.length)
+    h += `<div class="warn">Unmapped Yahoo teams: ${esc(d.unmapped_teams.join(', '))}. Add them to data/managers.csv.</div>`;
+
+  document.getElementById('app').innerHTML = h;
+  document.getElementById('foot').textContent =
+    `Updated ${upd.toLocaleString('en-US',{weekday:'short',hour:'numeric',minute:'2-digit'})} · refreshes every 10 min during games`;
+}
+
+async function load(){
+  try{
+    const r = await fetch('live.json?t=' + Date.now(), {cache:'no-store'});
+    render(await r.json());
+  }catch(e){
+    document.getElementById('sub').textContent = 'No live data yet.';
+  }
+}
+load();
+setInterval(load, 120000);
+</script>
+</body>
+</html>

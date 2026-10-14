@@ -1,0 +1,23 @@
+{
+ "updated": "2026-10-14T22:40:00+00:00",
+ "league": "Petalocos",
+ "season": "2026",
+ "week": 6,
+ "teams": [
+  {"team": "u got pzzzed", "manager": "Tony Oliverez", "week_pts": 157.0, "week_proj": 161.5, "season_pts": 583.0, "week_rank": 1, "season_rank": 2},
+  {"team": "Lincoln Hawk", "manager": "Brandon Martinez", "week_pts": 140.0, "week_proj": 148.2, "season_pts": 560.0, "week_rank": 2, "season_rank": 4},
+  {"team": "Umbertos", "manager": "Rob Scerri", "week_pts": 120.0, "week_proj": 131.0, "season_pts": 540.0, "week_rank": 3, "season_rank": 6},
+  {"team": "Maverick", "manager": "Chris Scerri", "week_pts": 117.0, "week_proj": 128.4, "season_pts": 612.0, "week_rank": 4, "season_rank": 1},
+  {"team": "Mooseknuckle's", "manager": "Brian Lovrin", "week_pts": 116.0, "week_proj": 119.0, "season_pts": 571.0, "week_rank": 5, "season_rank": 3},
+  {"team": "Miwok Indians", "manager": "Brandon Selvitella", "week_pts": 115.0, "week_proj": 122.7, "season_pts": 548.0, "week_rank": 6, "season_rank": 5},
+  {"team": "dontmindme", "manager": "Seth Nobmann", "week_pts": 112.0, "week_proj": 118.0, "season_pts": 530.0, "week_rank": 7, "season_rank": 7},
+  {"team": "SHOW ME THE $$$$", "manager": "CJ Nelson", "week_pts": 108.0, "week_proj": 115.3, "season_pts": 522.0, "week_rank": 8, "season_rank": 8},
+  {"team": "FANTASY KING", "manager": "Chris King", "week_pts": 97.0, "week_proj": 110.0, "season_pts": 501.0, "week_rank": 9, "season_rank": 9},
+  {"team": "FOTY*", "manager": "Dave Abramson", "week_pts": 72.0, "week_proj": 99.8, "season_pts": 488.0, "week_rank": 10, "season_rank": 10}
+ ],
+ "matchups": [
+  {"home": "dontmindme", "away": "Lincoln Hawk", "home_manager": "Seth Nobmann", "away_manager": "Brandon Martinez", "home_pts": 112.0, "away_pts": 140.0, "home_proj": 118.0, "away_proj": 148.2}
+ ],
+ "unmapped_teams": [],
+ "_note": "SAMPLE DATA so the board renders before Yahoo is connected. Overwritten by the first real fetch."
+}
