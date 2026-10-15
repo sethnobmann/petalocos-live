@@ -8,10 +8,10 @@ serves `docs/`, and `docs/index.html` renders it.
 ## One-time setup
 
 1. **Yahoo app.** https://developer.yahoo.com/apps/create (signed in as Seffonz).
-   Name "Petalocos live", redirect URI `oob`, API permission: Fantasy Sports (read).
+   Name "Petalocos live", redirect URI `https://localhost/callback`, API permission: Fantasy Sports (read).
    Copy the Client ID and Client Secret.
 2. **Refresh token.** On the Mac:
-   `python3 scripts/yahoo_auth.py` → open the URL it prints, click Agree, paste the code.
+   `python3 scripts/yahoo_auth.py` → open the URL it prints, click Agree, copy the code from the localhost URL it lands on.
    It prints a refresh token.
 3. **GitHub secrets** (repo Settings → Secrets → Actions):
    `YAHOO_CLIENT_ID`, `YAHOO_CLIENT_SECRET`, `YAHOO_REFRESH_TOKEN`.

@@ -19,7 +19,7 @@ def access_token():
     r = requests.post(
         TOKEN_URL,
         auth=(cid, sec),
-        data={"grant_type": "refresh_token", "refresh_token": rt, "redirect_uri": "oob"},
+        data={"grant_type": "refresh_token", "refresh_token": rt, "redirect_uri": "https://localhost/callback"},
         timeout=30,
     )
     r.raise_for_status()

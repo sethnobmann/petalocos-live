@@ -13,13 +13,13 @@ sec = os.environ.get("YAHOO_CLIENT_SECRET") or input("Client secret: ").strip()
 print("\nOpen this in a browser where you're signed in to Yahoo:\n")
 print(
     "https://api.login.yahoo.com/oauth2/request_auth"
-    f"?client_id={cid}&redirect_uri=oob&response_type=code&language=en-us\n"
+    f"?client_id={cid}&redirect_uri=https://localhost/callback&response_type=code&language=en-us\n"
 )
 code = input("Paste the code Yahoo shows you: ").strip()
 r = requests.post(
     "https://api.login.yahoo.com/oauth2/get_token",
     auth=(cid, sec),
-    data={"grant_type": "authorization_code", "code": code, "redirect_uri": "oob"},
+    data={"grant_type": "authorization_code", "code": code, "redirect_uri": "https://localhost/callback"},
     timeout=30,
 )
 r.raise_for_status()
