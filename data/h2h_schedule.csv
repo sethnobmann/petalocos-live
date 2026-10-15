@@ -1,71 +1,71 @@
 week,home,away
 1,dontmindme,FANTASY KING
 1,Umbertos,FOTY*
-1,SHOW ME THE $$$$,Miwok Indians
+1,SHOW ME THE $$$$,Lincoln Hawk
 1,Mooseknuckle's,Maverick
-1,u got pzzzed,Lincoln Hawk
+1,u got pzzzed,Miwok Indians
 2,Maverick,Umbertos
 2,FOTY*,Mooseknuckle's
 2,u got pzzzed,dontmindme
-2,Miwok Indians,Lincoln Hawk
+2,Lincoln Hawk,Miwok Indians
 2,FANTASY KING,SHOW ME THE $$$$
 3,dontmindme,SHOW ME THE $$$$
 3,Umbertos,u got pzzzed
 3,Maverick,FOTY*
-3,Mooseknuckle's,Miwok Indians
-3,Lincoln Hawk,FANTASY KING
+3,Mooseknuckle's,Lincoln Hawk
+3,Miwok Indians,FANTASY KING
 4,Umbertos,dontmindme
 4,SHOW ME THE $$$$,Maverick
-4,FOTY*,Lincoln Hawk
-4,u got pzzzed,Miwok Indians
+4,FOTY*,Miwok Indians
+4,u got pzzzed,Lincoln Hawk
 4,FANTASY KING,Mooseknuckle's
 5,dontmindme,Mooseknuckle's
-5,Maverick,Miwok Indians
+5,Maverick,Lincoln Hawk
 5,SHOW ME THE $$$$,u got pzzzed
 5,FOTY*,FANTASY KING
-5,Lincoln Hawk,Umbertos
+5,Miwok Indians,Umbertos
 6,Umbertos,FANTASY KING
 6,Maverick,u got pzzzed
 6,SHOW ME THE $$$$,FOTY*
-6,Lincoln Hawk,Mooseknuckle's
-6,Miwok Indians,dontmindme
+6,Miwok Indians,Mooseknuckle's
+6,Lincoln Hawk,dontmindme
 7,dontmindme,FOTY*
-7,Umbertos,Miwok Indians
+7,Umbertos,Lincoln Hawk
 7,Mooseknuckle's,SHOW ME THE $$$$
 7,u got pzzzed,FANTASY KING
-7,Lincoln Hawk,Maverick
+7,Miwok Indians,Maverick
 8,Maverick,FANTASY KING
 8,SHOW ME THE $$$$,Umbertos
 8,Mooseknuckle's,u got pzzzed
-8,FOTY*,Miwok Indians
-8,Lincoln Hawk,dontmindme
+8,FOTY*,Lincoln Hawk
+8,Miwok Indians,dontmindme
 9,Umbertos,Mooseknuckle's
 9,Maverick,dontmindme
 9,FOTY*,u got pzzzed
-9,Lincoln Hawk,SHOW ME THE $$$$
-9,Miwok Indians,FANTASY KING
+9,Miwok Indians,SHOW ME THE $$$$
+9,Lincoln Hawk,FANTASY KING
 10,Maverick,Mooseknuckle's
 10,FOTY*,Umbertos
-10,Lincoln Hawk,u got pzzzed
-10,Miwok Indians,SHOW ME THE $$$$
+10,Miwok Indians,u got pzzzed
+10,Lincoln Hawk,SHOW ME THE $$$$
 10,FANTASY KING,dontmindme
 11,dontmindme,u got pzzzed
 11,Umbertos,Maverick
 11,SHOW ME THE $$$$,FANTASY KING
 11,Mooseknuckle's,FOTY*
-11,Lincoln Hawk,Miwok Indians
+11,Miwok Indians,Lincoln Hawk
 12,SHOW ME THE $$$$,dontmindme
 12,FOTY*,Maverick
 12,u got pzzzed,Umbertos
-12,Miwok Indians,Mooseknuckle's
-12,FANTASY KING,Lincoln Hawk
+12,Lincoln Hawk,Mooseknuckle's
+12,FANTASY KING,Miwok Indians
 13,dontmindme,Umbertos
 13,Maverick,SHOW ME THE $$$$
 13,Mooseknuckle's,FANTASY KING
-13,Lincoln Hawk,FOTY*
-13,Miwok Indians,u got pzzzed
+13,Miwok Indians,FOTY*
+13,Lincoln Hawk,u got pzzzed
 14,dontmindme,FANTASY KING
 14,Umbertos,FOTY*
-14,SHOW ME THE $$$$,Miwok Indians
+14,SHOW ME THE $$$$,Lincoln Hawk
 14,Mooseknuckle's,Maverick
-14,u got pzzzed,Lincoln Hawk
+14,u got pzzzed,Miwok Indians
