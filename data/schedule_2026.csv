@@ -1,0 +1,31 @@
+﻿Week,Week label,Home,Away,Game,Line,Is next
+9,Week 9 · this week,Umbertos,Mooseknuckle's,Mooseknuckle's at Umbertos,Brian 3-5 · Rob 5-3,true
+9,Week 9 · this week,Maverick,dontmindme,dontmindme at Maverick,Seth 3-5 · Chris S 4-4,true
+9,Week 9 · this week,FOTY*,u got pzzzed,u got pzzzed at FOTY*,Tone 4-4 · Dave 5-3,true
+9,Week 9 · this week,Miwok Indians,SHOW ME THE $$$$,SHOW ME THE $$$$ at Miwok Indians,CJ 4-4 · Brandon 1-7,true
+9,Week 9 · this week,Lincoln Hawk,FANTASY KING,FANTASY KING at Lincoln Hawk,Chris K 5-3 · Boo 6-2,true
+10,Week 10,Maverick,Mooseknuckle's,Mooseknuckle's at Maverick,Brian 3-5 · Chris S 4-4,false
+10,Week 10,FOTY*,Umbertos,Umbertos at FOTY*,Rob 5-3 · Dave 5-3,false
+10,Week 10,Miwok Indians,u got pzzzed,u got pzzzed at Miwok Indians,Tone 4-4 · Brandon 1-7,false
+10,Week 10,Lincoln Hawk,SHOW ME THE $$$$,SHOW ME THE $$$$ at Lincoln Hawk,CJ 4-4 · Boo 6-2,false
+10,Week 10,FANTASY KING,dontmindme,dontmindme at FANTASY KING,Seth 3-5 · Chris K 5-3,false
+11,Week 11,dontmindme,u got pzzzed,u got pzzzed at dontmindme,Tone 4-4 · Seth 3-5,false
+11,Week 11,Umbertos,Maverick,Maverick at Umbertos,Chris S 4-4 · Rob 5-3,false
+11,Week 11,SHOW ME THE $$$$,FANTASY KING,FANTASY KING at SHOW ME THE $$$$,Chris K 5-3 · CJ 4-4,false
+11,Week 11,Mooseknuckle's,FOTY*,FOTY* at Mooseknuckle's,Dave 5-3 · Brian 3-5,false
+11,Week 11,Miwok Indians,Lincoln Hawk,Lincoln Hawk at Miwok Indians,Boo 6-2 · Brandon 1-7,false
+12,Week 12,SHOW ME THE $$$$,dontmindme,dontmindme at SHOW ME THE $$$$,Seth 3-5 · CJ 4-4,false
+12,Week 12,FOTY*,Maverick,Maverick at FOTY*,Chris S 4-4 · Dave 5-3,false
+12,Week 12,u got pzzzed,Umbertos,Umbertos at u got pzzzed,Rob 5-3 · Tone 4-4,false
+12,Week 12,Lincoln Hawk,Mooseknuckle's,Mooseknuckle's at Lincoln Hawk,Brian 3-5 · Boo 6-2,false
+12,Week 12,FANTASY KING,Miwok Indians,Miwok Indians at FANTASY KING,Brandon 1-7 · Chris K 5-3,false
+13,Week 13,dontmindme,Umbertos,Umbertos at dontmindme,Rob 5-3 · Seth 3-5,false
+13,Week 13,Maverick,SHOW ME THE $$$$,SHOW ME THE $$$$ at Maverick,CJ 4-4 · Chris S 4-4,false
+13,Week 13,Mooseknuckle's,FANTASY KING,FANTASY KING at Mooseknuckle's,Chris K 5-3 · Brian 3-5,false
+13,Week 13,Miwok Indians,FOTY*,FOTY* at Miwok Indians,Dave 5-3 · Brandon 1-7,false
+13,Week 13,Lincoln Hawk,u got pzzzed,u got pzzzed at Lincoln Hawk,Tone 4-4 · Boo 6-2,false
+14,Week 14,dontmindme,FANTASY KING,FANTASY KING at dontmindme,Chris K 5-3 · Seth 3-5,false
+14,Week 14,Umbertos,FOTY*,FOTY* at Umbertos,Dave 5-3 · Rob 5-3,false
+14,Week 14,SHOW ME THE $$$$,Lincoln Hawk,Lincoln Hawk at SHOW ME THE $$$$,Boo 6-2 · CJ 4-4,false
+14,Week 14,Mooseknuckle's,Maverick,Maverick at Mooseknuckle's,Chris S 4-4 · Brian 3-5,false
+14,Week 14,u got pzzzed,Miwok Indians,Miwok Indians at u got pzzzed,Brandon 1-7 · Tone 4-4,false
