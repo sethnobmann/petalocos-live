@@ -20,19 +20,20 @@ MONO = "font-family:'Share Tech Mono',Menlo,monospace"
 
 
 def row_html(team, manager, w, l, pts, leader, lead):
-    """One standings row for the Home custom collection (Glide Rich Text keeps inline styles)."""
+    """One standings row for the Home custom collection (Glide Rich Text keeps inline styles).
+    Left: team, manager, points back. Right: points + PTS, H2H record colored by result."""
     col = "#4CD37B" if w > l else "#FF5C5C" if w < l else "#C9D1DE"
-    back = "" if leader else f"-{lead - pts}"
+    back = "leader" if leader else f"{lead - pts} back"
     return (
         '<div style="display:flex;align-items:flex-start">'
         '<div style="flex:1;min-width:0">'
         f'<div style="font-weight:700;font-size:16px;color:#F2F2F0;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{team}</div>'
         f'<div style="font-size:13px;color:#A3A9B3;margin-top:2px">{manager}</div>'
-        f'<div style="font-size:13px;margin-top:2px;color:{col};{MONO}">H2H {w}-{l}</div></div>'
+        f'<div style="font-size:12px;margin-top:2px;color:#6B717A;{MONO}">{back}</div></div>'
         '<div style="text-align:right;padding-left:8px">'
         f'<div style="{MONO};color:#FFB454;font-size:22px;line-height:1;text-shadow:0 0 8px rgba(255,180,84,.5)">{pts}'
         '<span style="font-size:9px;color:#6B717A;letter-spacing:.18em;margin-left:5px;text-shadow:none">PTS</span></div>'
-        f'<div style="{MONO};font-size:11px;color:#6B717A;margin-top:4px">{back}</div></div></div>'
+        f'<div style="font-size:13px;margin-top:5px;color:{col};{MONO}">H2H {w}-{l}</div></div></div>'
     )
 
 
