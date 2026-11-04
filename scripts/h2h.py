@@ -72,7 +72,7 @@ def main():
         rows.append({
             "Season": 2026, "Team Name": t, "Manager": mgr[t], "Short": SHORT[t], "Points": season[t],
             "Place": place[t], "Prev Place": prev_place[t], "Move": move, "Move code": code,
-            "Back": season[t] - lead, "Back text": "" if place[t] == 1 else f"-{lead - season[t]}",
+            "Back": season[t] - lead, "Back text": "" if season[t] == lead else f"-{lead - season[t]}",
             "H2H W": W, "H2H L": L, "H2H key": W * 10000 + season[t], "Streak": streak,
             "Form": "".join(x[1] for x in r[-5:]), "PF": season[t], "PA": sum(x[4] for x in r),
             "Last Week": last, "Last Week Pts": lp, "Last Week Rank": lr, "Next Opp": nxt.get(t, ""),
