@@ -37,6 +37,26 @@ def row_html(team, manager, w, l, pts, leader, lead):
     )
 
 
+BADGE = "https://sethnobmann.github.io/petalocos-live/img/rk/{}-{}.png"
+
+
+def h2h_html(team, manager, w, l, streak, pf, pa, pts, leader_w, wins_back):
+    """One Head to head row: team, manager, streak / PF / PA on the left; W-L and points on the right."""
+    col = "#4CD37B" if w > l else "#FF5C5C" if w < l else "#C9D1DE"
+    back = "leader" if leader_w else f"{wins_back} back"
+    return (
+        '<div style="display:flex;align-items:flex-start">'
+        '<div style="flex:1;min-width:0">'
+        f'<div style="font-weight:700;font-size:16px;color:#F2F2F0;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{team}</div>'
+        f'<div style="font-size:13px;color:#A3A9B3;margin-top:2px">{manager} \u00b7 {streak}</div>'
+        f'<div style="font-size:12px;margin-top:2px;color:#6B717A;{MONO}">{back} \u00b7 PF {pf} \u00b7 PA {pa}</div></div>'
+        '<div style="text-align:right;padding-left:8px">'
+        f'<div style="{MONO};color:{col};font-size:22px;line-height:1">{w}-{l}'
+        '<span style="font-size:9px;color:#6B717A;letter-spacing:.18em;margin-left:5px">H2H</span></div>'
+        f'<div style="font-size:13px;margin-top:5px;color:#FFB454;{MONO}">{pts} PTS</div></div></div>'
+    )
+
+
 def main():
     wk = list(csv.DictReader(open(os.path.join(D, "weekly_scores_2026.csv"), newline="")))
     sched = list(csv.DictReader(open(os.path.join(D, "h2h_schedule.csv"), newline="")))
@@ -69,6 +89,18 @@ def main():
     place = {t: i + 1 for i, t in enumerate(order)}
     prev_place = {t: i + 1 for i, t in enumerate(prev_order)}
     lead = season[order[0]]
+
+    def wl(t, upto):
+        g = [x for x in res[t] if x[0] <= upto]
+        return sum(1 for x in g if x[1] == "W"), sum(1 for x in g if x[1] == "L")
+
+    h_key = {t: wl(t, last)[0] * 10000 + season[t] for t in mgr}
+    h_prev_key = {t: wl(t, last - 1)[0] * 10000 + prev[t] for t in mgr}
+    h_order = sorted(mgr, key=lambda t: -h_key[t])
+    h_prev_order = sorted(mgr, key=lambda t: -h_prev_key[t])
+    h_place = {t: i + 1 for i, t in enumerate(h_order)}
+    h_prev_place = {t: i + 1 for i, t in enumerate(h_prev_order)}
+    top_w = wl(h_order[0], last)[0]
     rows = []
     for t in order:
         r = sorted(res[t])
@@ -89,6 +121,8 @@ def main():
         move = f"▲{d}" if d > 0 else f"▼{-d}" if d < 0 else "–"
         code = f"u{d}" if d > 0 else f"d{-d}" if d < 0 else "s"
         rec = f"{W}-{L}" + (f"-{T}" if T else "")
+        hd = h_prev_place[t] - h_place[t]
+        hcode = f"u{hd}" if hd > 0 else f"d{-hd}" if hd < 0 else "s"
         lp, lr = pts[t].get(last, (0, 0))
         rows.append({
             "Season": 2026, "Team Name": t, "Manager": mgr[t], "Short": SHORT[t], "Points": season[t],
@@ -99,6 +133,9 @@ def main():
             "Last Week": last, "Last Week Pts": lp, "Last Week Rank": lr, "Next Opp": nxt.get(t, ""),
             "Through Week": last, "Record text": rec,
             "Row html": row_html(t, mgr[t], W, L, season[t], season[t] == lead, lead),
+            "H2H place": h_place[t], "H2H prev place": h_prev_place[t],
+            "H2H badge": BADGE.format(h_place[t], hcode),
+            "H2H html": h2h_html(t, mgr[t], W, L, streak, season[t], sum(x[4] for x in r), season[t], W == top_w, top_w - W),
         })
         print(f"{place[t]:2d} {move:3s} {t:18s} {season[t]:4d}  {rec:5s} {streak:3s} next: {nxt.get(t, '')}")
     out = os.path.join(D, "season_2026.csv")
