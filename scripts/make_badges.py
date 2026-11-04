@@ -29,14 +29,23 @@ def badge(place, code):
     t = str(place)
     bb = d.textbbox((0, 0), t, font=big)
     d.text(((W - (bb[2] - bb[0])) / 2 - bb[0], (S - (bb[3] - bb[1])) / 2 - bb[1]), t, font=big, fill=fg)
+    y = S + 14
     if code == "s":
-        line, col = "–", (107, 113, 122, 255)
-    elif code[0] == "u":
-        line, col = "▲" + code[1:], (76, 211, 123, 255)
+        d.rectangle([W / 2 - 9, y + 9, W / 2 + 9, y + 12], fill=(107, 113, 122, 255))
+        im.save(os.path.join(OUT, f"{place}-{code}.png"))
+        return
+    up = code[0] == "u"
+    col = (76, 211, 123, 255) if up else (255, 92, 92, 255)
+    n = code[1:]
+    bb = d.textbbox((0, 0), n, font=small)
+    tw = bb[2] - bb[0]
+    total = 16 + 4 + tw
+    x = (W - total) / 2
+    if up:
+        d.polygon([(x, y + 18), (x + 16, y + 18), (x + 8, y + 3)], fill=col)
     else:
-        line, col = "▼" + code[1:], (255, 92, 92, 255)
-    bb = d.textbbox((0, 0), line, font=small)
-    d.text(((W - (bb[2] - bb[0])) / 2 - bb[0], S + 12 - bb[1]), line, font=small, fill=col)
+        d.polygon([(x, y + 3), (x + 16, y + 3), (x + 8, y + 18)], fill=col)
+    d.text((x + 20 - bb[0], y + 10 - (bb[3] - bb[1]) / 2 - bb[1]), n, font=small, fill=col)
     im.save(os.path.join(OUT, f"{place}-{code}.png"))
 
 

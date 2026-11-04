@@ -66,6 +66,7 @@ def main():
             streak = f"{k}{n}"
         d = prev_place[t] - place[t]
         move = f"▲{d}" if d > 0 else f"▼{-d}" if d < 0 else "–"
+        code = f"u{d}" if d > 0 else f"d{-d}" if d < 0 else "s"
         rec = f"{W}-{L}" + (f"-{T}" if T else "")
         lp, lr = pts[t].get(last, (0, 0))
         rows.append({
