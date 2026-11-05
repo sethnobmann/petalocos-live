@@ -3,6 +3,8 @@
 data/season_2026.csv  one row per team: points, place, move vs last week,
                       H2H W-L, streak, form, PF/PA, next opponent.
 data/schedule_2026.csv one row per game, weeks after the last rolled week.
+data/weeks_2026.csv   one row per team per played week (Home week stepper, Standings side).
+data/games_2026.csv   one row per played game (Home week stepper, Head to head side).
 Run after every roll, then re-import both into Glide (delete rows, Import).
 Written with a UTF-8 BOM: without it Glide reads the arrows and dots as Latin-1.
 """
@@ -54,6 +56,49 @@ def h2h_html(team, manager, w, l, streak, pf, pa, pts, leader_w, wins_back):
         f'<div style="{MONO};color:{col};font-size:22px;line-height:1">{w}-{l}'
         '<span style="font-size:9px;color:#6B717A;letter-spacing:.18em;margin-left:5px">H2H</span></div>'
         f'<div style="font-size:13px;margin-top:5px;color:#FFB454;{MONO}">{pts} PTS</div></div></div>'
+    )
+
+
+def ordinal(n):
+    return f"{n}{'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
+
+
+def week_html(team, manager, pts, result, opp_short, opp_pts, season_pts, place):
+    """One row of a week's scores: team, manager, result vs opponent; week points and season line."""
+    col = {"W": "#4CD37B", "L": "#FF5C5C"}.get(result, "#C9D1DE")
+    return (
+        '<div style="display:flex;align-items:flex-start">'
+        '<div style="flex:1;min-width:0">'
+        f'<div style="font-weight:700;font-size:16px;color:#F2F2F0;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{team}</div>'
+        f'<div style="font-size:13px;color:#A3A9B3;margin-top:2px">{manager}</div>'
+        f'<div style="font-size:12px;margin-top:2px;color:{col};{MONO}">{result} vs {opp_short} {opp_pts}</div></div>'
+        '<div style="text-align:right;padding-left:8px">'
+        f'<div style="{MONO};color:#FFB454;font-size:22px;line-height:1;text-shadow:0 0 8px rgba(255,180,84,.5)">{pts}'
+        '<span style="font-size:9px;color:#6B717A;letter-spacing:.18em;margin-left:5px;text-shadow:none">PTS</span></div>'
+        f'<div style="font-size:12px;margin-top:5px;color:#6B717A;{MONO}">{season_pts} \u00b7 {ordinal(place)}</div></div></div>'
+    )
+
+
+def game_html(away, a_short, a_rec, a_pts, home, h_short, h_rec, h_pts):
+    """One game: away line, home line, margin. Winner lit, loser dim."""
+    def side(t, short, rec, p, win):
+        name_col = "#F2F2F0" if win else "#A3A9B3"
+        pts_col = "#4CD37B" if win else "#6B717A"
+        return (
+            '<div style="display:flex;align-items:center;justify-content:space-between">'
+            f'<div style="min-width:0"><div style="font-weight:{700 if win else 600};font-size:15px;color:{name_col};line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{t}</div>'
+            f'<div style="font-size:12px;color:#A3A9B3">{short} \u00b7 {rec}</div></div>'
+            f'<div style="{MONO};color:{pts_col};font-size:22px;padding-left:8px">{p}</div></div>'
+        )
+    if a_pts == h_pts:
+        mar = "tie"
+    else:
+        mar = f"{a_short if a_pts > h_pts else h_short} by {abs(a_pts - h_pts)}"
+    return (
+        '<div style="display:flex;flex-direction:column;gap:4px">'
+        + side(away, a_short, a_rec, a_pts, a_pts > h_pts)
+        + side(home, h_short, h_rec, h_pts, h_pts > a_pts)
+        + f'<div style="text-align:right;font-size:10px;color:#6B717A;letter-spacing:.08em;{MONO}">{mar}</div></div>'
     )
 
 
@@ -164,6 +209,51 @@ def main():
         w.writeheader()
         w.writerows(srows)
     print("wrote", out2, len(srows), "games")
+
+    # Week stepper tables: per team per week, and per game, with standings as of that week.
+    wrows, grows = [], []
+    for week in done:
+        cum = {t: sum(p for wk_, (p, _) in pts[t].items() if wk_ <= week) for t in mgr}
+        cum_order = sorted(mgr, key=lambda t: -cum[t])
+        cum_place = {t: i + 1 for i, t in enumerate(cum_order)}
+        rec = {t: wl(t, week) for t in mgr}
+        for t in mgr:
+            g = next((x for x in res[t] if x[0] == week), None)
+            if not g:
+                continue
+            _, r_, o, own, theirs = g
+            p, rank = pts[t][week]
+            pr = pts[t].get(week - 1, (0, rank))[1]
+            d = pr - rank
+            code = f"u{d}" if d > 0 else f"d{-d}" if d < 0 else "s"
+            if week == done[0]:
+                code = "s"
+            wrows.append({
+                "Week": week, "Team Name": t, "Manager": mgr[t], "Points": p, "Week Rank": rank,
+                "Prev Week Rank": pr, "Badge": BADGE.format(rank, code), "Opp": o, "Opp pts": theirs, "Result": r_,
+                "Season pts": cum[t], "Place": cum_place[t], "Sort": week * 100 + rank,
+                "Week html": week_html(t, mgr[t], p, r_, SHORT[o], theirs, cum[t], cum_place[t]),
+            })
+        for g in sched:
+            if int(g["week"]) != week:
+                continue
+            h, a = g["home"], g["away"]
+            hp, ap = pts[h][week][0], pts[a][week][0]
+            a_rec = f"{rec[a][0]}-{rec[a][1]}"
+            h_rec = f"{rec[h][0]}-{rec[h][1]}"
+            grows.append({
+                "Week": week, "Away": a, "Away pts": ap, "Home": h, "Home pts": hp,
+                "Winner": a if ap > hp else h if hp > ap else "", "Margin": abs(ap - hp),
+                "Sort": week * 100 + (1000 - max(ap, hp)) / 1000,
+                "Game html": game_html(a, SHORT[a], a_rec, ap, h, SHORT[h], h_rec, hp),
+            })
+    for name, data in (("weeks_2026.csv", wrows), ("games_2026.csv", grows)):
+        outp = os.path.join(D, name)
+        with open(outp, "w", newline="", encoding="utf-8-sig") as f:
+            w = csv.DictWriter(f, fieldnames=list(data[0].keys()))
+            w.writeheader()
+            w.writerows(data)
+        print("wrote", outp, len(data), "rows")
 
 
 if __name__ == "__main__":
