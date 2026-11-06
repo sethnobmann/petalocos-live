@@ -1,0 +1,26 @@
+{
+  "h2h": {
+    "2004": "Dave Abramson", "2006": "Brandon Selvitella", "2007": "Brandon Martinez",
+    "2008": "Tony Oliverez", "2009": "Dave Abramson", "2010": "Seth Nobmann",
+    "2011": "Rob Scerri", "2012": "Seth Nobmann", "2013": "Chris King",
+    "2014": "Seth Nobmann", "2024": "Brian Lovrin"
+  },
+  "managers": {
+    "Seth Nobmann": {"handle": "Seffonz", "teams": "theWONderlic13 → dontmindme", "status": "Active"},
+    "Chris Scerri": {"handle": "Chris", "teams": "Hot Shots → U like that… → it was the chlorine → Christ → Maverick → C-Murder → Maverick", "status": "Active"},
+    "Chris King": {"handle": "", "teams": "Fantasy King ⇄ Fantasy Champ (2015-17)", "status": "Active"},
+    "Brandon Martinez": {"handle": "Boo", "teams": "Big Time Squad → The Corner Store → mexiCAN → Lincoln Hawk", "status": "Active"},
+    "Rob Scerri": {"handle": "RobCommissioner", "teams": "Hot Rods → Great Times → Berto Bulge → Umbertos", "status": "Commissioner"},
+    "Brian Lovrin": {"handle": "BLOV", "teams": "Champs → B Luv → Mooseknuckle's → Slumpbusters → Bad Newz Kennels → Mooseknuckle's", "status": "Active"},
+    "Brandon Selvitella": {"handle": "SALVO58", "teams": "Fanzanoon → Miwok Indians", "status": "Active"},
+    "CJ Nelson": {"handle": "CJ", "teams": "Show Me The Money → SHOW ME THE $$$$ (with 3Peat and Welcome Back Ricky along the way)", "status": "Treasurer"},
+    "Dave Abramson": {"handle": "abramson dave", "teams": "Redshirts → Da Love Train → Boo Boo Heads → Detention → FOTY*", "status": "Active"},
+    "Tony Oliverez": {"handle": "tone1818", "teams": "Team Punishment → Untouchable → Flawless → u got pzzzed", "status": "Active"},
+    "Jerre Hernandez": {"handle": "", "teams": "Beanzees Bunch (2003) → The Truth13 (2004)", "status": "Former · won 2004, then left"},
+    "Kevin Sullivan": {"handle": "", "teams": "Sullys Bunch (2002) → 100 donation (2003)", "status": "Former · two seasons"}
+  },
+  "weekRecords": {
+    "high": {"value": 220, "who": "Brandon Martinez", "team": "Lincoln Hawk", "season": 2025, "week": 15},
+    "low": {"value": 28, "who": "Rob Scerri", "team": "Umbertos", "season": 2022, "week": 18}
+  }
+}

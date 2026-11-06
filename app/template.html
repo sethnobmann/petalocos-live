@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B1424">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Petalocos">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<title>Petalocos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Share+Tech+Mono&display=swap">
+<style>
+/* Layout: phone-first single column (max 520px) under a stadium-lights band, with a native-style tab bar pinned to the bottom.
+   Friday Night Lights look, committed single dark theme: navy field, pylon orange accent, amber scoreboard digits. */
+:root {
+  --bg: #0B1424;
+  --card: #122039;
+  --card-2: #0E1A2E;
+  --led: #08101D;
+  --bar: rgba(9, 16, 30, 0.94);
+  --line: rgba(163, 169, 179, 0.16);
+  --text: #F2F2F0;
+  --muted: #A3A9B3;
+  --dim: #6E7787;
+  --orange: #F25C2A;
+  --amber: #FFB454;
+  --glow: rgba(255, 180, 84, 0.3);
+  --win: #4CC38A;
+  --loss: #E8615C;
+  --chart: #2A3D62;
+  --display: "Oswald", "Arial Narrow", Impact, sans-serif;
+  --body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  --mono: "Share Tech Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { background: var(--bg); }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--body); font-size: 15px; line-height: 1.4;
+  margin: 0; -webkit-font-smoothing: antialiased; -webkit-tap-highlight-color: transparent;
+}
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.col { max-width: 520px; margin: 0 auto; }
+
+/* ---------- stadium band ---------- */
+.band {
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(70% 150% at 6% -55%, rgba(255, 228, 175, 0.45), transparent 62%),
+    radial-gradient(70% 150% at 94% -55%, rgba(255, 228, 175, 0.4), transparent 62%),
+    linear-gradient(180deg, #19294A 0%, #0F1C33 60%, var(--bg) 100%);
+}
+.band::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 28px);
+  -webkit-mask-image: linear-gradient(180deg, #000 20%, transparent 95%); mask-image: linear-gradient(180deg, #000 20%, transparent 95%);
+}
+.band::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; opacity: 0.75;
+  background: linear-gradient(90deg, transparent, var(--orange) 25%, var(--orange) 75%, transparent);
+}
+.bank {
+  position: absolute; top: calc(8px + env(safe-area-inset-top, 0px)); width: 58px; height: 18px; pointer-events: none;
+  background-image: radial-gradient(circle, #FFF6E3 1.3px, transparent 1.9px); background-size: 7px 7px;
+  filter: drop-shadow(0 0 5px rgba(255, 214, 150, 0.95)); opacity: 0.85;
+}
+.bank.l { left: max(12px, env(safe-area-inset-left, 0px)); }
+.bank.r { right: max(12px, env(safe-area-inset-right, 0px)); }
+.band-in { position: relative; padding-block: calc(38px + env(safe-area-inset-top, 0px)) 22px; }
+.back {
+  display: inline-block; margin-bottom: 14px; text-decoration: none;
+  font: 13px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+}
+.hero { display: flex; align-items: center; gap: 14px; }
+.ht { min-width: 0; }
+.crest { width: 58px; height: 58px; flex: none; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.55)); }
+.eyebrow { font: 12px var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); }
+h1 {
+  margin: 4px 0 0; font: 700 34px/1 var(--display); letter-spacing: 0.02em; text-transform: uppercase;
+  text-wrap: balance; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+}
+.sub { margin-top: 6px; font-size: 14px; color: var(--muted); }
+
+/* ---------- main ---------- */
+main { padding-block: 18px calc(96px + env(safe-area-inset-bottom, 0px)); }
+.stack { display: flex; flex-direction: column; gap: 14px; }
+.h { margin: 6px 2px -4px; font: 12px var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); }
+.foot { text-align: center; font: 11px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-top: 6px; }
+
+.seg { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  appearance: none; cursor: pointer; border: 1px solid var(--line); background: var(--card-2); color: var(--muted);
+  font: 600 14px var(--body); padding: 8px 15px; border-radius: 999px;
+}
+.chip[aria-pressed="true"] { background: var(--orange); border-color: var(--orange); color: var(--bg); }
+
+.stepper {
+  display: grid; grid-template-columns: 48px minmax(0, 1fr) 48px; align-items: center; height: 44px;
+  background: var(--card-2); border: 1px solid var(--line); border-radius: 10px;
+}
+.stepper button { height: 100%; border: 0; background: none; color: var(--amber); font: 400 24px/1 var(--body); cursor: pointer; }
+.stepper button:disabled { color: var(--dim); opacity: 0.45; cursor: default; }
+.stepper span { text-align: center; font: 15px var(--mono); letter-spacing: 0.16em; }
+
+.list { background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.row {
+  display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 12px; align-items: start;
+  padding: 12px 14px; text-decoration: none; border-top: 1px solid var(--line);
+}
+.row:first-child, .plain:first-child, .game:first-child, .kv:first-child { border-top: 0; }
+a.row:active { background: rgba(255, 255, 255, 0.035); }
+.mid { min-width: 0; }
+.team { font-weight: 700; font-size: 16px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mgr { margin-top: 2px; font-size: 13px; color: var(--muted); }
+.note { margin-top: 3px; font: 12px var(--mono); color: var(--dim); }
+.right { text-align: right; }
+.pts {
+  font: 21px/1 var(--mono); color: var(--amber); text-shadow: 0 0 14px var(--glow);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.pts small { margin-left: 3px; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); text-shadow: none; }
+.rec { margin-top: 6px; font: 13px var(--mono); white-space: nowrap; }
+.wl { font: 700 24px/1 var(--display); letter-spacing: 0.02em; }
+.w { color: var(--win); } .l { color: var(--loss); } .e { color: var(--muted); }
+
+.badge {
+  width: 40px; height: 44px; border-radius: 7px; background: var(--card-2); border: 1px solid var(--line);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.badge b { font: 600 19px/1 var(--display); }
+.badge.gold { background: var(--orange); border-color: var(--orange); color: var(--bg); }
+.mv { margin-top: 3px; font: 10px/1 var(--mono); font-style: normal; }
+.mv.up { color: var(--win); } .mv.dn { color: var(--loss); } .mv.st { color: var(--dim); }
+.badge.gold .mv { color: var(--bg); }
+
+.plain { padding: 12px 14px; border-top: 1px solid var(--line); }
+.plain .team { white-space: normal; font-size: 15px; }
+.at { font-weight: 500; color: var(--dim); font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 3px; }
+
+.game { display: grid; gap: 7px; padding: 12px 14px; border-top: 1px solid var(--line); }
+.side { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+.side .team { font-size: 15px; }
+.gp { font: 21px/1 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.side.win .gp { color: var(--amber); text-shadow: 0 0 14px var(--glow); }
+.side.lose .team { color: var(--muted); font-weight: 600; }
+
+.champ {
+  display: grid; gap: 14px; padding: 16px; border-radius: 12px; border: 1px solid var(--line);
+  background: linear-gradient(180deg, #1A2B4D, var(--card));
+}
+.champ .name { font: 700 28px/1.05 var(--display); text-transform: uppercase; letter-spacing: 0.01em; text-decoration: none; }
+.tag {
+  display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 4px; vertical-align: 1px;
+  font: 11px var(--mono); letter-spacing: 0.08em; color: var(--orange); border: 1px solid rgba(242, 92, 42, 0.55);
+}
+.leds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.led { background: var(--led); border: 1px solid var(--line); border-radius: 10px; padding: 10px 10px 9px; min-width: 0; }
+.led b { display: block; font: 400 25px/1.1 var(--mono); color: var(--amber); text-shadow: 0 0 14px var(--glow); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.led span { display: block; margin-top: 3px; font: 10px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+.kv { display: flex; justify-content: space-between; gap: 14px; align-items: baseline; padding: 11px 14px; border-top: 1px solid var(--line); }
+.kv dt { font: 11px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); flex: none; }
+.kv dd { margin: 0; text-align: right; font-size: 14px; min-width: 0; }
+dl { margin: 0; }
+
+.ticket { grid-template-columns: 62px minmax(0, 1fr) auto; box-shadow: inset 3px 0 0 var(--orange); }
+.yr { font: 700 26px/1 var(--display); padding-top: 3px; letter-spacing: 0.01em; }
+.ticket .team { font-size: 16px; }
+.ticket .right { border-left: 1px dashed var(--line); padding-left: 12px; align-self: stretch; }
+
+.tally { display: grid; gap: 9px; padding: 14px; }
+.tl { display: grid; grid-template-columns: 128px minmax(0, 1fr) 22px; gap: 10px; align-items: center; font-size: 13px; text-decoration: none; }
+.tl span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar { height: 8px; border-radius: 4px; background: var(--card-2); overflow: hidden; }
+.bar i { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--orange), var(--amber)); }
+.tl b { font: 15px var(--mono); color: var(--amber); text-align: right; }
+
+.av {
+  width: 40px; height: 40px; border-radius: 50%; flex: none; display: grid; place-items: center;
+  background: var(--card-2); border: 1.5px solid var(--line); font: 600 15px var(--display); letter-spacing: 0.04em;
+}
+.av.gold { border-color: var(--amber); color: var(--amber); }
+.av.big { width: 58px; height: 58px; font-size: 22px; background: var(--led); }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+.chart svg { display: block; width: 100%; height: auto; }
+.chart .c-bar { fill: var(--chart); } .chart .c-title { fill: var(--amber); } .chart .c-last { fill: var(--loss); }
+.chart .c-grid { stroke: var(--line); stroke-width: 1; } .chart .c-none { fill: var(--dim); }
+.chart text { fill: var(--muted); font-family: var(--mono); font-size: 9px; }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; font: 11px var(--mono); color: var(--muted); letter-spacing: 0.06em; }
+.legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+
+.recs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.rc { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 13px; text-decoration: none; min-width: 0; }
+.rc .k { font: 10px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.rc .v { margin-top: 4px; font: 700 30px/1.05 var(--display); color: var(--amber); }
+.rc .who { margin-top: 3px; font-weight: 600; font-size: 14px; line-height: 1.2; }
+.rc .ctx { margin-top: 2px; font-size: 12px; color: var(--muted); }
+
+.scroll { overflow-x: auto; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tbl th { padding: 10px 14px; text-align: left; font: 400 10px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.tbl td { padding: 10px 14px; border-top: 1px solid var(--line); white-space: nowrap; }
+.tbl .n { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.tbl .n.hot { color: var(--amber); }
+.tbl a { text-decoration: none; font-weight: 600; }
+
+.pager { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pager a, .pager span {
+  display: block; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--card-2);
+  text-decoration: none; font: 13px var(--mono); letter-spacing: 0.1em; color: var(--amber);
+}
+.pager span { color: var(--dim); }
+.pager .nx { text-align: right; }
+
+/* ---------- tab bar ---------- */
+.tabbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--bar);
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-top: 1px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px));
+}
+.tabbar .col { display: grid; grid-template-columns: repeat(4, 1fr); }
+.tab {
+  display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 9px 0 8px; text-decoration: none;
+  color: var(--dim); font: 600 11px var(--body); letter-spacing: 0.05em; text-transform: uppercase;
+}
+.tab svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.tab[aria-current="page"] { color: var(--orange); }
+
+@media (max-width: 360px) {
+  h1 { font-size: 29px; }
+  .led b { font-size: 21px; }
+  .tl { grid-template-columns: 104px minmax(0, 1fr) 22px; }
+}
+</style>
+
+</head>
+<body>
+<header class="band" id="band"></header>
+<main class="gut"><div class="col stack" id="main"></div></main>
+<nav class="tabbar" aria-label="Sections">
+  <div class="col">
+    <a class="tab" href="#home" data-tab="home"><svg viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"/></svg>Home</a>
+    <a class="tab" href="#champions" data-tab="champions"><svg viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5.5a2.5 2.5 0 0 0 2.6 4M16 6h2.5a2.5 2.5 0 0 1-2.6 4M12 13v4M9 21h6M10 17h4v4h-4z"/></svg>Champions</a>
+    <a class="tab" href="#members" data-tab="members"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5c.6-3.3 2.8-5.2 5.5-5.2s4.9 1.9 5.5 5.2"/><circle cx="17" cy="9" r="2.5"/><path d="M15.6 14.3c2.4-.3 4.3 1.3 4.9 4.4"/></svg>Members</a>
+    <a class="tab" href="#records" data-tab="records"><svg viewBox="0 0 24 24"><path d="M3 20.5h18M6.5 20.5v-7M12 20.5V5M17.5 20.5v-10"/></svg>Records</a>
+  </div>
+</nav>
+
+<script>
+const D = __DATA__;
+const CREST = "../img/crest-shield.png";
+const state = { homeTab: "std", week: null };
+
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const fmt = n => Number(n).toLocaleString("en-US");
+const ord = n => { const s = ["th", "st", "nd", "rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); };
+const wlc = (w, l) => (w > l ? "w" : w < l ? "l" : "e");
+const memberBySlug = Object.fromEntries(D.members.map(m => [m.slug, m]));
+const memberByName = Object.fromEntries(D.members.map(m => [m.name, m]));
+const live = Object.fromEntries(D.live.standings.map(r => [r.team, r]));
+const mlink = name => (memberByName[name] ? `#member-${memberByName[name].slug}` : null);
+
+function moveTag(d) {
+  if (d > 0) return `<i class="mv up">▲${d}</i>`;
+  if (d < 0) return `<i class="mv dn">▼${-d}</i>`;
+  return `<i class="mv st">–</i>`;
+}
+function badge(n, gold, d) {
+  return `<div class="badge${gold ? " gold" : ""}"><b>${n}</b>${d === undefined ? "" : moveTag(d)}</div>`;
+}
+function rowTag(href) { return href ? `<a class="row" href="${href}">` : `<div class="row">`; }
+function rowEnd(href) { return href ? "</a>" : "</div>"; }
+function led(v, label) { return `<div class="led"><b>${v}</b><span>${label}</span></div>`; }
+function kv(k, v) { return `<div class="kv"><dt>${k}</dt><dd>${v}</dd></div>`; }
+
+function band({ back, eyebrow, title, sub, avatar }) {
+  return `<div class="bank l"></div><div class="bank r"></div>
+  <div class="band-in gut"><div class="col">
+    ${back ? `<a class="back" href="#${back.href}">‹ ${back.label}</a>` : ""}
+    <div class="hero">${avatar || `<img class="crest" src="${CREST}" alt="Petalocos crest">`}
+      <div class="ht"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1>${sub ? `<div class="sub">${sub}</div>` : ""}</div>
+    </div>
+  </div></div>`;
+}
+
+/* ---------- Home: 2026 season ---------- */
+function homeBody() {
+  const L = D.live, wk = state.week, tab = state.homeTab;
+  const chip = (v, label) => `<button class="chip" data-act="tab" data-v="${v}" aria-pressed="${tab === v}">${label}</button>`;
+  let h = `<div class="seg" role="group" aria-label="Table">${chip("std", "Standings")}${chip("h2h", "Head to head")}</div>
+    <div class="stepper">
+      <button data-act="prev" aria-label="Previous week" ${wk === 1 ? "disabled" : ""}>‹</button>
+      <span>${wk ? `WEEK ${wk}` : "SEASON"}</span>
+      <button data-act="next" aria-label="Next week" ${wk === null ? "disabled" : ""}>›</button>
+    </div>`;
+  if (!wk && tab === "std") h += seasonStandings();
+  if (!wk && tab === "h2h") h += seasonH2H();
+  if (wk && tab === "std") h += weekScores(wk);
+  if (wk && tab === "h2h") h += weekGames(wk);
+  if (!wk && L.next) h += upNext();
+  h += `<div class="foot">Updated through week ${L.through} · __UPDATED__</div>`;
+  return h;
+}
+function seasonStandings() {
+  const rows = D.live.standings.slice().sort((a, b) => a.place - b.place);
+  const lead = rows[0].pts;
+  return `<div class="list">${rows.map(r => {
+    const back = r.place === 1 ? "leader" : r.pts === lead ? "tied for 1st" : `${lead - r.pts} back`;
+    const href = mlink(r.mgr);
+    return `${rowTag(href)}${badge(r.place, r.place === 1, r.prev - r.place)}
+      <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)}</div><div class="note">${back}</div></div>
+      <div class="right"><div class="pts">${r.pts}<small>PTS</small></div><div class="rec ${wlc(r.w, r.l)}">H2H ${r.w}-${r.l}</div></div>${rowEnd(href)}`;
+  }).join("")}</div>`;
+}
+function seasonH2H() {
+  const rows = D.live.standings.slice().sort((a, b) => a.hp - b.hp);
+  const topW = Math.max(...rows.map(r => r.w));
+  return `<div class="list">${rows.map(r => {
+    const gb = topW - r.w, href = mlink(r.mgr);
+    return `${rowTag(href)}${badge(r.hp, r.hp === 1, r.hpp - r.hp)}
+      <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)} · ${r.streak}</div><div class="note">${gb ? gb + " back" : "leader"} · PF ${r.pf} · PA ${r.pa}</div></div>
+      <div class="right"><div class="wl ${wlc(r.w, r.l)}">${r.w}-${r.l}</div><div class="rec e">${r.pts} PTS</div></div>${rowEnd(href)}`;
+  }).join("")}</div>`;
+}
+function weekScores(wk) {
+  const rows = (D.live.weeks[wk] || []).slice().sort((a, b) => a[3] - b[3]);
+  return `<div class="list">${rows.map(([team, mgr, pts, rank, opp, oppPts, res, seasonPts, place]) => {
+    const href = mlink(mgr);
+    return `${rowTag(href)}${badge(rank, rank === 1)}
+      <div class="mid"><div class="team">${esc(team)}</div><div class="mgr">${esc(mgr)}</div><div class="note"><span class="${res === "W" ? "w" : "l"}">${res}</span> vs ${esc(opp)} ${oppPts}</div></div>
+      <div class="right"><div class="pts">${pts}<small>PTS</small></div><div class="rec e">${ord(place)} · ${seasonPts}</div></div>${rowEnd(href)}`;
+  }).join("")}</div>`;
+}
+function weekGames(wk) {
+  const games = D.live.games[wk] || [];
+  const side = (team, p, won) => `<div class="side ${won ? "win" : "lose"}"><div class="mid"><div class="team">${esc(team)}</div><div class="mgr">${esc(live[team] ? live[team].short : "")}</div></div><div class="gp">${p}</div></div>`;
+  return `<div class="list">${games.map(([away, ap, home, hp, winner, margin]) =>
+    `<div class="game">${side(away, ap, winner === away)}${side(home, hp, winner === home)}<div class="note">${esc(live[winner] ? live[winner].short : winner)} by ${margin}</div></div>`
+  ).join("")}</div>`;
+}
+function upNext() {
+  const n = D.live.next;
+  const who = t => live[t] ? `${esc(live[t].short)} ${live[t].w}-${live[t].l}` : "";
+  return `<div class="h">Up next · Week ${n.week}</div><div class="list">${n.games.map(([away, home]) =>
+    `<div class="plain"><div class="team">${esc(away)}<span class="at">at</span>${esc(home)}</div><div class="mgr">${who(away)} · ${who(home)}</div></div>`
+  ).join("")}</div>`;
+}
+function renderHome() {
+  return { tab: "home", band: band({ eyebrow: `2026 season · week ${D.live.through}`, title: "Petalocos", sub: "25th season · points title + H2H" }), body: homeBody() };
+}
+
+/* ---------- Champions ---------- */
+function renderChampions() {
+  const counts = {};
+  D.seasons.forEach(s => { counts[s.champ.mgr] = (counts[s.champ.mgr] || 0) + 1; });
+  const tally = Object.entries(counts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+  const max = tally[0][1];
+  const body = `<div class="h">Title count</div>
+    <div class="list tally">${tally.map(([name, n]) =>
+      `<a class="tl" href="${mlink(name) || "#champions"}"><span>${esc(name)}</span><div class="bar"><i style="width:${(n / max) * 100}%"></i></div><b>${n}</b></a>`).join("")}</div>
+    <div class="h">Every season</div>
+    <div class="list">${D.seasons.slice().reverse().map(s =>
+      `<a class="row ticket" href="#season-${s.y}"><div class="yr">${s.y}</div>
+        <div class="mid"><div class="team">${esc(s.champ.mgr)}</div><div class="mgr">${esc(s.champ.team)} · ${ord(s.nth)} title${s.double ? '<span class="tag">+H2H</span>' : ""}</div></div>
+        <div class="right"><div class="pts">${fmt(s.champ.pts)}<small>PTS</small></div><div class="note">by ${s.margin}</div></div></a>`).join("")}</div>`;
+  return { tab: "champions", band: band({ eyebrow: `Points + H2H · ${D.seasons.length} seasons`, title: "Champions", sub: "Every points title since 2002" }), body };
+}
+
+function renderSeason(y) {
+  const i = D.seasons.findIndex(s => s.y === y);
+  if (i < 0) return null;
+  const s = D.seasons[i], prev = D.seasons[i - 1], next = D.seasons[i + 1];
+  const champHref = mlink(s.champ.mgr);
+  const who = p => `${esc(p.mgr)} · ${fmt(p.pts)}`;
+  const body = `<div class="champ">
+      <div class="eyebrow">${y} champion</div>
+      <div><a class="name" href="${champHref}">${esc(s.champ.mgr)}</a><div class="mgr">${esc(s.champ.team)} · ${ord(s.nth)} title${s.double ? '<span class="tag">+H2H</span>' : ""}</div></div>
+      <div class="leds">${led(fmt(s.champ.pts), "Points")}${led(s.margin, "Margin")}${led(fmt(Math.round(s.avg)), "League avg")}</div>
+    </div>
+    <div class="h">Season stats</div>
+    <dl class="list">${kv("Runner-up", who(s.run))}${kv("Last place", who(s.last))}${kv("H2H champ", s.h2h ? esc(s.h2h) : '<span class="e">Not on file yet</span>')}${kv("Teams", s.n)}</dl>
+    <div class="h">Final standings</div>
+    <div class="list">${s.rows.map(([f, team, mgr, pts]) => {
+      const href = mlink(mgr);
+      return `${rowTag(href)}${badge(f, f === 1)}
+        <div class="mid"><div class="team">${esc(team)}</div><div class="mgr">${mgr === "Unknown" ? "Owner unknown" : esc(mgr)}</div></div>
+        <div class="right"><div class="pts">${fmt(pts)}<small>PTS</small></div><div class="note">${f === 1 ? "champion" : s.champ.pts - pts + " back"}</div></div>${rowEnd(href)}`;
+    }).join("")}</div>
+    <div class="pager">${prev ? `<a href="#season-${prev.y}">‹ ${prev.y}</a>` : "<span>‹ 2002 was year one</span>"}${next ? `<a class="nx" href="#season-${next.y}">${next.y} ›</a>` : `<a class="nx" href="#home">2026 ›</a>`}</div>`;
+  return { tab: "champions", band: band({ back: { href: "champions", label: "Champions" }, eyebrow: "Champion · Stats · Standings", title: `${y} season`, sub: `${esc(s.champ.team)} on top` }), body };
+}
+
+/* ---------- Members ---------- */
+function memberRow(m) {
+  const role = m.status === "Commissioner" ? " · Commish" : m.status === "Treasurer" ? " · Treasurer" : "";
+  return `<a class="row" href="#member-${m.slug}"><div class="av${m.titles.length ? " gold" : ""}">${m.ini}</div>
+    <div class="mid"><div class="team">${esc(m.name)}</div><div class="mgr">Since ${m.since} · ${m.seasons} seasons${role}</div><div class="note">Avg finish ${m.avg.toFixed(1)} · ${m.top3} top-3</div></div>
+    <div class="right"><div class="pts">${m.titles.length}<small>TITLES</small></div><div class="rec e">${m.h2h.length} H2H</div></div></a>`;
+}
+function renderMembers() {
+  const sort = (a, b) => b.titles.length - a.titles.length || a.avg - b.avg;
+  const active = D.members.filter(m => m.active).sort(sort);
+  const former = D.members.filter(m => !m.active).sort(sort);
+  const body = `<div class="h">Active · ${active.length}</div><div class="list">${active.map(memberRow).join("")}</div>
+    <div class="h">Former</div><div class="list">${former.map(memberRow).join("")}</div>`;
+  return { tab: "members", band: band({ eyebrow: "All-time · 2002–2025", title: "Members", sub: "Sorted by titles, then average finish" }), body };
+}
+
+function finishChart(m) {
+  const W = 336, H = 150, pl = 28, pr = 4, pt = 8, pb = 20;
+  const years = []; for (let y = 2002; y <= 2025; y++) years.push(y);
+  const cw = (W - pl - pr) / years.length, ih = H - pt - pb, base = pt + ih;
+  const byY = Object.fromEntries(m.fin.map(f => [f[0], f]));
+  let g = "";
+  [[1, "1st"], [5, "5th"], [10, "10th"]].forEach(([f, label]) => {
+    const yv = base - ((10 + 1 - f) / 10) * ih;
+    g += `<line class="c-grid" x1="${pl}" x2="${W - pr}" y1="${yv}" y2="${yv}"/><text x="${pl - 5}" y="${yv + 3}" text-anchor="end">${label}</text>`;
+  });
+  years.forEach((y, i) => {
+    const x = pl + i * cw + 1.5, w = cw - 3, f = byY[y];
+    if (f) {
+      const [, fin, n] = f, h = ((n + 1 - fin) / n) * ih;
+      const cls = fin === 1 ? "c-title" : fin === n ? "c-last" : "c-bar";
+      g += `<rect class="${cls}" x="${x.toFixed(1)}" y="${(base - h).toFixed(1)}" width="${w.toFixed(1)}" height="${h.toFixed(1)}" rx="1.5"><title>${y}: ${ord(fin)} of ${n}</title></rect>`;
+    } else {
+      g += `<rect class="c-none" x="${x.toFixed(1)}" y="${base - 1.5}" width="${w.toFixed(1)}" height="1.5"/>`;
+    }
+    if ([2002, 2006, 2010, 2014, 2018, 2022, 2025].includes(y))
+      g += `<text x="${(x + w / 2).toFixed(1)}" y="${H - 6}" text-anchor="middle">'${String(y).slice(2)}</text>`;
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Finish by year, ${m.name}">${g}</svg>`;
+}
+function renderMember(slug) {
+  const m = memberBySlug[slug];
+  if (!m) return null;
+  const last = m.fin[m.fin.length - 1];
+  const team = m.now ? m.now.team : last[3];
+  const avatar = `<div class="av big${m.titles.length ? " gold" : ""}">${m.ini}</div>`;
+  const yrs = a => (a.length ? a.join(", ") : '<span class="e">None yet</span>');
+  let body = "";
+  if (m.now) body += `<dl class="list">${kv("2026 so far", `<b>${ord(m.now.place)}</b> · ${m.now.pts} pts · H2H <span class="${wlc(m.now.w, m.now.l)}">${m.now.w}-${m.now.l}</span>`)}</dl>`;
+  body += `<div class="leds">${led(m.titles.length, "Titles")}${led(m.h2h.length, "H2H titles")}${led(m.avg.toFixed(1), "Avg finish")}
+      ${led(m.top3, "Top 3")}${led(m.lasts, "Last place")}${led(fmt(m.career), "Career pts")}</div>
+    <div class="h">Finish by year</div>
+    <div class="card chart">${finishChart(m)}<div class="legend"><span><i style="background:var(--amber)"></i>Title</span><span><i style="background:var(--loss)"></i>Last place</span><span><i style="background:var(--chart)"></i>Everything else</span></div></div>
+    <div class="recs">
+      <a class="rc" href="#season-${m.best.y}"><div class="k">Best season</div><div class="v">${fmt(m.best.pts)}</div><div class="who">${m.best.y}</div><div class="ctx">${esc(m.best.team)}</div></a>
+      <a class="rc" href="#season-${m.worst.y}"><div class="k">Worst season</div><div class="v">${fmt(m.worst.pts)}</div><div class="who">${m.worst.y}</div><div class="ctx">${esc(m.worst.team)}</div></a>
+    </div>
+    <dl class="list">${kv("Points titles", yrs(m.titles))}${kv("H2H titles", yrs(m.h2h))}${kv("Team names", esc(m.teams))}</dl>
+    <div class="h">Season by season</div>
+    <div class="list">${m.fin.slice().reverse().map(([y, f, n, t, pts]) =>
+      `<a class="row" href="#season-${y}">${badge(f, f === 1)}<div class="mid"><div class="team">${y}</div><div class="mgr">${esc(t)}${f === n ? " · last" : ""}</div></div><div class="right"><div class="pts">${fmt(pts)}<small>PTS</small></div></div></a>`
+    ).join("")}</div>`;
+  return { tab: "members", band: band({ back: { href: "members", label: "Members" }, avatar, eyebrow: `Member since ${m.since}`, title: esc(m.name), sub: esc(team) }), body };
+}
+
+/* ---------- Records ---------- */
+function recCards(list) {
+  return `<div class="recs">${list.map(r => {
+    const open = r.href ? `<a class="rc" href="#${r.href}">` : `<div class="rc">`;
+    return `${open}<div class="k">${r.k}</div><div class="v">${r.v}</div><div class="who">${esc(r.who)}</div><div class="ctx">${esc(r.ctx)}</div>${r.href ? "</a>" : "</div>"}`;
+  }).join("")}</div>`;
+}
+function renderRecords() {
+  const R = D.records;
+  const body = `<div class="h">Single season</div>${recCards(R.season)}
+    <div class="h">Single week</div>${recCards(R.week)}
+    <div class="h">Career</div>${recCards(R.career)}
+    <div class="h">All-time points</div>
+    <div class="list scroll"><table class="tbl"><thead><tr><th>#</th><th>Manager</th><th class="n">Yrs</th><th class="n">Points</th><th class="n">Avg</th></tr></thead><tbody>
+      ${R.points.map((p, i) => `<tr><td class="n e">${i + 1}</td><td><a href="#member-${p.slug}">${esc(p.name)}</a></td><td class="n">${p.seasons}</td><td class="n hot">${fmt(p.career)}</td><td class="n">${fmt(p.avg)}</td></tr>`).join("")}
+    </tbody></table></div>`;
+  return { tab: "records", band: band({ eyebrow: "Weekly marks from 2010", title: "Records", sub: "Tap a card for the season or the man" }), body };
+}
+
+/* ---------- router ---------- */
+let lastHash = null;
+function route() {
+  const h = location.hash.slice(1) || "home";
+  let v = null;
+  if (h.startsWith("season-")) v = renderSeason(Number(h.slice(7)));
+  else if (h.startsWith("member-")) v = renderMember(h.slice(7));
+  else if (h === "champions") v = renderChampions();
+  else if (h === "members") v = renderMembers();
+  else if (h === "records") v = renderRecords();
+  if (!v) v = renderHome();
+  document.getElementById("band").innerHTML = v.band;
+  document.getElementById("main").innerHTML = v.body;
+  document.querySelectorAll(".tab").forEach(t => {
+    if (t.dataset.tab === v.tab) t.setAttribute("aria-current", "page");
+    else t.removeAttribute("aria-current");
+  });
+  if (lastHash !== null && lastHash !== h) window.scrollTo(0, 0);
+  lastHash = h;
+}
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-act]");
+  if (!b) return;
+  const a = b.dataset.act, last = D.live.through;
+  if (a === "tab") state.homeTab = b.dataset.v;
+  if (a === "prev") state.week = state.week === null ? last : Math.max(1, state.week - 1);
+  if (a === "next") state.week = state.week === null || state.week >= last ? null : state.week + 1;
+  document.getElementById("main").innerHTML = homeBody();
+});
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
