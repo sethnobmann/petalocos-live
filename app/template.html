@@ -34,6 +34,12 @@
   --win: #4CC38A;
   --loss: #E8615C;
   --chart: #2A3D62;
+  --win-glow: rgba(76, 195, 138, 0.3);
+  --loss-glow: rgba(232, 97, 92, 0.3);
+  --me: rgba(242, 92, 42, 0.08);
+  --orange-soft: rgba(242, 92, 42, 0.16);
+  --orange-edge: rgba(242, 92, 42, 0.45);
+  --key: rgba(14, 26, 46, 0.85);
   --display: "Oswald", "Arial Narrow", Impact, sans-serif;
   --body: "Barlow", "Helvetica Neue", Arial, sans-serif;
   --mono: "Share Tech Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -224,6 +230,64 @@ dl { margin: 0; }
 .pager span { color: var(--dim); }
 .pager .nx { text-align: right; }
 
+/* ---------- you card ---------- */
+.you {
+  display: grid; gap: 14px; padding: 16px 16px 4px; border-radius: 14px; border: 1px solid var(--orange-edge);
+  background: radial-gradient(120% 90% at 100% 0%, var(--orange-soft), transparent 55%), linear-gradient(180deg, #1A2B4D, var(--card));
+}
+.you-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.you .name { margin-top: 3px; font: 700 27px/1.05 var(--display); text-transform: uppercase; letter-spacing: 0.01em; overflow-wrap: anywhere; }
+.lede { margin-top: 4px; font-size: 14px; color: var(--muted); }
+.led b small { margin-left: 1px; font-size: 14px; }
+.led b.w { color: var(--win); text-shadow: 0 0 14px var(--win-glow); }
+.led b.l { color: var(--loss); text-shadow: 0 0 14px var(--loss-glow); }
+.led em { font-style: normal; } .led em.up { color: var(--win); } .led em.dn { color: var(--loss); }
+.yrows { margin: 0 -16px; }
+.yrow {
+  display: grid; grid-template-columns: 62px minmax(0, 1fr) auto 10px; gap: 10px; align-items: center;
+  width: 100%; padding: 11px 16px; border: 0; border-top: 1px dashed var(--line); background: none;
+  color: inherit; font: inherit; text-align: left; text-decoration: none;
+}
+a.yrow, button.yrow { cursor: pointer; }
+a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
+.yk { font: 10px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.ym { min-width: 0; font-weight: 600; font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ym small { display: block; margin-top: 2px; font-weight: 400; font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; }
+.yv { font: 13px var(--mono); color: var(--muted); white-space: nowrap; }
+.yv.w { color: var(--win); } .yv.l { color: var(--loss); }
+.chev { color: var(--amber); font-size: 18px; line-height: 1; }
+.dots { display: flex; gap: 6px; }
+.dots i { width: 10px; height: 10px; border-radius: 50%; }
+.dots i.w { background: var(--win); } .dots i.l { background: var(--loss); }
+.row.me, .game.me, .plain.me { background: var(--me); box-shadow: inset 3px 0 0 var(--orange); }
+.foot .out {
+  margin-top: 6px; padding: 6px; border: 0; background: none; cursor: pointer; color: var(--muted);
+  font: inherit; letter-spacing: inherit; text-transform: inherit; text-decoration: underline; text-underline-offset: 3px;
+}
+
+/* ---------- code gate ---------- */
+.gate::after { display: none; }
+.gate-in { position: relative; padding-block: calc(56px + env(safe-area-inset-top, 0px)) 48px; }
+.gate-col { max-width: 300px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.crest.big { width: 84px; height: 84px; margin-bottom: 14px; }
+.gate h1 { font-size: 42px; }
+.gate-ask { margin: 22px 0 14px; font-size: 15px; color: var(--muted); }
+.pins { display: flex; gap: 16px; margin-bottom: 26px; }
+.pins i { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--amber); }
+.pins i.on { background: var(--amber); box-shadow: 0 0 10px var(--glow); }
+.pins.bad { animation: shake 0.35s; }
+.pins.bad i { border-color: var(--loss); background: var(--loss); box-shadow: none; }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-7px); } 75% { transform: translateX(7px); } }
+.pad { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; width: 100%; }
+.pad button {
+  height: 62px; border-radius: 14px; border: 1px solid var(--line); background: var(--key); color: var(--text);
+  font: 500 27px var(--display); cursor: pointer; touch-action: manipulation;
+}
+.pad button:active { background: var(--card); border-color: var(--amber); }
+.pad [data-key="del"] { font: 400 22px var(--body); color: var(--muted); }
+.gate-help { margin-top: 22px; font: 12px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); }
+@media (prefers-reduced-motion: reduce) { .pins.bad { animation: none; } }
+
 /* ---------- tab bar ---------- */
 .tabbar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--bar);
@@ -249,8 +313,9 @@ dl { margin: 0; }
 </head>
 <body>
 <header class="band" id="band"></header>
+<section class="band gate" id="gate" aria-label="Sign in" hidden></section>
 <main class="gut"><div class="col stack" id="main"></div></main>
-<nav class="tabbar" aria-label="Sections">
+<nav class="tabbar" id="tabbar" aria-label="Sections">
   <div class="col">
     <a class="tab" href="#home" data-tab="home"><svg viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"/></svg>Home</a>
     <a class="tab" href="#champions" data-tab="champions"><svg viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5.5a2.5 2.5 0 0 0 2.6 4M16 6h2.5a2.5 2.5 0 0 1-2.6 4M12 13v4M9 21h6M10 17h4v4h-4z"/></svg>Champions</a>
@@ -262,7 +327,8 @@ dl { margin: 0; }
 <script>
 const D = __DATA__;
 const CREST = "../img/crest-shield.png";
-const state = { homeTab: "std", week: null };
+const state = { homeTab: "std", week: null, me: null };
+const ME_KEY = "petalocos.me";
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const fmt = n => Number(n).toLocaleString("en-US");
@@ -281,9 +347,13 @@ function moveTag(d) {
 function badge(n, gold, d) {
   return `<div class="badge${gold ? " gold" : ""}"><b>${n}</b>${d === undefined ? "" : moveTag(d)}</div>`;
 }
-function rowTag(href) { return href ? `<a class="row" href="${href}">` : `<div class="row">`; }
+function rowTag(href, mgr) {
+  const c = `row${mgr && mgr === state.me ? " me" : ""}`;
+  return href ? `<a class="${c}" href="${href}">` : `<div class="${c}">`;
+}
 function rowEnd(href) { return href ? "</a>" : "</div>"; }
-function led(v, label) { return `<div class="led"><b>${v}</b><span>${label}</span></div>`; }
+function led(v, label, cls) { return `<div class="led"><b${cls ? ` class="${cls}"` : ""}>${v}</b><span>${label}</span></div>`; }
+const myRow = () => D.live.standings.find(s => s.mgr === state.me);
 function kv(k, v) { return `<div class="kv"><dt>${k}</dt><dd>${v}</dd></div>`; }
 
 function band({ back, eyebrow, title, sub, avatar }) {
@@ -300,7 +370,7 @@ function band({ back, eyebrow, title, sub, avatar }) {
 function homeBody() {
   const L = D.live, wk = state.week, tab = state.homeTab;
   const chip = (v, label) => `<button class="chip" data-act="tab" data-v="${v}" aria-pressed="${tab === v}">${label}</button>`;
-  let h = `<div class="seg" role="group" aria-label="Table">${chip("std", "Standings")}${chip("h2h", "Head to head")}</div>
+  let h = youCard() + `<div class="seg" role="group" aria-label="Table">${chip("std", "Standings")}${chip("h2h", "Head to head")}</div>
     <div class="stepper">
       <button data-act="prev" aria-label="Previous week" ${wk === 1 ? "disabled" : ""}>‹</button>
       <span>${wk ? `WEEK ${wk}` : "SEASON"}</span>
@@ -311,8 +381,42 @@ function homeBody() {
   if (wk && tab === "std") h += weekScores(wk);
   if (wk && tab === "h2h") h += weekGames(wk);
   if (!wk && L.next) h += upNext();
-  h += `<div class="foot">Updated through week ${L.through} · __UPDATED__</div>`;
+  const first = state.me ? esc(state.me.split(" ")[0]) : "";
+  h += `<div class="foot">Updated through week ${L.through} · __UPDATED__<br><button class="out" data-act="signout">Not ${first}? Sign out</button></div>`;
   return h;
+}
+function youCard() {
+  const L = D.live, r = myRow();
+  if (!r) return "";
+  const m = memberByName[state.me], first = esc(state.me.split(" ")[0]);
+  const lead = Math.max(...L.standings.map(s => s.pts));
+  const back = r.pts < lead ? `${lead - r.pts} back of 1st` : r.place === 1 ? "Leading the league" : "Tied for 1st";
+  const mv = r.prev - r.place;
+  const mvTxt = mv > 0 ? ` <em class="up">▲${mv}</em>` : mv < 0 ? ` <em class="dn">▼${-mv}</em>` : "";
+  const place = ord(r.place).replace(/^(\d+)(\D+)$/, "$1<small>$2</small>");
+  const rec = wlc(r.w, r.l);
+  const form = r.form.split("").map(c => `<i class="${c === "W" ? "w" : "l"}"></i>`).join("");
+  let rows = `<div class="yrow"><span class="yk">Last 5</span><span class="dots" role="img" aria-label="Last five: ${r.form}">${form}</span><span class="yv ${r.streak[0] === "W" ? "w" : "l"}">${r.streak}</span><span></span></div>`;
+  const lw = (L.weeks[L.through] || []).find(x => x[1] === state.me);
+  if (lw) {
+    const [, , pts, rank, opp, oppPts, res] = lw;
+    rows += `<button class="yrow" data-act="goweek" data-v="${L.through}"><span class="yk">Week ${L.through}</span>
+      <span class="ym"><span class="${res === "W" ? "w" : "l"}">${res}</span> ${pts}–${oppPts}<small>vs ${esc(opp)}</small></span>
+      <span class="yv">${ord(rank)} best</span><span class="chev">›</span></button>`;
+  }
+  const g = L.next && L.next.games.find(([a, h]) => a === r.team || h === r.team);
+  if (g) {
+    const away = g[0] === r.team, opp = away ? g[1] : g[0], o = live[opp];
+    rows += `<a class="yrow" href="${mlink(o.mgr)}"><span class="yk">Week ${L.next.week}</span>
+      <span class="ym">${away ? "at" : "vs"} ${esc(opp)}<small>${esc(o.short)} · H2H ${o.w}-${o.l}</small></span>
+      <span class="yv">up next</span><span class="chev">›</span></a>`;
+  }
+  return `<section class="you" aria-label="Your season">
+    <div class="you-top"><div class="mid"><div class="eyebrow">${first} · your season</div><div class="name">${esc(r.team)}</div><div class="lede">${back}</div></div>
+      <div class="av${m && m.titles.length ? " gold" : ""}">${m ? m.ini : ""}</div></div>
+    <div class="leds">${led(place, `Rank${mvTxt}`)}${led(r.pts, "Points")}${led(`${r.w}-${r.l}`, `H2H · ${ord(r.hp)}`, rec === "e" ? "" : rec)}</div>
+    <div class="yrows">${rows}</div>
+  </section>`;
 }
 function seasonStandings() {
   const rows = D.live.standings.slice().sort((a, b) => a.place - b.place);
@@ -320,7 +424,7 @@ function seasonStandings() {
   return `<div class="list">${rows.map(r => {
     const back = r.place === 1 ? "leader" : r.pts === lead ? "tied for 1st" : `${lead - r.pts} back`;
     const href = mlink(r.mgr);
-    return `${rowTag(href)}${badge(r.place, r.place === 1, r.prev - r.place)}
+    return `${rowTag(href, r.mgr)}${badge(r.place, r.place === 1, r.prev - r.place)}
       <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)}</div><div class="note">${back}</div></div>
       <div class="right"><div class="pts">${r.pts}<small>PTS</small></div><div class="rec ${wlc(r.w, r.l)}">H2H ${r.w}-${r.l}</div></div>${rowEnd(href)}`;
   }).join("")}</div>`;
@@ -330,7 +434,7 @@ function seasonH2H() {
   const topW = Math.max(...rows.map(r => r.w));
   return `<div class="list">${rows.map(r => {
     const gb = topW - r.w, href = mlink(r.mgr);
-    return `${rowTag(href)}${badge(r.hp, r.hp === 1, r.hpp - r.hp)}
+    return `${rowTag(href, r.mgr)}${badge(r.hp, r.hp === 1, r.hpp - r.hp)}
       <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)} · ${r.streak}</div><div class="note">${gb ? gb + " back" : "leader"} · PF ${r.pf} · PA ${r.pa}</div></div>
       <div class="right"><div class="wl ${wlc(r.w, r.l)}">${r.w}-${r.l}</div><div class="rec e">${r.pts} PTS</div></div>${rowEnd(href)}`;
   }).join("")}</div>`;
@@ -339,7 +443,7 @@ function weekScores(wk) {
   const rows = (D.live.weeks[wk] || []).slice().sort((a, b) => a[3] - b[3]);
   return `<div class="list">${rows.map(([team, mgr, pts, rank, opp, oppPts, res, seasonPts, place]) => {
     const href = mlink(mgr);
-    return `${rowTag(href)}${badge(rank, rank === 1)}
+    return `${rowTag(href, mgr)}${badge(rank, rank === 1)}
       <div class="mid"><div class="team">${esc(team)}</div><div class="mgr">${esc(mgr)}</div><div class="note"><span class="${res === "W" ? "w" : "l"}">${res}</span> vs ${esc(opp)} ${oppPts}</div></div>
       <div class="right"><div class="pts">${pts}<small>PTS</small></div><div class="rec e">${ord(place)} · ${seasonPts}</div></div>${rowEnd(href)}`;
   }).join("")}</div>`;
@@ -347,15 +451,17 @@ function weekScores(wk) {
 function weekGames(wk) {
   const games = D.live.games[wk] || [];
   const side = (team, p, won) => `<div class="side ${won ? "win" : "lose"}"><div class="mid"><div class="team">${esc(team)}</div><div class="mgr">${esc(live[team] ? live[team].short : "")}</div></div><div class="gp">${p}</div></div>`;
+  const mine = (myRow() || {}).team;
   return `<div class="list">${games.map(([away, ap, home, hp, winner, margin]) =>
-    `<div class="game">${side(away, ap, winner === away)}${side(home, hp, winner === home)}<div class="note">${esc(live[winner] ? live[winner].short : winner)} by ${margin}</div></div>`
+    `<div class="game${away === mine || home === mine ? " me" : ""}">${side(away, ap, winner === away)}${side(home, hp, winner === home)}<div class="note">${esc(live[winner] ? live[winner].short : winner)} by ${margin}</div></div>`
   ).join("")}</div>`;
 }
 function upNext() {
   const n = D.live.next;
   const who = t => live[t] ? `${esc(live[t].short)} ${live[t].w}-${live[t].l}` : "";
+  const mine = (myRow() || {}).team;
   return `<div class="h">Up next · Week ${n.week}</div><div class="list">${n.games.map(([away, home]) =>
-    `<div class="plain"><div class="team">${esc(away)}<span class="at">at</span>${esc(home)}</div><div class="mgr">${who(away)} · ${who(home)}</div></div>`
+    `<div class="plain${away === mine || home === mine ? " me" : ""}"><div class="team">${esc(away)}<span class="at">at</span>${esc(home)}</div><div class="mgr">${who(away)} · ${who(home)}</div></div>`
   ).join("")}</div>`;
 }
 function renderHome() {
@@ -395,7 +501,7 @@ function renderSeason(y) {
     <div class="h">Final standings</div>
     <div class="list">${s.rows.map(([f, team, mgr, pts]) => {
       const href = mlink(mgr);
-      return `${rowTag(href)}${badge(f, f === 1)}
+      return `${rowTag(href, mgr)}${badge(f, f === 1)}
         <div class="mid"><div class="team">${esc(team)}</div><div class="mgr">${mgr === "Unknown" ? "Owner unknown" : esc(mgr)}</div></div>
         <div class="right"><div class="pts">${fmt(pts)}<small>PTS</small></div><div class="note">${f === 1 ? "champion" : s.champ.pts - pts + " back"}</div></div>${rowEnd(href)}`;
     }).join("")}</div>
@@ -487,6 +593,60 @@ function renderRecords() {
   return { tab: "records", band: band({ eyebrow: "Weekly marks from 2010", title: "Records", sub: "Tap a card for the season or the man" }), body };
 }
 
+/* ---------- code gate ---------- */
+const fnv = s => {
+  let h = 0x811c9dc5;
+  for (const c of new TextEncoder().encode(s)) { h ^= c; h = Math.imul(h, 0x01000193) >>> 0; }
+  return (h >>> 0).toString(16).padStart(8, "0");
+};
+let pin = "", pinBusy = false;
+function renderGate() {
+  const keys = [1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => `<button data-key="${n}">${n}</button>`).join("");
+  return `<div class="bank l"></div><div class="bank r"></div>
+  <div class="gate-in gut"><div class="gate-col">
+    <img class="crest big" src="${CREST}" alt="">
+    <div class="eyebrow">25th season · since 2002</div>
+    <h1>Petalocos</h1>
+    <p class="gate-ask" id="gmsg" aria-live="polite">Enter your 4-digit code</p>
+    <div class="pins" id="pins" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="pad">${keys}<span></span><button data-key="0">0</button><button data-key="del" aria-label="Delete">⌫</button></div>
+    <p class="gate-help">Lost your code? Text Seth.</p>
+  </div></div>`;
+}
+function drawPins(bad) {
+  const p = document.getElementById("pins");
+  if (!p) return;
+  p.classList.toggle("bad", !!bad);
+  [...p.children].forEach((d, i) => d.classList.toggle("on", i < pin.length));
+}
+function pinKey(k) {
+  if (pinBusy) return;
+  if (k === "del") pin = pin.slice(0, -1);
+  else if (pin.length < 4) pin += k;
+  drawPins();
+  if (pin.length < 4) return;
+  const who = D.access.codes[fnv(D.access.salt + pin)];
+  if (who) { pin = ""; setMe(who); return; }
+  pinBusy = true;
+  drawPins(true);
+  document.getElementById("gmsg").textContent = "Wrong code. Try again.";
+  setTimeout(() => { pin = ""; pinBusy = false; drawPins(); }, 650);
+}
+function setMe(name) {
+  state.me = name;
+  try { if (name) localStorage.setItem(ME_KEY, name); else localStorage.removeItem(ME_KEY); } catch (e) {}
+  show();
+}
+function show() {
+  const gated = !state.me;
+  document.getElementById("gate").hidden = !gated;
+  document.getElementById("band").hidden = gated;
+  document.querySelector("main").hidden = gated;
+  document.getElementById("tabbar").hidden = gated;
+  if (gated) { pin = ""; document.getElementById("gate").innerHTML = renderGate(); window.scrollTo(0, 0); }
+  else route();
+}
+
 /* ---------- router ---------- */
 let lastHash = null;
 function route() {
@@ -508,16 +668,30 @@ function route() {
   lastHash = h;
 }
 document.addEventListener("click", e => {
+  const k = e.target.closest("[data-key]");
+  if (k) { pinKey(k.dataset.key); return; }
   const b = e.target.closest("[data-act]");
   if (!b) return;
   const a = b.dataset.act, last = D.live.through;
+  if (a === "signout") { state.week = null; setMe(null); return; }
   if (a === "tab") state.homeTab = b.dataset.v;
   if (a === "prev") state.week = state.week === null ? last : Math.max(1, state.week - 1);
   if (a === "next") state.week = state.week === null || state.week >= last ? null : state.week + 1;
+  if (a === "goweek") state.week = Number(b.dataset.v);
   document.getElementById("main").innerHTML = homeBody();
 });
-window.addEventListener("hashchange", route);
-route();
+document.addEventListener("keydown", e => {
+  if (state.me || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (/^[0-9]$/.test(e.key)) pinKey(e.key);
+  else if (e.key === "Backspace") pinKey("del");
+});
+window.addEventListener("hashchange", () => { if (state.me) route(); });
+(function boot() {
+  let saved = null;
+  try { saved = localStorage.getItem(ME_KEY); } catch (e) {}
+  if (saved && Object.values(D.access.codes).includes(saved)) state.me = saved;
+  show();
+})();
 </script>
 </body>
 </html>

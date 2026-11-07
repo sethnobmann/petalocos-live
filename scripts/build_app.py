@@ -123,7 +123,7 @@ for m, t in s26.items():
         "place": int(t["Place"]), "prev": int(t["Prev Place"]),
         "w": int(t["H2H W"]), "l": int(t["H2H L"]), "streak": t["Streak"],
         "pf": int(t["PF"]), "pa": int(t["PA"]),
-        "hp": int(t["H2H place"]), "hpp": int(t["H2H prev place"]),
+        "hp": int(t["H2H place"]), "hpp": int(t["H2H prev place"]), "form": t["Form"],
     })
 through = max(int(t["Through Week"]) for t in s26.values())
 
@@ -193,7 +193,8 @@ records = {
     ],
 }
 
-data = {"seasons": seasons, "members": members, "live": live, "records": records}
+access = json.load(open(f"{HIST}/access.json", encoding="utf-8"))
+data = {"seasons": seasons, "members": members, "live": live, "records": records, "access": access}
 
 # ---- icons + manifest (made once) -------------------------------------
 os.makedirs(OUT, exist_ok=True)
