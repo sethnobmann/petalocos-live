@@ -124,7 +124,7 @@ main { padding-block: 18px calc(96px + env(safe-area-inset-bottom, 0px)); }
   display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 12px; align-items: start;
   padding: 12px 14px; text-decoration: none; border-top: 1px solid var(--line);
 }
-.row:first-child, .plain:first-child, .game:first-child, .kv:first-child { border-top: 0; }
+.row:first-child, .mu:first-child, .kv:first-child { border-top: 0; }
 a.row:active { background: rgba(255, 255, 255, 0.035); }
 .mid { min-width: 0; }
 .team { font-weight: 700; font-size: 16px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -150,16 +150,25 @@ a.row:active { background: rgba(255, 255, 255, 0.035); }
 .mv.up { color: var(--win); } .mv.dn { color: var(--loss); } .mv.st { color: var(--dim); }
 .badge.gold .mv { color: var(--bg); }
 
-.plain { padding: 12px 14px; border-top: 1px solid var(--line); }
-.plain .team { white-space: normal; font-size: 15px; }
-.at { font-weight: 500; color: var(--dim); font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 3px; }
-
-.game { display: grid; gap: 7px; padding: 12px 14px; border-top: 1px solid var(--line); }
-.side { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; }
-.side .team { font-size: 15px; }
-.gp { font: 21px/1 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
-.side.win .gp { color: var(--amber); text-shadow: 0 0 14px var(--glow); }
-.side.lose .team { color: var(--muted); font-weight: 600; }
+.mu {
+  display: grid; grid-template-columns: minmax(0, 1fr) 26px minmax(0, 1fr); column-gap: 10px;
+  padding: 14px; border-top: 1px solid var(--line);
+}
+.mu-side { display: flex; flex-direction: column; min-width: 0; text-decoration: none; }
+.mu-side.r { align-items: flex-end; text-align: right; }
+a.mu-side:active { opacity: 0.8; }
+.mu-side .team { font-size: 15px; white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: anywhere; text-wrap: balance; }
+.mu-side.lose .team { color: var(--muted); font-weight: 600; }
+.mu-score { margin-top: auto; padding-top: 10px; font: 26px/1 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.mu-side.win .mu-score { color: var(--amber); text-shadow: 0 0 14px var(--glow); }
+.mu-score.w { color: var(--win); } .mu-score.l { color: var(--loss); }
+.mu-res { margin-top: 5px; font: 11px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.mu-res.w { color: var(--win); } .mu-res.l { color: var(--loss); }
+.mu-vs {
+  align-self: stretch; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  font: 11px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim);
+}
+.mu-vs::before, .mu-vs::after { content: ""; flex: 1; width: 1px; background: var(--line); }
 
 .champ {
   display: grid; gap: 14px; padding: 16px; border-radius: 12px; border: 1px solid var(--line);
@@ -259,7 +268,7 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 .dots { display: flex; gap: 6px; }
 .dots i { width: 10px; height: 10px; border-radius: 50%; }
 .dots i.w { background: var(--win); } .dots i.l { background: var(--loss); }
-.row.me, .game.me, .plain.me { background: var(--me); box-shadow: inset 3px 0 0 var(--orange); }
+.row.me, .mu.me { background: var(--me); box-shadow: inset 3px 0 0 var(--orange); }
 .foot .out {
   margin-top: 6px; padding: 6px; border: 0; background: none; cursor: pointer; color: var(--muted);
   font: inherit; letter-spacing: inherit; text-transform: inherit; text-decoration: underline; text-underline-offset: 3px;
@@ -448,21 +457,30 @@ function weekScores(wk) {
       <div class="right"><div class="pts">${pts}<small>PTS</small></div><div class="rec e">${ord(place)} · ${seasonPts}</div></div>${rowEnd(href)}`;
   }).join("")}</div>`;
 }
+/* one matchup: team + member on each side, numbers underneath */
+function mu(away, home, side) {
+  const mine = (myRow() || {}).team;
+  return `<div class="mu${away === mine || home === mine ? " me" : ""}">${side(away, false)}<div class="mu-vs">vs</div>${side(home, true)}</div>`;
+}
+function muSide(team, right, cls, inner) {
+  const t = live[team], href = t && mlink(t.mgr), c = `mu-side${right ? " r" : ""}${cls ? " " + cls : ""}`;
+  return `${href ? `<a class="${c}" href="${href}">` : `<div class="${c}">`}<div class="team">${esc(team)}</div><div class="mgr">${esc(t ? t.short : "")}</div>${inner}${href ? "</a>" : "</div>"}`;
+}
 function weekGames(wk) {
   const games = D.live.games[wk] || [];
-  const side = (team, p, won) => `<div class="side ${won ? "win" : "lose"}"><div class="mid"><div class="team">${esc(team)}</div><div class="mgr">${esc(live[team] ? live[team].short : "")}</div></div><div class="gp">${p}</div></div>`;
-  const mine = (myRow() || {}).team;
-  return `<div class="list">${games.map(([away, ap, home, hp, winner, margin]) =>
-    `<div class="game${away === mine || home === mine ? " me" : ""}">${side(away, ap, winner === away)}${side(home, hp, winner === home)}<div class="note">${esc(live[winner] ? live[winner].short : winner)} by ${margin}</div></div>`
-  ).join("")}</div>`;
+  return `<div class="list">${games.map(([away, ap, home, hp, winner, margin]) => mu(away, home, (team, right) => {
+    const won = winner === team, p = team === away ? ap : hp;
+    return muSide(team, right, won ? "win" : "lose",
+      `<div class="mu-score">${p}</div><div class="mu-res ${won ? "w" : "l"}">${won ? `W by ${margin}` : "L"}</div>`);
+  })).join("")}</div>`;
 }
 function upNext() {
   const n = D.live.next;
-  const who = t => live[t] ? `${esc(live[t].short)} ${live[t].w}-${live[t].l}` : "";
-  const mine = (myRow() || {}).team;
-  return `<div class="h">Up next · Week ${n.week}</div><div class="list">${n.games.map(([away, home]) =>
-    `<div class="plain${away === mine || home === mine ? " me" : ""}"><div class="team">${esc(away)}<span class="at">at</span>${esc(home)}</div><div class="mgr">${who(away)} · ${who(home)}</div></div>`
-  ).join("")}</div>`;
+  return `<div class="h">Up next · Week ${n.week}</div><div class="list">${n.games.map(([away, home]) => mu(away, home, (team, right) => {
+    const t = live[team] || { w: 0, l: 0, pts: 0, place: 0 };
+    return muSide(team, right, "",
+      `<div class="mu-score ${wlc(t.w, t.l)}">${t.w}-${t.l}</div><div class="mu-res">${t.pts} pts · ${ord(t.place)}</div>`);
+  })).join("")}</div>`;
 }
 function renderHome() {
   return { tab: "home", band: band({ eyebrow: `2026 season · week ${D.live.through}`, title: "Petalocos", sub: "25th season · points title + H2H" }), body: homeBody() };
