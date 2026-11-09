@@ -195,37 +195,21 @@ dl { margin: 0; }
 .ticket .team { font-size: 16px; }
 .ticket .right { border-left: 1px dashed var(--line); padding-left: 12px; align-self: stretch; }
 
-/* champions: layout preview picker + the three title-count layouts */
-.pick { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 8px 10px; border: 1px dashed var(--orange-edge); border-radius: 10px; }
-.pick > span { margin-right: 4px; font: 10px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); }
-.pick button {
-  appearance: none; cursor: pointer; padding: 5px 9px; border-radius: 6px; border: 1px solid var(--line);
-  background: var(--card-2); color: var(--muted); font: 12px var(--mono); letter-spacing: 0.04em;
-}
-.pick button[aria-pressed="true"] { border-color: var(--amber); color: var(--amber); }
+/* champions: trophy case, one trophy per title with the year and winning team under it */
 .hnote { margin: -4px 2px 0; font-size: 13px; color: var(--muted); }
-.yrs { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; }
-.yrs span { padding: 4px 7px; border-radius: 5px; border: 1px solid var(--orange-edge); font: 12px/1 var(--mono); color: var(--amber); }
-.row.brow { grid-template-columns: 44px minmax(0, 1fr); align-items: center; }
-.cnt {
-  width: 44px; height: 44px; border-radius: 9px; display: grid; place-items: center; background: var(--led); border: 1px solid var(--line);
-  font: 24px var(--mono); color: var(--amber); text-shadow: 0 0 14px var(--glow);
-}
-.cnt.zero { color: var(--dim); text-shadow: none; }
-.row.crow { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
-.cups { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 2px; max-width: 124px; }
-.cups svg { width: 19px; height: 19px; fill: none; stroke: var(--amber); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 4px var(--glow)); }
 .ticket.miss .team { font-weight: 600; color: var(--dim); }
-.shelf {
-  display: flex; flex-wrap: wrap; gap: 6px 12px; width: fit-content; max-width: 100%;
-  margin-top: 9px; padding: 0 4px 6px; border-bottom: 2px solid var(--orange-edge);
+.row.trow { grid-template-columns: 40px minmax(0, 1fr); }
+.shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); row-gap: 12px; margin-top: 10px; }
+.tro {
+  display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 0;
+  padding: 0 2px 8px; border-bottom: 2px solid var(--orange-edge); text-align: center;
 }
-.tro { display: flex; flex-direction: column; align-items: center; gap: 3px; }
-.tro svg { width: 24px; height: 24px; fill: none; stroke: var(--amber); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 5px var(--glow)); }
-.tro b { font: 400 11px var(--mono); letter-spacing: 0.04em; color: var(--muted); }
-.h.hcups { display: flex; align-items: center; gap: 8px; }
-.hcups i { display: inline-flex; gap: 1px; }
-.hcups svg { width: 15px; height: 15px; fill: none; stroke: var(--amber); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 3px var(--glow)); }
+.tro svg { width: 26px; height: 26px; fill: none; stroke: var(--amber); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 5px var(--glow)); }
+.tro b { font: 400 12px var(--mono); letter-spacing: 0.04em; color: var(--amber); }
+.tro small {
+  max-width: 100%; font-size: 10.5px; line-height: 1.2; letter-spacing: -0.01em; color: var(--muted); overflow-wrap: break-word;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
 
 .av {
   width: 40px; height: 40px; border-radius: 50%; flex: none; display: grid; place-items: center;
@@ -377,7 +361,7 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 <script>
 const D = __DATA__;
 const CREST = "../img/crest-shield.png";
-const state = { homeTab: "std", week: null, me: null, champTab: "pts", champLayout: "A" };
+const state = { homeTab: "std", week: null, me: null, champTab: "pts" };
 const ME_KEY = "petalocos.me";
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -598,41 +582,20 @@ function tallyData(kind) {
   return { list, zero };
 }
 const titleWord = (n, kind) => `${n} ${kind === "pts" ? "title" : "H2H title"}${n === 1 ? "" : "s"}`;
-/* sectioned by count; A, D, E and F only change the header, the years and the right side */
-const yrChips = ys => `<div class="yrs">${ys.map(y => `<span>${y}</span>`).join("")}</div>`;
-const shelf = ys => `<div class="shelf">${ys.map(y => `<span class="tro">${CUP}<b>${y}</b></span>`).join("")}</div>`;
-function sections({ list, zero }, kind, opt = {}) {
-  const body = opt.body || yrChips, side = opt.side || (() => ""), head = opt.head || (n => titleWord(n, kind));
+/* trophy case: grouped by title count, one trophy per title with the year and the team that won it */
+const teamIn = (m, y) => (m.fin.find(f => f[0] === y) || [])[3] || "";
+const shelf = (ys, m) => `<div class="shelf">${ys.map(y =>
+  `<span class="tro">${CUP}<b>${y}</b><small>${esc(teamIn(m, y))}</small></span>`).join("")}</div>`;
+function trophyCase({ list, zero }, kind) {
   const groups = [];
   list.forEach(x => { const g = groups.find(g => g.n === x.ys.length); g ? g.items.push(x) : groups.push({ n: x.ys.length, items: [x] }); });
-  let h = groups.map(g => `<div class="h${opt.headCls ? " " + opt.headCls : ""}">${head(g.n)}</div><div class="list">${g.items.map(({ m, ys }) =>
-    `${rowTag(`#member-${m.slug}`, m.name)}<div class="av">${m.ini}</div><div class="mid"><div class="team">${esc(m.name)}</div>
-      ${body(ys)}</div><div>${side(ys)}</div></a>`).join("")}</div>`).join("");
+  let h = groups.map(g => `<div class="h">${titleWord(g.n, kind)}</div><div class="list">${g.items.map(({ m, ys }) =>
+    `${rowTag(`#member-${m.slug}`, m.name, "trow")}<div class="av">${m.ini}</div><div class="mid"><div class="team">${esc(m.name)}</div>${shelf(ys, m)}</div></a>`
+  ).join("")}</div>`).join("");
   if (zero.length) h += `<div class="h">Still waiting</div><div class="list">${zero.map(m =>
-    `${rowTag(`#member-${m.slug}`, m.name)}<div class="av">${m.ini}</div><div class="mid"><div class="team">${esc(m.name)}</div>
-      <div class="mgr">${m.seasons} seasons · ${m.seconds} runner-up${m.seconds === 1 ? "" : "s"}</div></div><div></div></a>`).join("")}</div>`;
+    `${rowTag(`#member-${m.slug}`, m.name, "trow")}<div class="av">${m.ini}</div><div class="mid"><div class="team">${esc(m.name)}</div>
+      <div class="mgr">${m.seasons} seasons · ${m.seconds} runner-up${m.seconds === 1 ? "" : "s"}</div></div></a>`).join("")}</div>`;
   return h;
-}
-const tallyA = (t, k) => sections(t, k);
-/* D: A plus a cup per title on the right */
-const tallyD = (t, k) => sections(t, k, { side: ys => `<div class="cups">${ys.map(() => CUP).join("")}</div>` });
-/* E: A with each year engraved under its own trophy, on a shelf */
-const tallyE = (t, k) => sections(t, k, { body: shelf });
-/* F: A with the cups in the section header */
-const tallyF = (t, k) => sections(t, k, { headCls: "hcups", head: n => `<i>${CUP.repeat(n)}</i>${titleWord(n, k)}` });
-/* B: one ranked board, count in a scoreboard tile */
-function tallyB({ list, zero }, kind) {
-  const all = list.concat(zero.map(m => ({ m, ys: [] })));
-  return `<div class="h">${kind === "pts" ? "Title count" : "H2H title count"}</div><div class="list">${all.map(({ m, ys }) =>
-    `${rowTag(`#member-${m.slug}`, m.name, "brow")}<div class="cnt${ys.length ? "" : " zero"}">${ys.length}</div>
-      <div class="mid"><div class="team">${esc(m.name)}</div><div class="note">${ys.length ? ys.join(" · ") : `${m.seasons} seasons, still waiting`}</div></div></a>`).join("")}</div>`;
-}
-/* C: trophy case, one cup per title */
-function tallyC({ list, zero }, kind) {
-  const all = list.concat(zero.map(m => ({ m, ys: [] })));
-  return `<div class="h">Trophy case</div><div class="list">${all.map(({ m, ys }) =>
-    `${rowTag(`#member-${m.slug}`, m.name, "crow")}<div class="mid"><div class="team">${esc(m.name)}</div>
-      <div class="note">${ys.length ? ys.join(" · ") : `${m.seasons} seasons, still waiting`}</div></div><div class="cups">${ys.map(() => CUP).join("")}</div></a>`).join("")}</div>`;
 }
 function seasonsPts() {
   return `<div class="list">${D.seasons.slice().reverse().map(s =>
@@ -660,15 +623,12 @@ function yearRuns(ys) {
   return out.map(([a, b]) => (a === b ? `${a}` : `${a}–${b}`)).join(", ");
 }
 function renderChampions() {
-  const kind = state.champTab, lay = state.champLayout;
+  const kind = state.champTab;
   const chip = (v, label) => `<button class="chip" data-act="ctab" data-v="${v}" aria-pressed="${kind === v}">${label}</button>`;
-  const pick = [["A", "Sections"], ["B", "Board"], ["C", "Trophies"], ["D", "Sections + cups"], ["E", "Shelf"], ["F", "Cup headers"]].map(([v, l]) =>
-    `<button data-act="lay" data-v="${v}" aria-pressed="${lay === v}">${v} · ${l}</button>`).join("");
   const missing = D.seasons.filter(s => s.y >= 2004 && !s.h2h).map(s => s.y);
-  let body = `<div class="seg" role="group" aria-label="Title type">${chip("pts", "Points titles")}${chip("h2h", "Head to head")}</div>
-    <div class="pick" role="group" aria-label="Layout preview"><span>Layout preview</span>${pick}</div>`;
+  let body = `<div class="seg" role="group" aria-label="Title type">${chip("pts", "Points titles")}${chip("h2h", "Head to head")}</div>`;
   if (kind === "h2h" && missing.length) body += `<p class="hnote">H2H started in 2004. Not on file yet: ${yearRuns(missing)}.</p>`;
-  body += { A: tallyA, B: tallyB, C: tallyC, D: tallyD, E: tallyE, F: tallyF }[lay](tallyData(kind), kind);
+  body += trophyCase(tallyData(kind), kind);
   body += `<div class="h">Every season</div>${kind === "pts" ? seasonsPts() : seasonsH2H()}`;
   return { tab: "champions", band: band({ eyebrow: `Points + H2H · ${D.seasons.length} seasons`, title: "Champions", sub: "Points titles and head-to-head champs" }), body };
 }
@@ -862,8 +822,8 @@ document.addEventListener("click", e => {
   if (!b) return;
   const a = b.dataset.act, last = D.live.through;
   if (a === "signout") { state.week = null; setMe(null); return; }
-  if (a === "ctab" || a === "lay") {
-    if (a === "ctab") state.champTab = b.dataset.v; else state.champLayout = b.dataset.v;
+  if (a === "ctab") {
+    state.champTab = b.dataset.v;
     document.getElementById("main").innerHTML = renderChampions().body;
     return;
   }
