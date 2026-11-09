@@ -104,7 +104,8 @@ main { padding-block: 18px calc(96px + env(safe-area-inset-bottom, 0px)); }
 .h { margin: 6px 2px -4px; font: 12px var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); }
 .foot { text-align: center; font: 11px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-top: 6px; }
 
-.seg { display: flex; gap: 8px; flex-wrap: wrap; }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; }
+.seg .chip { padding-block: 10px; }
 .chip {
   appearance: none; cursor: pointer; border: 1px solid var(--line); background: var(--card-2); color: var(--muted);
   font: 600 14px var(--body); padding: 8px 15px; border-radius: 999px;
