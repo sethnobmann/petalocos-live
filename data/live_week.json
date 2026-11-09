@@ -1,7 +1,7 @@
 {
   "week": 9,
-  "as_of": "2026-11-08T19:02-08:00",
-  "source": "Yahoo league page, Weekly Points (projected, actual)",
+  "as_of": "2026-11-08T19:07-08:00",
+  "source": "Yahoo league page: Weekly Points (live, projected) and Current Standings (official totals through last week)",
   "teams": {
     "FANTASY KING": [
       133,
@@ -42,6 +42,48 @@
     "u got pzzzed": [
       61,
       75
+    ]
+  },
+  "base": {
+    "Maverick": [
+      953,
+      1
+    ],
+    "Umbertos": [
+      938,
+      2
+    ],
+    "Mooseknuckle's": [
+      938,
+      3
+    ],
+    "dontmindme": [
+      879,
+      4
+    ],
+    "SHOW ME THE $$$$": [
+      868,
+      5
+    ],
+    "FOTY*": [
+      861,
+      6
+    ],
+    "u got pzzzed": [
+      861,
+      7
+    ],
+    "FANTASY KING": [
+      853,
+      8
+    ],
+    "Lincoln Hawk": [
+      815,
+      9
+    ],
+    "Miwok Indians": [
+      778,
+      10
     ]
   }
 }

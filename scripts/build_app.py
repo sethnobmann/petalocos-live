@@ -144,7 +144,7 @@ live = {
 }
 try:
     cur = json.load(open(f"{REPO}/data/live_week.json", encoding="utf-8"))
-    live["cur"] = {"week": cur["week"], "asOf": cur["as_of"], "teams": cur["teams"]}
+    live["cur"] = {"week": cur["week"], "asOf": cur["as_of"], "teams": cur["teams"], "base": cur.get("base")}
 except FileNotFoundError:
     live["cur"] = None
 
