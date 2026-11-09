@@ -271,6 +271,23 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
   font: inherit; letter-spacing: inherit; text-transform: inherit; text-decoration: underline; text-underline-offset: 3px;
 }
 
+.ylive { padding: 12px 16px 14px; border-top: 1px dashed var(--line); }
+.ylive-h { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.ylive .mu { padding: 0; border-top: 0; }
+.livetag { font-weight: 400; color: var(--loss); }
+.livetag::before {
+  content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 5px; border-radius: 50%;
+  background: currentColor; vertical-align: 1px; animation: blink 1.4s ease-in-out infinite;
+}
+@keyframes blink { 50% { opacity: 0.25; } }
+.wp { margin-top: 12px; }
+.wp-bar { height: 8px; border-radius: 4px; background: var(--chart); overflow: hidden; }
+.wp-bar i { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--orange), var(--amber)); }
+.wp-l { display: flex; justify-content: space-between; gap: 10px; margin-top: 6px; font: 11px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.wp-l b { font-weight: 400; color: var(--amber); }
+.wp-l span:last-child b { color: var(--text); }
+@media (prefers-reduced-motion: reduce) { .livetag::before { animation: none; } }
+
 /* ---------- code gate ---------- */
 .gate::after { display: none; }
 .gate-in { position: relative; padding-block: calc(56px + env(safe-area-inset-top, 0px)) 48px; }
@@ -391,6 +408,37 @@ function homeBody() {
   h += `<div class="foot">Updated through week ${L.through} · __UPDATED__<br><button class="out" data-act="signout">Not ${first}? Sign out</button></div>`;
   return h;
 }
+/* this week's matchup: live score, projection, win chance from the projections */
+function erf(x) {
+  const s = Math.sign(x), a = Math.abs(x), t = 1 / (1 + 0.3275911 * a);
+  return s * (1 - ((((1.061405429 * t - 1.453152027) * t + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-a * a));
+}
+function winChance(ml, mp, ol, op) {
+  const mr = Math.max(0, mp - ml), or = Math.max(0, op - ol);
+  if (mr + or === 0) return ml > ol ? 1 : ml < ol ? 0 : 0.5;
+  if (mr === 0 && ol > ml) return 0;
+  if (or === 0 && ml > ol) return 1;
+  const z = (Math.max(mp, ml) - Math.max(op, ol)) / Math.sqrt(6 * (mr + or));
+  return 0.5 * (1 + erf(z / Math.SQRT2));
+}
+const pct = p => (p > 0 && p < 0.005 ? "<1%" : p < 1 && p > 0.995 ? ">99%" : Math.round(p * 100) + "%");
+function liveBlock(r, opp, o) {
+  const C = D.live.cur, [ml, mp] = C.teams[r.team], [ol, op] = C.teams[opp];
+  const p = winChance(ml, mp, ol, op), done = mp <= ml && op <= ol;
+  const t = new Date(C.asOf);
+  const asOf = isNaN(t) ? "" : t.toLocaleString("en-US", { weekday: "short", hour: "numeric", minute: "2-digit", timeZone: "America/Los_Angeles" });
+  const side = (team, who, lv, pj, lead, href) => {
+    const c = `mu-side${href ? " r" : ""}${lead ? " win" : ""}`;
+    return `${href ? `<a class="${c}" href="${href}">` : `<div class="${c}">`}<div class="team">${esc(team)}</div><div class="mgr">${who}</div>
+      <div class="mu-score">${lv}</div><div class="mu-res">proj ${pj}</div>${href ? "</a>" : "</div>"}`;
+  };
+  return `<div class="ylive">
+    <div class="ylive-h"><span class="yk">Week ${C.week} · ${done ? "Final" : '<b class="livetag">Live</b>'}</span><span class="yk">${asOf ? "as of " + asOf : ""}</span></div>
+    <div class="mu">${side(r.team, "You", ml, mp, ml > ol)}<div class="mu-vs">vs</div>${side(opp, `${esc(o.short)} · H2H ${o.w}-${o.l}`, ol, op, ol > ml, mlink(o.mgr))}</div>
+    <div class="wp"><div class="wp-bar" role="img" aria-label="Your win chance ${pct(p)}"><i style="width:${(p * 100).toFixed(1)}%"></i></div>
+      <div class="wp-l"><span>Your win chance <b>${pct(p)}</b></span><span>${esc(o.short)} <b>${pct(1 - p)}</b></span></div></div>
+  </div>`;
+}
 function youCard() {
   const L = D.live, r = myRow();
   if (!r) return "";
@@ -405,7 +453,8 @@ function youCard() {
   const g = L.next && L.next.games.find(([a, h]) => a === r.team || h === r.team);
   if (g) {
     const away = g[0] === r.team, opp = away ? g[1] : g[0], o = live[opp];
-    rows += `<a class="yrow" href="${mlink(o.mgr)}"><span class="yk">Week ${L.next.week}</span>
+    rows += L.cur && L.cur.week === L.next.week && L.cur.teams[r.team] && L.cur.teams[opp] ? liveBlock(r, opp, o)
+      : `<a class="yrow" href="${mlink(o.mgr)}"><span class="yk">Week ${L.next.week}</span>
       <span class="ym">${away ? "at" : "vs"} ${esc(opp)}<small>${esc(o.short)} · H2H ${o.w}-${o.l}</small></span>
       <span class="yv">up next</span><span class="chev">›</span></a>`;
   }

@@ -1,0 +1,47 @@
+{
+  "week": 9,
+  "as_of": "2026-11-08T19:02-08:00",
+  "source": "Yahoo league page, Weekly Points (projected, actual)",
+  "teams": {
+    "FANTASY KING": [
+      133,
+      133
+    ],
+    "Umbertos": [
+      123,
+      137
+    ],
+    "FOTY*": [
+      115,
+      130
+    ],
+    "Mooseknuckle's": [
+      115,
+      119
+    ],
+    "SHOW ME THE $$$$": [
+      84,
+      104
+    ],
+    "Lincoln Hawk": [
+      79,
+      88
+    ],
+    "Maverick": [
+      77,
+      98
+    ],
+    "Miwok Indians": [
+      69,
+      76
+    ],
+    "dontmindme": [
+      61,
+      61
+    ],
+    "u got pzzzed": [
+      61,
+      75
+    ]
+  }
+}

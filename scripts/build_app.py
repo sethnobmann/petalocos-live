@@ -142,6 +142,11 @@ live = {
     "games": {str(k): v for k, v in games.items()},
     "next": {"week": int(nxt[0]["Week"]), "games": [[r["Away"], r["Home"]] for r in nxt]} if nxt else None,
 }
+try:
+    cur = json.load(open(f"{REPO}/data/live_week.json", encoding="utf-8"))
+    live["cur"] = {"week": cur["week"], "asOf": cur["as_of"], "teams": cur["teams"]}
+except FileNotFoundError:
+    live["cur"] = None
 
 # ---- records -------------------------------------------------------------
 known = [r for r in rows if r["mgr"] != "Unknown"]
