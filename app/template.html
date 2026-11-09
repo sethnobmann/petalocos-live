@@ -195,12 +195,27 @@ dl { margin: 0; }
 .ticket .team { font-size: 16px; }
 .ticket .right { border-left: 1px dashed var(--line); padding-left: 12px; align-self: stretch; }
 
-.tally { display: grid; gap: 9px; padding: 14px; }
-.tl { display: grid; grid-template-columns: 128px minmax(0, 1fr) 22px; gap: 10px; align-items: center; font-size: 13px; text-decoration: none; }
-.tl span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.bar { height: 8px; border-radius: 4px; background: var(--card-2); overflow: hidden; }
-.bar i { display: block; height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--orange), var(--amber)); }
-.tl b { font: 15px var(--mono); color: var(--amber); text-align: right; }
+/* champions: layout preview picker + the three title-count layouts */
+.pick { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; padding: 8px 10px; border: 1px dashed var(--orange-edge); border-radius: 10px; }
+.pick > span { margin-right: 4px; font: 10px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); }
+.pick button {
+  appearance: none; cursor: pointer; padding: 5px 9px; border-radius: 6px; border: 1px solid var(--line);
+  background: var(--card-2); color: var(--muted); font: 12px var(--mono); letter-spacing: 0.04em;
+}
+.pick button[aria-pressed="true"] { border-color: var(--amber); color: var(--amber); }
+.hnote { margin: -4px 2px 0; font-size: 13px; color: var(--muted); }
+.yrs { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 7px; }
+.yrs span { padding: 4px 7px; border-radius: 5px; border: 1px solid var(--orange-edge); font: 12px/1 var(--mono); color: var(--amber); }
+.row.brow { grid-template-columns: 44px minmax(0, 1fr); align-items: center; }
+.cnt {
+  width: 44px; height: 44px; border-radius: 9px; display: grid; place-items: center; background: var(--led); border: 1px solid var(--line);
+  font: 24px var(--mono); color: var(--amber); text-shadow: 0 0 14px var(--glow);
+}
+.cnt.zero { color: var(--dim); text-shadow: none; }
+.row.crow { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+.cups { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 2px; max-width: 124px; }
+.cups svg { width: 19px; height: 19px; fill: none; stroke: var(--amber); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 4px var(--glow)); }
+.ticket.miss .team { font-weight: 600; color: var(--dim); }
 
 .av {
   width: 40px; height: 40px; border-radius: 50%; flex: none; display: grid; place-items: center;
@@ -330,7 +345,6 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 @media (max-width: 360px) {
   h1 { font-size: 29px; }
   .led b { font-size: 21px; }
-  .tl { grid-template-columns: 104px minmax(0, 1fr) 22px; }
 }
 </style>
 
@@ -351,7 +365,7 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 <script>
 const D = __DATA__;
 const CREST = "../img/crest-shield.png";
-const state = { homeTab: "std", week: null, me: null };
+const state = { homeTab: "std", week: null, me: null, champTab: "pts", champLayout: "A" };
 const ME_KEY = "petalocos.me";
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -371,8 +385,8 @@ function moveTag(d) {
 function badge(n, gold, d) {
   return `<div class="badge${gold ? " gold" : ""}"><b>${n}</b>${d === undefined ? "" : moveTag(d)}</div>`;
 }
-function rowTag(href, mgr) {
-  const c = `row${mgr && mgr === state.me ? " me" : ""}`;
+function rowTag(href, mgr, extra) {
+  const c = `row${extra ? " " + extra : ""}${mgr && mgr === state.me ? " me" : ""}`;
   return href ? `<a class="${c}" href="${href}">` : `<div class="${c}">`;
 }
 function rowEnd(href) { return href ? "</a>" : "</div>"; }
@@ -526,20 +540,78 @@ function renderHome() {
 }
 
 /* ---------- Champions ---------- */
+const CUP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5.5a2.5 2.5 0 0 0 2.6 4M16 6h2.5a2.5 2.5 0 0 1-2.6 4M12 13v4M9 21h6M10 17h4v4h-4z"/></svg>';
+function tallyData(kind) {
+  const yrs = m => (kind === "pts" ? m.titles : m.h2h);
+  const list = D.members.filter(m => yrs(m).length).map(m => ({ m, ys: yrs(m) }))
+    .sort((a, b) => b.ys.length - a.ys.length || Math.max(...b.ys) - Math.max(...a.ys));
+  const zero = kind === "pts" ? D.members.filter(m => m.active && !m.titles.length) : [];
+  return { list, zero };
+}
+const titleWord = (n, kind) => `${n} ${kind === "pts" ? "title" : "H2H title"}${n === 1 ? "" : "s"}`;
+/* A: sectioned by count, years as chips */
+function tallyA({ list, zero }, kind) {
+  const groups = [];
+  list.forEach(x => { const g = groups.find(g => g.n === x.ys.length); g ? g.items.push(x) : groups.push({ n: x.ys.length, items: [x] }); });
+  let h = groups.map(g => `<div class="h">${titleWord(g.n, kind)}</div><div class="list">${g.items.map(({ m, ys }) =>
+    `${rowTag(`#member-${m.slug}`, m.name)}<div class="av">${m.ini}</div><div class="mid"><div class="team">${esc(m.name)}</div>
+      <div class="yrs">${ys.map(y => `<span>${y}</span>`).join("")}</div></div><div></div></a>`).join("")}</div>`).join("");
+  if (zero.length) h += `<div class="h">Still waiting</div><div class="list">${zero.map(m =>
+    `${rowTag(`#member-${m.slug}`, m.name)}<div class="av">${m.ini}</div><div class="mid"><div class="team">${esc(m.name)}</div>
+      <div class="mgr">${m.seasons} seasons · ${m.seconds} runner-up${m.seconds === 1 ? "" : "s"}</div></div><div></div></a>`).join("")}</div>`;
+  return h;
+}
+/* B: one ranked board, count in a scoreboard tile */
+function tallyB({ list, zero }, kind) {
+  const all = list.concat(zero.map(m => ({ m, ys: [] })));
+  return `<div class="h">${kind === "pts" ? "Title count" : "H2H title count"}</div><div class="list">${all.map(({ m, ys }) =>
+    `${rowTag(`#member-${m.slug}`, m.name, "brow")}<div class="cnt${ys.length ? "" : " zero"}">${ys.length}</div>
+      <div class="mid"><div class="team">${esc(m.name)}</div><div class="note">${ys.length ? ys.join(" · ") : `${m.seasons} seasons, still waiting`}</div></div></a>`).join("")}</div>`;
+}
+/* C: trophy case, one cup per title */
+function tallyC({ list, zero }, kind) {
+  const all = list.concat(zero.map(m => ({ m, ys: [] })));
+  return `<div class="h">Trophy case</div><div class="list">${all.map(({ m, ys }) =>
+    `${rowTag(`#member-${m.slug}`, m.name, "crow")}<div class="mid"><div class="team">${esc(m.name)}</div>
+      <div class="note">${ys.length ? ys.join(" · ") : `${m.seasons} seasons, still waiting`}</div></div><div class="cups">${ys.map(() => CUP).join("")}</div></a>`).join("")}</div>`;
+}
+function seasonsPts() {
+  return `<div class="list">${D.seasons.slice().reverse().map(s =>
+    `<a class="row ticket" href="#season-${s.y}"><div class="yr">${s.y}</div>
+      <div class="mid"><div class="team">${esc(s.champ.mgr)}</div><div class="mgr">${esc(s.champ.team)} · ${ord(s.nth)} title${s.double ? '<span class="tag">+H2H</span>' : ""}</div></div>
+      <div class="right"><div class="pts">${fmt(s.champ.pts)}<small>PTS</small></div><div class="note">by ${s.margin}</div></div></a>`).join("")}</div>`;
+}
+function seasonsH2H() {
+  const n = {};
+  const rows = D.seasons.filter(s => s.y >= 2004).map(s => {
+    if (!s.h2h) return { s };
+    n[s.h2h] = (n[s.h2h] || 0) + 1;
+    return { s, nth: n[s.h2h], row: s.rows.find(r => r[2] === s.h2h) };
+  }).reverse();
+  return `<div class="list">${rows.map(({ s, nth, row }) => s.h2h
+    ? `<a class="row ticket" href="#season-${s.y}"><div class="yr">${s.y}</div>
+        <div class="mid"><div class="team">${esc(s.h2h)}</div><div class="mgr">${row ? esc(row[1]) + " · " : ""}${ord(nth)} H2H title${s.double ? '<span class="tag">+PTS</span>' : ""}</div></div>
+        <div class="right"><div class="pts">${row ? ord(row[0]) : ""}</div><div class="note">in points</div></div></a>`
+    : `<a class="row ticket miss" href="#season-${s.y}"><div class="yr">${s.y}</div><div class="mid"><div class="team">Not on file yet</div></div><div class="right"></div></a>`
+  ).join("")}</div>`;
+}
+function yearRuns(ys) {
+  const out = [];
+  ys.forEach(y => { const l = out[out.length - 1]; if (l && y === l[1] + 1) l[1] = y; else out.push([y, y]); });
+  return out.map(([a, b]) => (a === b ? `${a}` : `${a}–${b}`)).join(", ");
+}
 function renderChampions() {
-  const counts = {};
-  D.seasons.forEach(s => { counts[s.champ.mgr] = (counts[s.champ.mgr] || 0) + 1; });
-  const tally = Object.entries(counts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
-  const max = tally[0][1];
-  const body = `<div class="h">Title count</div>
-    <div class="list tally">${tally.map(([name, n]) =>
-      `<a class="tl" href="${mlink(name) || "#champions"}"><span>${esc(name)}</span><div class="bar"><i style="width:${(n / max) * 100}%"></i></div><b>${n}</b></a>`).join("")}</div>
-    <div class="h">Every season</div>
-    <div class="list">${D.seasons.slice().reverse().map(s =>
-      `<a class="row ticket" href="#season-${s.y}"><div class="yr">${s.y}</div>
-        <div class="mid"><div class="team">${esc(s.champ.mgr)}</div><div class="mgr">${esc(s.champ.team)} · ${ord(s.nth)} title${s.double ? '<span class="tag">+H2H</span>' : ""}</div></div>
-        <div class="right"><div class="pts">${fmt(s.champ.pts)}<small>PTS</small></div><div class="note">by ${s.margin}</div></div></a>`).join("")}</div>`;
-  return { tab: "champions", band: band({ eyebrow: `Points + H2H · ${D.seasons.length} seasons`, title: "Champions", sub: "Every points title since 2002" }), body };
+  const kind = state.champTab, lay = state.champLayout;
+  const chip = (v, label) => `<button class="chip" data-act="ctab" data-v="${v}" aria-pressed="${kind === v}">${label}</button>`;
+  const pick = [["A", "Sections"], ["B", "Board"], ["C", "Trophies"]].map(([v, l]) =>
+    `<button data-act="lay" data-v="${v}" aria-pressed="${lay === v}">${v} · ${l}</button>`).join("");
+  const missing = D.seasons.filter(s => s.y >= 2004 && !s.h2h).map(s => s.y);
+  let body = `<div class="seg" role="group" aria-label="Title type">${chip("pts", "Points titles")}${chip("h2h", "Head to head")}</div>
+    <div class="pick" role="group" aria-label="Layout preview"><span>Layout preview</span>${pick}</div>`;
+  if (kind === "h2h" && missing.length) body += `<p class="hnote">H2H started in 2004. Not on file yet: ${yearRuns(missing)}.</p>`;
+  body += { A: tallyA, B: tallyB, C: tallyC }[lay](tallyData(kind), kind);
+  body += `<div class="h">Every season</div>${kind === "pts" ? seasonsPts() : seasonsH2H()}`;
+  return { tab: "champions", band: band({ eyebrow: `Points + H2H · ${D.seasons.length} seasons`, title: "Champions", sub: "Points titles and head-to-head champs" }), body };
 }
 
 function renderSeason(y) {
@@ -731,6 +803,11 @@ document.addEventListener("click", e => {
   if (!b) return;
   const a = b.dataset.act, last = D.live.through;
   if (a === "signout") { state.week = null; setMe(null); return; }
+  if (a === "ctab" || a === "lay") {
+    if (a === "ctab") state.champTab = b.dataset.v; else state.champLayout = b.dataset.v;
+    document.getElementById("main").innerHTML = renderChampions().body;
+    return;
+  }
   if (a === "tab") state.homeTab = b.dataset.v;
   if (a === "prev") state.week = state.week === null ? last : Math.max(1, state.week - 1);
   if (a === "next") state.week = state.week === null || state.week >= last ? null : state.week + 1;
