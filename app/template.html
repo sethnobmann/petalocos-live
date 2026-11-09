@@ -337,11 +337,12 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
   padding-bottom: env(safe-area-inset-bottom, 0px);
   padding-left: max(8px, env(safe-area-inset-left, 0px)); padding-right: max(8px, env(safe-area-inset-right, 0px));
 }
-.tabbar .col { display: grid; grid-template-columns: repeat(4, 1fr); }
+.tabbar .col { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .tab {
   display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 9px 0 8px; text-decoration: none;
-  color: var(--dim); font: 600 11px var(--body); letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--dim); font: 600 10px var(--body); letter-spacing: 0.04em; text-transform: uppercase;
 }
+.row.srow { grid-template-columns: 52px minmax(0, 1fr) auto; align-items: center; }
 .tab svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .tab[aria-current="page"] { color: var(--orange); }
 
@@ -359,6 +360,7 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 <nav class="tabbar" id="tabbar" aria-label="Sections">
   <div class="col">
     <a class="tab" href="#home" data-tab="home"><svg viewBox="0 0 24 24"><path d="M3.5 10.5 12 3.5l8.5 7V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"/></svg>Home</a>
+    <a class="tab" href="#h2h" data-tab="h2h"><svg viewBox="0 0 24 24"><path d="M4 8h14M14 4l4 4-4 4M20 16H6M10 12l-4 4 4 4"/></svg>H2H</a>
     <a class="tab" href="#champions" data-tab="champions"><svg viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5.5a2.5 2.5 0 0 0 2.6 4M16 6h2.5a2.5 2.5 0 0 1-2.6 4M12 13v4M9 21h6M10 17h4v4h-4z"/></svg>Champions</a>
     <a class="tab" href="#members" data-tab="members"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5c.6-3.3 2.8-5.2 5.5-5.2s4.9 1.9 5.5 5.2"/><circle cx="17" cy="9" r="2.5"/><path d="M15.6 14.3c2.4-.3 4.3 1.3 4.9 4.4"/></svg>Members</a>
     <a class="tab" href="#records" data-tab="records"><svg viewBox="0 0 24 24"><path d="M3 20.5h18M6.5 20.5v-7M12 20.5V5M17.5 20.5v-10"/></svg>Records</a>
@@ -368,7 +370,7 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 <script>
 const D = __DATA__;
 const CREST = "../img/crest-shield.png";
-const state = { homeTab: "std", week: null, me: null, champTab: "pts" };
+const state = { week: null, h2hWeek: null, me: null, champTab: "pts" };
 const ME_KEY = "petalocos.me";
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -409,19 +411,13 @@ function band({ back, eyebrow, title, sub, avatar }) {
 
 /* ---------- Home: 2026 season ---------- */
 function homeBody() {
-  const L = D.live, wk = state.week, tab = state.homeTab;
-  const chip = (v, label) => `<button class="chip" data-act="tab" data-v="${v}" aria-pressed="${tab === v}">${label}</button>`;
-  let h = youCard() + `<div class="seg" role="group" aria-label="Table">${chip("std", "Standings")}${chip("h2h", "Head to head")}</div>
-    <div class="stepper">
+  const L = D.live, wk = state.week;
+  let h = youCard() + `<div class="stepper">
       <button data-act="prev" aria-label="Previous week" ${wk === 1 ? "disabled" : ""}>‹</button>
       <span>${wk ? `WEEK ${wk}` : "SEASON"}</span>
       <button data-act="next" aria-label="Next week" ${wk === null ? "disabled" : ""}>›</button>
     </div>`;
-  if (!wk && tab === "std") h += seasonStandings();
-  if (!wk && tab === "h2h") h += seasonH2H();
-  if (wk && tab === "std") h += weekScores(wk);
-  if (wk && tab === "h2h") h += weekGames(wk);
-  if (!wk && L.next) h += upNext();
+  h += wk ? weekScores(wk) : seasonStandings();
   const first = state.me ? esc(state.me.split(" ")[0]) : "";
   h += `<div class="foot">Updated through week ${L.through} · __UPDATED__<br><button class="out" data-act="signout">Not ${first}? Sign out</button></div>`;
   return h;
@@ -576,6 +572,36 @@ function upNext() {
 }
 function renderHome() {
   return { tab: "home", band: band({ eyebrow: `2026 season · week ${D.live.through}`, title: "Petalocos", sub: "25th season" }), body: homeBody() };
+}
+
+/* ---------- H2H tab: this week's matchups, H2H standings, your schedule; stepper for past weeks ---------- */
+function mySchedule() {
+  const S = D.live.sched || {}, mine = (myRow() || {}).team;
+  const rows = Object.keys(S).map(Number).sort((a, b) => a - b).map(w => {
+    const g = S[w].find(([a, h]) => a === mine || h === mine);
+    if (!g) return "";
+    const away = g[0] === mine, opp = away ? g[1] : g[0], o = live[opp];
+    if (!o) return "";
+    return `<a class="row srow" href="${mlink(o.mgr)}"><div class="yk">Week ${w}</div>
+      <div class="mid"><div class="team">${away ? "at" : "vs"} ${esc(opp)}</div><div class="mgr">${esc(o.short)}</div></div>
+      <div class="right"><div class="rec ${wlc(o.w, o.l)}">${o.w}-${o.l}</div></div></a>`;
+  }).join("");
+  return rows ? `<div class="h">Your schedule</div><div class="list">${rows}</div>` : "";
+}
+function h2hBody() {
+  const L = D.live, wk = state.h2hWeek;
+  let h = `<div class="stepper">
+      <button data-act="hprev" aria-label="Previous week" ${wk === 1 ? "disabled" : ""}>‹</button>
+      <span>${wk ? `WEEK ${wk}` : "SEASON"}</span>
+      <button data-act="hnext" aria-label="Next week" ${wk === null ? "disabled" : ""}>›</button>
+    </div>`;
+  if (wk) return h + weekGames(wk);
+  if (L.next) h += upNext();
+  return h + `<div class="h">H2H standings</div>${seasonH2H()}${mySchedule()}`;
+}
+function renderH2H() {
+  const L = D.live, weeks = Math.max(L.through, ...Object.keys(L.sched || {}).map(Number));
+  return { tab: "h2h", band: band({ eyebrow: `2026 season · week ${L.cur ? L.cur.week : L.through}`, title: "Head to head", sub: `${weeks}-week schedule` }), body: h2hBody() };
 }
 
 /* ---------- Champions ---------- */
@@ -807,6 +833,7 @@ function route() {
   let v = null;
   if (h.startsWith("season-")) v = renderSeason(Number(h.slice(7)));
   else if (h.startsWith("member-")) v = renderMember(h.slice(7));
+  else if (h === "h2h") v = renderH2H();
   else if (h === "champions") v = renderChampions();
   else if (h === "members") v = renderMembers();
   else if (h === "records") v = renderRecords();
@@ -832,7 +859,12 @@ document.addEventListener("click", e => {
     document.getElementById("main").innerHTML = renderChampions().body;
     return;
   }
-  if (a === "tab") state.homeTab = b.dataset.v;
+  if (a === "hprev" || a === "hnext") {
+    const w = state.h2hWeek;
+    state.h2hWeek = a === "hprev" ? (w === null ? last : Math.max(1, w - 1)) : (w === null || w >= last ? null : w + 1);
+    document.getElementById("main").innerHTML = h2hBody();
+    return;
+  }
   if (a === "prev") state.week = state.week === null ? last : Math.max(1, state.week - 1);
   if (a === "next") state.week = state.week === null || state.week >= last ? null : state.week + 1;
   if (a === "goweek") state.week = Number(b.dataset.v);

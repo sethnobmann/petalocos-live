@@ -147,6 +147,10 @@ try:
     live["cur"] = {"week": cur["week"], "asOf": cur["as_of"], "teams": cur["teams"], "base": cur.get("base")}
 except FileNotFoundError:
     live["cur"] = None
+live["sched"] = {}
+for _r in rd(f"{REPO}/data/schedule_2026.csv"):
+    if nxt and int(_r["Week"]) > int(nxt[0]["Week"]):
+        live["sched"].setdefault(_r["Week"], []).append([_r["Away"], _r["Home"]])
 
 # ---- records -------------------------------------------------------------
 known = [r for r in rows if r["mgr"] != "Unknown"]
