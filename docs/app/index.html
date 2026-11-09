@@ -216,6 +216,16 @@ dl { margin: 0; }
 .cups { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 2px; max-width: 124px; }
 .cups svg { width: 19px; height: 19px; fill: none; stroke: var(--amber); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 4px var(--glow)); }
 .ticket.miss .team { font-weight: 600; color: var(--dim); }
+.shelf {
+  display: flex; flex-wrap: wrap; gap: 6px 12px; width: fit-content; max-width: 100%;
+  margin-top: 9px; padding: 0 4px 6px; border-bottom: 2px solid var(--orange-edge);
+}
+.tro { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.tro svg { width: 24px; height: 24px; fill: none; stroke: var(--amber); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 5px var(--glow)); }
+.tro b { font: 400 11px var(--mono); letter-spacing: 0.04em; color: var(--muted); }
+.h.hcups { display: flex; align-items: center; gap: 8px; }
+.hcups i { display: inline-flex; gap: 1px; }
+.hcups svg { width: 15px; height: 15px; fill: none; stroke: var(--amber); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 3px var(--glow)); }
 
 .av {
   width: 40px; height: 40px; border-radius: 50%; flex: none; display: grid; place-items: center;
@@ -588,18 +598,28 @@ function tallyData(kind) {
   return { list, zero };
 }
 const titleWord = (n, kind) => `${n} ${kind === "pts" ? "title" : "H2H title"}${n === 1 ? "" : "s"}`;
-/* A: sectioned by count, years as chips */
-function tallyA({ list, zero }, kind) {
+/* sectioned by count; A, D, E and F only change the header, the years and the right side */
+const yrChips = ys => `<div class="yrs">${ys.map(y => `<span>${y}</span>`).join("")}</div>`;
+const shelf = ys => `<div class="shelf">${ys.map(y => `<span class="tro">${CUP}<b>${y}</b></span>`).join("")}</div>`;
+function sections({ list, zero }, kind, opt = {}) {
+  const body = opt.body || yrChips, side = opt.side || (() => ""), head = opt.head || (n => titleWord(n, kind));
   const groups = [];
   list.forEach(x => { const g = groups.find(g => g.n === x.ys.length); g ? g.items.push(x) : groups.push({ n: x.ys.length, items: [x] }); });
-  let h = groups.map(g => `<div class="h">${titleWord(g.n, kind)}</div><div class="list">${g.items.map(({ m, ys }) =>
+  let h = groups.map(g => `<div class="h${opt.headCls ? " " + opt.headCls : ""}">${head(g.n)}</div><div class="list">${g.items.map(({ m, ys }) =>
     `${rowTag(`#member-${m.slug}`, m.name)}<div class="av">${m.ini}</div><div class="mid"><div class="team">${esc(m.name)}</div>
-      <div class="yrs">${ys.map(y => `<span>${y}</span>`).join("")}</div></div><div></div></a>`).join("")}</div>`).join("");
+      ${body(ys)}</div><div>${side(ys)}</div></a>`).join("")}</div>`).join("");
   if (zero.length) h += `<div class="h">Still waiting</div><div class="list">${zero.map(m =>
     `${rowTag(`#member-${m.slug}`, m.name)}<div class="av">${m.ini}</div><div class="mid"><div class="team">${esc(m.name)}</div>
       <div class="mgr">${m.seasons} seasons · ${m.seconds} runner-up${m.seconds === 1 ? "" : "s"}</div></div><div></div></a>`).join("")}</div>`;
   return h;
 }
+const tallyA = (t, k) => sections(t, k);
+/* D: A plus a cup per title on the right */
+const tallyD = (t, k) => sections(t, k, { side: ys => `<div class="cups">${ys.map(() => CUP).join("")}</div>` });
+/* E: A with each year engraved under its own trophy, on a shelf */
+const tallyE = (t, k) => sections(t, k, { body: shelf });
+/* F: A with the cups in the section header */
+const tallyF = (t, k) => sections(t, k, { headCls: "hcups", head: n => `<i>${CUP.repeat(n)}</i>${titleWord(n, k)}` });
 /* B: one ranked board, count in a scoreboard tile */
 function tallyB({ list, zero }, kind) {
   const all = list.concat(zero.map(m => ({ m, ys: [] })));
@@ -642,13 +662,13 @@ function yearRuns(ys) {
 function renderChampions() {
   const kind = state.champTab, lay = state.champLayout;
   const chip = (v, label) => `<button class="chip" data-act="ctab" data-v="${v}" aria-pressed="${kind === v}">${label}</button>`;
-  const pick = [["A", "Sections"], ["B", "Board"], ["C", "Trophies"]].map(([v, l]) =>
+  const pick = [["A", "Sections"], ["B", "Board"], ["C", "Trophies"], ["D", "Sections + cups"], ["E", "Shelf"], ["F", "Cup headers"]].map(([v, l]) =>
     `<button data-act="lay" data-v="${v}" aria-pressed="${lay === v}">${v} · ${l}</button>`).join("");
   const missing = D.seasons.filter(s => s.y >= 2004 && !s.h2h).map(s => s.y);
   let body = `<div class="seg" role="group" aria-label="Title type">${chip("pts", "Points titles")}${chip("h2h", "Head to head")}</div>
     <div class="pick" role="group" aria-label="Layout preview"><span>Layout preview</span>${pick}</div>`;
   if (kind === "h2h" && missing.length) body += `<p class="hnote">H2H started in 2004. Not on file yet: ${yearRuns(missing)}.</p>`;
-  body += { A: tallyA, B: tallyB, C: tallyC }[lay](tallyData(kind), kind);
+  body += { A: tallyA, B: tallyB, C: tallyC, D: tallyD, E: tallyE, F: tallyF }[lay](tallyData(kind), kind);
   body += `<div class="h">Every season</div>${kind === "pts" ? seasonsPts() : seasonsH2H()}`;
   return { tab: "champions", band: band({ eyebrow: `Points + H2H · ${D.seasons.length} seasons`, title: "Champions", sub: "Points titles and head-to-head champs" }), body };
 }
