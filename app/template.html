@@ -198,18 +198,12 @@ dl { margin: 0; }
 /* champions: trophy case, one trophy per title with the year and winning team under it */
 .hnote { margin: -4px 2px 0; font-size: 13px; color: var(--muted); }
 .ticket.miss .team { font-weight: 600; color: var(--dim); }
-.row.trow { grid-template-columns: 40px minmax(0, 1fr); }
-.shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); row-gap: 12px; margin-top: 10px; }
-.tro {
-  display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 0;
-  padding: 0 2px 8px; border-bottom: 2px solid var(--orange-edge); text-align: center;
-}
-.tro svg { width: 26px; height: 26px; fill: none; stroke: var(--amber); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 5px var(--glow)); }
-.tro b { font: 400 12px var(--mono); letter-spacing: 0.04em; color: var(--amber); }
-.tro small {
-  max-width: 100%; font-size: 10.5px; line-height: 1.2; letter-spacing: -0.01em; color: var(--muted); overflow-wrap: break-word;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-}
+.row.trow { grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; }
+.row.trow .mgr { overflow-wrap: break-word; }
+.tcase { display: flex; gap: 3px; padding: 0 2px 4px; border-bottom: 2px solid var(--orange-edge); }
+.tro { display: flex; flex-direction: column; align-items: center; gap: 1px; width: 21px; }
+.tro svg { width: 21px; height: 21px; fill: none; stroke: var(--amber); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 4px var(--glow)); }
+.tro b { font: 400 10px var(--mono); color: var(--amber); }
 
 .av {
   width: 40px; height: 40px; border-radius: 50%; flex: none; display: grid; place-items: center;
@@ -589,19 +583,18 @@ function tallyData(kind) {
   return { list, zero };
 }
 const titleWord = (n, kind) => `${n} ${kind === "pts" ? "title" : "H2H title"}${n === 1 ? "" : "s"}`;
-/* trophy case: grouped by title count, one trophy per title with the year and the team that won it */
-const teamIn = (m, y) => (m.fin.find(f => f[0] === y) || [])[3] || "";
-const shelf = (ys, m) => `<div class="shelf">${ys.map(y =>
-  `<span class="tro">${CUP}<b>${y}</b><small>${esc(teamIn(m, y))}</small></span>`).join("")}</div>`;
+/* trophy case: grouped by title count; name and current team on the left, one trophy per title on a shelf at the right */
+const curTeam = m => (m.now ? m.now.team : (m.fin[m.fin.length - 1] || [])[3] || "");
+const shelf = ys => `<div class="tcase">${ys.map(y =>
+  `<span class="tro" title="${y}">${CUP}<b>’${String(y).slice(2)}</b></span>`).join("")}</div>`;
 function trophyCase({ list, zero }, kind) {
   const groups = [];
   list.forEach(x => { const g = groups.find(g => g.n === x.ys.length); g ? g.items.push(x) : groups.push({ n: x.ys.length, items: [x] }); });
+  const left = m => `<div class="av">${m.ini}</div><div class="mid"><div class="team">${esc(m.name)}</div><div class="mgr">${esc(curTeam(m))}</div></div>`;
   let h = groups.map(g => `<div class="h">${titleWord(g.n, kind)}</div><div class="list">${g.items.map(({ m, ys }) =>
-    `${rowTag(`#member-${m.slug}`, m.name, "trow")}<div class="av">${m.ini}</div><div class="mid"><div class="team">${esc(m.name)}</div>${shelf(ys, m)}</div></a>`
-  ).join("")}</div>`).join("");
+    `${rowTag(`#member-${m.slug}`, m.name, "trow")}${left(m)}${shelf(ys)}</a>`).join("")}</div>`).join("");
   if (zero.length) h += `<div class="h">Still waiting</div><div class="list">${zero.map(m =>
-    `${rowTag(`#member-${m.slug}`, m.name, "trow")}<div class="av">${m.ini}</div><div class="mid"><div class="team">${esc(m.name)}</div>
-      <div class="mgr">${m.seasons} seasons · ${m.seconds} runner-up${m.seconds === 1 ? "" : "s"}</div></div></a>`).join("")}</div>`;
+    `${rowTag(`#member-${m.slug}`, m.name, "trow")}${left(m)}<div class="note">${m.seasons} yrs · ${m.seconds}× runner-up</div></a>`).join("")}</div>`;
   return h;
 }
 function seasonsPts() {
