@@ -343,6 +343,36 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
   color: var(--dim); font: 600 10px var(--body); letter-spacing: 0.04em; text-transform: uppercase;
 }
 .row.srow { grid-template-columns: 52px minmax(0, 1fr) auto; align-items: center; }
+
+/* ---------- playoff draw ---------- */
+.bracket { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 0.9fr); column-gap: 14px; row-gap: 4px; }
+.rh { font: 10px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.rnd { position: relative; display: flex; flex-direction: column; justify-content: space-around; min-width: 0; }
+.rnd.r3 { justify-content: center; }
+.bg { position: relative; margin: 8px 0; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+.bg .slot + .slot { border-top: 1px solid var(--line); }
+.bg.fin { border-color: var(--orange-edge); }
+.r1 .bg::after, .r2 .bg::after { content: ""; position: absolute; left: 100%; top: 50%; width: 14px; border-top: 1.5px dashed var(--line); }
+.r2 .bg::after { width: 7px; border-top-style: solid; }
+.r2::after { content: ""; position: absolute; right: -7px; top: 25%; bottom: 25%; border-right: 1.5px solid var(--line); }
+.r3 .bg::before { content: ""; position: absolute; right: 100%; top: 50%; width: 7px; border-top: 1.5px solid var(--line); }
+.slot { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 6px; align-items: center; min-width: 0; padding: 7px 7px; }
+.slot b {
+  width: 18px; height: 18px; display: grid; place-items: center; border-radius: 4px;
+  background: var(--card-2); border: 1px solid var(--line); font: 600 11px var(--display);
+}
+.slot b.gold { background: var(--orange); border-color: var(--orange); color: var(--bg); }
+.slot span { min-width: 0; }
+.slot strong { display: block; font-size: 13px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.slot small { display: block; font-size: 10px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.slot.tbd em { font-style: normal; font-size: 11px; color: var(--dim); }
+.slot.tbd b { border-style: dashed; background: none; }
+.slot.me { background: var(--me); box-shadow: inset 3px 0 0 var(--orange); }
+.fin-h {
+  display: flex; align-items: center; gap: 5px; padding: 6px 7px; border-bottom: 1px solid var(--line);
+  font: 10px var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--amber);
+}
+.fin-h svg { width: 15px; height: 15px; flex: none; fill: none; stroke: var(--amber); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .tab svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .tab[aria-current="page"] { color: var(--orange); }
 
@@ -370,7 +400,7 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 <script>
 const D = __DATA__;
 const CREST = "../img/crest-shield.png";
-const state = { week: null, h2hWeek: null, me: null, champTab: "pts" };
+const state = { week: null, h2hWeek: null, h2hTab: "std", me: null, champTab: "pts" };
 const ME_KEY = "petalocos.me";
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -588,16 +618,95 @@ function mySchedule() {
   }).join("");
   return rows ? `<div class="h">Your schedule</div><div class="list">${rows}</div>` : "";
 }
+/* playoff outlook: expected wins over the games left (live odds this week, scoring averages after that),
+   plus 5,000 simulated finishes for playoff and bye odds. Top 6 by wins make it, ties go to total points. */
+let outlookCache = null;
+function rng(seed) {
+  return () => {
+    seed = (seed + 0x6D2B79F5) | 0;
+    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+function h2hOutlook() {
+  if (outlookCache) return outlookCache;
+  const L = D.live, C = L.cur, T = L.standings;
+  const pts = t => (C && C.base && C.base[t.team] ? C.base[t.team][0] : t.pts);
+  const mu = {}; T.forEach(t => { mu[t.team] = pts(t) / L.through; });
+  const fav = (a, b) => 0.5 * (1 + erf((mu[a] - mu[b]) / 31 / Math.SQRT2));
+  const games = [];
+  if (L.next) L.next.games.forEach(([a, b]) => {
+    const lv = C && C.week === L.next.week && C.teams[a] && C.teams[b];
+    games.push([a, b, lv ? winChance(C.teams[a][0], C.teams[a][1], C.teams[b][0], C.teams[b][1]) : fav(a, b)]);
+  });
+  Object.keys(L.sched || {}).forEach(w => L.sched[w].forEach(([a, b]) => games.push([a, b, fav(a, b)])));
+  const left = {}, exp = {}, pf = {}, made = {}, bye = {};
+  T.forEach(t => { left[t.team] = 0; exp[t.team] = t.w; made[t.team] = 0; bye[t.team] = 0; });
+  games.forEach(([a, b, p]) => { left[a]++; left[b]++; exp[a] += p; exp[b] += 1 - p; });
+  const liveWk = C && L.next && C.week === L.next.week;
+  T.forEach(t => {
+    const wkProj = liveWk && C.teams[t.team] ? C.teams[t.team][1] : null;
+    pf[t.team] = pts(t) + (wkProj === null ? mu[t.team] * left[t.team] : wkProj + mu[t.team] * (left[t.team] - 1));
+  });
+  const N = 5000, rand = rng(20261109), teams = T.map(t => t.team);
+  for (let i = 0; i < N; i++) {
+    const w = {}; T.forEach(t => { w[t.team] = t.w; });
+    for (const [a, b, p] of games) w[rand() < p ? a : b]++;
+    const order = teams.slice().sort((x, y) => w[y] - w[x] || pf[y] - pf[x]);
+    for (let k = 0; k < 6; k++) made[order[k]]++;
+    bye[order[0]]++; bye[order[1]]++;
+  }
+  const rows = T.map(t => {
+    const n = t.w + t.l + left[t.team], pw = Math.round(exp[t.team]);
+    return { ...t, pw, pl: n - pw, exp: exp[t.team], pf: pf[t.team], made: made[t.team] / N, bye: bye[t.team] / N };
+  }).sort((a, b) => b.pw - a.pw || b.pf - a.pf);
+  rows.forEach((r, i) => { r.seed = i + 1; });
+  return (outlookCache = rows);
+}
+const odds = p => (p >= 0.995 ? ">99%" : p <= 0.005 ? "<1%" : Math.round(p * 100) + "%");
+function slot(r, alt) {
+  if (!r) return `<div class="slot tbd"><b></b><span><em>${alt}</em></span></div>`;
+  return `<div class="slot${r.mgr === state.me ? " me" : ""}"><b${r.seed <= 2 ? ' class="gold"' : ""}>${r.seed}</b>
+    <span><strong>${esc(r.short)}</strong><small>${esc(r.team)}</small></span></div>`;
+}
+function bracket(seeds) {
+  const s = n => seeds[n - 1], game = (a, b) => `<div class="bg">${a}${b}</div>`;
+  return `<div class="bracket">
+    <div class="rh">Wk 15</div><div class="rh">Wk 16 · Semis</div><div class="rh">Wk 17 · Final</div>
+    <div class="rnd r1">${game(slot(s(3)), slot(s(6)))}${game(slot(s(4)), slot(s(5)))}</div>
+    <div class="rnd r2">${game(slot(s(1)), slot(null, "Low seed left"))}${game(slot(s(2)), slot(null, "Other winner"))}</div>
+    <div class="rnd r3"><div class="bg fin"><div class="fin-h">${CUP}H2H champ</div>${slot(null, "Semi winner")}${slot(null, "Semi winner")}</div></div>
+  </div>`;
+}
+function seedRows(rows) {
+  return rows.map(r => {
+    const href = mlink(r.mgr);
+    return `${rowTag(href, r.mgr)}${badge(r.seed, r.seed <= 2)}
+      <div class="mid"><div class="team">${esc(r.team)}${r.seed <= 2 ? '<span class="tag">BYE</span>' : ""}</div><div class="mgr">${esc(r.mgr)}</div>
+        <div class="note">Now ${r.w}-${r.l} · proj ${r.pw}-${r.pl}${r.seed <= 3 ? ` · bye ${odds(r.bye)}` : ""}</div></div>
+      <div class="right"><div class="pts">${odds(r.made)}<small>IN</small></div></div>${rowEnd(href)}`;
+  }).join("");
+}
 function h2hBody() {
-  const L = D.live, wk = state.h2hWeek;
-  let h = `<div class="stepper">
+  const L = D.live, tab = state.h2hTab, wk = state.h2hWeek;
+  const chip = (v, label) => `<button class="chip" data-act="htab" data-v="${v}" aria-pressed="${tab === v}">${label}</button>`;
+  let h = `<div class="seg" role="group" aria-label="Head to head">${chip("std", "Standings")}${chip("live", "Live")}${chip("po", "Playoffs")}</div>`;
+  if (tab === "std") return h + `<div class="h">H2H standings</div>${seasonH2H()}${mySchedule()}`;
+  if (tab === "live") {
+    const isLive = L.cur && L.next && L.cur.week === L.next.week;
+    h += `<div class="stepper">
       <button data-act="hprev" aria-label="Previous week" ${wk === 1 ? "disabled" : ""}>‹</button>
-      <span>${wk ? `WEEK ${wk}` : "SEASON"}</span>
+      <span>${wk ? `WEEK ${wk}` : L.next ? `WEEK ${L.next.week}${isLive ? " · LIVE" : ""}` : "SEASON"}</span>
       <button data-act="hnext" aria-label="Next week" ${wk === null ? "disabled" : ""}>›</button>
     </div>`;
-  if (wk) return h + weekGames(wk);
-  if (L.next) h += upNext();
-  return h + `<div class="h">H2H standings</div>${seasonH2H()}${mySchedule()}`;
+    return h + (wk ? weekGames(wk) : L.next ? upNext() : "");
+  }
+  const seeds = h2hOutlook();
+  return h + `<div class="h">Projected draw</div>${bracket(seeds)}
+    <p class="hnote">Top 6 make it. Seeds 1 and 2 get the week 15 bye. Week 16 re-seeds: #1 plays the lowest seed left.</p>
+    <div class="h">Projected seeds</div><div class="list">${seedRows(seeds.slice(0, 6))}</div>
+    <div class="h">Outside looking in</div><div class="list">${seedRows(seeds.slice(6))}</div>`;
 }
 function renderH2H() {
   const L = D.live, weeks = Math.max(L.through, ...Object.keys(L.sched || {}).map(Number));
@@ -857,6 +966,11 @@ document.addEventListener("click", e => {
   if (a === "ctab") {
     state.champTab = b.dataset.v;
     document.getElementById("main").innerHTML = renderChampions().body;
+    return;
+  }
+  if (a === "htab") {
+    state.h2hTab = b.dataset.v; state.h2hWeek = null;
+    document.getElementById("main").innerHTML = h2hBody();
     return;
   }
   if (a === "hprev" || a === "hnext") {
