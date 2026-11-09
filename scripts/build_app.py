@@ -202,8 +202,7 @@ records = {
     ],
 }
 
-access = json.load(open(f"{HIST}/access.json", encoding="utf-8"))
-data = {"seasons": seasons, "members": members, "live": live, "records": records, "access": access}
+data = {"seasons": seasons, "members": members, "live": live, "records": records}
 
 # ---- icons + manifest (made once) -------------------------------------
 os.makedirs(OUT, exist_ok=True)
