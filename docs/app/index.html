@@ -252,6 +252,11 @@ dl { margin: 0; }
 .you .name { margin-top: 3px; font: 700 27px/1.05 var(--display); text-transform: uppercase; letter-spacing: 0.01em; overflow-wrap: anywhere; }
 .lede { margin-top: 4px; font-size: 14px; color: var(--muted); }
 .led b small { margin-left: 1px; font-size: 14px; }
+.leds.four { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.leds.four .led { padding: 9px 7px 8px; }
+.leds.four .led b { font-size: 22px; }
+.leds.four .led b small { font-size: 12px; }
+.leds.four .led span { letter-spacing: 0.06em; }
 .led b.w { color: var(--win); text-shadow: 0 0 14px var(--win-glow); }
 .led b.l { color: var(--loss); text-shadow: 0 0 14px var(--loss-glow); }
 .led em { font-style: normal; } .led em.up { color: var(--win); } .led em.dn { color: var(--loss); }
@@ -492,7 +497,7 @@ function youCard() {
   return `<section class="you" aria-label="Your season">
     <div class="you-top"><div class="mid"><div class="eyebrow">${first} · your season</div><div class="name">${esc(r.team)}</div><div class="lede">${back}</div></div>
       <div class="av${m && m.titles.length ? " gold" : ""}">${m ? m.ini : ""}</div></div>
-    <div class="leds">${led(place, `${lv ? "Live rank" : "Rank"}${mvTxt}`)}${led(pts, lv ? "Live pts" : "Points")}${led(`${r.w}-${r.l}`, `H2H · ${ord(r.hp)}`, rec === "e" ? "" : rec)}</div>
+    <div class="leds${lv ? " four" : ""}">${led(place, `Rank${mvTxt}`)}${lv ? led(lv.wk, `Wk ${L.cur.week}`) : ""}${led(pts, lv ? "Total" : "Points")}${led(`${r.w}-${r.l}`, lv ? `H2H ${ord(r.hp)}` : `H2H · ${ord(r.hp)}`, rec === "e" ? "" : rec)}</div>
     <div class="yrows">${rows}</div>
   </section>`;
 }
