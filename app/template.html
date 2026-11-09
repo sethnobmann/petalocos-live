@@ -283,9 +283,17 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 
 .rec.wk { color: var(--text); }
 .rec.wk span { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-.ylive { padding: 12px 16px 14px; border-top: 1px dashed var(--line); }
-.ylive-h { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
-.ylive .mu { padding: 0; border-top: 0; }
+.ylive { padding: 10px 16px 11px; border-top: 1px dashed var(--line); }
+.ylive-h { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 7px; }
+.ylive .mu { padding: 0; border-top: 0; grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr); }
+.ylive .mu-side .team { font-size: 14px; }
+.ylive .mgr { margin-top: 1px; font-size: 12px; }
+.ylive .mu-score { padding-top: 5px; font-size: 21px; }
+.ylive .mu-res { margin-top: 3px; font-size: 10px; }
+.ylive .mu-vs { font-size: 10px; gap: 4px; }
+.ylive .wp { margin-top: 9px; }
+.ylive .wp-bar { height: 6px; }
+.ylive .wp-l { margin-top: 5px; font-size: 10px; }
 .livetag { font-weight: 400; color: var(--loss); }
 .livetag::before {
   content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 5px; border-radius: 50%;
