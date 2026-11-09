@@ -265,9 +265,6 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 .yv { font: 13px var(--mono); color: var(--muted); white-space: nowrap; }
 .yv.w { color: var(--win); } .yv.l { color: var(--loss); }
 .chev { color: var(--amber); font-size: 18px; line-height: 1; }
-.dots { display: flex; gap: 6px; }
-.dots i { width: 10px; height: 10px; border-radius: 50%; }
-.dots i.w { background: var(--win); } .dots i.l { background: var(--loss); }
 .row.me, .mu.me { background: var(--me); box-shadow: inset 3px 0 0 var(--orange); }
 .foot .out {
   margin-top: 6px; padding: 6px; border: 0; background: none; cursor: pointer; color: var(--muted);
@@ -404,15 +401,7 @@ function youCard() {
   const mvTxt = mv > 0 ? ` <em class="up">▲${mv}</em>` : mv < 0 ? ` <em class="dn">▼${-mv}</em>` : "";
   const place = ord(r.place).replace(/^(\d+)(\D+)$/, "$1<small>$2</small>");
   const rec = wlc(r.w, r.l);
-  const form = r.form.split("").map(c => `<i class="${c === "W" ? "w" : "l"}"></i>`).join("");
-  let rows = `<div class="yrow"><span class="yk">Last 5</span><span class="dots" role="img" aria-label="Last five: ${r.form}">${form}</span><span class="yv ${r.streak[0] === "W" ? "w" : "l"}">${r.streak}</span><span></span></div>`;
-  const lw = (L.weeks[L.through] || []).find(x => x[1] === state.me);
-  if (lw) {
-    const [, , pts, rank, opp, oppPts, res] = lw;
-    rows += `<button class="yrow" data-act="goweek" data-v="${L.through}"><span class="yk">Week ${L.through}</span>
-      <span class="ym"><span class="${res === "W" ? "w" : "l"}">${res}</span> ${pts}–${oppPts}<small>vs ${esc(opp)}</small></span>
-      <span class="yv">${ord(rank)} best</span><span class="chev">›</span></button>`;
-  }
+  let rows = "";
   const g = L.next && L.next.games.find(([a, h]) => a === r.team || h === r.team);
   if (g) {
     const away = g[0] === r.team, opp = away ? g[1] : g[0], o = live[opp];
