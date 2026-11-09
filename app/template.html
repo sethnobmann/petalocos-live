@@ -280,6 +280,18 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
   font: inherit; letter-spacing: inherit; text-transform: inherit; text-decoration: underline; text-underline-offset: 3px;
 }
 
+.row.lrow { grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; }
+.ppos {
+  width: 44px; height: 26px; display: grid; place-items: center; border-radius: 6px;
+  background: var(--card-2); border: 1px solid var(--line); font: 11px var(--mono); letter-spacing: 0.04em; color: var(--muted);
+}
+.lrow .team { font-size: 15px; }
+.lrow .pts.up { color: var(--win); text-shadow: 0 0 14px var(--win-glow); }
+.lrow .pts.wait { color: var(--dim); text-shadow: none; }
+.morelink {
+  display: block; padding: 10px 14px; text-align: center; text-decoration: none;
+  font: 12px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber);
+}
 .rec.wk { color: var(--text); }
 .rec.wk span { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
 .ylive { padding: 10px 16px 11px; border-top: 1px dashed var(--line); }
@@ -471,14 +483,15 @@ function liveBlock(r, opp, o) {
   const p = winChance(ml, mp, ol, op), done = mp <= ml && op <= ol;
   const t = new Date(C.asOf);
   const asOf = isNaN(t) ? "" : t.toLocaleString("en-US", { weekday: "short", hour: "numeric", minute: "2-digit", timeZone: "America/Los_Angeles" });
-  const side = (team, who, lv, pj, lead, href) => {
-    const c = `mu-side${href ? " r" : ""}${lead ? " win" : ""}`;
+  const side = (team, who, lv, pj, lead, right) => {
+    const href = lineupHref(team) || (live[team] ? mlink(live[team].mgr) : null);
+    const c = `mu-side${right ? " r" : ""}${lead ? " win" : ""}`;
     return `${href ? `<a class="${c}" href="${href}">` : `<div class="${c}">`}<div class="team">${esc(team)}</div><div class="mgr">${who}</div>
       <div class="mu-score">${lv}</div><div class="mu-res">proj ${pj}</div>${href ? "</a>" : "</div>"}`;
   };
   return `<div class="ylive">
     <div class="ylive-h"><span class="yk">Week ${C.week} · ${done ? "Final" : '<b class="livetag">Live</b>'}</span><span class="yk">${asOf ? "as of " + asOf : ""}</span></div>
-    <div class="mu">${side(r.team, "You", ml, mp, ml > ol)}<div class="mu-vs">vs</div>${side(opp, `${esc(o.short)} · H2H ${o.w}-${o.l}`, ol, op, ol > ml, mlink(o.mgr))}</div>
+    <div class="mu">${side(r.team, "You", ml, mp, ml > ol, false)}<div class="mu-vs">vs</div>${side(opp, `${esc(o.short)} · H2H ${o.w}-${o.l}`, ol, op, ol > ml, true)}</div>
     <div class="wp"><div class="wp-bar" role="img" aria-label="Your win chance ${pct(p)}"><i style="width:${(p * 100).toFixed(1)}%"></i></div>
       <div class="wp-l"><span>Your win chance <b>${pct(p)}</b></span><span>${esc(o.short)} <b>${pct(1 - p)}</b></span></div></div>
   </div>`;
@@ -487,6 +500,33 @@ const asOfText = iso => {
   const t = new Date(iso);
   return isNaN(t) ? "" : "as of " + t.toLocaleString("en-US", { weekday: "short", hour: "numeric", minute: "2-digit", timeZone: "America/Los_Angeles" });
 };
+/* a team's starting lineup for the live week: each starter's points and projection */
+const teamSlug = t => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+const lineupHref = team => (D.live.cur && D.live.cur.lineups && D.live.cur.lineups[team] ? `#team-${teamSlug(team)}` : null);
+const fmtPts = x => (Number.isInteger(x) ? `${x}` : x.toFixed(1));
+function renderLineup(slug) {
+  const C = D.live.cur;
+  if (!C || !C.lineups) return null;
+  const team = Object.keys(C.lineups).find(t => teamSlug(t) === slug);
+  if (!team) return null;
+  const r = live[team], rows = C.lineups[team], [lv, pj] = C.teams[team] || [0, 0];
+  const lt = liveTable(), me = lt && lt.find(x => x.team === team);
+  const toPlay = rows.filter(x => x[4] === null).length;
+  const body = `<div class="leds">${led(lv, `Wk ${C.week} pts`)}${led(pj, "Projected")}${led(toPlay, "Yet to play")}</div>
+    <div class="h">Starters · Week ${C.week}</div>
+    <div class="list">${rows.map(([pos, name, tp, st, pts, proj]) => {
+      const done = pts !== null, cls = !done ? " wait" : proj !== null && pts >= proj ? " up" : "";
+      return `<div class="row lrow${r && r.mgr === state.me ? "" : ""}"><div class="ppos">${pos === "W/R/T" ? "FLEX" : esc(pos)}</div>
+        <div class="mid"><div class="team">${esc(name)}</div><div class="note">${esc(tp.replace(" - ", " "))}${st ? " · " + esc(st) : ""}</div></div>
+        <div class="right"><div class="pts${cls}">${done ? fmtPts(pts) : "–"}</div><div class="note">proj ${proj === null ? "–" : fmtPts(proj)}</div></div></div>`;
+    }).join("")}</div>
+    ${r ? `<a class="morelink" href="${mlink(r.mgr)}">${esc(r.mgr)}'s league history ›</a>` : ""}`;
+  return {
+    tab: "home",
+    band: band({ back: { href: "home", label: "Home" }, eyebrow: `Week ${C.week} · ${me ? ord(me.live) + " live" : "live"}`, title: esc(team), sub: r ? `${esc(r.mgr)} · ${asOfText(C.asOf)}` : "" }),
+    body,
+  };
+}
 /* live standings: Yahoo's official totals through last week + this week's live points, re-ranked */
 function liveTable() {
   const C = D.live.cur;
@@ -534,7 +574,7 @@ function seasonStandings() {
     return `<div class="h">Live standings · Week ${C.week} · <span class="livetag">Live</span></div>
       <div class="list">${lt.map(r => {
         const back = r.live === 1 ? "leader" : r.total === lead ? "tied for 1st" : `${lead - r.total} back`;
-        const href = mlink(r.mgr);
+        const href = lineupHref(r.team) || mlink(r.mgr);
         return `${rowTag(href, r.mgr)}${badge(r.live, r.live === 1, r.off - r.live)}
           <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)}</div><div class="note">${back} · H2H <span class="${wlc(r.w, r.l)}">${r.w}-${r.l}</span></div></div>
           <div class="right"><div class="pts">${r.total}<small>PTS</small></div><div class="rec wk">+${r.wk} <span>wk ${C.week}</span></div></div>${rowEnd(href)}`;
@@ -574,8 +614,8 @@ function mu(away, home, side) {
   const mine = (myRow() || {}).team;
   return `<div class="mu${away === mine || home === mine ? " me" : ""}">${side(away, false)}<div class="mu-vs">vs</div>${side(home, true)}</div>`;
 }
-function muSide(team, right, cls, inner) {
-  const t = live[team], href = t && mlink(t.mgr), c = `mu-side${right ? " r" : ""}${cls ? " " + cls : ""}`;
+function muSide(team, right, cls, inner, href0) {
+  const t = live[team], href = href0 || (t && mlink(t.mgr)), c = `mu-side${right ? " r" : ""}${cls ? " " + cls : ""}`;
   return `${href ? `<a class="${c}" href="${href}">` : `<div class="${c}">`}<div class="team">${esc(team)}</div><div class="mgr">${esc(t ? t.short : "")}</div>${inner}${href ? "</a>" : "</div>"}`;
 }
 function weekGames(wk) {
@@ -593,7 +633,7 @@ function upNext() {
     if (isLive && C.teams[team]) {
       const opp = team === away ? home : away, [lv, pj] = C.teams[team], [ol, op] = C.teams[opp] || [0, 0];
       return muSide(team, right, lv > ol ? "win" : "",
-        `<div class="mu-score">${lv}</div><div class="mu-res">proj ${pj} · ${pct(winChance(lv, pj, ol, op))}</div>`);
+        `<div class="mu-score">${lv}</div><div class="mu-res">proj ${pj} · ${pct(winChance(lv, pj, ol, op))}</div>`, lineupHref(team));
     }
     const t = live[team] || { w: 0, l: 0, pts: 0, place: 0 };
     return muSide(team, right, "",
@@ -942,6 +982,7 @@ function route() {
   let v = null;
   if (h.startsWith("season-")) v = renderSeason(Number(h.slice(7)));
   else if (h.startsWith("member-")) v = renderMember(h.slice(7));
+  else if (h.startsWith("team-")) v = renderLineup(h.slice(5));
   else if (h === "h2h") v = renderH2H();
   else if (h === "champions") v = renderChampions();
   else if (h === "members") v = renderMembers();
