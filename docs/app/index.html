@@ -507,7 +507,6 @@ function seasonStandings() {
   if (lt) {
     const C = D.live.cur, lead = lt[0].total;
     return `<div class="h">Live standings · Week ${C.week} · <span class="livetag">Live</span></div>
-      <p class="hnote">Totals through week ${C.week - 1} plus this week's live points, ${asOfText(C.asOf)}. Official once Yahoo closes the week.</p>
       <div class="list">${lt.map(r => {
         const back = r.live === 1 ? "leader" : r.total === lead ? "tied for 1st" : `${lead - r.total} back`;
         const href = mlink(r.mgr);
