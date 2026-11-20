@@ -279,6 +279,10 @@ def push(paths, msg):
 
 def main():
     force, no_push = "--force" in sys.argv, "--no-push" in sys.argv
+    flag = os.path.join(TMP, "force")  # touch tmp/force, then launchctl kickstart: one forced run under launchd
+    if os.path.exists(flag):
+        os.remove(flag)
+        force = True
     state = {}
     if os.path.exists(STATE):
         with open(STATE) as f:
