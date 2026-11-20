@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T19:57:45+00:00",
+ "updated": "2026-11-20T20:02:12+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 11,
@@ -8,7 +8,7 @@
    "team": "Umbertos",
    "manager": "Rob Scerri",
    "week_pts": 29.0,
-   "week_proj": 124.0,
+   "week_proj": 126.0,
    "season_pts": 1250.0,
    "week_rank": 1,
    "season_rank": 1
@@ -35,7 +35,7 @@
    "team": "FANTASY KING",
    "manager": "Chris King",
    "week_pts": 1.0,
-   "week_proj": 78.0,
+   "week_proj": 77.0,
    "season_pts": 1065.0,
    "week_rank": 4,
    "season_rank": 6
@@ -53,7 +53,7 @@
    "team": "FOTY*",
    "manager": "Dave Abramson",
    "week_pts": 0.0,
-   "week_proj": 113.0,
+   "week_proj": 114.0,
    "season_pts": 1129.0,
    "week_rank": 6,
    "season_rank": 4
@@ -62,7 +62,7 @@
    "team": "Mooseknuckle's",
    "manager": "Brian Lovrin",
    "week_pts": 0.0,
-   "week_proj": 107.0,
+   "week_proj": 105.0,
    "season_pts": 1132.0,
    "week_rank": 6,
    "season_rank": 3
@@ -113,7 +113,7 @@
    "away_manager": "Chris Scerri",
    "home_pts": 29.0,
    "away_pts": 27.0,
-   "home_proj": 124.0,
+   "home_proj": 126.0,
    "away_proj": 115.0
   },
   {
@@ -124,7 +124,7 @@
    "home_pts": 0.0,
    "away_pts": 1.0,
    "home_proj": 96.0,
-   "away_proj": 78.0
+   "away_proj": 77.0
   },
   {
    "home": "Mooseknuckle's",
@@ -133,8 +133,8 @@
    "away_manager": "Dave Abramson",
    "home_pts": 0.0,
    "away_pts": 0.0,
-   "home_proj": 107.0,
-   "away_proj": 113.0
+   "home_proj": 105.0,
+   "away_proj": 114.0
   },
   {
    "home": "Miwok Indians",
