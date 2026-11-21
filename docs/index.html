@@ -61,6 +61,7 @@ function render(d){
 
   let h = '';
   if (d.sample) h += `<div class="card warn" style="border:1px solid var(--red)">Sample numbers. Real live scores start once Yahoo approves API access for the league.</div>`;
+  if (d.note) h += `<div class="card warn">${esc(d.note)}</div>`;
   if (d.matchups && d.matchups.length){
     h += '<h2>Head to head</h2>';
     for (const m of d.matchups){
