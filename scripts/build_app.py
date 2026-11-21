@@ -10,7 +10,10 @@ import json
 import re
 from collections import defaultdict
 
-from PIL import Image
+try:
+    from PIL import Image  # only for the home-screen icons, which are already made
+except ImportError:
+    Image = None
 
 import datetime
 import os
@@ -147,6 +150,21 @@ try:
     live["cur"] = {"week": cur["week"], "asOf": cur["as_of"], "teams": cur["teams"], "base": cur.get("base"), "lineups": cur.get("lineups")}
 except FileNotFoundError:
     live["cur"] = None
+# After a weekly roll live_week.json is a week behind: start the new week from the scraper's
+# docs/live.json (team totals only, no lineups); the app keeps pulling that file on its own.
+nweek = live["next"]["week"] if live["next"] else None
+if nweek and (not live["cur"] or live["cur"]["week"] != nweek):
+    live["cur"] = None
+    try:
+        lj = json.load(open(f"{REPO}/docs/live.json", encoding="utf-8"))
+        if lj.get("week") == nweek:
+            live["cur"] = {
+                "week": nweek, "asOf": lj["updated"], "lineups": None,
+                "teams": {t["team"]: [round(t["week_pts"]), round(max(t["week_proj"] or 0, t["week_pts"]))] for t in lj["teams"]},
+                "base": {s["team"]: [s["pts"], s["place"]] for s in standings},
+            }
+    except (FileNotFoundError, KeyError, ValueError):
+        pass
 live["sched"] = {}
 for _r in rd(f"{REPO}/data/schedule_2026.csv"):
     if nxt and int(_r["Week"]) > int(nxt[0]["Week"]):
@@ -206,11 +224,11 @@ data = {"seasons": seasons, "members": members, "live": live, "records": records
 
 # ---- icons + manifest (made once) -------------------------------------
 os.makedirs(OUT, exist_ok=True)
-crest = Image.open(f"{REPO}/docs/img/crest-shield.png").convert("RGBA")
 for size in (180, 192, 512):
     path = f"{OUT}/icon-{size}.png"
-    if os.path.exists(path):
+    if os.path.exists(path) or Image is None:
         continue
+    crest = Image.open(f"{REPO}/docs/img/crest-shield.png").convert("RGBA")
     tile = Image.new("RGBA", (size, size), (11, 20, 36, 255))
     c = crest.copy()
     c.thumbnail((int(size * 0.74), int(size * 0.74)), Image.LANCZOS)

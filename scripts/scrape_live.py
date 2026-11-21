@@ -325,6 +325,12 @@ def main():
             json.dump(out, f, indent=1)
     with open(STATE, "w") as f:
         json.dump(state, f)
+    if rolled:  # new week: rebuild the web app so standings, H2H and the bracket take in last week's finals
+        b = subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "build_app.py")], capture_output=True, text=True)
+        if b.returncode == 0:
+            paths.append("docs/app")
+        else:
+            log(f"app rebuild failed: {b.stderr.strip()[-200:]}")
     res = "not written" if not write else "not pushed" if no_push else push(paths, f"live: week {week} {now:%m-%d %H:%M}")
     top = out["teams"][0]
     log(f"ok ({why}) week {week}, leader {top['team']} {top['week_pts']:g}, moved={moved}, {res}")

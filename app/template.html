@@ -494,6 +494,7 @@ const asOfText = iso => {
 };
 /* a team's starting lineup for the live week: each starter's points and projection */
 const teamSlug = t => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+const LINEUP_AS_OF = D.live.cur ? D.live.cur.asOf : null; /* the live feed moves team totals, not player rows */
 const lineupHref = team => (D.live.cur && D.live.cur.lineups && D.live.cur.lineups[team] ? `#team-${teamSlug(team)}` : null);
 const fmtPts = x => (Number.isInteger(x) ? `${x}` : x.toFixed(1));
 function renderLineup(slug) {
@@ -505,7 +506,7 @@ function renderLineup(slug) {
   const lt = liveTable(), me = lt && lt.find(x => x.team === team);
   const toPlay = rows.filter(x => x[4] === null).length;
   const body = `<div class="leds">${led(lv, `Wk ${C.week} pts`)}${led(pj, "Projected")}${led(toPlay, "Yet to play")}</div>
-    <div class="h">Starters · Week ${C.week}</div>
+    <div class="h">Starters · Week ${C.week}${C.asOf !== LINEUP_AS_OF ? ` · players ${asOfText(LINEUP_AS_OF)}` : ""}</div>
     <div class="list">${rows.map(([pos, name, tp, st, pts, proj]) => {
       const done = pts !== null, cls = !done ? " wait" : proj !== null && pts >= proj ? " up" : "";
       return `<div class="row lrow${r && r.mgr === state.me ? "" : ""}"><div class="ppos">${pos === "W/R/T" ? "FLEX" : esc(pos)}</div>
@@ -996,11 +997,41 @@ document.addEventListener("click", e => {
   document.getElementById("main").innerHTML = homeBody();
 });
 window.addEventListener("hashchange", () => { if (state.me) route(); });
+
+/* live feed: the Mac mini scraper pushes ../live.json to GitHub Pages during games. Pull it on open,
+   every 2 minutes while the app is on screen, and whenever it comes back to the foreground.
+   In the claude.ai preview the fetch is blocked, so this quietly does nothing there. */
+let pulling = false;
+async function pullLive() {
+  const C = D.live.cur;
+  if (pulling || !C || !C.teams || document.hidden) return;
+  pulling = true;
+  try {
+    const r = await fetch(`../live.json?t=${Date.now()}`, { cache: "no-store" });
+    if (!r.ok) return;
+    const j = await r.json();
+    if (j.week !== C.week || !Array.isArray(j.teams) || !(new Date(j.updated) > new Date(C.asOf))) return;
+    for (const t of j.teams) {
+      if (!C.teams[t.team] || typeof t.week_pts !== "number") continue;
+      const proj = typeof t.week_proj === "number" ? t.week_proj : t.week_pts;
+      C.teams[t.team] = [Math.round(t.week_pts), Math.round(Math.max(proj, t.week_pts))];
+    }
+    C.asOf = j.updated;
+    if (state.me) route();
+  } catch (e) {
+  } finally {
+    pulling = false;
+  }
+}
+setInterval(pullLive, 120000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) pullLive(); });
+
 (function boot() {
   let saved = null;
   try { saved = localStorage.getItem(ME_KEY); } catch (e) {}
   if (saved && players().includes(saved)) state.me = saved;
   show();
+  pullLive();
 })();
 </script>
 </body>
