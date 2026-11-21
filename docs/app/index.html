@@ -113,12 +113,16 @@ main { padding-block: 18px calc(96px + env(safe-area-inset-bottom, 0px)); }
 .chip[aria-pressed="true"] { background: var(--orange); border-color: var(--orange); color: var(--bg); }
 
 .stepper {
-  display: grid; grid-template-columns: 48px minmax(0, 1fr) 48px; align-items: center; height: 44px;
-  background: var(--card-2); border: 1px solid var(--line); border-radius: 10px;
+  /* each arrow's button fills its whole half, right up to the label, so a tap anywhere on that side counts */
+  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; height: 44px;
+  background: var(--card-2); border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
 }
-.stepper button { height: 100%; border: 0; background: none; color: var(--amber); font: 400 24px/1 var(--body); cursor: pointer; }
+.stepper button { height: 100%; min-width: 0; border: 0; background: none; color: var(--amber); font: 400 24px/1 var(--body); cursor: pointer; display: flex; align-items: center; padding: 0 18px; }
+.stepper button:first-child { justify-content: flex-start; }
+.stepper button:last-child { justify-content: flex-end; }
+.stepper button:not(:disabled):active { background: var(--line); }
 .stepper button:disabled { color: var(--dim); opacity: 0.45; cursor: default; }
-.stepper span { text-align: center; font: 15px var(--mono); letter-spacing: 0.16em; }
+.stepper span { text-align: center; font: 15px var(--mono); letter-spacing: 0.16em; padding: 0 4px; pointer-events: none; }
 
 .list { background: var(--card); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
 .row {
