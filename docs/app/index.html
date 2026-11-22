@@ -1040,11 +1040,7 @@ function renderRecords() {
   const R = D.records;
   const body = `<div class="h">Single season</div>${recCards(R.season)}
     <div class="h">Single week</div>${recCards(R.week)}
-    <div class="h">Career</div>${recCards(R.career)}
-    <div class="h">All-time points</div>
-    <div class="list scroll"><table class="tbl"><thead><tr><th>#</th><th>Manager</th><th class="n">Yrs</th><th class="n">Points</th><th class="n">Avg</th></tr></thead><tbody>
-      ${R.points.map((p, i) => `<tr><td class="n e">${i + 1}</td><td><a href="#member-${p.slug}">${esc(p.name)}</a></td><td class="n">${p.seasons}</td><td class="n hot">${fmt(p.career)}</td><td class="n">${fmt(p.avg)}</td></tr>`).join("")}
-    </tbody></table></div>`;
+    <div class="h">Career</div>${recCards(R.career)}`;
   return { tab: "records", band: band({ eyebrow: "Weekly marks from 2010", title: "Records", sub: "Tap a card for the season or the man" }), body };
 }
 
