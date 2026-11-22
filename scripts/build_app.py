@@ -49,7 +49,7 @@ rows = [
 ]
 s26 = {r["Manager"]: r for r in rd(f"{REPO}/data/season_2026.csv")}
 short = {m: r["Short"] for m, r in s26.items()}
-short.update({"Jerre Hernandez": "Jerre", "Kevin Sullivan": "Kevin"})
+short.update({"Jerre Hernandez": "Jerre"})
 
 by_year = defaultdict(list)
 for r in rows:

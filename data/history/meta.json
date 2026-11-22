@@ -17,8 +17,7 @@
     "CJ Nelson": {"handle": "CJ", "teams": "Show Me The Money → SHOW ME THE $$$$ (with 3Peat and Welcome Back Ricky along the way)", "status": "Treasurer"},
     "Dave Abramson": {"handle": "abramson dave", "teams": "Redshirts → Da Love Train → Boo Boo Heads → Detention → FOTY*", "status": "Active"},
     "Tony Oliverez": {"handle": "tone1818", "teams": "Team Punishment → Untouchable → Flawless → u got pzzzed", "status": "Active"},
-    "Jerre Hernandez": {"handle": "", "teams": "Beanzees Bunch (2003) → The Truth13 (2004)", "status": "Former · won 2004, then left"},
-    "Kevin Sullivan": {"handle": "", "teams": "Sullys Bunch (2002) → 100 donation (2003)", "status": "Former · two seasons"}
+    "Jerre Hernandez": {"handle": "", "teams": "Beanzees Bunch (2003) → The Truth13 (2004)", "status": "Former · won 2004, then left"}
   },
   "weekRecords": {
     "high": {"value": 220, "who": "Brandon Martinez", "team": "Lincoln Hawk", "season": 2025, "week": 15},
