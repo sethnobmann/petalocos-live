@@ -297,6 +297,7 @@ dl { margin: 0; }
 .you .name { margin-top: 3px; font: 700 27px/1.05 var(--display); text-transform: uppercase; letter-spacing: 0.01em; overflow-wrap: anywhere; }
 .lede { margin-top: 4px; font-size: 14px; color: var(--muted); }
 .led b small { margin-left: 1px; font-size: 14px; }
+.leds.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .leds.four { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
 .leds.four .led { padding: 9px 7px 8px; }
 .leds.four .led b { font-size: 22px; }
@@ -619,9 +620,6 @@ function youCard() {
   const P = lv ? lv.live : r.place, pts = lv ? lv.total : r.pts;
   const lead = lt ? lt[0].total : Math.max(...L.standings.map(s => s.pts));
   const back = pts < lead ? `${lead - pts} back of 1st` : P === 1 ? "Leading the league" : "Tied for 1st";
-  const mv = lv ? lv.off - lv.live : r.prev - r.place;
-  const mvTxt = mv > 0 ? ` <em class="up">▲${mv}</em>` : mv < 0 ? ` <em class="dn">▼${-mv}</em>` : "";
-  const place = ord(P).replace(/^(\d+)(\D+)$/, "$1<small>$2</small>");
   const rec = wlc(r.w, r.l);
   let rows = "";
   const g = L.next && L.next.games.find(([a, h]) => a === r.team || h === r.team);
@@ -635,7 +633,7 @@ function youCard() {
   return `<section class="you" aria-label="Your season">
     <div class="you-top"><div class="mid"><div class="eyebrow">${first} · your season</div><div class="name">${esc(r.team)}</div><div class="lede">${back}</div></div>
       <div class="badge ybadge${P === 1 ? " gold" : ""}"><b>${P}<sup>${ord(P).slice(String(P).length)}</sup></b>${lv ? "<i>live</i>" : ""}</div></div>
-    <div class="leds${lv ? " four" : ""}">${led(place, `Rank${mvTxt}`)}${lv ? led(lv.wk, `Wk ${L.cur.week}`) : ""}${led(pts, lv ? "Total" : "Points")}${led(`${r.w}-${r.l}`, lv ? `H2H ${ord(r.hp)}` : `H2H · ${ord(r.hp)}`, rec === "e" ? "" : rec)}</div>
+    <div class="leds${lv ? "" : " two"}">${lv ? led(lv.wk, `Wk ${L.cur.week}`) : ""}${led(pts, lv ? "Total" : "Points")}${led(`${r.w}-${r.l}`, lv ? `H2H ${ord(r.hp)}` : `H2H · ${ord(r.hp)}`, rec === "e" ? "" : rec)}</div>
     <div class="yrows">${rows}</div>
   </section>`;
 }
