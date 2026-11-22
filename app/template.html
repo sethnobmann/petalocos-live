@@ -171,7 +171,7 @@ a.row:active { background: rgba(255, 255, 255, 0.035); }
 .pcol .pback b { font-weight: 400; color: var(--muted); }
 
 .mu {
-  display: grid; grid-template-columns: minmax(0, 1fr) 26px minmax(0, 1fr); column-gap: 10px;
+  display: grid; grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr); column-gap: 10px;
   padding: 14px; border-top: 1px solid var(--line);
 }
 .mu-side { display: flex; flex-direction: column; min-width: 0; text-decoration: none; }
@@ -189,6 +189,12 @@ a.mu-side:active { opacity: 0.8; }
   font: 11px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim);
 }
 .mu-vs::before, .mu-vs::after { content: ""; flex: 1; width: 1px; background: var(--line); }
+/* VS as a coin between the two teams, like the H2H tab icon */
+.mu-vs span {
+  display: grid; place-items: center; width: 32px; height: 32px; flex: none; border-radius: 50%;
+  border: 1.5px solid var(--orange); background: var(--card-2); color: var(--orange);
+  font: 600 13px/1 var(--display); letter-spacing: 0.04em; text-transform: uppercase;
+}
 
 .champ {
   display: grid; gap: 14px; padding: 16px; border-radius: 12px; border: 1px solid var(--line);
@@ -306,6 +312,7 @@ dl { margin: 0; }
 .led b.w { color: var(--win); text-shadow: 0 0 14px var(--win-glow); }
 .led b.l { color: var(--loss); text-shadow: 0 0 14px var(--loss-glow); }
 .led em { font-style: normal; } .led em.up { color: var(--win); } .led em.dn { color: var(--loss); }
+.you .led { text-align: center; }
 /* the matchup gets its own section under the tiles, split off by an orange rule like the Champions page */
 .yrows { margin: 4px -16px 0; border-top: 2px solid var(--orange-edge); }
 .yrows:empty { display: none; }
@@ -358,12 +365,12 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 .sbig .rec.wk span { font-size: 11px; }
 .ylive { padding: 10px 16px 11px; border-top: 1px dashed var(--line); }
 .ylive-h { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 7px; }
-.ylive .mu { padding: 0; border-top: 0; grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr); }
+.ylive .mu { padding: 0; border-top: 0; grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr); }
 .ylive .mu-side .team { font-size: 14px; }
 .ylive .mgr { margin-top: 1px; font-size: 12px; }
 .ylive .mu-score { padding-top: 5px; font-size: 21px; }
 .ylive .mu-res { margin-top: 3px; font-size: 10px; }
-.ylive .mu-vs { font-size: 10px; gap: 4px; }
+.ylive .mu-vs { gap: 4px; }
 .ylive .wp { margin-top: 9px; }
 .ylive .wp-bar { height: 6px; }
 .ylive .wp-l { margin-top: 5px; font-size: 10px; }
@@ -549,7 +556,7 @@ function liveBlock(r, opp, o) {
   };
   return `<div class="ylive">
     <div class="ylive-h"><span class="yk">Week ${C.week} · ${done ? "Final" : '<b class="livetag">Live</b>'}</span><span class="yk">${asOf ? "as of " + asOf : ""}</span></div>
-    <div class="mu">${side(r.team, "You", ml, mp, ml > ol, false)}<div class="mu-vs">vs</div>${side(opp, `${esc(o.short)} · H2H ${o.w}-${o.l}`, ol, op, ol > ml, true)}</div>
+    <div class="mu">${side(r.team, "You", ml, mp, ml > ol, false)}<div class="mu-vs"><span>vs</span></div>${side(opp, `${esc(o.short)} · H2H ${o.w}-${o.l}`, ol, op, ol > ml, true)}</div>
     <div class="wp"><div class="wp-bar" role="img" aria-label="Your win chance ${pct(p)}"><i style="width:${(p * 100).toFixed(1)}%"></i></div>
       <div class="wp-l"><span>Your win chance <b>${pct(p)}</b></span><span>${esc(o.short)} <b>${pct(1 - p)}</b></span></div></div>
   </div>`;
@@ -636,7 +643,7 @@ function youCard() {
   return `<section class="you" aria-label="Your season">
     <div class="you-top"><div class="mid"><div class="eyebrow">${first} · your season</div><div class="name">${esc(r.team)}</div><div class="lede">${back}</div></div>
       <div class="badge ybadge${P === 1 ? " gold" : ""}"><b>${P}<sup>${ord(P).slice(String(P).length)}</sup></b>${lv ? "<i>live</i>" : ""}</div></div>
-    <div class="leds${lv ? "" : " two"}">${lv ? led(lv.wk, `Wk ${L.cur.week}`) : ""}${led(pts, lv ? "Total" : "Points")}${led(`${r.w}-${r.l}`, lv ? `H2H ${ord(r.hp)}` : `H2H · ${ord(r.hp)}`, rec === "e" ? "" : rec)}</div>
+    <div class="leds${lv ? "" : " two"}">${lv ? led(lv.wk, `Week ${L.cur.week}`) : ""}${led(pts, lv ? "Total" : "Points")}${led(`${r.w}-${r.l}`, lv ? `H2H ${ord(r.hp)}` : `H2H · ${ord(r.hp)}`, rec === "e" ? "" : rec)}</div>
     <div class="yrows">${rows}</div>
   </section>`;
 }
@@ -687,7 +694,7 @@ function weekScores(wk) {
 /* one matchup: team + member on each side, numbers underneath */
 function mu(away, home, side) {
   const mine = (myRow() || {}).team;
-  return `<div class="mu${away === mine || home === mine ? " me" : ""}">${side(away, false)}<div class="mu-vs">vs</div>${side(home, true)}</div>`;
+  return `<div class="mu${away === mine || home === mine ? " me" : ""}">${side(away, false)}<div class="mu-vs"><span>vs</span></div>${side(home, true)}</div>`;
 }
 function muSide(team, right, cls, inner, href0) {
   const t = live[team], href = href0 || (t && teamHref(team, t.mgr)), c = `mu-side${right ? " r" : ""}${cls ? " " + cls : ""}`;
