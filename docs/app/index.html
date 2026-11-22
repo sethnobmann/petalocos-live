@@ -923,9 +923,8 @@ function renderSeason(y) {
 
 /* ---------- Members ---------- */
 function memberRow(m) {
-  const role = m.status === "Commissioner" ? " · Commish" : m.status === "Treasurer" ? " · Treasurer" : "";
   return `<a class="row" href="#member-${m.slug}"><div class="av gold">${m.ini}</div>
-    <div class="mid"><div class="team">${esc(m.name)}</div><div class="mgr">Since ${m.since} · ${m.seasons} seasons${role}</div><div class="note">Avg finish ${m.avg.toFixed(1)} · ${m.top3} top-3</div></div>
+    <div class="mid"><div class="team">${esc(m.name)}</div><div class="mgr">Since ${m.since} · ${m.seasons} seasons</div><div class="note">Avg finish ${m.avg.toFixed(1)} · ${m.top3} top-3</div></div>
     <div class="right"><div class="pts">${m.titles.length}<small>CHAMPS</small></div><div class="rec e">${m.h2h.length} H2H</div></div></a>`;
 }
 function renderMembers() {
