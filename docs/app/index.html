@@ -14,7 +14,7 @@
 <title>Petalocos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Share+Tech+Mono&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Oswald:wght@300;500;600;700&family=Share+Tech+Mono&display=swap">
 <style>
 /* Layout: phone-first single column (max 520px) under a stadium-lights band, with a native-style tab bar pinned to the bottom.
    Friday Night Lights look, committed single dark theme: navy field, pylon orange accent, amber scoreboard digits. */
@@ -151,7 +151,9 @@ a.row:active { background: rgba(255, 255, 255, 0.035); }
   width: 40px; height: 44px; border-radius: 7px; background: var(--card-2); border: 1px solid var(--line);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
 }
-.badge b { font: 600 19px/1 var(--display); }
+/* the place reads as a place: "5th" in thin Oswald, suffix raised small */
+.badge b { font: 300 20px/1 var(--display); letter-spacing: 0.01em; white-space: nowrap; }
+.badge b sup { margin-left: 1px; font-size: 10px; font-weight: 300; letter-spacing: 0.04em; vertical-align: 7px; line-height: 0; }
 .badge.gold { background: var(--orange); border-color: var(--orange); color: var(--bg); }
 .mv { margin-top: 3px; font: 10px/1 var(--mono); font-style: normal; }
 .mv.up { color: var(--win); } .mv.dn { color: var(--loss); } .mv.st { color: var(--dim); }
@@ -457,7 +459,8 @@ function moveTag(d) {
   return `<i class="mv st">–</i>`;
 }
 function badge(n, gold, d) {
-  return `<div class="badge${gold ? " gold" : ""}"><b>${n}</b>${d === undefined ? "" : moveTag(d)}</div>`;
+  const sfx = typeof n === "number" ? ord(n).slice(String(n).length) : "";
+  return `<div class="badge${gold ? " gold" : ""}"><b>${n}${sfx ? `<sup>${sfx}</sup>` : ""}</b>${d === undefined ? "" : moveTag(d)}</div>`;
 }
 function rowTag(href, mgr, extra) {
   const c = `row${extra ? " " + extra : ""}${mgr && mgr === state.me ? " me" : ""}`;
