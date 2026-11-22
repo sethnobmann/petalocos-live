@@ -338,6 +338,10 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 }
 .rec.wk { color: var(--text); }
 .rec.wk span { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+/* Home live standings: season total and this week's points a notch bigger */
+.sbig .pts { font-size: 24px; }
+.sbig .rec.wk { margin-top: 7px; font-size: 15px; }
+.sbig .rec.wk span { font-size: 11px; }
 .ylive { padding: 10px 16px 11px; border-top: 1px dashed var(--line); }
 .ylive-h { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 7px; }
 .ylive .mu { padding: 0; border-top: 0; grid-template-columns: minmax(0, 1fr) 20px minmax(0, 1fr); }
@@ -638,7 +642,7 @@ function seasonStandings() {
         const href = lineupHref(r.team) || mlink(r.mgr);
         return `${rowTag(href, r.mgr)}${placeCol(r.live, lead - r.total)}
           <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)}</div><div class="note">H2H <span class="${wlc(r.w, r.l)}">${r.w}-${r.l}</span></div></div>
-          <div class="right"><div class="pts">${r.total}<small>PTS</small></div><div class="rec wk">+${r.wk} <span>wk ${C.week}</span></div></div>${rowEnd(href)}`;
+          <div class="right sbig"><div class="pts">${r.total}<small>PTS</small></div><div class="rec wk">+${r.wk} <span>wk ${C.week}</span></div></div>${rowEnd(href)}`;
       }).join("")}</div>`;
   }
   const rows = D.live.standings.slice().sort((a, b) => a.place - b.place);
