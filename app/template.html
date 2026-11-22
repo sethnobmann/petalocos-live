@@ -924,7 +924,7 @@ function renderSeason(y) {
 /* ---------- Members ---------- */
 function memberRow(m) {
   const role = m.status === "Commissioner" ? " · Commish" : m.status === "Treasurer" ? " · Treasurer" : "";
-  return `<a class="row" href="#member-${m.slug}"><div class="av${m.titles.length ? " gold" : ""}">${m.ini}</div>
+  return `<a class="row" href="#member-${m.slug}"><div class="av gold">${m.ini}</div>
     <div class="mid"><div class="team">${esc(m.name)}</div><div class="mgr">Since ${m.since} · ${m.seasons} seasons${role}</div><div class="note">Avg finish ${m.avg.toFixed(1)} · ${m.top3} top-3</div></div>
     <div class="right"><div class="pts">${m.titles.length}<small>CHAMPS</small></div><div class="rec e">${m.h2h.length} H2H</div></div></a>`;
 }
@@ -966,7 +966,7 @@ function renderMember(slug) {
   if (!m) return null;
   const last = m.fin[m.fin.length - 1];
   const team = m.now ? m.now.team : last[3];
-  const avatar = `<div class="av big${m.titles.length ? " gold" : ""}">${m.ini}</div>`;
+  const avatar = `<div class="av big gold">${m.ini}</div>`;
   const yrs = a => (a.length ? a.join(", ") : '<span class="e">None yet</span>');
   let body = "";
   if (m.now) body += `<dl class="list">${kv("2026 so far", `<b>${ord(m.now.place)}</b> · ${m.now.pts} pts · H2H <span class="${wlc(m.now.w, m.now.l)}">${m.now.w}-${m.now.l}</span>`)}</dl>`;
