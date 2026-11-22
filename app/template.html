@@ -186,6 +186,15 @@ a.mu-side:active { opacity: 0.8; }
   display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 4px; vertical-align: 1px;
   font: 11px var(--mono); letter-spacing: 0.08em; color: var(--orange); border: 1px solid rgba(242, 92, 42, 0.55);
 }
+/* award pills on a member's season rows: gold cup = league champ, silver medal = H2H champ */
+.yrline { white-space: normal; }
+.award {
+  display: inline-flex; align-items: center; gap: 3px; margin-left: 7px; padding: 1px 7px 1px 5px; border-radius: 999px;
+  font: 11px var(--mono); letter-spacing: 0.08em; vertical-align: 2px; border: 1px solid;
+}
+.award svg { width: 13px; height: 13px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.award.gold { color: var(--amber); border-color: rgba(255, 180, 84, 0.55); }
+.award.silver { color: var(--silver); border-color: rgba(201, 210, 222, 0.5); }
 .leds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .led { background: var(--led); border: 1px solid var(--line); border-radius: 10px; padding: 10px 10px 9px; min-width: 0; }
 .led b { display: block; font: 400 25px/1.1 var(--mono); color: var(--amber); text-shadow: 0 0 14px var(--glow); font-variant-numeric: tabular-nums; white-space: nowrap; }
@@ -937,7 +946,7 @@ function renderMember(slug) {
     <dl class="list">${kv("Championships", yrs(m.titles))}${kv("H2H titles", yrs(m.h2h))}${kv("Team names", esc(m.teams))}</dl>
     <div class="h">Season by season</div>
     <div class="list">${m.fin.slice().reverse().map(([y, f, n, t, pts]) =>
-      `<a class="row" href="#season-${y}">${badge(f, f === 1)}<div class="mid"><div class="team">${y}</div><div class="mgr">${esc(t)}${f === n ? " · last" : ""}</div></div><div class="right"><div class="pts">${fmt(pts)}<small>PTS</small></div></div></a>`
+      `<a class="row" href="#season-${y}">${badge(f, f === 1)}<div class="mid"><div class="team yrline">${y}${f === 1 ? `<span class="award gold">${CUP}CHAMP</span>` : ""}${m.h2h.includes(y) ? `<span class="award silver">${MEDAL}H2H</span>` : ""}</div><div class="mgr">${esc(t)}${f === n ? " · last" : ""}</div></div><div class="right"><div class="pts">${fmt(pts)}<small>PTS</small></div></div></a>`
     ).join("")}</div>`;
   return { tab: "members", band: band({ back: { href: "members", label: "Members" }, avatar, eyebrow: `Member since ${m.since}`, title: esc(m.name), sub: esc(team) }), body };
 }
