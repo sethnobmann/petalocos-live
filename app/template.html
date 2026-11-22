@@ -30,6 +30,8 @@
   --dim: #6E7787;
   --orange: #F25C2A;
   --amber: #FFB454;
+  --silver: #C9D2DE;
+  --silver-glow: rgba(201, 210, 222, 0.22);
   --glow: rgba(255, 180, 84, 0.3);
   --win: #4CC38A;
   --loss: #E8615C;
@@ -208,6 +210,10 @@ dl { margin: 0; }
 .tro { display: flex; flex-direction: column; align-items: center; gap: 1px; width: 21px; }
 .tro svg { width: 21px; height: 21px; fill: none; stroke: var(--amber); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 4px var(--glow)); }
 .tro b { font: 400 10px var(--mono); color: var(--amber); }
+/* H2H is the second-tier title: a silver medal where championships get the gold cup */
+.tcase.s { border-bottom-color: rgba(201, 210, 222, 0.35); }
+.tcase.s .tro svg { stroke: var(--silver); filter: drop-shadow(0 0 3px var(--silver-glow)); }
+.tcase.s .tro b { color: var(--silver); }
 
 .av {
   width: 40px; height: 40px; border-radius: 50%; flex: none; display: grid; place-items: center;
@@ -389,7 +395,7 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
   display: flex; align-items: center; gap: 5px; padding: 6px 7px; border-bottom: 1px solid var(--line);
   font: 10px var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--amber);
 }
-.fin-h svg { width: 15px; height: 15px; flex: none; fill: none; stroke: var(--amber); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.fin-h svg { width: 15px; height: 15px; flex: none; fill: none; stroke: var(--silver); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .tab svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .tab[aria-current="page"] { color: var(--orange); }
 
@@ -739,7 +745,7 @@ function bracket(seeds) {
     <div class="rh">Wk 15</div><div class="rh">Wk 16 · Semis</div><div class="rh">Wk 17 · Final</div>
     <div class="rnd r1">${game(slot(s(3)), slot(s(6)))}${game(slot(s(4)), slot(s(5)))}</div>
     <div class="rnd r2">${game(slot(s(1)), slot(null, "Low seed left"))}${game(slot(s(2)), slot(null, "Other winner"))}</div>
-    <div class="rnd r3"><div class="bg fin"><div class="fin-h">${CUP}H2H champ</div>${slot(null, "Semi winner")}${slot(null, "Semi winner")}</div></div>
+    <div class="rnd r3"><div class="bg fin"><div class="fin-h">${MEDAL}H2H champ</div>${slot(null, "Semi winner")}${slot(null, "Semi winner")}</div></div>
   </div>`;
 }
 function seedRows(rows) {
@@ -778,6 +784,7 @@ function renderH2H() {
 
 /* ---------- Champions ---------- */
 const CUP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H5.5a2.5 2.5 0 0 0 2.6 4M16 6h2.5a2.5 2.5 0 0 1-2.6 4M12 13v4M9 21h6M10 17h4v4h-4z"/></svg>';
+const MEDAL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 3l3.5 6.5L15.5 3"/><circle cx="12" cy="15" r="5.5"/><circle cx="12" cy="15" r="2.3"/></svg>';
 function tallyData(kind) {
   const yrs = m => (kind === "pts" ? m.titles : m.h2h);
   const list = D.members.filter(m => yrs(m).length).map(m => ({ m, ys: yrs(m) }))
@@ -785,17 +792,17 @@ function tallyData(kind) {
   const zero = kind === "pts" ? D.members.filter(m => m.active && !m.titles.length) : [];
   return { list, zero };
 }
-const titleWord = (n, kind) => `${n} ${kind === "pts" ? "title" : "H2H title"}${n === 1 ? "" : "s"}`;
+const titleWord = (n, kind) => `${n} ${kind === "pts" ? "championship" : "H2H title"}${n === 1 ? "" : "s"}`;
 /* trophy case: grouped by title count; name and current team on the left, one trophy per title on a shelf at the right */
 const curTeam = m => (m.now ? m.now.team : (m.fin[m.fin.length - 1] || [])[3] || "");
-const shelf = ys => `<div class="tcase">${ys.map(y =>
-  `<span class="tro" title="${y}">${CUP}<b>’${String(y).slice(2)}</b></span>`).join("")}</div>`;
+const shelf = (ys, kind) => `<div class="tcase${kind === "h2h" ? " s" : ""}">${ys.map(y =>
+  `<span class="tro" title="${y}">${kind === "h2h" ? MEDAL : CUP}<b>’${String(y).slice(2)}</b></span>`).join("")}</div>`;
 function trophyCase({ list, zero }, kind) {
   const groups = [];
   list.forEach(x => { const g = groups.find(g => g.n === x.ys.length); g ? g.items.push(x) : groups.push({ n: x.ys.length, items: [x] }); });
   const left = m => `<div class="av">${m.ini}</div><div class="mid"><div class="team">${esc(m.name)}</div><div class="mgr">${esc(curTeam(m))}</div></div>`;
   let h = groups.map(g => `<div class="h">${titleWord(g.n, kind)}</div><div class="list">${g.items.map(({ m, ys }) =>
-    `${rowTag(`#member-${m.slug}`, m.name, "trow")}${left(m)}${shelf(ys)}</a>`).join("")}</div>`).join("");
+    `${rowTag(`#member-${m.slug}`, m.name, "trow")}${left(m)}${shelf(ys, kind)}</a>`).join("")}</div>`).join("");
   if (zero.length) h += `<div class="h">Still waiting</div><div class="list">${zero.map(m =>
     `${rowTag(`#member-${m.slug}`, m.name, "trow")}${left(m)}<div class="note">${m.seasons} yrs · ${m.seconds}× runner-up</div></a>`).join("")}</div>`;
   return h;
@@ -803,7 +810,7 @@ function trophyCase({ list, zero }, kind) {
 function seasonsPts() {
   return `<div class="list">${D.seasons.slice().reverse().map(s =>
     `<a class="row ticket" href="#season-${s.y}"><div class="yr">${s.y}</div>
-      <div class="mid"><div class="team">${esc(s.champ.mgr)}</div><div class="mgr">${esc(s.champ.team)} · ${ord(s.nth)} title${s.double ? '<span class="tag">+H2H</span>' : ""}</div></div>
+      <div class="mid"><div class="team">${esc(s.champ.mgr)}</div><div class="mgr">${esc(s.champ.team)} · ${ord(s.nth)} championship${s.double ? '<span class="tag">+H2H</span>' : ""}</div></div>
       <div class="right"><div class="pts">${fmt(s.champ.pts)}<small>PTS</small></div><div class="note">by ${s.margin}</div></div></a>`).join("")}</div>`;
 }
 function seasonsH2H() {
@@ -815,7 +822,7 @@ function seasonsH2H() {
   }).reverse();
   return `<div class="list">${rows.map(({ s, nth, row }) => s.h2h
     ? `<a class="row ticket" href="#season-${s.y}"><div class="yr">${s.y}</div>
-        <div class="mid"><div class="team">${esc(s.h2h)}</div><div class="mgr">${row ? esc(row[1]) + " · " : ""}${ord(nth)} H2H title${s.double ? '<span class="tag">+PTS</span>' : ""}</div></div>
+        <div class="mid"><div class="team">${esc(s.h2h)}</div><div class="mgr">${row ? esc(row[1]) + " · " : ""}${ord(nth)} H2H title${s.double ? '<span class="tag">+CHAMP</span>' : ""}</div></div>
         <div class="right"><div class="pts">${row ? ord(row[0]) : ""}</div><div class="note">in points</div></div></a>`
     : `<a class="row ticket miss" href="#season-${s.y}"><div class="yr">${s.y}</div><div class="mid"><div class="team">Not on file yet</div></div><div class="right"></div></a>`
   ).join("")}</div>`;
@@ -829,11 +836,11 @@ function renderChampions() {
   const kind = state.champTab;
   const chip = (v, label) => `<button class="chip" data-act="ctab" data-v="${v}" aria-pressed="${kind === v}">${label}</button>`;
   const missing = D.seasons.filter(s => s.y >= 2004 && !s.h2h).map(s => s.y);
-  let body = `<div class="seg" role="group" aria-label="Title type">${chip("pts", "Points titles")}${chip("h2h", "Head to head")}</div>`;
+  let body = `<div class="seg" role="group" aria-label="Title type">${chip("pts", "Championships")}${chip("h2h", "Head to head")}</div>`;
   if (kind === "h2h" && missing.length) body += `<p class="hnote">H2H started in 2004. Not on file yet: ${yearRuns(missing)}.</p>`;
   body += trophyCase(tallyData(kind), kind);
   body += `<div class="h">Every season</div>${kind === "pts" ? seasonsPts() : seasonsH2H()}`;
-  return { tab: "champions", band: band({ eyebrow: `Points + H2H · ${D.seasons.length} seasons`, title: "Champions", sub: "Points titles and head-to-head champs" }), body };
+  return { tab: "champions", band: band({ eyebrow: `Championships + H2H · ${D.seasons.length} seasons`, title: "Champions", sub: "League championships and head-to-head titles" }), body };
 }
 
 function renderSeason(y) {
@@ -844,7 +851,7 @@ function renderSeason(y) {
   const who = p => `${esc(p.mgr)} · ${fmt(p.pts)}`;
   const body = `<div class="champ">
       <div class="eyebrow">${y} champion</div>
-      <div><a class="name" href="${champHref}">${esc(s.champ.mgr)}</a><div class="mgr">${esc(s.champ.team)} · ${ord(s.nth)} title${s.double ? '<span class="tag">+H2H</span>' : ""}</div></div>
+      <div><a class="name" href="${champHref}">${esc(s.champ.mgr)}</a><div class="mgr">${esc(s.champ.team)} · ${ord(s.nth)} championship${s.double ? '<span class="tag">+H2H</span>' : ""}</div></div>
       <div class="leds">${led(fmt(s.champ.pts), "Points")}${led(s.margin, "Margin")}${led(fmt(Math.round(s.avg)), "League avg")}</div>
     </div>
     <div class="h">Season stats</div>
@@ -865,7 +872,7 @@ function memberRow(m) {
   const role = m.status === "Commissioner" ? " · Commish" : m.status === "Treasurer" ? " · Treasurer" : "";
   return `<a class="row" href="#member-${m.slug}"><div class="av${m.titles.length ? " gold" : ""}">${m.ini}</div>
     <div class="mid"><div class="team">${esc(m.name)}</div><div class="mgr">Since ${m.since} · ${m.seasons} seasons${role}</div><div class="note">Avg finish ${m.avg.toFixed(1)} · ${m.top3} top-3</div></div>
-    <div class="right"><div class="pts">${m.titles.length}<small>TITLES</small></div><div class="rec e">${m.h2h.length} H2H</div></div></a>`;
+    <div class="right"><div class="pts">${m.titles.length}<small>CHAMPS</small></div><div class="rec e">${m.h2h.length} H2H</div></div></a>`;
 }
 function renderMembers() {
   const sort = (a, b) => b.titles.length - a.titles.length || a.avg - b.avg;
@@ -873,7 +880,7 @@ function renderMembers() {
   const former = D.members.filter(m => !m.active).sort(sort);
   const body = `<div class="h">Active · ${active.length}</div><div class="list">${active.map(memberRow).join("")}</div>
     <div class="h">Former</div><div class="list">${former.map(memberRow).join("")}</div>`;
-  return { tab: "members", band: band({ eyebrow: "All-time · 2002–2025", title: "Members", sub: "Sorted by titles, then average finish" }), body };
+  return { tab: "members", band: band({ eyebrow: "All-time · 2002–2025", title: "Members", sub: "Sorted by championships, then average finish" }), body };
 }
 
 function finishChart(m) {
@@ -909,15 +916,15 @@ function renderMember(slug) {
   const yrs = a => (a.length ? a.join(", ") : '<span class="e">None yet</span>');
   let body = "";
   if (m.now) body += `<dl class="list">${kv("2026 so far", `<b>${ord(m.now.place)}</b> · ${m.now.pts} pts · H2H <span class="${wlc(m.now.w, m.now.l)}">${m.now.w}-${m.now.l}</span>`)}</dl>`;
-  body += `<div class="leds">${led(m.titles.length, "Titles")}${led(m.h2h.length, "H2H titles")}${led(m.avg.toFixed(1), "Avg finish")}
+  body += `<div class="leds">${led(m.titles.length, "Championships")}${led(m.h2h.length, "H2H titles")}${led(m.avg.toFixed(1), "Avg finish")}
       ${led(m.top3, "Top 3")}${led(m.lasts, "Last place")}${led(fmt(m.career), "Career pts")}</div>
     <div class="h">Finish by year</div>
-    <div class="card chart">${finishChart(m)}<div class="legend"><span><i style="background:var(--amber)"></i>Title</span><span><i style="background:var(--loss)"></i>Last place</span><span><i style="background:var(--chart)"></i>Everything else</span></div></div>
+    <div class="card chart">${finishChart(m)}<div class="legend"><span><i style="background:var(--amber)"></i>Championship</span><span><i style="background:var(--loss)"></i>Last place</span><span><i style="background:var(--chart)"></i>Everything else</span></div></div>
     <div class="recs">
       <a class="rc" href="#season-${m.best.y}"><div class="k">Best season</div><div class="v">${fmt(m.best.pts)}</div><div class="who">${m.best.y}</div><div class="ctx">${esc(m.best.team)}</div></a>
       <a class="rc" href="#season-${m.worst.y}"><div class="k">Worst season</div><div class="v">${fmt(m.worst.pts)}</div><div class="who">${m.worst.y}</div><div class="ctx">${esc(m.worst.team)}</div></a>
     </div>
-    <dl class="list">${kv("Points titles", yrs(m.titles))}${kv("H2H titles", yrs(m.h2h))}${kv("Team names", esc(m.teams))}</dl>
+    <dl class="list">${kv("Championships", yrs(m.titles))}${kv("H2H titles", yrs(m.h2h))}${kv("Team names", esc(m.teams))}</dl>
     <div class="h">Season by season</div>
     <div class="list">${m.fin.slice().reverse().map(([y, f, n, t, pts]) =>
       `<a class="row" href="#season-${y}">${badge(f, f === 1)}<div class="mid"><div class="team">${y}</div><div class="mgr">${esc(t)}${f === n ? " · last" : ""}</div></div><div class="right"><div class="pts">${fmt(pts)}<small>PTS</small></div></div></a>`

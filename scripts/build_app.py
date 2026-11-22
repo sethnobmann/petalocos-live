@@ -196,8 +196,8 @@ records = {
     "season": [
         {"k": "Best season", "v": fmt(b["pts"]), "who": b["mgr"], "ctx": f"{b['team']} · {b['y']}", "href": f"season-{b['y']}"},
         {"k": "Worst season", "v": fmt(w["pts"]), "who": w["mgr"], "ctx": f"{w['team']} · {w['y']}", "href": f"season-{w['y']}"},
-        {"k": "Biggest title margin", "v": str(big["margin"]), "who": big["champ"]["mgr"], "ctx": f"over {big['run']['mgr']} · {big['y']}", "href": f"season-{big['y']}"},
-        {"k": "Closest title race", "v": str(close["margin"]), "who": close["champ"]["mgr"], "ctx": f"over {close['run']['mgr']} · {close['y']}", "href": f"season-{close['y']}"},
+        {"k": "Biggest championship margin", "v": str(big["margin"]), "who": big["champ"]["mgr"], "ctx": f"over {big['run']['mgr']} · {big['y']}", "href": f"season-{big['y']}"},
+        {"k": "Closest championship race", "v": str(close["margin"]), "who": close["champ"]["mgr"], "ctx": f"over {close['run']['mgr']} · {close['y']}", "href": f"season-{close['y']}"},
     ],
     "week": [
         {"k": "Highest week", "v": str(hi["value"]), "who": hi["who"], "ctx": f"{hi['team']} · Wk {hi['week']}, {hi['season']}", "href": f"season-{hi['season']}"},
@@ -206,12 +206,12 @@ records = {
         {"k": "2026 low so far", "v": lo26["Points"], "who": lo26["Manager"], "ctx": f"{lo26['Team Name']} · Wk {lo26['Week']}", "href": None},
     ],
     "career": [
-        most(lambda m: len(m["titles"]), "Most titles"),
+        most(lambda m: len(m["titles"]), "Most championships"),
         most(lambda m: m["seconds"], "Most runner-ups"),
         most(lambda m: m["top3"], "Most top-3 finishes"),
         most(lambda m: m["lasts"], "Most last places"),
         {"k": "Best avg finish", "v": f"{best_avg['avg']:.1f}", "who": best_avg["name"], "ctx": "10+ seasons", "href": f"member-{best_avg['slug']}"},
-        {"k": "Most seasons, no title", "v": str(no_title["seasons"]), "who": no_title["name"], "ctx": "still waiting", "href": f"member-{no_title['slug']}"},
+        {"k": "Most seasons, no championship", "v": str(no_title["seasons"]), "who": no_title["name"], "ctx": "still waiting", "href": f"member-{no_title['slug']}"},
     ],
     "points": [
         {"name": m["name"], "slug": m["slug"], "seasons": m["seasons"], "career": m["career"],
