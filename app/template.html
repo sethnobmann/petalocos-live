@@ -934,7 +934,7 @@ function renderMembers() {
   const former = D.members.filter(m => !m.active).sort(sort);
   const body = `<div class="h">Active · ${active.length}</div><div class="list">${active.map(memberRow).join("")}</div>
     <div class="h">Former</div><div class="list">${former.map(memberRow).join("")}</div>`;
-  return { tab: "members", band: band({ eyebrow: "All-time · 2002–2025", title: "Members", sub: "Sorted by championships, then average finish" }), body };
+  return { tab: "members", band: band({ eyebrow: "All-time · 2002–2025", title: "Members" }), body };
 }
 
 function finishChart(m) {
