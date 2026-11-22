@@ -305,6 +305,17 @@ dl { margin: 0; }
 .led b small { margin-left: 1px; font-size: 14px; }
 .leds.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 /* member page: the two title counts lead, big, in their trophy colors */
+.sheet { padding: 14px 16px 16px; border: 1px solid var(--line); border-radius: 12px;
+  background: repeating-linear-gradient(0deg, transparent 0 27px, rgba(163, 169, 179, 0.07) 27px 28px), var(--card); }
+.sheet .stamp { display: flex; justify-content: space-between; align-items: center; gap: 10px; font: 12px var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); }
+.sheet .stamp i { font-style: normal; padding: 2px 8px; border: 1.5px solid var(--loss); color: var(--loss); border-radius: 4px; transform: rotate(-5deg); white-space: nowrap; }
+.sheet .aka { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; }
+.sheet .aka span { font: 500 19px/1.3 var(--display); color: var(--muted); text-decoration: line-through; text-decoration-color: rgba(255, 107, 107, 0.7); text-decoration-thickness: 2px; overflow-wrap: anywhere; }
+.sheet .aka span small { display: inline-block; margin-left: 4px; font: 11px var(--mono); color: var(--dim); text-decoration: none; }
+.sheet .aka em { font: 14px var(--body); font-style: normal; color: var(--muted); }
+.sheet .cur { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.sheet .cur .k { font: 11px var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); white-space: nowrap; }
+.sheet .cur .v { font: 700 28px/1 var(--display); text-transform: uppercase; letter-spacing: 0.01em; text-align: right; overflow-wrap: anywhere; }
 .tts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .tt { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 14px 10px 12px; text-align: center; border-radius: 12px; border: 1px solid; min-width: 0; }
 .tt.pts { border-color: rgba(255, 180, 84, 0.5); background: radial-gradient(110% 80% at 50% 0%, rgba(255, 180, 84, 0.16), transparent 65%), var(--led); }
@@ -973,6 +984,25 @@ function finishChart(m) {
   });
   return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Finish by year, ${m.name}">${g}</svg>`;
 }
+/* team names as a rap sheet: old names crossed out, the current one stamped big */
+const NAME_FIX = { "U like that Pussy": "U like that…" };
+function aliasSheet(m) {
+  const runs = [];
+  m.fin.forEach(([y, , , t]) => {
+    const name = NAME_FIX[t] || t, key = name.toLowerCase(), last = runs[runs.length - 1];
+    last && last.key === key ? last.ys.push(y) : runs.push({ key, name, ys: [y] });
+  });
+  const span = ys => (ys.length === 1 ? `’${String(ys[0]).slice(2)}` : `’${String(ys[0]).slice(2)}–’${String(ys[ys.length - 1]).slice(2)}`);
+  const cur = runs[runs.length - 1], names = new Set(runs.map(r => r.key)).size;
+  const olds = runs.slice(0, -1).filter(r => r.key !== cur.key);
+  const aka = [];
+  olds.forEach(r => { const g = aka.find(x => x.key === r.key); g ? g.spans.push(span(r.ys)) : aka.push({ ...r, spans: [span(r.ys)] }); });
+  return `<div class="sheet">
+    <div class="stamp"><span>Known aliases</span><i>${names} name${names === 1 ? "" : "s"}</i></div>
+    <div class="aka">${aka.length ? aka.map(r => `<span>${esc(r.name)}<small>${r.spans.join(", ")}</small></span>`).join("") : '<em>Clean record. Never changed it.</em>'}</div>
+    <div class="cur"><span class="k">${m.active ? "Goes by" : "Last seen as"}</span><span class="v">${esc(cur.name)}</span></div>
+  </div>`;
+}
 function renderMember(slug) {
   const m = memberBySlug[slug];
   if (!m) return null;
@@ -991,7 +1021,7 @@ function renderMember(slug) {
       <a class="rc" href="#season-${m.best.y}"><div class="k">Best season</div><div class="v">${fmt(m.best.pts)}</div><div class="who">${m.best.y}</div><div class="ctx">${esc(m.best.team)}</div></a>
       <a class="rc" href="#season-${m.worst.y}"><div class="k">Worst season</div><div class="v">${fmt(m.worst.pts)}</div><div class="who">${m.worst.y}</div><div class="ctx">${esc(m.worst.team)}</div></a>
     </div>
-    <dl class="list">${kv("Team names", esc(m.teams))}</dl>
+    ${aliasSheet(m)}
     <div class="h">Season by season</div>
     <div class="list">${m.fin.slice().reverse().map(([y, f, n, t, pts]) =>
       `<a class="row" href="#season-${y}">${badge(f, f === 1)}<div class="mid"><div class="team yrline">${y}${f === 1 ? `<span class="award gold">${CUP}CHAMP</span>` : ""}${m.h2h.includes(y) ? `<span class="award silver">${MEDAL}H2H</span>` : ""}</div><div class="mgr">${esc(t)}${f === n ? " · last" : ""}</div></div><div class="right"><div class="pts">${fmt(pts)}<small>PTS</small></div></div></a>`
