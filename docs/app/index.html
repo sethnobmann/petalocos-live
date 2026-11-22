@@ -306,8 +306,7 @@ dl { margin: 0; }
 .leds.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 /* member page: the two title counts lead, big, in their trophy colors */
 .certs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-.cert { display: block; min-width: 0; padding: 11px 12px 12px; text-decoration: none; color: inherit; border: 1px solid var(--line); border-radius: 12px;
-  background: repeating-linear-gradient(0deg, transparent 0 21px, rgba(163, 169, 179, 0.07) 21px 22px), var(--card); }
+.cert { display: block; min-width: 0; padding: 11px 12px 12px; text-decoration: none; color: inherit; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
 a.cert:active { border-color: var(--orange-edge); }
 .cert-k { font: 10px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); }
 .cert-vr { margin-top: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; }
