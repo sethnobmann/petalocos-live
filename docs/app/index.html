@@ -304,6 +304,19 @@ dl { margin: 0; }
 .lede { margin-top: 4px; font-size: 14px; color: var(--muted); }
 .led b small { margin-left: 1px; font-size: 14px; }
 .leds.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* member page: the two title counts lead, big, in their trophy colors */
+.tts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.tt { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 14px 10px 12px; text-align: center; border-radius: 12px; border: 1px solid; min-width: 0; }
+.tt.pts { border-color: rgba(255, 180, 84, 0.5); background: radial-gradient(110% 80% at 50% 0%, rgba(255, 180, 84, 0.16), transparent 65%), var(--led); }
+.tt.h2h { border-color: rgba(201, 210, 222, 0.42); background: radial-gradient(110% 80% at 50% 0%, rgba(201, 210, 222, 0.11), transparent 65%), var(--led); }
+.tt svg { width: 28px; height: 28px; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.tt.pts svg { stroke: var(--amber); filter: drop-shadow(0 0 6px var(--glow)); }
+.tt.h2h svg { stroke: var(--silver); filter: drop-shadow(0 0 5px var(--silver-glow)); }
+.tt b { margin-top: 2px; font: 400 46px/1 var(--mono); font-variant-numeric: tabular-nums; }
+.tt.pts b { color: var(--amber); text-shadow: 0 0 18px var(--glow); }
+.tt.h2h b { color: var(--silver); text-shadow: 0 0 16px var(--silver-glow); }
+.tt span { font: 12px var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text); }
+.tt i { font: 12px var(--mono); font-style: normal; letter-spacing: 0.04em; color: var(--muted); overflow-wrap: anywhere; }
 .leds.four { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
 .leds.four .led { padding: 9px 7px 8px; }
 .leds.four .led b { font-size: 22px; }
@@ -966,18 +979,19 @@ function renderMember(slug) {
   const last = m.fin[m.fin.length - 1];
   const team = m.now ? m.now.team : last[3];
   const avatar = `<div class="av big gold">${m.ini}</div>`;
-  const yrs = a => (a.length ? a.join(", ") : '<span class="e">None yet</span>');
   let body = "";
   if (m.now) body += `<dl class="list">${kv("2026 so far", `<b>${ord(m.now.place)}</b> · ${m.now.pts} pts · H2H <span class="${wlc(m.now.w, m.now.l)}">${m.now.w}-${m.now.l}</span>`)}</dl>`;
-  body += `<div class="leds">${led(m.titles.length, "Championships")}${led(m.h2h.length, "H2H titles")}${led(m.avg.toFixed(1), "Avg finish")}
-      ${led(m.top3, "Top 3")}${led(m.lasts, "Last place")}${led(fmt(m.career), "Career pts")}</div>
+  const tt = (ys, label, kind) => `<div class="tt ${kind}">${kind === "h2h" ? MEDAL : CUP}<b>${ys.length}</b><span>${label}</span>
+      <i>${ys.length ? ys.map(y => `’${String(y).slice(2)}`).join(" ") : "–"}</i></div>`;
+  body += `<div class="tts">${tt(m.titles, "Championships", "pts")}${tt(m.h2h, "H2H titles", "h2h")}</div>
+    <div class="leds two">${led(m.avg.toFixed(1), "Avg finish")}${led(m.top3, "Top 3")}${led(m.lasts, "Last place")}${led(fmt(m.career), "Career pts")}</div>
     <div class="h">Finish by year</div>
     <div class="card chart">${finishChart(m)}<div class="legend"><span><i style="background:var(--amber)"></i>Championship</span><span><i style="background:var(--loss)"></i>Last place</span><span><i style="background:var(--chart)"></i>Everything else</span></div></div>
     <div class="recs">
       <a class="rc" href="#season-${m.best.y}"><div class="k">Best season</div><div class="v">${fmt(m.best.pts)}</div><div class="who">${m.best.y}</div><div class="ctx">${esc(m.best.team)}</div></a>
       <a class="rc" href="#season-${m.worst.y}"><div class="k">Worst season</div><div class="v">${fmt(m.worst.pts)}</div><div class="who">${m.worst.y}</div><div class="ctx">${esc(m.worst.team)}</div></a>
     </div>
-    <dl class="list">${kv("Championships", yrs(m.titles))}${kv("H2H titles", yrs(m.h2h))}${kv("Team names", esc(m.teams))}</dl>
+    <dl class="list">${kv("Team names", esc(m.teams))}</dl>
     <div class="h">Season by season</div>
     <div class="list">${m.fin.slice().reverse().map(([y, f, n, t, pts]) =>
       `<a class="row" href="#season-${y}">${badge(f, f === 1)}<div class="mid"><div class="team yrline">${y}${f === 1 ? `<span class="award gold">${CUP}CHAMP</span>` : ""}${m.h2h.includes(y) ? `<span class="award silver">${MEDAL}H2H</span>` : ""}</div><div class="mgr">${esc(t)}${f === n ? " · last" : ""}</div></div><div class="right"><div class="pts">${fmt(pts)}<small>PTS</small></div></div></a>`
