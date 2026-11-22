@@ -158,6 +158,9 @@ a.row:active { background: rgba(255, 255, 255, 0.035); }
 .mv { margin-top: 3px; font: 10px/1 var(--mono); font-style: normal; }
 .mv.up { color: var(--win); } .mv.dn { color: var(--loss); } .mv.st { color: var(--dim); }
 .badge.gold .mv { color: var(--bg); }
+.pcol { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.pcol .pback { font: 10px/1.1 var(--mono); color: var(--dim); white-space: nowrap; text-align: center; }
+.pcol .pback b { font-weight: 400; color: var(--muted); }
 
 .mu {
   display: grid; grid-template-columns: minmax(0, 1fr) 26px minmax(0, 1fr); column-gap: 10px;
@@ -615,26 +618,28 @@ function youCard() {
     <div class="yrows">${rows}</div>
   </section>`;
 }
+/* Home standings: a clean place box with points back under it */
+function placeCol(place, back) {
+  return `<div class="pcol">${badge(place, place === 1)}${back > 0 ? `<div class="pback"><b>${back}</b> back</div>` : ""}</div>`;
+}
 function seasonStandings() {
   const lt = liveTable();
   if (lt) {
     const C = D.live.cur, lead = lt[0].total;
     return `<div class="h">Live standings · Week ${C.week} · <span class="livetag">Live</span></div>
       <div class="list">${lt.map(r => {
-        const back = r.live === 1 ? "leader" : r.total === lead ? "tied for 1st" : `${lead - r.total} back`;
         const href = lineupHref(r.team) || mlink(r.mgr);
-        return `${rowTag(href, r.mgr)}${badge(r.live, r.live === 1, r.off - r.live)}
-          <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)}</div><div class="note">${back} · H2H <span class="${wlc(r.w, r.l)}">${r.w}-${r.l}</span></div></div>
+        return `${rowTag(href, r.mgr)}${placeCol(r.live, lead - r.total)}
+          <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)}</div><div class="note">H2H <span class="${wlc(r.w, r.l)}">${r.w}-${r.l}</span></div></div>
           <div class="right"><div class="pts">${r.total}<small>PTS</small></div><div class="rec wk">+${r.wk} <span>wk ${C.week}</span></div></div>${rowEnd(href)}`;
       }).join("")}</div>`;
   }
   const rows = D.live.standings.slice().sort((a, b) => a.place - b.place);
   const lead = rows[0].pts;
   return `<div class="list">${rows.map(r => {
-    const back = r.place === 1 ? "leader" : r.pts === lead ? "tied for 1st" : `${lead - r.pts} back`;
     const href = mlink(r.mgr);
-    return `${rowTag(href, r.mgr)}${badge(r.place, r.place === 1, r.prev - r.place)}
-      <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)}</div><div class="note">${back}</div></div>
+    return `${rowTag(href, r.mgr)}${placeCol(r.place, lead - r.pts)}
+      <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)}</div></div>
       <div class="right"><div class="pts">${r.pts}<small>PTS</small></div><div class="rec ${wlc(r.w, r.l)}">H2H ${r.w}-${r.l}</div></div>${rowEnd(href)}`;
   }).join("")}</div>`;
 }
