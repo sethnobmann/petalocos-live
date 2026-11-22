@@ -108,6 +108,10 @@ h1 {
 main { padding-block: 18px calc(96px + env(safe-area-inset-bottom, 0px)); }
 .stack { display: flex; flex-direction: column; gap: 14px; }
 .h { margin: 6px 2px -4px; font: 12px var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); }
+/* a new section on a long page: big title over a rule */
+.sech { margin: 18px 2px -2px; padding-top: 20px; border-top: 2px solid var(--orange-edge); }
+.sech b { display: block; font: 600 28px/1 var(--display); letter-spacing: 0.03em; text-transform: uppercase; color: var(--text); }
+.sech span { display: block; margin-top: 6px; font: 12px var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); }
 .foot { text-align: center; font: 11px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-top: 6px; }
 
 .seg { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; }
@@ -838,8 +842,6 @@ function trophyCase({ list, zero }, kind) {
   const left = m => `<div class="av">${m.ini}</div><div class="mid"><div class="team">${esc(m.name)}</div><div class="mgr">${esc(curTeam(m))}</div></div>`;
   let h = groups.map(g => `<div class="h">${titleWord(g.n, kind)}</div><div class="list">${g.items.map(({ m, ys }) =>
     `${rowTag(`#member-${m.slug}`, m.name, "trow")}${left(m)}${shelf(ys, kind)}</a>`).join("")}</div>`).join("");
-  if (zero.length) h += `<div class="h">Still waiting</div><div class="list">${zero.map(m =>
-    `${rowTag(`#member-${m.slug}`, m.name, "trow")}${left(m)}<div class="note">${m.seasons} yrs · ${m.seconds}× runner-up</div></a>`).join("")}</div>`;
   return h;
 }
 function seasonsPts() {
@@ -877,7 +879,7 @@ function renderChampions() {
     <p>H2H started in 2004, but these ${missing.length} champs aren't on file. Know who won?</p>
     <div class="wyears">${missing.map(y => `<span>${y}</span>`).join("")}</div></div>`;
   body += trophyCase(tallyData(kind), kind);
-  body += `<div class="h">Every season</div>${kind === "pts" ? seasonsPts() : seasonsH2H()}`;
+  body += `<div class="sech"><b>By season</b><span>${kind === "pts" ? `Every champion since ${D.seasons[0].y}` : "Every H2H champ since 2004"}</span></div>${kind === "pts" ? seasonsPts() : seasonsH2H()}`;
   return { tab: "champions", band: band({ eyebrow: `Championships + H2H · ${D.seasons.length} seasons`, title: "Champions", sub: "League championships and head-to-head titles" }), body };
 }
 
