@@ -204,13 +204,12 @@ dl { margin: 0; }
 /* champions: trophy case, one trophy per title with the year and winning team under it */
 .hnote { margin: -4px 2px 0; font-size: 13px; color: var(--muted); }
 /* the H2H years nobody has on file: a call for help, one chip per missing year */
-.wanted { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; background: var(--orange-soft); border: 1px solid var(--orange-edge); border-radius: 12px; }
-.wanted-h { display: flex; align-items: center; gap: 8px; font: 600 19px/1.1 var(--display); letter-spacing: 0.03em; text-transform: uppercase; }
-.wanted-h svg { width: 20px; height: 20px; flex: none; fill: none; stroke: var(--silver); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.wanted p { margin: 0; font-size: 14px; color: var(--muted); }
-.wanted p b { color: var(--text); font-weight: 600; }
-.wyears { display: flex; flex-wrap: wrap; gap: 6px; }
-.wyears span { padding: 3px 9px; border: 1px dashed var(--silver); border-radius: 999px; font: 14px var(--mono); color: var(--text); }
+.wanted { display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; background: var(--orange-soft); border: 1px solid var(--orange-edge); border-radius: 10px; }
+.wanted-h { display: flex; align-items: center; gap: 6px; font: 600 15px/1.1 var(--display); letter-spacing: 0.04em; text-transform: uppercase; }
+.wanted-h svg { width: 16px; height: 16px; flex: none; fill: none; stroke: var(--silver); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.wanted p { margin: 0; font-size: 13px; color: var(--muted); }
+.wyears { display: flex; flex-wrap: wrap; gap: 5px; }
+.wyears span { padding: 1px 7px; border: 1px dashed var(--silver); border-radius: 999px; font: 12px var(--mono); color: var(--text); }
 .ticket.miss .team { font-weight: 600; color: var(--dim); }
 .row.trow { grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; }
 .row.trow .mgr { overflow-wrap: break-word; }
@@ -847,7 +846,7 @@ function renderChampions() {
   let body = `<div class="seg" role="group" aria-label="Title type">${chip("pts", "Championships")}${chip("h2h", "Head to head")}</div>`;
   if (kind === "h2h" && missing.length) body += `<div class="wanted">
     <div class="wanted-h">${MEDAL}Help find the winners</div>
-    <p>H2H started in 2004, but these ${missing.length} champs aren't on file. <b>Know who won? Tell Seth.</b></p>
+    <p>H2H started in 2004, but these ${missing.length} champs aren't on file. Know who won?</p>
     <div class="wyears">${missing.map(y => `<span>${y}</span>`).join("")}</div></div>`;
   body += trophyCase(tallyData(kind), kind);
   body += `<div class="h">Every season</div>${kind === "pts" ? seasonsPts() : seasonsH2H()}`;
