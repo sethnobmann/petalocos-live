@@ -368,8 +368,8 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 .ylive .mu { padding: 0; border-top: 0; grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr); }
 .ylive .mu-side .team { font-size: 14px; }
 .ylive .mgr { margin-top: 1px; font-size: 12px; }
-.ylive .mu-score { padding-top: 5px; font-size: 21px; }
-.ylive .mu-res { margin-top: 3px; font-size: 10px; }
+.ylive .mu-score { padding-top: 6px; font-size: 32px; }
+.ylive .mu-res { margin-top: 4px; font-size: 11px; }
 .ylive .mu-vs { gap: 4px; }
 .ylive .wp { margin-top: 9px; }
 .ylive .wp-bar { height: 6px; }
@@ -548,15 +548,15 @@ function liveBlock(r, opp, o) {
   const p = winChance(ml, mp, ol, op), done = mp <= ml && op <= ol;
   const t = new Date(C.asOf);
   const asOf = isNaN(t) ? "" : t.toLocaleString("en-US", { weekday: "short", hour: "numeric", minute: "2-digit", timeZone: "America/Los_Angeles" });
-  const side = (team, who, lv, pj, lead, right) => {
+  const side = (team, lv, pj, lead, right) => {
     const href = lineupHref(team) || (live[team] ? mlink(live[team].mgr) : null);
     const c = `mu-side${right ? " r" : ""}${lead ? " win" : ""}`;
-    return `${href ? `<a class="${c}" href="${href}">` : `<div class="${c}">`}<div class="team">${esc(team)}</div><div class="mgr">${who}</div>
+    return `${href ? `<a class="${c}" href="${href}">` : `<div class="${c}">`}<div class="team">${esc(team)}</div>
       <div class="mu-score">${lv}</div><div class="mu-res">proj ${pj}</div>${href ? "</a>" : "</div>"}`;
   };
   return `<div class="ylive">
     <div class="ylive-h"><span class="yk">Week ${C.week} · ${done ? "Final" : '<b class="livetag">Live</b>'}</span><span class="yk">${asOf ? "as of " + asOf : ""}</span></div>
-    <div class="mu">${side(r.team, "You", ml, mp, ml > ol, false)}<div class="mu-vs"><span>vs</span></div>${side(opp, `${esc(o.short)} · H2H ${o.w}-${o.l}`, ol, op, ol > ml, true)}</div>
+    <div class="mu">${side(r.team, ml, mp, ml > ol, false)}<div class="mu-vs"><span>vs</span></div>${side(opp, ol, op, ol > ml, true)}</div>
     <div class="wp"><div class="wp-bar" role="img" aria-label="Your win chance ${pct(p)}"><i style="width:${(p * 100).toFixed(1)}%"></i></div>
       <div class="wp-l"><span>Your win chance <b>${pct(p)}</b></span><span>${esc(o.short)} <b>${pct(1 - p)}</b></span></div></div>
   </div>`;
