@@ -159,7 +159,7 @@ if nweek and (not live["cur"] or live["cur"]["week"] != nweek):
         lj = json.load(open(f"{REPO}/docs/live.json", encoding="utf-8"))
         if lj.get("week") == nweek:
             live["cur"] = {
-                "week": nweek, "asOf": lj["updated"], "lineups": None,
+                "week": nweek, "asOf": lj["updated"], "lineups": lj.get("lineups"),
                 "teams": {t["team"]: [round(t["week_pts"]), round(max(t["week_proj"] or 0, t["week_pts"]))] for t in lj["teams"]},
                 "base": {s["team"]: [s["pts"], s["place"]] for s in standings},
             }

@@ -26,6 +26,9 @@ the artifact comment tools.
 - `data/weekly_scores_2026.csv`: final points per team per week. The scraper on Seth's Mac mini
   (`scripts/scrape_live.py`, launchd every 10 min) rolls each finished week in and rebuilds the app.
 - `docs/live.json`: live week points from that scraper. The GitHub app pulls it every 2 minutes.
+  During game windows the scraper also loads the 10 team pages and adds `lineups` (each team's starters
+  with points, projections and game status; parsed by `scripts/lineups.py`), so the app's team page is live too.
+  Check a saved page with `python3 scripts/lineups.py tmp/team_1.html`.
 - `data/live_week.json`: a live week snapshot with starting lineups, made by hand from Yahoo team pages.
 - `data/history/`: all-time standings and `meta.json` (H2H champions, managers, weekly records).
   H2H champions not on file yet: 2005, 2015-2018, 2020-2023.

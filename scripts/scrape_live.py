@@ -8,6 +8,9 @@ Runs from launchd every 10 minutes and decides for itself whether to do anything
   - game windows (Thu night, all Sunday, Mon night): every run
   - any other time 6am-11pm: one probe an hour, and if a score moved in the last hour
     (Thanksgiving, Saturday games) it keeps going every run
+During game windows it also loads the 10 team pages and adds each team's starters
+(points, projections, game status) to docs/live.json as "lineups", so the app's team
+page shows players live (scripts/lineups.py does the parsing; --no-lineups skips it).
 When Yahoo moves to a new week it also rolls last week's finals into
 data/weekly_scores_2026.csv and rebuilds the Glide tables with h2h.py. The Glide import
 itself is still a manual step.
@@ -15,6 +18,7 @@ itself is still a manual step.
   python3 scripts/scrape_live.py            # what launchd runs
   python3 scripts/scrape_live.py --force    # scrape now, whatever the clock says
   python3 scripts/scrape_live.py --force --no-push
+  python3 scripts/lineups.py tmp/team_1.html   # check what a saved team page parses to
 """
 import csv
 import json
@@ -239,12 +243,12 @@ def build(week, live, note=None):
 
 # ---------- chrome + git ----------
 
-def fetch_page():
+def fetch_page(url=LEAGUE, name="league.html"):
     os.makedirs(TMP, exist_ok=True)
-    out = os.path.join(TMP, "league.html")
+    out = os.path.join(TMP, name)
     if os.path.exists(out):
         os.remove(out)
-    r = subprocess.run(["/usr/bin/osascript", os.path.join(ROOT, "scripts", "chrome_save.applescript"), LEAGUE, out],
+    r = subprocess.run(["/usr/bin/osascript", os.path.join(ROOT, "scripts", "chrome_save.applescript"), url, out],
                        capture_output=True, text=True, timeout=90)
     final = r.stdout.strip()
     if r.returncode != 0:
@@ -257,6 +261,21 @@ def fetch_page():
         subprocess.run(["/bin/sleep", "0.5"])
     with open(out, encoding="utf-8", errors="ignore") as f:
         return f.read()
+
+
+def fetch_lineups(week, league_html, names):
+    """{team: starters} from the 10 team pages, loaded one after another in the same Chrome tab."""
+    import lineups as L
+    ids = L.team_ids(league_html, names)
+    if len(ids) != len(names):
+        raise ValueError(f"found team links for {len(ids)} of {len(names)} teams")
+    out = {}
+    for team, tid in sorted(ids.items(), key=lambda kv: kv[1]):
+        rows = L.parse_team(fetch_page(f"{LEAGUE}/{tid}?week={week}", f"team_{tid}.html"))
+        if not rows:
+            raise ValueError(f"no starters on {team}'s page")
+        out[team] = rows
+    return out
 
 
 def git(*args):
@@ -278,7 +297,7 @@ def push(paths, msg):
 
 
 def main():
-    force, no_push = "--force" in sys.argv, "--no-push" in sys.argv
+    force, no_push, no_lineups = "--force" in sys.argv, "--no-push" in sys.argv, "--no-lineups" in sys.argv
     flag = os.path.join(TMP, "force")  # touch tmp/force, then launchctl kickstart: one forced run under launchd
     if os.path.exists(flag):
         os.remove(flag)
@@ -292,7 +311,8 @@ def main():
     if not why:
         return
     try:
-        week, live, totals, change = parse_league(fetch_page())
+        league_html = fetch_page()
+        week, live, totals, change = parse_league(league_html)
     except Exception as e:  # leave the board as it was; the log says why
         log(f"FAILED ({why}): {e}")
         state["last_error"] = f"{now:%Y-%m-%d %H:%M} {e}"
@@ -312,6 +332,12 @@ def main():
             log(f"roll skipped: {note}")
 
     out = build(week, live, note)
+    if why != "hourly probe" and not no_lineups:
+        try:  # players are a bonus: if a team page won't load or parse, the totals still go out
+            out["lineups"] = fetch_lineups(week, league_html, set(live))
+            out["lineups_updated"] = out["updated"]
+        except Exception as e:
+            log(f"lineups skipped: {e}")
     sig = [week] + [(t["team"], t["week_pts"]) for t in out["teams"]]
     moved = sig != state.get("sig")
     if moved:
