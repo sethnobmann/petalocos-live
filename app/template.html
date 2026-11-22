@@ -684,7 +684,7 @@ const asOfText = iso => {
 };
 /* a team's starting lineup for the live week: each starter's points and projection */
 const teamSlug = t => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-const LINEUP_AS_OF = D.live.cur ? D.live.cur.asOf : null; /* the live feed moves team totals, not player rows */
+let LINEUP_AS_OF = D.live.cur ? D.live.cur.asOf : null; /* when the player rows were last refreshed */
 const lineupHref = team => (D.live.cur && D.live.cur.lineups && D.live.cur.lineups[team] ? `#team-${teamSlug(team)}` : null);
 const fmtPts = x => (Number.isInteger(x) ? `${x}` : x.toFixed(1));
 /* Yahoo-style lineup text: "D. PRESCOTT", "Sun 10:00AM v TEN", and a color per position */
@@ -1306,6 +1306,10 @@ async function pullLive(force) {
       if (!C.teams[t.team] || typeof t.week_pts !== "number") continue;
       const proj = typeof t.week_proj === "number" ? t.week_proj : t.week_pts;
       C.teams[t.team] = [Math.round(t.week_pts), Math.round(Math.max(proj, t.week_pts))];
+    }
+    if (j.lineups && typeof j.lineups === "object" && Object.keys(j.lineups).length) {
+      C.lineups = j.lineups; /* the Mac mini also sends each team's starters, so the team page stays live */
+      LINEUP_AS_OF = j.updated;
     }
     C.asOf = j.updated;
     if (state.me) route();
