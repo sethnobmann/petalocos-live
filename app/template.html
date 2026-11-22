@@ -489,6 +489,25 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
   h1 { font-size: 29px; }
   .led b { font-size: 21px; }
 }
+
+/* H2H standings while a week is live: the record if every game goes the way the odds say.
+   Dashed = not final. Three lines that match left to right: team | labels, manager | records, opponent | odds. */
+.badge.proj { border-style: dashed; }
+.badge.proj.gold { background: transparent; color: var(--orange); border-color: var(--orange); }
+.row.hrow { padding-block: 10px; row-gap: 3px; align-items: center; }
+.row.hrow .pcol { grid-row: 1 / span 3; align-self: start; }
+.hrow .c2 { grid-column: 2; min-width: 0; } .hrow .c3 { grid-column: 3; }
+.hrow .mgr { margin-top: 0; }
+.hl, .hv, .hodds { display: grid; grid-template-columns: 46px 56px; column-gap: 8px; text-align: center; }
+.hl span { font: 9px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); }
+.hv b { width: 100%; box-sizing: border-box; padding: 1px 6px; border: 1.5px solid transparent; border-radius: 6px; font: 700 20px/1 var(--display); letter-spacing: 0.02em; }
+.hv b:first-child { padding-inline: 0; }
+.hv b.pjb { border-style: dashed; border-color: currentColor; }
+.vsl { font-size: 14px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vsl b { font-weight: 600; color: var(--text); }
+.vsl .sc { margin-left: 8px; font: 13px var(--mono); color: var(--dim); }
+.hodds span { grid-column: 2; justify-self: center; position: relative; white-space: nowrap; font: 600 15px/1 var(--display); letter-spacing: 0.02em; }
+.hodds small { position: absolute; right: 100%; bottom: 1px; margin-right: 5px; font: 10px/1 var(--mono); letter-spacing: 0.02em; color: var(--dim); }
 </style>
 
 </head>
@@ -707,7 +726,36 @@ function seasonStandings() {
       <div class="right"><div class="pts">${r.pts}<small>PTS</small></div><div class="rec ${wlc(r.w, r.l)}">H2H ${r.w}-${r.l}</div></div>${rowEnd(href)}`;
   }).join("")}</div>`;
 }
+/* while this week is live: each team's record if its game goes the way the odds say (live score + projection),
+   re-sorted by that record, ties to total points */
+function liveH2H() {
+  const L = D.live, C = L.cur;
+  if (!C || !L.next || C.week !== L.next.week) return null;
+  const opp = {};
+  L.next.games.forEach(([a, b]) => { opp[a] = b; opp[b] = a; });
+  const rows = L.standings.map(r => {
+    const o = opp[r.team], me = C.teams[r.team], them = o && C.teams[o];
+    if (!me || !them) return { ...r, pw: r.w, pl: r.l, ppf: r.pf };
+    const p = winChance(me[0], me[1], them[0], them[1]), win = p >= 0.5;
+    return { ...r, opp: o, lv: me[0], ol: them[0], p, win, pw: r.w + (win ? 1 : 0), pl: r.l + (win ? 0 : 1), ppf: r.pf + me[0] };
+  }).sort((a, b) => b.pw - a.pw || b.ppf - a.ppf);
+  rows.forEach((r, i) => { r.pp = i + 1; });
+  return rows;
+}
+function liveH2HRows(rows) {
+  const topW = rows[0].pw;
+  return `<p class="hnote">Week ${D.live.cur.week} isn't final. This is the table if every game goes the way it's trending.</p><div class="list">${rows.map(r => {
+    const href = teamHref(r.team, r.mgr), o = r.opp ? live[r.opp] : null, back = topW - r.pw, wc = r.p >= 0.5 ? "w" : "l";
+    const place = `<div class="pcol"><div class="badge proj${r.pp === 1 ? " gold" : ""}"><b>${r.pp}<sup>${ord(r.pp).slice(String(r.pp).length)}</sup></b></div>${back > 0 ? `<div class="pback"><b>${back}</b> back</div>` : ""}</div>`;
+    return `${rowTag(href, r.mgr, "hrow")}${place}
+      <div class="team c2">${esc(r.team)}</div><div class="hl c3"><span>Now</span><span>Proj</span></div>
+      <div class="mgr c2">${esc(r.mgr)}</div><div class="hv c3"><b class="${wlc(r.w, r.l)}">${r.w}-${r.l}</b><b class="pjb ${o ? wc : "e"}">${r.pw}-${r.pl}</b></div>
+      ${o ? `<div class="vsl c2">vs <b>${esc(o.short)}</b><span class="sc">${r.lv}-${r.ol}</span></div><div class="hodds c3"><span class="${wc}"><small>to win</small>${pct(r.p)}</span></div>` : ""}${rowEnd(href)}`;
+  }).join("")}</div>`;
+}
 function seasonH2H() {
+  const lh = liveH2H();
+  if (lh) return liveH2HRows(lh);
   const rows = D.live.standings.slice().sort((a, b) => a.hp - b.hp);
   const topW = Math.max(...rows.map(r => r.w));
   return `<div class="list">${rows.map(r => {
@@ -849,7 +897,7 @@ function h2hBody() {
   const L = D.live, tab = state.h2hTab, wk = state.h2hWeek;
   const chip = (v, label) => `<button class="chip" data-act="htab" data-v="${v}" aria-pressed="${tab === v}">${label}</button>`;
   let h = `<div class="seg" role="group" aria-label="Head to head">${chip("std", "Standings")}${chip("live", "Live")}${chip("po", "Playoffs")}</div>`;
-  if (tab === "std") return h + `<div class="h">H2H standings</div>${seasonH2H()}${mySchedule()}`;
+  if (tab === "std") return h + `<div class="h">H2H standings${liveH2H() ? ' · If it holds · <span class="livetag">Live</span>' : ""}</div>${seasonH2H()}${mySchedule()}`;
   if (tab === "live") {
     const isLive = L.cur && L.next && L.cur.week === L.next.week;
     h += `<div class="stepper">
