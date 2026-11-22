@@ -284,14 +284,23 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
   font: inherit; letter-spacing: inherit; text-transform: inherit; text-decoration: underline; text-underline-offset: 3px;
 }
 
-.row.lrow { grid-template-columns: 44px minmax(0, 1fr) auto; align-items: center; }
-.ppos {
-  width: 44px; height: 26px; display: grid; place-items: center; border-radius: 6px;
-  background: var(--card-2); border: 1px solid var(--line); font: 11px var(--mono); letter-spacing: 0.04em; color: var(--muted);
+/* starters, laid out like Yahoo's lineup so it reads familiar: slot pill in that position's color,
+   short uppercase name, position · NFL team, the game, and points on the right
+   (gray = projection until the player's game starts, like Yahoo) */
+.lu { --qb: #6AA6FF; --rb: #4FCFA6; --wr: #F4934A; --te: #F07AB6; --flex: #E8EAED; --k: #B896FF; --def: #CDB48A; }
+.row.lrow { grid-template-columns: 38px minmax(0, 1fr) auto; gap: 14px; align-items: center; padding: 10px 14px; }
+.ppill {
+  width: 38px; height: 52px; display: grid; place-items: center; border-radius: 19px;
+  border: 2px solid var(--pc); color: var(--pc); font: 700 12px/1 var(--body); letter-spacing: 0.02em;
 }
-.lrow .team { font-size: 15px; }
-.lrow .pts.up { color: var(--win); text-shadow: 0 0 14px var(--win-glow); }
-.lrow .pts.wait { color: var(--dim); text-shadow: none; }
+.pname { font: 600 19px/1.1 var(--display); letter-spacing: 0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pmeta { margin-top: 2px; font-size: 15px; line-height: 1.25; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pmeta b { font-weight: 600; color: var(--pc); }
+.pgame { font-size: 14px; line-height: 1.25; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lpts { font: 600 25px/1 var(--display); color: var(--text); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.lpts.up { color: var(--win); }
+.lpts.wait { color: var(--dim); }
+.lsub { margin-top: 4px; font: 11px var(--mono); color: var(--dim); text-align: right; white-space: nowrap; }
 .morelink {
   display: block; padding: 10px 14px; text-align: center; text-decoration: none;
   font: 12px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber);
@@ -501,6 +510,17 @@ const teamSlug = t => t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-
 const LINEUP_AS_OF = D.live.cur ? D.live.cur.asOf : null; /* the live feed moves team totals, not player rows */
 const lineupHref = team => (D.live.cur && D.live.cur.lineups && D.live.cur.lineups[team] ? `#team-${teamSlug(team)}` : null);
 const fmtPts = x => (Number.isInteger(x) ? `${x}` : x.toFixed(1));
+/* Yahoo-style lineup text: "D. PRESCOTT", "Sun 10:00AM v TEN", and a color per position */
+const posColor = p => `var(--${{ QB: "qb", RB: "rb", WR: "wr", TE: "te", K: "k", DEF: "def" }[p] || "flex"})`;
+const shortName = (name, slot) => {
+  const p = name.split(" ");
+  if (slot === "DEF" || p.length < 2) return name.toUpperCase();
+  return `${p[0].includes(".") ? p[0] : p[0][0] + "."} ${p.slice(1).join(" ")}`.toUpperCase();
+};
+const gameText = st => (st || "")
+  .replace(/(\d{1,2}:\d{2}) ?(am|pm)/i, (m, t, ap) => t + ap.toUpperCase())
+  .replace(/ vs /, " v ")
+  .replace(/([v@]) ([A-Za-z]{2,3})$/, (m, s, t) => `${s} ${t.toUpperCase()}`);
 function renderLineup(slug) {
   const C = D.live.cur;
   if (!C || !C.lineups) return null;
@@ -511,11 +531,17 @@ function renderLineup(slug) {
   const toPlay = rows.filter(x => x[4] === null).length;
   const body = `<div class="leds">${led(lv, `Wk ${C.week} pts`)}${led(pj, "Projected")}${led(toPlay, "Yet to play")}</div>
     <div class="h">Starters · Week ${C.week}${C.asOf !== LINEUP_AS_OF ? ` · players ${asOfText(LINEUP_AS_OF)}` : ""}</div>
-    <div class="list">${rows.map(([pos, name, tp, st, pts, proj]) => {
-      const done = pts !== null, cls = !done ? " wait" : proj !== null && pts >= proj ? " up" : "";
-      return `<div class="row lrow${r && r.mgr === state.me ? "" : ""}"><div class="ppos">${pos === "W/R/T" ? "FLEX" : esc(pos)}</div>
-        <div class="mid"><div class="team">${esc(name)}</div><div class="note">${esc(tp.replace(" - ", " "))}${st ? " · " + esc(st) : ""}</div></div>
-        <div class="right"><div class="pts${cls}">${done ? fmtPts(pts) : "–"}</div><div class="note">proj ${proj === null ? "–" : fmtPts(proj)}</div></div></div>`;
+    <div class="list lu">${rows.map(([slot, name, tp, st, pts, proj]) => {
+      const [nfl = "", pp = slot] = tp.split(" - "), ppos = pp.split(",")[0];
+      const done = pts !== null;
+      const num = done ? fmtPts(pts) : proj === null ? "–" : fmtPts(proj);
+      const cls = !done ? " wait" : proj !== null && pts >= proj ? " up" : "";
+      return `<div class="row lrow">
+        <div class="ppill" style="--pc:${posColor(slot)}">${slot === "W/R/T" ? "WRT" : esc(slot)}</div>
+        <div class="mid"><div class="pname">${esc(shortName(name, slot))}</div>
+          <div class="pmeta" style="--pc:${posColor(ppos)}"><b>${esc(ppos)}</b> • ${esc(nfl.toUpperCase())}</div>
+          <div class="pgame">${esc(gameText(st))}</div></div>
+        <div><div class="lpts${cls}">${num}</div><div class="lsub">${done ? `proj ${proj === null ? "–" : fmtPts(proj)}` : "proj"}</div></div></div>`;
     }).join("")}</div>
     ${r ? `<a class="morelink" href="${mlink(r.mgr)}">${esc(r.mgr)}'s league history ›</a>` : ""}`;
   return {
