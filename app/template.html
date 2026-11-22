@@ -288,6 +288,12 @@ dl { margin: 0; }
   background: radial-gradient(120% 90% at 100% 0%, var(--orange-soft), transparent 55%), linear-gradient(180deg, #1A2B4D, var(--card));
 }
 .you-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+/* your place, top right of the card, in the same thin style as the standings boxes */
+.ybadge { width: 58px; height: 58px; flex: none; border-radius: 12px; border-color: var(--orange-edge); background: rgba(11, 20, 36, 0.55); }
+.ybadge b { font-size: 27px; }
+.ybadge b sup { font-size: 12px; vertical-align: 10px; }
+.ybadge i { margin-top: 3px; font: 9px/1 var(--mono); font-style: normal; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); }
+.ybadge.gold i { color: var(--bg); }
 .you .name { margin-top: 3px; font: 700 27px/1.05 var(--display); text-transform: uppercase; letter-spacing: 0.01em; overflow-wrap: anywhere; }
 .lede { margin-top: 4px; font-size: 14px; color: var(--muted); }
 .led b small { margin-left: 1px; font-size: 14px; }
@@ -628,7 +634,7 @@ function youCard() {
   }
   return `<section class="you" aria-label="Your season">
     <div class="you-top"><div class="mid"><div class="eyebrow">${first} · your season</div><div class="name">${esc(r.team)}</div><div class="lede">${back}</div></div>
-      <div class="av${m && m.titles.length ? " gold" : ""}">${m ? m.ini : ""}</div></div>
+      <div class="badge ybadge${P === 1 ? " gold" : ""}"><b>${P}<sup>${ord(P).slice(String(P).length)}</sup></b>${lv ? "<i>live</i>" : ""}</div></div>
     <div class="leds${lv ? " four" : ""}">${led(place, `Rank${mvTxt}`)}${lv ? led(lv.wk, `Wk ${L.cur.week}`) : ""}${led(pts, lv ? "Total" : "Points")}${led(`${r.w}-${r.l}`, lv ? `H2H ${ord(r.hp)}` : `H2H · ${ord(r.hp)}`, rec === "e" ? "" : rec)}</div>
     <div class="yrows">${rows}</div>
   </section>`;
