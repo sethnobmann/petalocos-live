@@ -306,7 +306,10 @@ dl { margin: 0; }
 .led b.w { color: var(--win); text-shadow: 0 0 14px var(--win-glow); }
 .led b.l { color: var(--loss); text-shadow: 0 0 14px var(--loss-glow); }
 .led em { font-style: normal; } .led em.up { color: var(--win); } .led em.dn { color: var(--loss); }
-.yrows { margin: 0 -16px; }
+/* the matchup gets its own section under the tiles, split off by an orange rule like the Champions page */
+.yrows { margin: 4px -16px 0; border-top: 2px solid var(--orange-edge); }
+.yrows:empty { display: none; }
+.yrows > :first-child { border-top: 0; }
 .yrow {
   display: grid; grid-template-columns: 62px minmax(0, 1fr) auto 10px; gap: 10px; align-items: center;
   width: 100%; padding: 11px 16px; border: 0; border-top: 1px dashed var(--line); background: none;
