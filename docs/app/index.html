@@ -678,7 +678,7 @@ function seasonH2H() {
   return `<div class="list">${rows.map(r => {
     const gb = topW - r.w, href = teamHref(r.team, r.mgr);
     return `${rowTag(href, r.mgr)}${placeCol(r.hp, gb)}
-      <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)} · ${r.streak}</div><div class="note">PF ${r.pf} · PA ${r.pa}</div></div>
+      <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)}</div><div class="note">PF ${r.pf} · PA ${r.pa}${r.streak ? ` (<span class="${r.streak[0] === "W" ? "w" : "l"}">${esc(r.streak)}</span>)` : ""}</div></div>
       <div class="right"><div class="wl ${wlc(r.w, r.l)}">${r.w}-${r.l}</div><div class="rec e">${r.pts} PTS</div></div>${rowEnd(href)}`;
   }).join("")}</div>`;
 }
