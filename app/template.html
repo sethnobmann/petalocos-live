@@ -456,6 +456,8 @@ const memberBySlug = Object.fromEntries(D.members.map(m => [m.slug, m]));
 const memberByName = Object.fromEntries(D.members.map(m => [m.name, m]));
 const live = Object.fromEntries(D.live.standings.map(r => [r.team, r]));
 const mlink = name => (memberByName[name] ? `#member-${memberByName[name].slug}` : null);
+/* on the H2H screens a team opens its team page (this week's lineup); the member page is the fallback */
+const teamHref = (team, mgr) => lineupHref(team) || mlink(mgr);
 
 function moveTag(d) {
   if (d > 0) return `<i class="mv up">▲${d}</i>`;
@@ -550,7 +552,7 @@ const gameText = st => (st || "")
   .replace(/(\d{1,2}:\d{2}) ?(am|pm)/i, (m, t, ap) => t + ap.toUpperCase())
   .replace(/ vs /, " v ")
   .replace(/([v@]) ([A-Za-z]{2,3})$/, (m, s, t) => `${s} ${t.toUpperCase()}`);
-function renderLineup(slug) {
+function renderLineup(slug, from = "home") {
   const C = D.live.cur;
   if (!C || !C.lineups) return null;
   const team = Object.keys(C.lineups).find(t => teamSlug(t) === slug);
@@ -574,8 +576,8 @@ function renderLineup(slug) {
     }).join("")}</div>
     ${r ? `<a class="morelink" href="${mlink(r.mgr)}">${esc(r.mgr)}'s league history ›</a>` : ""}`;
   return {
-    tab: "home",
-    band: band({ back: { href: "home", label: "Home" }, eyebrow: `Week ${C.week} · ${me ? ord(me.live) + " live" : "live"}`, title: esc(team), sub: r ? `${esc(r.mgr)} · ${asOfText(C.asOf)}` : "" }),
+    tab: from === "h2h" ? "h2h" : "home",
+    band: band({ back: from === "h2h" ? { href: "h2h", label: "Head to head" } : { href: "home", label: "Home" }, eyebrow: `Week ${C.week} · ${me ? ord(me.live) + " live" : "live"}`, title: esc(team), sub: r ? `${esc(r.mgr)} · ${asOfText(C.asOf)}` : "" }),
     body,
   };
 }
@@ -648,7 +650,7 @@ function seasonH2H() {
   const rows = D.live.standings.slice().sort((a, b) => a.hp - b.hp);
   const topW = Math.max(...rows.map(r => r.w));
   return `<div class="list">${rows.map(r => {
-    const gb = topW - r.w, href = mlink(r.mgr);
+    const gb = topW - r.w, href = teamHref(r.team, r.mgr);
     return `${rowTag(href, r.mgr)}${placeCol(r.hp, gb)}
       <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)} · ${r.streak}</div><div class="note">PF ${r.pf} · PA ${r.pa}</div></div>
       <div class="right"><div class="wl ${wlc(r.w, r.l)}">${r.w}-${r.l}</div><div class="rec e">${r.pts} PTS</div></div>${rowEnd(href)}`;
@@ -669,7 +671,7 @@ function mu(away, home, side) {
   return `<div class="mu${away === mine || home === mine ? " me" : ""}">${side(away, false)}<div class="mu-vs">vs</div>${side(home, true)}</div>`;
 }
 function muSide(team, right, cls, inner, href0) {
-  const t = live[team], href = href0 || (t && mlink(t.mgr)), c = `mu-side${right ? " r" : ""}${cls ? " " + cls : ""}`;
+  const t = live[team], href = href0 || (t && teamHref(team, t.mgr)), c = `mu-side${right ? " r" : ""}${cls ? " " + cls : ""}`;
   return `${href ? `<a class="${c}" href="${href}">` : `<div class="${c}">`}<div class="team">${esc(team)}</div><div class="mgr">${esc(t ? t.short : "")}</div>${inner}${href ? "</a>" : "</div>"}`;
 }
 function weekGames(wk) {
@@ -706,7 +708,7 @@ function mySchedule() {
     if (!g) return "";
     const away = g[0] === mine, opp = away ? g[1] : g[0], o = live[opp];
     if (!o) return "";
-    return `<a class="row srow" href="${mlink(o.mgr)}"><div class="yk">Week ${w}</div>
+    return `<a class="row srow" href="${teamHref(opp, o.mgr)}"><div class="yk">Week ${w}</div>
       <div class="mid"><div class="team">${away ? "at" : "vs"} ${esc(opp)}</div><div class="mgr">${esc(o.short)}</div></div>
       <div class="right"><div class="rec ${wlc(o.w, o.l)}">${o.w}-${o.l}</div></div></a>`;
   }).join("");
@@ -775,7 +777,7 @@ function bracket(seeds) {
 }
 function seedRows(rows) {
   return rows.map(r => {
-    const href = mlink(r.mgr);
+    const href = teamHref(r.team, r.mgr);
     return `${rowTag(href, r.mgr)}${badge(r.seed, r.seed <= 2)}
       <div class="mid"><div class="team">${esc(r.team)}${r.seed <= 2 ? '<span class="tag">BYE</span>' : ""}</div><div class="mgr">${esc(r.mgr)}</div>
         <div class="note">Now ${r.w}-${r.l} · proj ${r.pw}-${r.pl}${r.seed <= 3 ? ` · bye ${odds(r.bye)}` : ""}</div></div>
@@ -1013,17 +1015,19 @@ function show() {
 
 /* ---------- router ---------- */
 let lastHash = null;
+let lastTab = "home"; /* a team page goes back to the tab you opened it from */
 function route() {
   const h = location.hash.slice(1) || "home";
   let v = null;
   if (h.startsWith("season-")) v = renderSeason(Number(h.slice(7)));
   else if (h.startsWith("member-")) v = renderMember(h.slice(7));
-  else if (h.startsWith("team-")) v = renderLineup(h.slice(5));
+  else if (h.startsWith("team-")) v = renderLineup(h.slice(5), lastTab);
   else if (h === "h2h") v = renderH2H();
   else if (h === "champions") v = renderChampions();
   else if (h === "members") v = renderMembers();
   else if (h === "records") v = renderRecords();
   if (!v) v = renderHome();
+  if (!h.startsWith("team-")) lastTab = v.tab;
   document.getElementById("band").innerHTML = v.band;
   document.getElementById("main").innerHTML = v.body;
   document.querySelectorAll(".tab").forEach(t => {
