@@ -508,6 +508,18 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 .vsl .sc { margin-left: 8px; font: 13px var(--mono); color: var(--dim); }
 .hodds span { grid-column: 2; justify-self: center; position: relative; white-space: nowrap; font: 600 15px/1 var(--display); letter-spacing: 0.02em; }
 .hodds small { position: absolute; right: 100%; bottom: 1px; margin-right: 5px; font: 10px/1 var(--mono); letter-spacing: 0.02em; color: var(--dim); }
+
+/* refresh pill (admins only for now): top center between the light banks, shows how fresh the live scores are */
+.rfr {
+  position: absolute; z-index: 2; top: calc(6px + env(safe-area-inset-top, 0px)); left: 50%; transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px 5px 8px; cursor: pointer;
+  border-radius: 999px; background: rgba(8, 16, 29, 0.55); border: 1px solid rgba(255, 255, 255, 0.18);
+  font: 11px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); white-space: nowrap;
+}
+.rfr svg { width: 14px; height: 14px; flex: none; fill: none; stroke: var(--orange); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.rfr:active { background: rgba(255, 255, 255, 0.14); }
+.rfr.spin svg { animation: rfr 0.8s linear infinite; }
+@keyframes rfr { to { transform: rotate(360deg); } }
 </style>
 
 </head>
@@ -560,8 +572,25 @@ function led(v, label, cls) { return `<div class="led"><b${cls ? ` class="${cls}
 const myRow = () => D.live.standings.find(s => s.mgr === state.me);
 function kv(k, v) { return `<div class="kv"><dt>${k}</dt><dd>${v}</dd></div>`; }
 
+/* who sees admin-only bits like the refresh pill (a convenience, not a lock) */
+const ADMINS = ["Seth Nobmann"];
+const REFRESH_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>';
+function refreshPill() {
+  if (!ADMINS.includes(state.me)) return "";
+  const C = D.live.cur, t = C && new Date(C.asOf);
+  const when = t && !isNaN(t) ? t.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", timeZone: "America/Los_Angeles" }) : "Refresh";
+  return `<button class="rfr" data-act="refresh" aria-label="Refresh">${REFRESH_SVG}${when}</button>`;
+}
+/* pull the newest app and scores: refresh the cached page, then reload */
+async function hardRefresh(btn) {
+  btn.classList.add("spin");
+  const wait = new Promise(r => setTimeout(r, 600));
+  try { await fetch(location.pathname, { cache: "reload" }); } catch (e) {}
+  await wait;
+  location.reload();
+}
 function band({ back, eyebrow, title, sub, avatar }) {
-  return `<div class="bank l"></div><div class="bank r"></div>
+  return `<div class="bank l"></div><div class="bank r"></div>${refreshPill()}
   <div class="band-in gut"><div class="col">
     ${back ? `<a class="back" href="#${back.href}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${back.label}</a>` : ""}
     <div class="hero">${avatar || `<img class="crest" src="${CREST}" alt="Petalocos crest">`}
@@ -1177,6 +1206,7 @@ document.addEventListener("click", e => {
   if (!b) return;
   const a = b.dataset.act, last = D.live.through;
   if (a === "signout") { state.week = null; setMe(null); return; }
+  if (a === "refresh") { hardRefresh(b); return; }
   if (a === "ctab") {
     state.champTab = b.dataset.v;
     document.getElementById("main").innerHTML = renderChampions().body;
