@@ -211,7 +211,7 @@ records = {
         most(lambda m: m["top3"], "Most top-3 finishes"),
         most(lambda m: m["lasts"], "Most last places"),
         {"k": "Best avg finish", "v": f"{best_avg['avg']:.1f}", "who": best_avg["name"], "ctx": "10+ seasons", "href": f"member-{best_avg['slug']}"},
-        {"k": "Most seasons, no championship", "v": str(no_title["seasons"]), "who": no_title["name"], "ctx": "still waiting", "href": f"member-{no_title['slug']}"},
+        {"k": "Most seasons, no championship", "v": str(no_title["seasons"]), "who": no_title["name"], "ctx": f"{no_title['seasons']} seasons", "href": f"member-{no_title['slug']}"},
     ],
     "points": [
         {"name": m["name"], "slug": m["slug"], "seasons": m["seasons"], "career": m["career"],
