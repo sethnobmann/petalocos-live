@@ -618,7 +618,7 @@ function youCard() {
     <div class="yrows">${rows}</div>
   </section>`;
 }
-/* Home standings: a clean place box with points back under it */
+/* standings rows: a clean place box with how far back (points, or H2H wins) under it */
 function placeCol(place, back) {
   return `<div class="pcol">${badge(place, place === 1)}${back > 0 ? `<div class="pback"><b>${back}</b> back</div>` : ""}</div>`;
 }
@@ -648,8 +648,8 @@ function seasonH2H() {
   const topW = Math.max(...rows.map(r => r.w));
   return `<div class="list">${rows.map(r => {
     const gb = topW - r.w, href = mlink(r.mgr);
-    return `${rowTag(href, r.mgr)}${badge(r.hp, r.hp === 1, r.hpp - r.hp)}
-      <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)} · ${r.streak}</div><div class="note">${gb ? gb + " back" : "leader"} · PF ${r.pf} · PA ${r.pa}</div></div>
+    return `${rowTag(href, r.mgr)}${placeCol(r.hp, gb)}
+      <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)} · ${r.streak}</div><div class="note">PF ${r.pf} · PA ${r.pa}</div></div>
       <div class="right"><div class="wl ${wlc(r.w, r.l)}">${r.w}-${r.l}</div><div class="rec e">${r.pts} PTS</div></div>${rowEnd(href)}`;
   }).join("")}</div>`;
 }
