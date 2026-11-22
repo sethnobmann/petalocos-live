@@ -86,10 +86,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--amber); outline
 .bank.l { left: max(12px, env(safe-area-inset-left, 0px)); }
 .bank.r { right: max(12px, env(safe-area-inset-right, 0px)); }
 .band-in { position: relative; padding-block: calc(38px + env(safe-area-inset-top, 0px)) 22px; }
+/* back button: a real pill so it's easy to spot and hit */
 .back {
-  display: inline-block; margin-bottom: 14px; text-decoration: none;
-  font: 13px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px; padding: 7px 14px 7px 9px; text-decoration: none;
+  border-radius: 999px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);
+  font: 13px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text);
 }
+.back svg { width: 16px; height: 16px; flex: none; fill: none; stroke: var(--orange); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.back:active { background: rgba(255, 255, 255, 0.14); }
 .hero { display: flex; align-items: center; gap: 14px; }
 .ht { min-width: 0; }
 .crest { width: 58px; height: 58px; flex: none; filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.55)); }
@@ -480,7 +484,7 @@ function kv(k, v) { return `<div class="kv"><dt>${k}</dt><dd>${v}</dd></div>`; }
 function band({ back, eyebrow, title, sub, avatar }) {
   return `<div class="bank l"></div><div class="bank r"></div>
   <div class="band-in gut"><div class="col">
-    ${back ? `<a class="back" href="#${back.href}">‹ ${back.label}</a>` : ""}
+    ${back ? `<a class="back" href="#${back.href}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${back.label}</a>` : ""}
     <div class="hero">${avatar || `<img class="crest" src="${CREST}" alt="Petalocos crest">`}
       <div class="ht"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1>${sub ? `<div class="sub">${sub}</div>` : ""}</div>
     </div>
