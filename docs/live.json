@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T02:48:31+00:00",
+ "updated": "2026-11-23T03:05:12+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 11,
@@ -8,7 +8,7 @@
    "team": "dontmindme",
    "manager": "Seth Nobmann",
    "week_pts": 122.0,
-   "week_proj": 141.0,
+   "week_proj": 139.0,
    "season_pts": 1198.0,
    "week_rank": 1,
    "season_rank": 5
@@ -43,9 +43,9 @@
   {
    "team": "FOTY*",
    "manager": "Dave Abramson",
-   "week_pts": 98.0,
+   "week_pts": 99.0,
    "week_proj": 105.0,
-   "season_pts": 1227.0,
+   "season_pts": 1228.0,
    "week_rank": 5,
    "season_rank": 3
   },
@@ -89,7 +89,7 @@
    "team": "FANTASY KING",
    "manager": "Chris King",
    "week_pts": 43.0,
-   "week_proj": 65.0,
+   "week_proj": 63.0,
    "season_pts": 1107.0,
    "week_rank": 10,
    "season_rank": 8
@@ -103,7 +103,7 @@
    "away_manager": "Tony Oliverez",
    "home_pts": 122.0,
    "away_pts": 93.0,
-   "home_proj": 141.0,
+   "home_proj": 139.0,
    "away_proj": 97.0
   },
   {
@@ -124,7 +124,7 @@
    "home_pts": 112.0,
    "away_pts": 43.0,
    "home_proj": 115.0,
-   "away_proj": 65.0
+   "away_proj": 63.0
   },
   {
    "home": "Mooseknuckle's",
@@ -132,7 +132,7 @@
    "home_manager": "Brian Lovrin",
    "away_manager": "Dave Abramson",
    "home_pts": 74.0,
-   "away_pts": 98.0,
+   "away_pts": 99.0,
    "home_proj": 106.0,
    "away_proj": 105.0
   },
