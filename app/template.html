@@ -1025,7 +1025,7 @@ function trophyCase({ list, zero }, kind) {
 function seasonsPts() {
   return `<div class="list">${D.seasons.slice().reverse().map(s =>
     `<a class="row ticket" href="#season-${s.y}"><div class="yr">${s.y}</div>
-      <div class="mid"><div class="team">${esc(s.champ.mgr)}</div><div class="mgr">${esc(s.champ.team)} · ${ord(s.nth)} championship${s.double ? '<span class="tag">+H2H</span>' : ""}</div></div>
+      <div class="mid"><div class="team">${esc(s.champ.mgr)}</div><div class="mgr">${esc(s.champ.team)}</div><div class="mgr">${ord(s.nth)} championship${s.double ? '<span class="tag">+H2H</span>' : ""}</div></div>
       <div class="right"><div class="pts">${fmt(s.champ.pts)}<small>PTS</small></div><div class="note">by ${s.margin}</div></div></a>`).join("")}</div>`;
 }
 function seasonsH2H() {
@@ -1037,7 +1037,7 @@ function seasonsH2H() {
   }).reverse();
   return `<div class="list">${rows.map(({ s, nth, row }) => s.h2h
     ? `<a class="row ticket" href="#season-${s.y}"><div class="yr">${s.y}</div>
-        <div class="mid"><div class="team">${esc(s.h2h)}</div><div class="mgr">${row ? esc(row[1]) + " · " : ""}${ord(nth)} H2H title${s.double ? '<span class="tag">+CHAMP</span>' : ""}</div></div>
+        <div class="mid"><div class="team">${esc(s.h2h)}</div>${row ? `<div class="mgr">${esc(row[1])}</div>` : ""}<div class="mgr">${ord(nth)} H2H title${s.double ? '<span class="tag">+CHAMP</span>' : ""}</div></div>
         <div class="right"><div class="pts">${row ? ord(row[0]) : ""}</div><div class="note">in points</div></div></a>`
     : `<a class="row ticket miss" href="#season-${s.y}"><div class="yr">${s.y}</div><div class="mid"><div class="team">Not on file yet</div></div><div class="right"></div></a>`
   ).join("")}</div>`;
