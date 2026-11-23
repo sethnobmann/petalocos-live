@@ -411,6 +411,7 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 .ylive .wp-bar { height: 6px; }
 .ylive .wp-l { margin-top: 5px; font-size: 10px; }
 .livetag { font-weight: 400; color: var(--loss); }
+.h .asof { color: var(--muted); letter-spacing: 0.08em; }
 .livetag::before {
   content: ""; display: inline-block; width: 6px; height: 6px; margin-right: 5px; border-radius: 50%;
   background: currentColor; vertical-align: 1px; animation: blink 1.4s ease-in-out infinite;
@@ -769,7 +770,7 @@ function seasonStandings() {
   const lt = liveTable();
   if (lt) {
     const C = D.live.cur, lead = lt[0].total;
-    return `<div class="h">Live standings · Week ${C.week} · <span class="livetag">Live</span></div>
+    return `<div class="h">Live standings · Week ${C.week} · <span class="livetag">Live</span>${asOfTime() ? ` <span class="asof">${asOfTime()}</span>` : ""}</div>
       <div class="list">${lt.map(r => {
         const href = lineupHref(r.team) || mlink(r.mgr);
         return `${rowTag(href, r.mgr)}${placeCol(r.live, lead - r.total)}
