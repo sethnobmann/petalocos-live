@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T04:11:40+00:00",
+ "updated": "2026-11-23T04:28:06+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 11,
@@ -8,7 +8,7 @@
    "team": "dontmindme",
    "manager": "Seth Nobmann",
    "week_pts": 126.0,
-   "week_proj": 138.0,
+   "week_proj": 137.0,
    "season_pts": 1202.0,
    "week_rank": 1,
    "season_rank": 5
@@ -23,22 +23,22 @@
    "season_rank": 7
   },
   {
+   "team": "Miwok Indians",
+   "manager": "Brandon Selvitella",
+   "week_pts": 108.0,
+   "week_proj": 108.0,
+   "season_pts": 1059.0,
+   "week_rank": 3,
+   "season_rank": 10
+  },
+  {
    "team": "FOTY*",
    "manager": "Dave Abramson",
    "week_pts": 107.0,
-   "week_proj": 111.0,
+   "week_proj": 110.0,
    "season_pts": 1236.0,
-   "week_rank": 3,
+   "week_rank": 4,
    "season_rank": 3
-  },
-  {
-   "team": "Miwok Indians",
-   "manager": "Brandon Selvitella",
-   "week_pts": 107.0,
-   "week_proj": 107.0,
-   "season_pts": 1058.0,
-   "week_rank": 3,
-   "season_rank": 10
   },
   {
    "team": "Maverick",
@@ -89,7 +89,7 @@
    "team": "FANTASY KING",
    "manager": "Chris King",
    "week_pts": 48.0,
-   "week_proj": 52.0,
+   "week_proj": 48.0,
    "season_pts": 1112.0,
    "week_rank": 10,
    "season_rank": 8
@@ -103,7 +103,7 @@
    "away_manager": "Tony Oliverez",
    "home_pts": 126.0,
    "away_pts": 96.0,
-   "home_proj": 138.0,
+   "home_proj": 137.0,
    "away_proj": 96.0
   },
   {
@@ -124,7 +124,7 @@
    "home_pts": 112.0,
    "away_pts": 48.0,
    "home_proj": 112.0,
-   "away_proj": 52.0
+   "away_proj": 48.0
   },
   {
    "home": "Mooseknuckle's",
@@ -134,16 +134,16 @@
    "home_pts": 74.0,
    "away_pts": 107.0,
    "home_proj": 106.0,
-   "away_proj": 111.0
+   "away_proj": 110.0
   },
   {
    "home": "Miwok Indians",
    "away": "Lincoln Hawk",
    "home_manager": "Brandon Selvitella",
    "away_manager": "Brandon Martinez",
-   "home_pts": 107.0,
+   "home_pts": 108.0,
    "away_pts": 83.0,
-   "home_proj": 107.0,
+   "home_proj": 108.0,
    "away_proj": 102.0
   }
  ],
