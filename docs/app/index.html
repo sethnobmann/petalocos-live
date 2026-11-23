@@ -498,18 +498,20 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 .badge.proj.gold { background: transparent; color: var(--orange); border-color: var(--orange); }
 .row.hrow { padding-block: 10px; row-gap: 3px; align-items: center; }
 .row.hrow .pcol { grid-row: 1 / span 3; align-self: start; }
-.hrow .c2 { grid-column: 2; min-width: 0; } .hrow .c3 { grid-column: 3; }
+.hrow .c2 { grid-column: 2; min-width: 0; }
 .hrow .mgr { margin-top: 0; }
-.hl, .hv, .hodds { display: grid; grid-template-columns: 46px 56px; column-gap: 8px; text-align: center; }
-.hl span { font: 9px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); }
-.hv b { width: 100%; box-sizing: border-box; padding: 1px 6px; border: 1.5px solid transparent; border-radius: 6px; font: 700 20px/1 var(--display); letter-spacing: 0.02em; }
-.hv b:first-child { padding-inline: 0; }
-.hv b.pjb { border-style: dashed; border-color: currentColor; }
 .vsl { font-size: 14px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .vsl b { font-weight: 600; color: var(--text); }
 .vsl .sc { margin-left: 8px; font: 13px var(--mono); color: var(--dim); }
-.hodds span { grid-column: 2; justify-self: center; position: relative; white-space: nowrap; font: 600 15px/1 var(--display); letter-spacing: 0.02em; }
-.hodds small { position: absolute; right: 100%; bottom: 1px; margin-right: 5px; font: 10px/1 var(--mono); letter-spacing: 0.02em; color: var(--dim); }
+/* right side: the record now, then one dashed box (not final) with the projected record and the odds.
+   Fixed widths so every row's box lines up. */
+.hx { grid-column: 3; grid-row: 1 / span 3; align-self: center; display: flex; align-items: center; gap: 8px; }
+.hx-now { width: 38px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.hx-now small, .hx-box small { font: 9px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); }
+.hx-now b, .hx-box b { font: 700 21px/1 var(--display); letter-spacing: 0.02em; white-space: nowrap; }
+.hx-box { box-sizing: border-box; width: 68px; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 4px 7px; border: 1.5px dashed currentColor; border-radius: 9px; }
+.hx-box em { font: 600 13px/1 var(--display); font-style: normal; letter-spacing: 0.03em; white-space: nowrap; }
+.hx-box em i { margin-left: 3px; font: 9px var(--mono); font-style: normal; letter-spacing: 0.06em; color: var(--dim); }
 
 /* refresh button (admins only for now): at the right of the page title, with how fresh the live scores are under it */
 .rfr {
@@ -600,7 +602,7 @@ function toast(msg) {
 }
 /* refresh: if a newer app is on the server, reload into it; otherwise pull the latest scores right now.
    Either way say what happened, so a tap never looks like nothing. */
-const BUILD_ID = "20261123054654";
+const BUILD_ID = "20261123055335";
 async function hardRefresh(btn) {
   if (btn.classList.contains("spin")) return;
   btn.classList.add("spin");
@@ -809,9 +811,9 @@ function liveH2HRows(rows) {
     const href = teamHref(r.team, r.mgr), o = r.opp ? live[r.opp] : null, back = topW - r.pw, wc = r.p >= 0.5 ? "w" : "l";
     const place = `<div class="pcol"><div class="badge proj${r.pp === 1 ? " gold" : ""}"><b>${r.pp}<sup>${ord(r.pp).slice(String(r.pp).length)}</sup></b></div>${back > 0 ? `<div class="pback"><b>${back}</b> back</div>` : ""}</div>`;
     return `${rowTag(href, r.mgr, "hrow")}${place}
-      <div class="team c2">${esc(r.team)}</div><div class="hl c3"><span>Now</span><span>Proj</span></div>
-      <div class="mgr c2">${esc(r.mgr)}</div><div class="hv c3"><b class="${wlc(r.w, r.l)}">${r.w}-${r.l}</b><b class="pjb ${o ? wc : "e"}">${r.pw}-${r.pl}</b></div>
-      ${o ? `<div class="vsl c2">vs <b>${esc(o.short)}</b><span class="sc">${r.lv}-${r.ol}</span></div><div class="hodds c3"><span class="${wc}"><small>to win</small>${pct(r.p)}</span></div>` : ""}${rowEnd(href)}`;
+      <div class="team c2">${esc(r.team)}</div><div class="mgr c2">${esc(r.mgr)}</div>
+      ${o ? `<div class="vsl c2">vs <b>${esc(o.short)}</b><span class="sc">${r.lv}-${r.ol}</span></div>` : ""}
+      <div class="hx"><div class="hx-now"><small>Now</small><b class="${wlc(r.w, r.l)}">${r.w}-${r.l}</b></div><div class="hx-box ${o ? wc : "e"}"><small>Proj</small><b>${r.pw}-${r.pl}</b>${o ? `<em>${pct(r.p)}<i>win</i></em>` : ""}</div></div>${rowEnd(href)}`;
   }).join("")}</div>`;
 }
 function seasonH2H() {
