@@ -602,7 +602,7 @@ function toast(msg) {
 }
 /* refresh: if a newer app is on the server, reload into it; otherwise pull the latest scores right now.
    Either way say what happened, so a tap never looks like nothing. */
-const BUILD_ID = "20261123055335";
+const BUILD_ID = "20261123164318";
 async function hardRefresh(btn) {
   if (btn.classList.contains("spin")) return;
   btn.classList.add("spin");
@@ -643,7 +643,7 @@ function homeBody() {
     </div>`;
   h += wk ? weekScores(wk) : seasonStandings();
   const first = state.me ? esc(state.me.split(" ")[0]) : "";
-  h += `<div class="foot">Updated through week ${L.through} · Nov 22<br><button class="out" data-act="signout">Not ${first}? Sign out</button></div>`;
+  h += `<div class="foot">Updated through week ${L.through} · Nov 23<br><button class="out" data-act="signout">Not ${first}? Sign out</button></div>`;
   return h;
 }
 /* this week's matchup: live score, projection, win chance from the projections */
