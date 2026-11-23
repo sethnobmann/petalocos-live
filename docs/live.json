@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T03:21:59+00:00",
+ "updated": "2026-11-23T03:38:40+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 11,
@@ -8,7 +8,7 @@
    "team": "dontmindme",
    "manager": "Seth Nobmann",
    "week_pts": 122.0,
-   "week_proj": 139.0,
+   "week_proj": 138.0,
    "season_pts": 1198.0,
    "week_rank": 1,
    "season_rank": 5
@@ -17,7 +17,7 @@
    "team": "SHOW ME THE $$$$",
    "manager": "CJ Nelson",
    "week_pts": 112.0,
-   "week_proj": 115.0,
+   "week_proj": 114.0,
    "season_pts": 1149.0,
    "week_rank": 2,
    "season_rank": 7
@@ -26,7 +26,7 @@
    "team": "Miwok Indians",
    "manager": "Brandon Selvitella",
    "week_pts": 106.0,
-   "week_proj": 107.0,
+   "week_proj": 108.0,
    "season_pts": 1057.0,
    "week_rank": 3,
    "season_rank": 10
@@ -34,9 +34,9 @@
   {
    "team": "Maverick",
    "manager": "Chris Scerri",
-   "week_pts": 101.0,
-   "week_proj": 113.0,
-   "season_pts": 1246.0,
+   "week_pts": 102.0,
+   "week_proj": 114.0,
+   "season_pts": 1247.0,
    "week_rank": 4,
    "season_rank": 2
   },
@@ -53,7 +53,7 @@
    "team": "u got pzzzed",
    "manager": "Tony Oliverez",
    "week_pts": 95.0,
-   "week_proj": 101.0,
+   "week_proj": 100.0,
    "season_pts": 1150.0,
    "week_rank": 6,
    "season_rank": 6
@@ -89,7 +89,7 @@
    "team": "FANTASY KING",
    "manager": "Chris King",
    "week_pts": 44.0,
-   "week_proj": 62.0,
+   "week_proj": 59.0,
    "season_pts": 1108.0,
    "week_rank": 10,
    "season_rank": 8
@@ -103,8 +103,8 @@
    "away_manager": "Tony Oliverez",
    "home_pts": 122.0,
    "away_pts": 95.0,
-   "home_proj": 139.0,
-   "away_proj": 101.0
+   "home_proj": 138.0,
+   "away_proj": 100.0
   },
   {
    "home": "Umbertos",
@@ -112,9 +112,9 @@
    "home_manager": "Rob Scerri",
    "away_manager": "Chris Scerri",
    "home_pts": 94.0,
-   "away_pts": 101.0,
+   "away_pts": 102.0,
    "home_proj": 116.0,
-   "away_proj": 113.0
+   "away_proj": 114.0
   },
   {
    "home": "SHOW ME THE $$$$",
@@ -123,8 +123,8 @@
    "away_manager": "Chris King",
    "home_pts": 112.0,
    "away_pts": 44.0,
-   "home_proj": 115.0,
-   "away_proj": 62.0
+   "home_proj": 114.0,
+   "away_proj": 59.0
   },
   {
    "home": "Mooseknuckle's",
@@ -143,7 +143,7 @@
    "away_manager": "Brandon Martinez",
    "home_pts": 106.0,
    "away_pts": 83.0,
-   "home_proj": 107.0,
+   "home_proj": 108.0,
    "away_proj": 102.0
   }
  ],
