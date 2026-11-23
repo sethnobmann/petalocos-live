@@ -117,6 +117,13 @@ def _expand(cells):
     return out
 
 
+PUA = re.compile(r"[\ue000-\uf8ff]")  # Yahoo's icon-font glyphs (the TV icon after a game time)
+
+
+def clean(s):
+    return " ".join(PUA.sub("", s or "").split())
+
+
 def _num(s):
     s = (s or "").replace(",", "").strip()
     try:
@@ -155,7 +162,7 @@ def parse_team(html):
             st = gs.text() if gs else ""
             pts = _num(C[fi].text()) if fi is not None and fi < len(C) else None
             proj = _num(C[pi].text()) if pi is not None and pi < len(C) else None
-            rows.append([slot, name, tp, st, pts, proj])
+            rows.append([clean(slot), clean(name), clean(tp), clean(st), pts, proj])
     return rows
 
 
