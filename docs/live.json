@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T19:00:04+00:00",
+ "updated": "2026-11-23T19:10:08+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 11,
@@ -355,7 +355,7 @@
    ],
    [
     "DEF",
-    "Buffalo",
+    "Bills",
     "Buf - DEF",
     "Final W 26-9 vs Mia",
     4.0,
@@ -461,7 +461,7 @@
    ],
    [
     "DEF",
-    "Kansas City",
+    "Chiefs",
     "KC - DEF",
     "Final W 34-7 vs Ari",
     3.0,
@@ -1203,7 +1203,7 @@
    ],
    [
     "DEF",
-    "Chicago",
+    "Bears",
     "Chi - DEF",
     "Final W 21-13 vs NO",
     15.0,
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-23T19:00:04+00:00"
+ "lineups_updated": "2026-11-23T19:10:08+00:00"
 }
