@@ -112,6 +112,7 @@ main { padding-block: 18px calc(96px + env(safe-area-inset-bottom, 0px)); }
 .sech { margin: 18px 2px -2px; padding-top: 20px; border-top: 2px solid var(--orange-edge); }
 .sech b { display: block; font: 600 28px/1 var(--display); letter-spacing: 0.03em; text-transform: uppercase; color: var(--text); }
 .sech span { display: block; margin-top: 6px; font: 12px var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); }
+.sech.first { margin-top: 2px; padding-top: 0; border-top: 0; }
 .foot { text-align: center; font: 11px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim); margin-top: 6px; }
 
 .seg { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; }
@@ -598,7 +599,7 @@ function toast(msg) {
 }
 /* refresh: if a newer app is on the server, reload into it; otherwise pull the latest scores right now.
    Either way say what happened, so a tap never looks like nothing. */
-const BUILD_ID = "20261123054234";
+const BUILD_ID = "20261123054444";
 async function hardRefresh(btn) {
   if (btn.classList.contains("spin")) return;
   btn.classList.add("spin");
@@ -1188,9 +1189,10 @@ function recCards(list) {
 }
 function renderRecords() {
   const R = D.records;
-  const body = `<div class="h">Single season</div>${recCards(R.season)}
-    <div class="h">Single week</div>${recCards(R.week)}
-    <div class="h">Career</div>${recCards(R.career)}`;
+  const head = (t, sub, first) => `<div class="sech${first ? " first" : ""}"><b>${t}</b><span>${sub}</span></div>`;
+  const body = `${head("Single season", "Full seasons since 2002", true)}${recCards(R.season)}
+    ${head("Single week", "Weekly marks since 2010")}${recCards(R.week)}
+    ${head("Career", "All-time, since 2002")}${recCards(R.career)}`;
   return { tab: "records", band: band({ eyebrow: "Weekly marks from 2010", title: "Records", sub: "Tap a card for the season or the man" }), body };
 }
 
