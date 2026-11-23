@@ -241,6 +241,9 @@ updated = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=-8)))
 html = open(f"{REPO}/app/template.html", encoding="utf-8").read()
 html = html.replace("__DATA__", json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
 html = html.replace("__UPDATED__", updated)
+# a unique stamp per build, so the app's refresh button can tell when a newer version is on the server
+import time as _time
+html = html.replace("__BUILD__", _time.strftime("%Y%m%d%H%M%S", _time.gmtime()))
 with open(f"{OUT}/index.html", "w", encoding="utf-8") as f:
     f.write(html)
 

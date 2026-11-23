@@ -509,17 +509,24 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 .hodds span { grid-column: 2; justify-self: center; position: relative; white-space: nowrap; font: 600 15px/1 var(--display); letter-spacing: 0.02em; }
 .hodds small { position: absolute; right: 100%; bottom: 1px; margin-right: 5px; font: 10px/1 var(--mono); letter-spacing: 0.02em; color: var(--dim); }
 
-/* refresh pill (admins only for now): top center between the light banks, shows how fresh the live scores are */
+/* refresh button (admins only for now): at the right of the page title, with how fresh the live scores are under it */
 .rfr {
-  position: absolute; z-index: 2; top: calc(6px + env(safe-area-inset-top, 0px)); left: 50%; transform: translateX(-50%);
-  display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px 5px 8px; cursor: pointer;
-  border-radius: 999px; background: rgba(8, 16, 29, 0.55); border: 1px solid rgba(255, 255, 255, 0.18);
-  font: 11px/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text); white-space: nowrap;
+  flex: none; margin-left: auto; align-self: center; display: flex; flex-direction: column; align-items: center; gap: 5px;
+  padding: 0; border: 0; background: none; cursor: pointer; color: var(--muted);
+  font: 10px/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
 }
-.rfr svg { width: 14px; height: 14px; flex: none; fill: none; stroke: var(--orange); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
-.rfr:active { background: rgba(255, 255, 255, 0.14); }
+.rfr i { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); }
+.rfr svg { width: 19px; height: 19px; fill: none; stroke: var(--orange); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.rfr:active i { background: rgba(255, 255, 255, 0.16); }
 .rfr.spin svg { animation: rfr 0.8s linear infinite; }
 @keyframes rfr { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .rfr.spin svg { animation-duration: 2s; } }
+/* a short note after a refresh, just above the tab bar */
+.toast {
+  position: fixed; left: 50%; bottom: calc(76px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 30;
+  padding: 9px 15px; border-radius: 999px; background: var(--card); border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45); font: 12px var(--mono); letter-spacing: 0.06em; color: var(--text); white-space: nowrap;
+}
 </style>
 
 </head>
@@ -575,26 +582,49 @@ function kv(k, v) { return `<div class="kv"><dt>${k}</dt><dd>${v}</dd></div>`; }
 /* who sees admin-only bits like the refresh pill (a convenience, not a lock) */
 const ADMINS = ["Seth Nobmann"];
 const REFRESH_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg>';
+const asOfTime = () => {
+  const C = D.live.cur, t = C && new Date(C.asOf);
+  return t && !isNaN(t) ? t.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", timeZone: "America/Los_Angeles" }) : "";
+};
 function refreshPill() {
   if (!ADMINS.includes(state.me)) return "";
-  const C = D.live.cur, t = C && new Date(C.asOf);
-  const when = t && !isNaN(t) ? t.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", timeZone: "America/Los_Angeles" }) : "Refresh";
-  return `<button class="rfr" data-act="refresh" aria-label="Refresh">${REFRESH_SVG}${when}</button>`;
+  return `<button class="rfr" data-act="refresh" aria-label="Refresh scores"><i>${REFRESH_SVG}</i>${asOfTime() || "Refresh"}</button>`;
 }
-/* pull the newest app and scores: refresh the cached page, then reload */
+function toast(msg) {
+  let t = document.getElementById("toast");
+  if (!t) { t = document.createElement("div"); t.id = "toast"; t.className = "toast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+  t.textContent = msg; t.hidden = false;
+  clearTimeout(toast.timer); toast.timer = setTimeout(() => { t.hidden = true; }, 2800);
+}
+/* refresh: if a newer app is on the server, reload into it; otherwise pull the latest scores right now.
+   Either way say what happened, so a tap never looks like nothing. */
+const BUILD_ID = "__BUILD__";
 async function hardRefresh(btn) {
+  if (btn.classList.contains("spin")) return;
   btn.classList.add("spin");
-  const wait = new Promise(r => setTimeout(r, 600));
-  try { await fetch(location.pathname, { cache: "reload" }); } catch (e) {}
-  await wait;
-  location.reload();
+  const t0 = Date.now();
+  try {
+    const r = await fetch(`${location.pathname}?v=${Date.now()}`, { cache: "no-store" });
+    const m = r.ok && (await r.text()).match(/const BUILD_ID = "([^"]*)"/);
+    if (m && m[1] !== BUILD_ID) {
+      toast("New version · reloading");
+      try { await fetch(location.pathname, { cache: "reload" }); } catch (e) {}
+      location.reload();
+      return;
+    }
+  } catch (e) {}
+  const moved = await pullLive(true);
+  await new Promise(r => setTimeout(r, Math.max(0, 700 - (Date.now() - t0))));
+  route();
+  const when = asOfTime();
+  toast(moved ? `Updated · scores as of ${when}` : when ? `Up to date · scores as of ${when}` : "Up to date");
 }
 function band({ back, eyebrow, title, sub, avatar }) {
-  return `<div class="bank l"></div><div class="bank r"></div>${refreshPill()}
+  return `<div class="bank l"></div><div class="bank r"></div>
   <div class="band-in gut"><div class="col">
     ${back ? `<a class="back" href="#${back.href}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>${back.label}</a>` : ""}
     <div class="hero">${avatar || `<img class="crest" src="${CREST}" alt="Petalocos crest">`}
-      <div class="ht"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1>${sub ? `<div class="sub">${sub}</div>` : ""}</div>
+      <div class="ht"><div class="eyebrow">${eyebrow}</div><h1>${title}</h1>${sub ? `<div class="sub">${sub}</div>` : ""}</div>${refreshPill()}
     </div>
   </div></div>`;
 }
@@ -960,7 +990,7 @@ function h2hBody() {
   }
   const seeds = h2hOutlook();
   return h + `<div class="h">Projected draw</div>${bracket(seeds)}
-    <p class="hnote">Top 6 make it. Seeds 1 and 2 get the week 15 bye. Week 16 re-seeds: #1 plays the lowest seed left.</p>
+    <p class="hnote">Top 6 make it. Seeds 1 and 2 get the week 15 bye.<br>Week 16 re-seeds: #1 plays the lowest seed left.</p>
     <div class="h">Projected seeds</div><div class="list">${seedRows(seeds.slice(0, 6))}</div>
     <div class="h">Outside looking in</div><div class="list">${seedRows(seeds.slice(6))}</div>`;
 }
@@ -1258,15 +1288,15 @@ window.addEventListener("hashchange", () => { if (state.me) route(); });
    every 2 minutes while the app is on screen, and whenever it comes back to the foreground.
    In the claude.ai preview the fetch is blocked, so this quietly does nothing there. */
 let pulling = false;
-async function pullLive() {
+async function pullLive(force) {
   const C = D.live.cur;
-  if (pulling || !C || !C.teams || document.hidden) return;
+  if (pulling || !C || !C.teams || (document.hidden && !force)) return false;
   pulling = true;
   try {
     const r = await fetch(`../live.json?t=${Date.now()}`, { cache: "no-store" });
     if (!r.ok) return;
     const j = await r.json();
-    if (j.week !== C.week || !Array.isArray(j.teams) || !(new Date(j.updated) > new Date(C.asOf))) return;
+    if (j.week !== C.week || !Array.isArray(j.teams) || !(new Date(j.updated) > new Date(C.asOf))) return false;
     for (const t of j.teams) {
       if (!C.teams[t.team] || typeof t.week_pts !== "number") continue;
       const proj = typeof t.week_proj === "number" ? t.week_proj : t.week_pts;
@@ -1274,6 +1304,7 @@ async function pullLive() {
     }
     C.asOf = j.updated;
     if (state.me) route();
+    return true;
   } catch (e) {
   } finally {
     pulling = false;
