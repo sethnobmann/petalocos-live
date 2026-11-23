@@ -33,10 +33,10 @@ except ImportError:
 crest = "data:image/png;base64," + base64.b64encode(png).decode()
 
 reps = [
-    ('"../img/crest-shield.png"', f'"{crest}"'),
+    ('"../img/crest-shield.png?v=3"', f'"{crest}"'),
     ('<link rel="manifest" href="manifest.webmanifest">\n', ""),
-    ('<link rel="apple-touch-icon" href="icon-180.png?v=2">\n', ""),
-    ('<link rel="icon" type="image/png" href="icon-192.png?v=2">\n', ""),
+    ('<link rel="apple-touch-icon" href="icon-180.png?v=3">\n', ""),
+    ('<link rel="icon" type="image/png" href="icon-192.png?v=3">\n', ""),
     ("Updated through week ${L.through} · ", "Review copy · updated through week ${L.through} · "),
 ]
 for old, new in reps:

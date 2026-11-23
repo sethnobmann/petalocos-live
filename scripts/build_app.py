@@ -223,7 +223,7 @@ os.makedirs(OUT, exist_ok=True)
 if Image is not None and not all(os.path.exists(f"{OUT}/icon-{s}.png") for s in (180, 192, 512)):
     import runpy
     runpy.run_path(f"{REPO}/scripts/make_icons.py")
-ICON_V = 2  # bump with the ?v= on the icon links in app/template.html when the icons change
+ICON_V = 3  # bump with the ?v= on the icon links in app/template.html when the icons change
 manifest = {
     "name": "Petalocos", "short_name": "Petalocos", "start_url": "./", "scope": "./",
     "display": "standalone", "background_color": "#0B1424", "theme_color": "#0B1424",
