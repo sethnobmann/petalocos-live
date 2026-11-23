@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T21:10:10+00:00",
+ "updated": "2026-11-23T21:20:08+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 11,
@@ -26,7 +26,7 @@
    "team": "Miwok Indians",
    "manager": "Brandon Selvitella",
    "week_pts": 108.0,
-   "week_proj": 108.0,
+   "week_proj": 113.0,
    "season_pts": 1059.0,
    "week_rank": 3,
    "season_rank": 10
@@ -143,7 +143,7 @@
    "away_manager": "Brandon Martinez",
    "home_pts": 108.0,
    "away_pts": 83.0,
-   "home_proj": 108.0,
+   "home_proj": 113.0,
    "away_proj": 102.0
   }
  ],
@@ -979,7 +979,7 @@
     "Was - RB",
     "Mon 5:15 pm vs Cin",
     null,
-    0.0
+    5.0
    ],
    [
     "K",
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-23T21:10:10+00:00"
+ "lineups_updated": "2026-11-23T21:20:08+00:00"
 }
