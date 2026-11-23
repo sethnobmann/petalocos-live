@@ -9,8 +9,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Petalocos">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icon-180.png">
-<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png?v=2">
+<link rel="icon" type="image/png" href="icon-192.png?v=2">
 <title>Petalocos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -602,7 +602,7 @@ function toast(msg) {
 }
 /* refresh: if a newer app is on the server, reload into it; otherwise pull the latest scores right now.
    Either way say what happened, so a tap never looks like nothing. */
-const BUILD_ID = "20261123164318";
+const BUILD_ID = "20261123174941";
 async function hardRefresh(btn) {
   if (btn.classList.contains("spin")) return;
   btn.classList.add("spin");

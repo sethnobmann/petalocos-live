@@ -217,22 +217,17 @@ records = {
 
 data = {"seasons": seasons, "members": members, "live": live, "records": records}
 
-# ---- icons + manifest (made once) -------------------------------------
+# ---- icons + manifest -----------------------------------------------
+# The icons are made by scripts/make_icons.py (crest on white); made here only if missing.
 os.makedirs(OUT, exist_ok=True)
-for size in (180, 192, 512):
-    path = f"{OUT}/icon-{size}.png"
-    if os.path.exists(path) or Image is None:
-        continue
-    crest = Image.open(f"{REPO}/docs/img/crest-shield.png").convert("RGBA")
-    tile = Image.new("RGBA", (size, size), (11, 20, 36, 255))
-    c = crest.copy()
-    c.thumbnail((int(size * 0.74), int(size * 0.74)), Image.LANCZOS)
-    tile.alpha_composite(c, ((size - c.width) // 2, (size - c.height) // 2))
-    tile.convert("RGB").save(path, "PNG", optimize=True)
+if Image is not None and not all(os.path.exists(f"{OUT}/icon-{s}.png") for s in (180, 192, 512)):
+    import runpy
+    runpy.run_path(f"{REPO}/scripts/make_icons.py")
+ICON_V = 2  # bump with the ?v= on the icon links in app/template.html when the icons change
 manifest = {
     "name": "Petalocos", "short_name": "Petalocos", "start_url": "./", "scope": "./",
     "display": "standalone", "background_color": "#0B1424", "theme_color": "#0B1424",
-    "icons": [{"src": f"icon-{s}.png", "sizes": f"{s}x{s}", "type": "image/png"} for s in (192, 512)],
+    "icons": [{"src": f"icon-{s}.png?v={ICON_V}", "sizes": f"{s}x{s}", "type": "image/png"} for s in (192, 512)],
 }
 with open(f"{OUT}/manifest.webmanifest", "w", encoding="utf-8") as f:
     json.dump(manifest, f, indent=2)
