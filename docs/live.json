@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T23:45:17+00:00",
+ "updated": "2026-11-23T00:02:26+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 11,
@@ -8,7 +8,7 @@
    "team": "dontmindme",
    "manager": "Seth Nobmann",
    "week_pts": 110.0,
-   "week_proj": 129.0,
+   "week_proj": 128.0,
    "season_pts": 1186.0,
    "week_rank": 1,
    "season_rank": 5
@@ -17,7 +17,7 @@
    "team": "Umbertos",
    "manager": "Rob Scerri",
    "week_pts": 94.0,
-   "week_proj": 117.0,
+   "week_proj": 116.0,
    "season_pts": 1315.0,
    "week_rank": 2,
    "season_rank": 1
@@ -25,35 +25,35 @@
   {
    "team": "Maverick",
    "manager": "Chris Scerri",
-   "week_pts": 91.0,
-   "week_proj": 116.0,
-   "season_pts": 1236.0,
+   "week_pts": 92.0,
+   "week_proj": 115.0,
+   "season_pts": 1237.0,
    "week_rank": 3,
    "season_rank": 2
   },
   {
-   "team": "FOTY*",
-   "manager": "Dave Abramson",
-   "week_pts": 90.0,
-   "week_proj": 117.0,
-   "season_pts": 1219.0,
-   "week_rank": 4,
-   "season_rank": 3
-  },
-  {
    "team": "u got pzzzed",
    "manager": "Tony Oliverez",
-   "week_pts": 90.0,
+   "week_pts": 92.0,
    "week_proj": 103.0,
-   "season_pts": 1145.0,
-   "week_rank": 4,
+   "season_pts": 1147.0,
+   "week_rank": 3,
    "season_rank": 6
+  },
+  {
+   "team": "FOTY*",
+   "manager": "Dave Abramson",
+   "week_pts": 91.0,
+   "week_proj": 115.0,
+   "season_pts": 1220.0,
+   "week_rank": 5,
+   "season_rank": 3
   },
   {
    "team": "SHOW ME THE $$$$",
    "manager": "CJ Nelson",
    "week_pts": 86.0,
-   "week_proj": 95.0,
+   "week_proj": 92.0,
    "season_pts": 1123.0,
    "week_rank": 6,
    "season_rank": 7
@@ -71,7 +71,7 @@
    "team": "Mooseknuckle's",
    "manager": "Brian Lovrin",
    "week_pts": 73.0,
-   "week_proj": 112.0,
+   "week_proj": 111.0,
    "season_pts": 1205.0,
    "week_rank": 8,
    "season_rank": 4
@@ -79,9 +79,9 @@
   {
    "team": "Lincoln Hawk",
    "manager": "Brandon Martinez",
-   "week_pts": 41.0,
-   "week_proj": 71.0,
-   "season_pts": 1049.0,
+   "week_pts": 51.0,
+   "week_proj": 82.0,
+   "season_pts": 1059.0,
    "week_rank": 9,
    "season_rank": 9
   },
@@ -102,8 +102,8 @@
    "home_manager": "Seth Nobmann",
    "away_manager": "Tony Oliverez",
    "home_pts": 110.0,
-   "away_pts": 90.0,
-   "home_proj": 129.0,
+   "away_pts": 92.0,
+   "home_proj": 128.0,
    "away_proj": 103.0
   },
   {
@@ -112,9 +112,9 @@
    "home_manager": "Rob Scerri",
    "away_manager": "Chris Scerri",
    "home_pts": 94.0,
-   "away_pts": 91.0,
-   "home_proj": 117.0,
-   "away_proj": 116.0
+   "away_pts": 92.0,
+   "home_proj": 116.0,
+   "away_proj": 115.0
   },
   {
    "home": "SHOW ME THE $$$$",
@@ -123,7 +123,7 @@
    "away_manager": "Chris King",
    "home_pts": 86.0,
    "away_pts": 16.0,
-   "home_proj": 95.0,
+   "home_proj": 92.0,
    "away_proj": 56.0
   },
   {
@@ -132,9 +132,9 @@
    "home_manager": "Brian Lovrin",
    "away_manager": "Dave Abramson",
    "home_pts": 73.0,
-   "away_pts": 90.0,
-   "home_proj": 112.0,
-   "away_proj": 117.0
+   "away_pts": 91.0,
+   "home_proj": 111.0,
+   "away_proj": 115.0
   },
   {
    "home": "Miwok Indians",
@@ -142,9 +142,9 @@
    "home_manager": "Brandon Selvitella",
    "away_manager": "Brandon Martinez",
    "home_pts": 84.0,
-   "away_pts": 41.0,
+   "away_pts": 51.0,
    "home_proj": 96.0,
-   "away_proj": 71.0
+   "away_proj": 82.0
   }
  ],
  "unmapped_teams": [],
