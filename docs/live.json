@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T17:00:07+00:00",
+ "updated": "2026-11-23T17:10:05+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 11,
@@ -155,7 +155,7 @@
     "QB",
     "Joe Burrow",
     "Cin - QB",
-    "Mon 5:15 pm @ Was \ue230",
+    "Mon 5:15 pm @ Was",
     null,
     22.0
    ],
@@ -285,7 +285,7 @@
     "RB",
     "Chase Brown",
     "Cin - RB",
-    "Mon 5:15 pm @ Was \ue230",
+    "Mon 5:15 pm @ Was",
     null,
     7.0
    ],
@@ -325,7 +325,7 @@
     "TE",
     "Mike Gesicki",
     "Cin - TE",
-    "Mon 5:15 pm @ Was \ue230",
+    "Mon 5:15 pm @ Was",
     null,
     4.0
    ],
@@ -651,7 +651,7 @@
     "W/R/T",
     "Antonio Williams",
     "Was - WR",
-    "Mon 5:15 pm vs Cin \ue230",
+    "Mon 5:15 pm vs Cin",
     null,
     3.0
    ],
@@ -693,7 +693,7 @@
     "QB",
     "Jayden Daniels",
     "Was - QB",
-    "Mon 5:15 pm vs Cin \ue230",
+    "Mon 5:15 pm vs Cin",
     null,
     19.0
    ],
@@ -831,7 +831,7 @@
     "WR",
     "Tee Higgins",
     "Cin - WR",
-    "Mon 5:15 pm @ Was \ue230",
+    "Mon 5:15 pm @ Was",
     null,
     8.0
    ],
@@ -977,7 +977,7 @@
     "W/R/T",
     "J. Croskey-Merritt",
     "Was - RB",
-    "Mon 5:15 pm vs Cin \ue230",
+    "Mon 5:15 pm vs Cin",
     null,
     0.0
    ],
@@ -1035,7 +1035,7 @@
     "RB",
     "Samaje Perine",
     "Cin - RB",
-    "Mon 5:15 pm @ Was \ue230",
+    "Mon 5:15 pm @ Was",
     null,
     4.0
    ],
@@ -1043,7 +1043,7 @@
     "WR",
     "Ja'Marr Chase",
     "Cin - WR",
-    "Mon 5:15 pm @ Was \ue230",
+    "Mon 5:15 pm @ Was",
     null,
     13.0
    ],
@@ -1075,7 +1075,7 @@
     "W/R/T",
     "Stefon Diggs",
     "Was - WR",
-    "Mon 5:15 pm vs Cin \ue230",
+    "Mon 5:15 pm vs Cin",
     null,
     6.0
    ],
@@ -1091,7 +1091,7 @@
     "K",
     "Evan McPherson",
     "Cin - K",
-    "Mon 5:15 pm @ Was \ue230",
+    "Mon 5:15 pm @ Was",
     null,
     9.0
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-23T17:00:07+00:00"
+ "lineups_updated": "2026-11-23T17:10:05+00:00"
 }
