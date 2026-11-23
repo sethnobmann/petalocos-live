@@ -189,9 +189,6 @@ def most(key, label, fmt_v=str):
             "href": f"member-{who[0]['slug']}" if len(who) == 1 else None}
 
 
-ten = [m for m in members if m["seasons"] >= 10]
-best_avg = min(ten, key=lambda m: m["avg"])
-no_title = max((m for m in members if not m["titles"]), key=lambda m: m["seasons"])
 records = {
     "season": [
         {"k": "Best season", "v": fmt(b["pts"]), "who": b["mgr"], "ctx": f"{b['team']} · {b['y']}", "href": f"season-{b['y']}"},
@@ -210,8 +207,6 @@ records = {
         most(lambda m: m["seconds"], "Most runner-ups"),
         most(lambda m: m["top3"], "Most top-3 finishes"),
         most(lambda m: m["lasts"], "Most last places"),
-        {"k": "Best avg finish", "v": f"{best_avg['avg']:.1f}", "who": best_avg["name"], "ctx": "10+ seasons", "href": f"member-{best_avg['slug']}"},
-        {"k": "Most seasons, no championship", "v": str(no_title["seasons"]), "who": no_title["name"], "ctx": f"{no_title['seasons']} seasons", "href": f"member-{no_title['slug']}"},
     ],
     "points": [
         {"name": m["name"], "slug": m["slug"], "seasons": m["seasons"], "career": m["career"],
