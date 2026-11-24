@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T00:20:07+00:00",
+ "updated": "2026-11-24T00:30:10+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 11,
@@ -148,5 +148,1068 @@
   }
  ],
  "unmapped_teams": [],
- "source": "yahoo site"
+ "source": "yahoo site",
+ "lineups": {
+  "Umbertos": [
+   [
+    "QB",
+    "Joe Burrow",
+    "Cin - QB",
+    "Mon 5:15 pm @ Was",
+    null,
+    22.0
+   ],
+   [
+    "QB",
+    "C.J. Stroud",
+    "Hou - QB",
+    "Final W 26-3 vs Ind",
+    22.0,
+    19.0
+   ],
+   [
+    "RB",
+    "James Cook III",
+    "Buf - RB",
+    "Final W 26-9 vs Mia",
+    12.0,
+    10.0
+   ],
+   [
+    "RB",
+    "Emmett Johnson",
+    "KC - RB",
+    "Final W 34-7 vs Ari",
+    16.0,
+    14.0
+   ],
+   [
+    "RB",
+    "David Montgomery",
+    "Hou - RB",
+    "Final W 26-3 vs Ind",
+    7.0,
+    10.0
+   ],
+   [
+    "WR",
+    "CeeDee Lamb",
+    "Dal - WR",
+    "Final W 51-30 vs Ten",
+    16.0,
+    13.0
+   ],
+   [
+    "WR",
+    "Courtland Sutton",
+    "Den - WR",
+    "Final W 38-24 vs LV",
+    0.0,
+    5.0
+   ],
+   [
+    "WR",
+    "Elic Ayomanor",
+    "Ten - WR",
+    "Final L 30-51 @ Dal",
+    1.0,
+    5.0
+   ],
+   [
+    "TE",
+    "Brock Bowers",
+    "LV - TE",
+    "Final L 24-38 @ Den",
+    0.0,
+    0.0
+   ],
+   [
+    "W/R/T",
+    "DeVonta Smith",
+    "Phi - WR",
+    "Final W 19-16 vs Pit",
+    2.0,
+    6.0
+   ],
+   [
+    "W/R/T",
+    "Adonai Mitchell",
+    "NYJ - WR",
+    "Final W 27-24 @ LAC",
+    1.0,
+    4.0
+   ],
+   [
+    "K",
+    "Harrison Butker",
+    "KC - K",
+    "Final W 34-7 vs Ari",
+    12.0,
+    8.0
+   ],
+   [
+    "DEF",
+    "Eagles",
+    "Phi - DEF",
+    "Final W 19-16 vs Pit",
+    5.0,
+    6.0
+   ]
+  ],
+  "dontmindme": [
+   [
+    "QB",
+    "Dak Prescott",
+    "Dal - QB",
+    "Final W 51-30 vs Ten",
+    38.0,
+    20.0
+   ],
+   [
+    "QB",
+    "Kyle McCord",
+    "Mia - QB",
+    "Final L 9-26 @ Buf",
+    2.0,
+    10.0
+   ],
+   [
+    "RB",
+    "Chuba Hubbard",
+    "Car - RB",
+    "Final W 35-33 vs Bal",
+    26.0,
+    11.0
+   ],
+   [
+    "RB",
+    "Chase Brown",
+    "Cin - RB",
+    "Mon 5:15 pm @ Was",
+    null,
+    7.0
+   ],
+   [
+    "RB",
+    "J.K. Dobbins",
+    "Den - RB",
+    "Final W 38-24 vs LV",
+    0.0,
+    3.0
+   ],
+   [
+    "WR",
+    "Jameson Williams",
+    "Det - WR",
+    "Final W 31-21 vs TB",
+    12.0,
+    5.0
+   ],
+   [
+    "WR",
+    "DK Metcalf",
+    "Pit - WR",
+    "Final L 16-19 @ Phi",
+    0.0,
+    5.0
+   ],
+   [
+    "WR",
+    "Keenan Allen",
+    "SF - WR",
+    "Final W 35-10 vs Min",
+    1.0,
+    2.0
+   ],
+   [
+    "TE",
+    "Mike Gesicki",
+    "Cin - TE",
+    "Mon 5:15 pm @ Was",
+    null,
+    4.0
+   ],
+   [
+    "W/R/T",
+    "Travis Kelce",
+    "KC - TE",
+    "Final W 34-7 vs Ari",
+    19.0,
+    5.0
+   ],
+   [
+    "W/R/T",
+    "Mike Evans",
+    "SF - WR",
+    "Final W 35-10 vs Min",
+    15.0,
+    5.0
+   ],
+   [
+    "K",
+    "Jake Bates",
+    "Det - K",
+    "Final W 31-21 vs TB",
+    9.0,
+    9.0
+   ],
+   [
+    "DEF",
+    "Bills",
+    "Buf - DEF",
+    "Final W 26-9 vs Mia",
+    4.0,
+    8.0
+   ]
+  ],
+  "FANTASY KING": [
+   [
+    "QB",
+    "Brock Purdy",
+    "SF - QB",
+    "Final W 35-10 vs Min",
+    23.0,
+    16.0
+   ],
+   [
+    "QB",
+    "Kirk Cousins",
+    "Min - QB",
+    "Final L 10-35 @ SF",
+    4.0,
+    14.0
+   ],
+   [
+    "RB",
+    "Jonathan Taylor",
+    "Ind - RB",
+    "Final L 3-26 @ Hou",
+    1.0,
+    9.0
+   ],
+   [
+    "RB",
+    "Tyler Allgeier",
+    "Ari - RB",
+    "Final L 7-34 @ KC",
+    1.0,
+    3.0
+   ],
+   [
+    "RB",
+    "Travis Etienne Jr.",
+    "NO - RB",
+    "Final L 13-21 @ Chi",
+    3.0,
+    5.0
+   ],
+   [
+    "WR",
+    "Zay Flowers",
+    "Bal - WR",
+    "Final L 33-35 @ Car",
+    4.0,
+    6.0
+   ],
+   [
+    "WR",
+    "Jalen Coker",
+    "Car - WR",
+    "Final W 35-33 vs Bal",
+    2.0,
+    5.0
+   ],
+   [
+    "WR",
+    "Makai Lemon",
+    "Phi - WR",
+    "Final W 19-16 vs Pit",
+    0.0,
+    2.0
+   ],
+   [
+    "TE",
+    "Trey McBride",
+    "Ari - TE",
+    "Final L 7-34 @ KC",
+    2.0,
+    5.0
+   ],
+   [
+    "W/R/T",
+    "Kaelon Black",
+    "SF - RB",
+    "Final W 35-10 vs Min",
+    0.0,
+    2.0
+   ],
+   [
+    "W/R/T",
+    "Juwan Johnson",
+    "NO - TE",
+    "Final L 13-21 @ Chi",
+    0.0,
+    3.0
+   ],
+   [
+    "K",
+    "Eddy Pineiro",
+    "SF - K",
+    "Final W 35-10 vs Min",
+    5.0,
+    8.0
+   ],
+   [
+    "DEF",
+    "Chiefs",
+    "KC - DEF",
+    "Final W 34-7 vs Ari",
+    3.0,
+    8.0
+   ]
+  ],
+  "u got pzzzed": [
+   [
+    "QB",
+    "Jacoby Brissett",
+    "Bal - QB",
+    "Final L 33-35 @ Car",
+    11.0,
+    12.0
+   ],
+   [
+    "QB",
+    "Bo Nix",
+    "Den - QB",
+    "Final W 38-24 vs LV",
+    10.0,
+    17.0
+   ],
+   [
+    "RB",
+    "Jahmyr Gibbs",
+    "Det - RB",
+    "Final W 31-21 vs TB",
+    21.0,
+    14.0
+   ],
+   [
+    "RB",
+    "Jaylen Warren",
+    "Pit - RB",
+    "Final L 16-19 @ Phi",
+    1.0,
+    8.0
+   ],
+   [
+    "RB",
+    "Bucky Irving",
+    "TB - RB",
+    "Final L 21-31 @ Det",
+    12.0,
+    9.0
+   ],
+   [
+    "WR",
+    "George Pickens",
+    "Dal - WR",
+    "Final W 51-30 vs Ten",
+    15.0,
+    8.0
+   ],
+   [
+    "WR",
+    "Jordyn Tyson",
+    "NO - WR",
+    "Final L 13-21 @ Chi",
+    0.0,
+    4.0
+   ],
+   [
+    "WR",
+    "Xavier Hutchinson",
+    "Hou - WR",
+    "Final W 26-3 vs Ind",
+    0.0,
+    4.0
+   ],
+   [
+    "TE",
+    "Pat Freiermuth",
+    "Pit - TE",
+    "Final L 16-19 @ Phi",
+    1.0,
+    4.0
+   ],
+   [
+    "W/R/T",
+    "Jaylen Waddle",
+    "Den - WR",
+    "Final W 38-24 vs LV",
+    3.0,
+    5.0
+   ],
+   [
+    "W/R/T",
+    "Justin Jefferson",
+    "Min - WR",
+    "Final L 10-35 @ SF",
+    4.0,
+    8.0
+   ],
+   [
+    "K",
+    "Chris Boswell",
+    "Pit - K",
+    "Final L 16-19 @ Phi",
+    13.0,
+    8.0
+   ],
+   [
+    "DEF",
+    "Steelers",
+    "Pit - DEF",
+    "Final L 16-19 @ Phi",
+    5.0,
+    7.0
+   ]
+  ],
+  "FOTY*": [
+   [
+    "QB",
+    "Patrick Mahomes",
+    "KC - QB",
+    "Final W 34-7 vs Ari",
+    24.0,
+    20.0
+   ],
+   [
+    "QB",
+    "Caleb Williams",
+    "Chi - QB",
+    "Final W 21-13 vs NO",
+    15.0,
+    18.0
+   ],
+   [
+    "RB",
+    "Javonte Williams",
+    "Dal - RB",
+    "Final W 51-30 vs Ten",
+    20.0,
+    13.0
+   ],
+   [
+    "RB",
+    "Ashton Jeanty",
+    "LV - RB",
+    "Final L 24-38 @ Den",
+    15.0,
+    5.0
+   ],
+   [
+    "RB",
+    "Christian McCaffrey",
+    "SF - RB",
+    "Final W 35-10 vs Min",
+    10.0,
+    11.0
+   ],
+   [
+    "WR",
+    "Parker Washington",
+    "Jax - WR",
+    "Final L 18-23 @ NYG",
+    7.0,
+    8.0
+   ],
+   [
+    "WR",
+    "Rashee Rice",
+    "KC - WR",
+    "Final W 34-7 vs Ari",
+    2.0,
+    7.0
+   ],
+   [
+    "WR",
+    "Luther Burden III",
+    "Chi - WR",
+    "Final W 21-13 vs NO",
+    0.0,
+    7.0
+   ],
+   [
+    "TE",
+    "Darren Waller",
+    "Car - TE",
+    "Final W 35-33 vs Bal",
+    2.0,
+    3.0
+   ],
+   [
+    "W/R/T",
+    "Antonio Williams",
+    "Was - WR",
+    "Mon 5:15 pm vs Cin",
+    null,
+    3.0
+   ],
+   [
+    "W/R/T",
+    "Pat Bryant",
+    "Den - WR",
+    "Final W 38-24 vs LV",
+    1.0,
+    3.0
+   ],
+   [
+    "K",
+    "Brandon Aubrey",
+    "Dal - K",
+    "Final W 51-30 vs Ten",
+    10.0,
+    10.0
+   ],
+   [
+    "DEF",
+    "Vikings",
+    "Min - DEF",
+    "Final L 10-35 @ SF",
+    1.0,
+    6.0
+   ]
+  ],
+  "Lincoln Hawk": [
+   [
+    "QB",
+    "Trevor Lawrence",
+    "Jax - QB",
+    "Final L 18-23 @ NYG",
+    12.0,
+    16.0
+   ],
+   [
+    "QB",
+    "Jayden Daniels",
+    "Was - QB",
+    "Mon 5:15 pm vs Cin",
+    null,
+    19.0
+   ],
+   [
+    "RB",
+    "Ollie Gordon II",
+    "Mia - RB",
+    "Final L 9-26 @ Buf",
+    3.0,
+    7.0
+   ],
+   [
+    "RB",
+    "Jonah Coleman",
+    "Den - RB",
+    "Final W 38-24 vs LV",
+    31.0,
+    11.0
+   ],
+   [
+    "RB",
+    "Braelon Allen",
+    "NYJ - RB",
+    "Final W 27-24 @ LAC",
+    3.0,
+    4.0
+   ],
+   [
+    "WR",
+    "DJ Moore",
+    "Buf - WR",
+    "Final W 26-9 vs Mia",
+    12.0,
+    7.0
+   ],
+   [
+    "WR",
+    "Garrett Wilson",
+    "NYJ - WR",
+    "Final W 27-24 @ LAC",
+    1.0,
+    7.0
+   ],
+   [
+    "WR",
+    "Tank Dell",
+    "Hou - WR",
+    "Final W 26-3 vs Ind",
+    1.0,
+    5.0
+   ],
+   [
+    "TE",
+    "Isaiah Likely",
+    "NYG - TE",
+    "Final W 23-18 vs Jax",
+    1.0,
+    6.0
+   ],
+   [
+    "W/R/T",
+    "Brenton Strange",
+    "Jax - TE",
+    "Final L 18-23 @ NYG",
+    0.0,
+    3.0
+   ],
+   [
+    "W/R/T",
+    "Tre' Harris",
+    "LAC - WR",
+    "Final L 24-27 vs NYJ",
+    1.0,
+    3.0
+   ],
+   [
+    "K",
+    "Chase McLaughlin",
+    "TB - K",
+    "Final L 21-31 @ Det",
+    3.0,
+    8.0
+   ],
+   [
+    "DEF",
+    "Broncos",
+    "Den - DEF",
+    "Final W 38-24 vs LV",
+    15.0,
+    8.0
+   ]
+  ],
+  "Maverick": [
+   [
+    "QB",
+    "Justin Herbert",
+    "LAC - QB",
+    "Final L 24-27 vs NYJ",
+    23.0,
+    15.0
+   ],
+   [
+    "QB",
+    "Aaron Rodgers",
+    "Pit - QB",
+    "Final L 16-19 @ Phi",
+    11.0,
+    15.0
+   ],
+   [
+    "RB",
+    "Derrick Henry",
+    "Bal - RB",
+    "Final L 33-35 @ Car",
+    12.0,
+    11.0
+   ],
+   [
+    "RB",
+    "Bhayshul Tuten",
+    "Jax - RB",
+    "Final L 18-23 @ NYG",
+    2.0,
+    9.0
+   ],
+   [
+    "RB",
+    "Cam Skattebo",
+    "NYG - RB",
+    "Final W 23-18 vs Jax",
+    1.0,
+    9.0
+   ],
+   [
+    "WR",
+    "Tee Higgins",
+    "Cin - WR",
+    "Mon 5:15 pm @ Was",
+    null,
+    8.0
+   ],
+   [
+    "WR",
+    "Nico Collins",
+    "Hou - WR",
+    "Final W 26-3 vs Ind",
+    10.0,
+    8.0
+   ],
+   [
+    "WR",
+    "Carnell Tate",
+    "Ten - WR",
+    "Final L 30-51 @ Dal",
+    10.0,
+    6.0
+   ],
+   [
+    "TE",
+    "Tyler Warren",
+    "Ind - TE",
+    "Final L 3-26 @ Hou",
+    1.0,
+    4.0
+   ],
+   [
+    "W/R/T",
+    "Jordan Mason",
+    "Min - RB",
+    "Final L 10-35 @ SF",
+    1.0,
+    5.0
+   ],
+   [
+    "W/R/T",
+    "T.J. Hockenson",
+    "Min - TE",
+    "Final L 10-35 @ SF",
+    2.0,
+    4.0
+   ],
+   [
+    "K",
+    "Cam Little",
+    "Jax - K",
+    "Final L 18-23 @ NYG",
+    13.0,
+    9.0
+   ],
+   [
+    "DEF",
+    "Texans",
+    "Hou - DEF",
+    "Final W 26-3 vs Ind",
+    16.0,
+    8.0
+   ]
+  ],
+  "Miwok Indians": [
+   [
+    "QB",
+    "Daniel Jones",
+    "Ind - QB",
+    "Final L 3-26 @ Hou",
+    2.0,
+    12.0
+   ],
+   [
+    "QB",
+    "Cam Ward",
+    "Ten - QB",
+    "Final L 30-51 @ Dal",
+    24.0,
+    17.0
+   ],
+   [
+    "RB",
+    "Aaron Jones Sr.",
+    "Min - RB",
+    "Final L 10-35 @ SF",
+    9.0,
+    3.0
+   ],
+   [
+    "RB",
+    "D'Andre Swift",
+    "Chi - RB",
+    "Final W 21-13 vs NO",
+    10.0,
+    10.0
+   ],
+   [
+    "RB",
+    "Saquon Barkley",
+    "Phi - RB",
+    "Final W 19-16 vs Pit",
+    11.0,
+    7.0
+   ],
+   [
+    "WR",
+    "Amon-Ra St. Brown",
+    "Det - WR",
+    "Final W 31-21 vs TB",
+    9.0,
+    9.0
+   ],
+   [
+    "WR",
+    "Deebo Samuel Sr.",
+    "SF - WR",
+    "Final W 35-10 vs Min",
+    2.0,
+    3.0
+   ],
+   [
+    "WR",
+    "Germie Bernard",
+    "Pit - WR",
+    "Final L 16-19 @ Phi",
+    2.0,
+    3.0
+   ],
+   [
+    "TE",
+    "Sam LaPorta",
+    "Det - TE",
+    "Final W 31-21 vs TB",
+    3.0,
+    5.0
+   ],
+   [
+    "W/R/T",
+    "Ladd McConkey",
+    "LAC - WR",
+    "Final L 24-27 vs NYJ",
+    17.0,
+    5.0
+   ],
+   [
+    "W/R/T",
+    "Jacory Croskey-Merritt",
+    "Was - RB",
+    "Mon 5:15 pm vs Cin",
+    null,
+    5.0
+   ],
+   [
+    "K",
+    "Ka'imi Fairbairn",
+    "Hou - K",
+    "Final W 26-3 vs Ind",
+    6.0,
+    10.0
+   ],
+   [
+    "DEF",
+    "49ers",
+    "SF - DEF",
+    "Final W 35-10 vs Min",
+    13.0,
+    7.0
+   ]
+  ],
+  "Mooseknuckle's": [
+   [
+    "QB",
+    "Geno Smith",
+    "NYJ - QB",
+    "Final W 27-24 @ LAC",
+    21.0,
+    14.0
+   ],
+   [
+    "QB",
+    "J.J. McCarthy",
+    "NYG - QB",
+    "Final W 23-18 vs Jax",
+    10.0,
+    13.0
+   ],
+   [
+    "RB",
+    "Tony Pollard",
+    "Ten - RB",
+    "Final L 30-51 @ Dal",
+    7.0,
+    12.0
+   ],
+   [
+    "RB",
+    "Kyle Monangai",
+    "Chi - RB",
+    "Final W 21-13 vs NO",
+    0.0,
+    6.0
+   ],
+   [
+    "RB",
+    "Samaje Perine",
+    "Cin - RB",
+    "Mon 5:15 pm @ Was",
+    null,
+    4.0
+   ],
+   [
+    "WR",
+    "Ja'Marr Chase",
+    "Cin - WR",
+    "Mon 5:15 pm @ Was",
+    null,
+    13.0
+   ],
+   [
+    "WR",
+    "Tetairoa McMillan",
+    "Car - WR",
+    "Final W 35-33 vs Bal",
+    11.0,
+    6.0
+   ],
+   [
+    "WR",
+    "Josh Downs",
+    "KC - WR",
+    "Final W 34-7 vs Ari",
+    2.0,
+    5.0
+   ],
+   [
+    "TE",
+    "Colston Loveland",
+    "Chi - TE",
+    "Final W 21-13 vs NO",
+    9.0,
+    5.0
+   ],
+   [
+    "W/R/T",
+    "Stefon Diggs",
+    "Was - WR",
+    "Mon 5:15 pm vs Cin",
+    null,
+    6.0
+   ],
+   [
+    "W/R/T",
+    "Malik Nabers",
+    "NYG - WR",
+    "Final W 23-18 vs Jax",
+    10.0,
+    6.0
+   ],
+   [
+    "K",
+    "Evan McPherson",
+    "Cin - K",
+    "Mon 5:15 pm @ Was",
+    null,
+    9.0
+   ],
+   [
+    "DEF",
+    "Lions",
+    "Det - DEF",
+    "Final W 31-21 vs TB",
+    4.0,
+    7.0
+   ]
+  ],
+  "SHOW ME THE $$$$": [
+   [
+    "QB",
+    "Josh Allen",
+    "Buf - QB",
+    "Final W 26-9 vs Mia",
+    12.0,
+    21.0
+   ],
+   [
+    "QB",
+    "Fernando Mendoza",
+    "LV - QB",
+    "Final L 24-38 @ Den",
+    24.0,
+    10.0
+   ],
+   [
+    "RB",
+    "Breece Hall",
+    "NYJ - RB",
+    "Final W 27-24 @ LAC",
+    12.0,
+    7.0
+   ],
+   [
+    "RB",
+    "Omarion Hampton",
+    "LAC - RB",
+    "Final L 24-27 vs NYJ",
+    4.0,
+    7.0
+   ],
+   [
+    "RB",
+    "Rico Dowdle",
+    "Pit - RB",
+    "Final L 16-19 @ Phi",
+    0.0,
+    4.0
+   ],
+   [
+    "WR",
+    "Chris Olave",
+    "NO - WR",
+    "Final L 13-21 @ Chi",
+    7.0,
+    6.0
+   ],
+   [
+    "WR",
+    "Caleb Douglas",
+    "Mia - WR",
+    "Final L 9-26 @ Buf",
+    1.0,
+    4.0
+   ],
+   [
+    "WR",
+    "Emeka Egbuka",
+    "TB - WR",
+    "Final L 21-31 @ Det",
+    0.0,
+    5.0
+   ],
+   [
+    "TE",
+    "George Kittle",
+    "SF - TE",
+    "Final W 35-10 vs Min",
+    17.0,
+    5.0
+   ],
+   [
+    "W/R/T",
+    "Keon Coleman",
+    "Buf - WR",
+    "Final W 26-9 vs Mia",
+    0.0,
+    4.0
+   ],
+   [
+    "W/R/T",
+    "Rome Odunze",
+    "Chi - WR",
+    "Final W 21-13 vs NO",
+    2.0,
+    4.0
+   ],
+   [
+    "K",
+    "Tyler Bass",
+    "Buf - K",
+    "Final W 26-9 vs Mia",
+    18.0,
+    9.0
+   ],
+   [
+    "DEF",
+    "Bears",
+    "Chi - DEF",
+    "Final W 21-13 vs NO",
+    15.0,
+    8.0
+   ]
+  ]
+ },
+ "lineups_updated": "2026-11-24T00:30:10+00:00"
 }
