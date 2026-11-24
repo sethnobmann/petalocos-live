@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T04:00:09+00:00",
+ "updated": "2026-11-24T04:10:04+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 11,
@@ -7,20 +7,29 @@
   {
    "team": "dontmindme",
    "manager": "Seth Nobmann",
-   "week_pts": 129.0,
-   "week_proj": 129.0,
-   "season_pts": 1205.0,
+   "week_pts": 130.0,
+   "week_proj": 130.0,
+   "season_pts": 1206.0,
    "week_rank": 1,
    "season_rank": 5
   },
   {
    "team": "Miwok Indians",
    "manager": "Brandon Selvitella",
-   "week_pts": 118.0,
-   "week_proj": 118.0,
-   "season_pts": 1069.0,
+   "week_pts": 119.0,
+   "week_proj": 119.0,
+   "season_pts": 1070.0,
    "week_rank": 2,
    "season_rank": 10
+  },
+  {
+   "team": "Maverick",
+   "manager": "Chris Scerri",
+   "week_pts": 112.0,
+   "week_proj": 112.0,
+   "season_pts": 1257.0,
+   "week_rank": 3,
+   "season_rank": 2
   },
   {
    "team": "SHOW ME THE $$$$",
@@ -32,28 +41,19 @@
    "season_rank": 7
   },
   {
-   "team": "Maverick",
-   "manager": "Chris Scerri",
-   "week_pts": 111.0,
-   "week_proj": 111.0,
-   "season_pts": 1256.0,
-   "week_rank": 4,
-   "season_rank": 2
-  },
-  {
    "team": "Umbertos",
    "manager": "Rob Scerri",
-   "week_pts": 111.0,
+   "week_pts": 112.0,
    "week_proj": 112.0,
-   "season_pts": 1332.0,
-   "week_rank": 4,
+   "season_pts": 1333.0,
+   "week_rank": 3,
    "season_rank": 1
   },
   {
    "team": "FOTY*",
    "manager": "Dave Abramson",
    "week_pts": 109.0,
-   "week_proj": 110.0,
+   "week_proj": 109.0,
    "season_pts": 1238.0,
    "week_rank": 6,
    "season_rank": 3
@@ -71,7 +71,7 @@
    "team": "Lincoln Hawk",
    "manager": "Brandon Martinez",
    "week_pts": 89.0,
-   "week_proj": 90.0,
+   "week_proj": 89.0,
    "season_pts": 1097.0,
    "week_rank": 8,
    "season_rank": 9
@@ -80,7 +80,7 @@
    "team": "Mooseknuckle's",
    "manager": "Brian Lovrin",
    "week_pts": 86.0,
-   "week_proj": 87.0,
+   "week_proj": 86.0,
    "season_pts": 1218.0,
    "week_rank": 9,
    "season_rank": 4
@@ -101,9 +101,9 @@
    "away": "u got pzzzed",
    "home_manager": "Seth Nobmann",
    "away_manager": "Tony Oliverez",
-   "home_pts": 129.0,
+   "home_pts": 130.0,
    "away_pts": 96.0,
-   "home_proj": 129.0,
+   "home_proj": 130.0,
    "away_proj": 96.0
   },
   {
@@ -111,10 +111,10 @@
    "away": "Maverick",
    "home_manager": "Rob Scerri",
    "away_manager": "Chris Scerri",
-   "home_pts": 111.0,
-   "away_pts": 111.0,
+   "home_pts": 112.0,
+   "away_pts": 112.0,
    "home_proj": 112.0,
-   "away_proj": 111.0
+   "away_proj": 112.0
   },
   {
    "home": "SHOW ME THE $$$$",
@@ -133,18 +133,18 @@
    "away_manager": "Dave Abramson",
    "home_pts": 86.0,
    "away_pts": 109.0,
-   "home_proj": 87.0,
-   "away_proj": 110.0
+   "home_proj": 86.0,
+   "away_proj": 109.0
   },
   {
    "home": "Miwok Indians",
    "away": "Lincoln Hawk",
    "home_manager": "Brandon Selvitella",
    "away_manager": "Brandon Martinez",
-   "home_pts": 118.0,
+   "home_pts": 119.0,
    "away_pts": 89.0,
-   "home_proj": 118.0,
-   "away_proj": 90.0
+   "home_proj": 119.0,
+   "away_proj": 89.0
   }
  ],
  "unmapped_teams": [],
@@ -155,8 +155,8 @@
     "QB",
     "Joe Burrow",
     "Cin - QB",
-    "Q4 3:22, 17-16 @ Was",
-    17.0,
+    "Q4 1:39, 17-19 @ Was",
+    18.0,
     null
    ],
    [
@@ -285,7 +285,7 @@
     "RB",
     "Chase Brown",
     "Cin - RB",
-    "Q4 3:22, 17-16 @ Was",
+    "Q4 1:39, 17-19 @ Was",
     1.0,
     null
    ],
@@ -325,8 +325,8 @@
     "TE",
     "Mike Gesicki",
     "Cin - TE",
-    "Q4 3:22, 17-16 @ Was",
-    2.0,
+    "Q4 1:39, 17-19 @ Was",
+    3.0,
     null
    ],
    [
@@ -651,7 +651,7 @@
     "W/R/T",
     "Antonio Williams",
     "Was - WR",
-    "Q4 3:22, 16-17 vs Cin",
+    "Q4 1:39, 19-17 vs Cin",
     2.0,
     null
    ],
@@ -693,7 +693,7 @@
     "QB",
     "Jayden Daniels",
     "Was - QB",
-    "Q4 3:22, 16-17 vs Cin",
+    "Q4 1:39, 19-17 vs Cin",
     6.0,
     null
    ],
@@ -831,8 +831,8 @@
     "WR",
     "Tee Higgins",
     "Cin - WR",
-    "Q4 3:22, 17-16 @ Was",
-    9.0,
+    "Q4 1:39, 17-19 @ Was",
+    10.0,
     null
    ],
    [
@@ -977,8 +977,8 @@
     "W/R/T",
     "Jacory Croskey-Merritt",
     "Was - RB",
-    "Q4 3:22, 16-17 vs Cin",
-    10.0,
+    "Q4 1:39, 19-17 vs Cin",
+    11.0,
     null
    ],
    [
@@ -1035,7 +1035,7 @@
     "RB",
     "Samaje Perine",
     "Cin - RB",
-    "Q4 3:15, 17-16 @ Was",
+    "Q4 1:39, 17-19 @ Was",
     4.0,
     null
    ],
@@ -1043,7 +1043,7 @@
     "WR",
     "Ja'Marr Chase",
     "Cin - WR",
-    "Q4 3:15, 17-16 @ Was",
+    "Q4 1:39, 17-19 @ Was",
     1.0,
     null
    ],
@@ -1075,7 +1075,7 @@
     "W/R/T",
     "Stefon Diggs",
     "Was - WR",
-    "Q4 3:15, 16-17 vs Cin",
+    "Q4 1:39, 19-17 vs Cin",
     2.0,
     null
    ],
@@ -1091,7 +1091,7 @@
     "K",
     "Evan McPherson",
     "Cin - K",
-    "Q4 3:15, 17-16 @ Was",
+    "Q4 1:39, 17-19 @ Was",
     5.0,
     null
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-24T04:00:09+00:00"
+ "lineups_updated": "2026-11-24T04:10:04+00:00"
 }
