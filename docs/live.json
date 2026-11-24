@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T03:30:05+00:00",
+ "updated": "2026-11-24T03:40:16+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 11,
@@ -8,7 +8,7 @@
    "team": "dontmindme",
    "manager": "Seth Nobmann",
    "week_pts": 129.0,
-   "week_proj": 132.0,
+   "week_proj": 131.0,
    "season_pts": 1205.0,
    "week_rank": 1,
    "season_rank": 5
@@ -44,7 +44,7 @@
    "team": "Umbertos",
    "manager": "Rob Scerri",
    "week_pts": 110.0,
-   "week_proj": 117.0,
+   "week_proj": 114.0,
    "season_pts": 1331.0,
    "week_rank": 5,
    "season_rank": 1
@@ -52,9 +52,9 @@
   {
    "team": "FOTY*",
    "manager": "Dave Abramson",
-   "week_pts": 108.0,
-   "week_proj": 109.0,
-   "season_pts": 1237.0,
+   "week_pts": 109.0,
+   "week_proj": 110.0,
+   "season_pts": 1238.0,
    "week_rank": 6,
    "season_rank": 3
   },
@@ -70,9 +70,9 @@
   {
    "team": "Lincoln Hawk",
    "manager": "Brandon Martinez",
-   "week_pts": 87.0,
+   "week_pts": 88.0,
    "week_proj": 93.0,
-   "season_pts": 1095.0,
+   "season_pts": 1096.0,
    "week_rank": 8,
    "season_rank": 9
   },
@@ -80,7 +80,7 @@
    "team": "Mooseknuckle's",
    "manager": "Brian Lovrin",
    "week_pts": 84.0,
-   "week_proj": 93.0,
+   "week_proj": 91.0,
    "season_pts": 1216.0,
    "week_rank": 9,
    "season_rank": 4
@@ -103,7 +103,7 @@
    "away_manager": "Tony Oliverez",
    "home_pts": 129.0,
    "away_pts": 96.0,
-   "home_proj": 132.0,
+   "home_proj": 131.0,
    "away_proj": 96.0
   },
   {
@@ -113,7 +113,7 @@
    "away_manager": "Chris Scerri",
    "home_pts": 110.0,
    "away_pts": 111.0,
-   "home_proj": 117.0,
+   "home_proj": 114.0,
    "away_proj": 113.0
   },
   {
@@ -132,9 +132,9 @@
    "home_manager": "Brian Lovrin",
    "away_manager": "Dave Abramson",
    "home_pts": 84.0,
-   "away_pts": 108.0,
-   "home_proj": 93.0,
-   "away_proj": 109.0
+   "away_pts": 109.0,
+   "home_proj": 91.0,
+   "away_proj": 110.0
   },
   {
    "home": "Miwok Indians",
@@ -142,7 +142,7 @@
    "home_manager": "Brandon Selvitella",
    "away_manager": "Brandon Martinez",
    "home_pts": 118.0,
-   "away_pts": 87.0,
+   "away_pts": 88.0,
    "home_proj": 119.0,
    "away_proj": 93.0
   }
@@ -155,7 +155,7 @@
     "QB",
     "Joe Burrow",
     "Cin - QB",
-    "Q3 1:47, 17-13 @ Was",
+    "Q4 12:13, 17-13 @ Was",
     16.0,
     null
    ],
@@ -285,7 +285,7 @@
     "RB",
     "Chase Brown",
     "Cin - RB",
-    "Q3 1:47, 17-13 @ Was",
+    "Q4 12:32, 17-13 @ Was",
     1.0,
     null
    ],
@@ -325,7 +325,7 @@
     "TE",
     "Mike Gesicki",
     "Cin - TE",
-    "Q3 1:47, 17-13 @ Was",
+    "Q4 12:32, 17-13 @ Was",
     2.0,
     null
    ],
@@ -651,8 +651,8 @@
     "W/R/T",
     "Antonio Williams",
     "Was - WR",
-    "Q3 1:32, 13-17 vs Cin",
-    1.0,
+    "Q4 12:32, 13-17 vs Cin",
+    2.0,
     null
    ],
    [
@@ -693,8 +693,8 @@
     "QB",
     "Jayden Daniels",
     "Was - QB",
-    "Q3 1:32, 13-17 vs Cin",
-    4.0,
+    "Q4 12:32, 13-17 vs Cin",
+    5.0,
     null
    ],
    [
@@ -831,7 +831,7 @@
     "WR",
     "Tee Higgins",
     "Cin - WR",
-    "Q3 1:32, 17-13 @ Was",
+    "Q4 12:32, 17-13 @ Was",
     9.0,
     null
    ],
@@ -977,7 +977,7 @@
     "W/R/T",
     "Jacory Croskey-Merritt",
     "Was - RB",
-    "Q3 1:32, 13-17 vs Cin",
+    "Q4 12:32, 13-17 vs Cin",
     10.0,
     null
    ],
@@ -1035,7 +1035,7 @@
     "RB",
     "Samaje Perine",
     "Cin - RB",
-    "Q3 1:32, 17-13 @ Was",
+    "Q4 11:48, 17-13 @ Was",
     4.0,
     null
    ],
@@ -1043,7 +1043,7 @@
     "WR",
     "Ja'Marr Chase",
     "Cin - WR",
-    "Q3 1:32, 17-13 @ Was",
+    "Q4 11:48, 17-13 @ Was",
     1.0,
     null
    ],
@@ -1075,7 +1075,7 @@
     "W/R/T",
     "Stefon Diggs",
     "Was - WR",
-    "Q3 1:32, 13-17 vs Cin",
+    "Q4 11:48, 13-17 vs Cin",
     0.0,
     null
    ],
@@ -1091,7 +1091,7 @@
     "K",
     "Evan McPherson",
     "Cin - K",
-    "Q3 1:32, 17-13 @ Was",
+    "Q4 11:48, 17-13 @ Was",
     5.0,
     null
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-24T03:30:05+00:00"
+ "lineups_updated": "2026-11-24T03:40:16+00:00"
 }
