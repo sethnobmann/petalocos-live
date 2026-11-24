@@ -5,10 +5,12 @@ chrome_save.applescript), reads the "Week Rank" table (live fantasy points + pro
 per team) and the standings table, and writes docs/live.json for the live board.
 
 Runs from launchd every 10 minutes and decides for itself whether to do anything:
-  - game windows (Thu night, all Sunday, Mon night): every run
-  - any other time 6am-11pm: one probe an hour, and if a score moved in the last hour
-    (Thanksgiving, Saturday games) it keeps going every run
-During game windows it also loads the 10 team pages and adds each team's starters
+  - while ESPN's public NFL scoreboard shows a game in progress, and for 30 minutes after
+    the last one ends: every run (so Thanksgiving, Saturday and early London games count too)
+  - if ESPN can't be reached: the usual windows (Thu night, all Sunday, Mon night)
+  - otherwise 6am-11pm: one quiet look an hour, which commits only if Yahoo's numbers moved
+tmp/state.json keeps the last ESPN check ("nfl") so you can see why it ran or didn't.
+While games are on it also loads the 10 team pages and adds each team's starters
 (points, projections, game status) to docs/live.json as "lineups", so the app's team
 page shows players live (scripts/lineups.py does the parsing; --no-lineups skips it).
 When Yahoo moves to a new week it also rolls last week's finals into
@@ -57,12 +59,40 @@ def in_window(now):
     return False
 
 
-def should_run(now, state):
-    if in_window(now):
+ESPN = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
+
+
+def nfl_games():
+    """This NFL week's games as [(kickoff, state)] from ESPN's public scoreboard, state being
+    "pre", "in" or "post". None if it can't be read, and the old fixed windows take over."""
+    import urllib.request
+    try:
+        req = urllib.request.Request(ESPN, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=15) as r:
+            j = json.load(r)
+        return [(datetime.fromisoformat(ev["date"].replace("Z", "+00:00")),
+                 ((ev.get("status") or {}).get("type") or {}).get("state"))
+                for ev in j.get("events", [])]
+    except Exception:
+        return None
+
+
+def should_run(now, state, games=None):
+    """Scrape only while an NFL game is being played (ESPN says so), plus half an hour after the
+    last one ends for late stat changes. Outside that, one quiet look an hour, which only
+    commits if Yahoo's numbers moved (a stat correction, or the new week)."""
+    games = nfl_games() if games is None else games
+    if games is not None:
+        on = sum(1 for _, st in games if st == "in")
+        state["nfl"] = f"{now:%m-%d %H:%M} {on} on, {sum(1 for _, st in games if st == 'pre')} to come"
+        if on:
+            state["game_on"] = now.timestamp()
+            return "game on"
+        if state.get("game_on") and now.timestamp() - state["game_on"] < 30 * 60:
+            return "wrap-up"
+    elif in_window(now):  # ESPN unreachable: fall back to the usual kickoff windows
+        state["nfl"] = f"{now:%m-%d %H:%M} ESPN unreachable, using fixed windows"
         return "window"
-    last = state.get("last_change")
-    if last and (now.timestamp() - last) < 3600:
-        return "scores moving"
     if 6 <= now.hour <= 22 and now.minute < 10:
         return "hourly probe"
     return None
@@ -309,6 +339,8 @@ def main():
     now = datetime.now()
     why = "forced" if force else should_run(now, state)
     if not why:
+        with open(STATE, "w") as f:  # keeps the last ESPN check visible in tmp/state.json
+            json.dump(state, f)
         return
     try:
         league_html = fetch_page()
@@ -338,7 +370,7 @@ def main():
             out["lineups_updated"] = out["updated"]
         except Exception as e:
             log(f"lineups skipped: {e}")
-    sig = [week] + [(t["team"], t["week_pts"]) for t in out["teams"]]
+    sig = [week] + [[t["team"], t["week_pts"]] for t in out["teams"]]  # lists, so it matches after a trip through JSON
     moved = sig != state.get("sig")
     if moved:
         state["sig"], state["last_change"] = sig, now.timestamp()
