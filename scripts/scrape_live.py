@@ -408,6 +408,9 @@ def main():
         with open(STATE, "w") as f:  # keeps the last ESPN check visible in tmp/state.json
             json.dump(state, f)
         return
+    # start from GitHub's latest, so a rebuild here never uses an older copy of the app
+    if not git("status", "--porcelain", "--untracked-files=no").stdout.strip():
+        git("pull", "-q", "--rebase")
     try:
         league_html = fetch_page()
         week, live, totals, change = parse_league(league_html)
