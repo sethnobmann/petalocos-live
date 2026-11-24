@@ -1,16 +1,11 @@
 ﻿Week,Week label,Home,Away,Game,Line,Is next
-12,Week 12 · this week,SHOW ME THE $$$$,dontmindme,dontmindme at SHOW ME THE $$$$,Seth 5-6 · CJ 6-5,true
-12,Week 12 · this week,FOTY*,Maverick,Maverick at FOTY*,Chris S 6-4-1 · Dave 8-3,true
-12,Week 12 · this week,u got pzzzed,Umbertos,Umbertos at u got pzzzed,Rob 6-4-1 · Tone 5-6,true
-12,Week 12 · this week,Lincoln Hawk,Mooseknuckle's,Mooseknuckle's at Lincoln Hawk,Brian 3-8 · Boo 7-4,true
-12,Week 12 · this week,FANTASY KING,Miwok Indians,Miwok Indians at FANTASY KING,Brandon 2-9 · Chris K 6-5,true
-13,Week 13,dontmindme,Umbertos,Umbertos at dontmindme,Rob 6-4-1 · Seth 5-6,false
-13,Week 13,Maverick,SHOW ME THE $$$$,SHOW ME THE $$$$ at Maverick,CJ 6-5 · Chris S 6-4-1,false
-13,Week 13,Mooseknuckle's,FANTASY KING,FANTASY KING at Mooseknuckle's,Chris K 6-5 · Brian 3-8,false
-13,Week 13,Miwok Indians,FOTY*,FOTY* at Miwok Indians,Dave 8-3 · Brandon 2-9,false
-13,Week 13,Lincoln Hawk,u got pzzzed,u got pzzzed at Lincoln Hawk,Tone 5-6 · Boo 7-4,false
-14,Week 14,dontmindme,FANTASY KING,FANTASY KING at dontmindme,Chris K 6-5 · Seth 5-6,false
-14,Week 14,Umbertos,FOTY*,FOTY* at Umbertos,Dave 8-3 · Rob 6-4-1,false
-14,Week 14,SHOW ME THE $$$$,Lincoln Hawk,Lincoln Hawk at SHOW ME THE $$$$,Boo 7-4 · CJ 6-5,false
-14,Week 14,Mooseknuckle's,Maverick,Maverick at Mooseknuckle's,Chris S 6-4-1 · Brian 3-8,false
-14,Week 14,u got pzzzed,Miwok Indians,Miwok Indians at u got pzzzed,Brandon 2-9 · Tone 5-6,false
+13,Week 13 · this week,dontmindme,Umbertos,Umbertos at dontmindme,Rob 6-4-2 · Seth 5-6-1,true
+13,Week 13 · this week,Maverick,SHOW ME THE $$$$,SHOW ME THE $$$$ at Maverick,CJ 6-5-1 · Chris S 6-4-2,true
+13,Week 13 · this week,Mooseknuckle's,FANTASY KING,FANTASY KING at Mooseknuckle's,Chris K 6-5-1 · Brian 3-8-1,true
+13,Week 13 · this week,Miwok Indians,FOTY*,FOTY* at Miwok Indians,Dave 8-3-1 · Brandon 2-9-1,true
+13,Week 13 · this week,Lincoln Hawk,u got pzzzed,u got pzzzed at Lincoln Hawk,Tone 5-6-1 · Boo 7-4-1,true
+14,Week 14,dontmindme,FANTASY KING,FANTASY KING at dontmindme,Chris K 6-5-1 · Seth 5-6-1,false
+14,Week 14,Umbertos,FOTY*,FOTY* at Umbertos,Dave 8-3-1 · Rob 6-4-2,false
+14,Week 14,SHOW ME THE $$$$,Lincoln Hawk,Lincoln Hawk at SHOW ME THE $$$$,Boo 7-4-1 · CJ 6-5-1,false
+14,Week 14,Mooseknuckle's,Maverick,Maverick at Mooseknuckle's,Chris S 6-4-2 · Brian 3-8-1,false
+14,Week 14,u got pzzzed,Miwok Indians,Miwok Indians at u got pzzzed,Brandon 2-9-1 · Tone 5-6-1,false

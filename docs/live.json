@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T14:00:12+00:00",
+ "updated": "2026-11-24T14:10:06+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -148,5 +148,1068 @@
   }
  ],
  "unmapped_teams": [],
- "source": "yahoo site"
+ "source": "yahoo site",
+ "lineups": {
+  "Umbertos": [
+   [
+    "QB",
+    "Joe Burrow",
+    "Cin - QB",
+    "Sun 10:00 am vs NO",
+    null,
+    23.0
+   ],
+   [
+    "QB",
+    "C.J. Stroud",
+    "Hou - QB",
+    "Sun 10:00 am vs Bal",
+    null,
+    18.0
+   ],
+   [
+    "RB",
+    "James Cook III",
+    "Buf - RB",
+    "Thu 5:20 pm vs KC",
+    null,
+    9.0
+   ],
+   [
+    "RB",
+    "Emmett Johnson",
+    "KC - RB",
+    "Thu 5:20 pm @ Buf",
+    null,
+    4.0
+   ],
+   [
+    "RB",
+    "David Montgomery",
+    "Hou - RB",
+    "Sun 10:00 am vs Bal",
+    null,
+    6.0
+   ],
+   [
+    "WR",
+    "CeeDee Lamb",
+    "Dal - WR",
+    "Thu 1:30 pm vs Phi",
+    null,
+    9.0
+   ],
+   [
+    "WR",
+    "Courtland Sutton",
+    "Den - WR",
+    "Fri 12:00 pm @ Pit",
+    null,
+    3.0
+   ],
+   [
+    "WR",
+    "Elic Ayomanor",
+    "Ten - WR",
+    "Sun 10:00 am @ Jax",
+    null,
+    4.0
+   ],
+   [
+    "TE",
+    "Brock Bowers",
+    "LV - TE",
+    "Sun 5:20 pm @ Cle",
+    null,
+    7.0
+   ],
+   [
+    "W/R/T",
+    "DeVonta Smith",
+    "Phi - WR",
+    "Thu 1:30 pm @ Dal",
+    null,
+    6.0
+   ],
+   [
+    "W/R/T",
+    "Adonai Mitchell",
+    "NYJ - WR",
+    "Sun 10:00 am @ Mia",
+    null,
+    4.0
+   ],
+   [
+    "K",
+    "Harrison Butker",
+    "KC - K",
+    "Thu 5:20 pm @ Buf",
+    null,
+    7.0
+   ],
+   [
+    "DEF",
+    "Eagles",
+    "Phi - DEF",
+    "Thu 1:30 pm @ Dal",
+    null,
+    5.0
+   ]
+  ],
+  "dontmindme": [
+   [
+    "QB",
+    "Dak Prescott",
+    "Dal - QB",
+    "Thu 1:30 pm vs Phi",
+    null,
+    18.0
+   ],
+   [
+    "QB",
+    "Matthew Stafford",
+    "LAR - QB",
+    "Wed 5:00 pm vs GB",
+    null,
+    15.0
+   ],
+   [
+    "RB",
+    "Chuba Hubbard",
+    "Car - RB",
+    "Mon 5:15 pm @ TB",
+    null,
+    8.0
+   ],
+   [
+    "RB",
+    "Chase Brown",
+    "Cin - RB",
+    "Sun 10:00 am vs NO",
+    null,
+    8.0
+   ],
+   [
+    "RB",
+    "Kyren Williams",
+    "LAR - RB",
+    "Wed 5:00 pm vs GB",
+    null,
+    9.0
+   ],
+   [
+    "WR",
+    "Jameson Williams",
+    "Det - WR",
+    "Thu 10:00 am vs Chi",
+    null,
+    6.0
+   ],
+   [
+    "WR",
+    "DeMario Douglas",
+    "NE - WR",
+    "Sun 1:05 pm @ LAC",
+    null,
+    3.0
+   ],
+   [
+    "WR",
+    "Mike Evans",
+    "SF - WR",
+    "Sun 1:25 pm vs Sea",
+    null,
+    5.0
+   ],
+   [
+    "TE",
+    "Mike Gesicki",
+    "Cin - TE",
+    "Sun 10:00 am vs NO",
+    null,
+    4.0
+   ],
+   [
+    "W/R/T",
+    "Keenan Allen",
+    "SF - WR",
+    "Sun 1:25 pm vs Sea",
+    null,
+    2.0
+   ],
+   [
+    "W/R/T",
+    "Travis Kelce",
+    "KC - TE",
+    "Thu 5:20 pm @ Buf",
+    null,
+    4.0
+   ],
+   [
+    "K",
+    "Jake Bates",
+    "Det - K",
+    "Thu 10:00 am vs Chi",
+    null,
+    8.0
+   ],
+   [
+    "DEF",
+    "Bengals",
+    "Cin - DEF",
+    "Sun 10:00 am vs NO",
+    null,
+    7.0
+   ]
+  ],
+  "FANTASY KING": [
+   [
+    "QB",
+    "Brock Purdy",
+    "SF - QB",
+    "Sun 1:25 pm vs Sea",
+    null,
+    15.0
+   ],
+   [
+    "QB",
+    "Kirk Cousins",
+    "Min - QB",
+    "Sun 10:00 am vs Atl",
+    null,
+    16.0
+   ],
+   [
+    "RB",
+    "Jonathan Taylor",
+    "Ind - RB",
+    "Sun 10:00 am vs NYG",
+    null,
+    8.0
+   ],
+   [
+    "RB",
+    "Tyler Allgeier",
+    "Ari - RB",
+    "Sun 1:25 pm vs Was",
+    null,
+    4.0
+   ],
+   [
+    "RB",
+    "Travis Etienne Jr.",
+    "NO - RB",
+    "Sun 10:00 am @ Cin",
+    null,
+    5.0
+   ],
+   [
+    "WR",
+    "Zay Flowers",
+    "Bal - WR",
+    "Sun 10:00 am @ Hou",
+    null,
+    6.0
+   ],
+   [
+    "WR",
+    "Jalen Coker",
+    "Car - WR",
+    "Mon 5:15 pm @ TB",
+    null,
+    5.0
+   ],
+   [
+    "WR",
+    "Makai Lemon",
+    "Phi - WR",
+    "Thu 1:30 pm @ Dal",
+    null,
+    2.0
+   ],
+   [
+    "TE",
+    "Trey McBride",
+    "Ari - TE",
+    "Sun 1:25 pm vs Was",
+    null,
+    6.0
+   ],
+   [
+    "W/R/T",
+    "Kaelon Black",
+    "SF - RB",
+    "Sun 1:25 pm vs Sea",
+    null,
+    2.0
+   ],
+   [
+    "W/R/T",
+    "Juwan Johnson",
+    "NO - TE",
+    "Sun 10:00 am @ Cin",
+    null,
+    3.0
+   ],
+   [
+    "K",
+    "Eddy Pineiro",
+    "SF - K",
+    "Sun 1:25 pm vs Sea",
+    null,
+    8.0
+   ],
+   [
+    "DEF",
+    "Chiefs",
+    "KC - DEF",
+    "Thu 5:20 pm @ Buf",
+    null,
+    6.0
+   ]
+  ],
+  "u got pzzzed": [
+   [
+    "QB",
+    "Jacoby Brissett",
+    "Bal - QB",
+    "Sun 10:00 am @ Hou",
+    null,
+    12.0
+   ],
+   [
+    "QB",
+    "Bo Nix",
+    "Den - QB",
+    "Fri 12:00 pm @ Pit",
+    null,
+    12.0
+   ],
+   [
+    "RB",
+    "Jahmyr Gibbs",
+    "Det - RB",
+    "Thu 10:00 am vs Chi",
+    null,
+    15.0
+   ],
+   [
+    "RB",
+    "Jaylen Warren",
+    "Pit - RB",
+    "Fri 12:00 pm vs Den",
+    null,
+    7.0
+   ],
+   [
+    "RB",
+    "Bucky Irving",
+    "TB - RB",
+    "Mon 5:15 pm vs Car",
+    null,
+    11.0
+   ],
+   [
+    "WR",
+    "George Pickens",
+    "Dal - WR",
+    "Thu 1:30 pm vs Phi",
+    null,
+    6.0
+   ],
+   [
+    "WR",
+    "Justin Jefferson",
+    "Min - WR",
+    "Sun 10:00 am vs Atl",
+    null,
+    9.0
+   ],
+   [
+    "WR",
+    "Jaylen Waddle",
+    "Den - WR",
+    "Fri 12:00 pm @ Pit",
+    null,
+    4.0
+   ],
+   [
+    "TE",
+    "Pat Freiermuth",
+    "Pit - TE",
+    "Fri 12:00 pm vs Den",
+    null,
+    3.0
+   ],
+   [
+    "W/R/T",
+    "Jordyn Tyson",
+    "NO - WR",
+    "Sun 10:00 am @ Cin",
+    null,
+    4.0
+   ],
+   [
+    "W/R/T",
+    "Denzel Boston",
+    "Cle - WR",
+    "Sun 5:20 pm vs LV",
+    null,
+    5.0
+   ],
+   [
+    "K",
+    "Chris Boswell",
+    "Pit - K",
+    "Fri 12:00 pm vs Den",
+    null,
+    7.0
+   ],
+   [
+    "DEF",
+    "Steelers",
+    "Pit - DEF",
+    "Fri 12:00 pm vs Den",
+    null,
+    5.0
+   ]
+  ],
+  "FOTY*": [
+   [
+    "QB",
+    "Patrick Mahomes",
+    "KC - QB",
+    "Thu 5:20 pm @ Buf",
+    null,
+    15.0
+   ],
+   [
+    "QB",
+    "Caleb Williams",
+    "Chi - QB",
+    "Thu 10:00 am @ Det",
+    null,
+    18.0
+   ],
+   [
+    "RB",
+    "Javonte Williams",
+    "Dal - RB",
+    "Thu 1:30 pm vs Phi",
+    null,
+    11.0
+   ],
+   [
+    "RB",
+    "Ashton Jeanty",
+    "LV - RB",
+    "Sun 5:20 pm @ Cle",
+    null,
+    7.0
+   ],
+   [
+    "RB",
+    "Christian McCaffrey",
+    "SF - RB",
+    "Sun 1:25 pm vs Sea",
+    null,
+    10.0
+   ],
+   [
+    "WR",
+    "Parker Washington",
+    "Jax - WR",
+    "Sun 10:00 am vs Ten",
+    null,
+    9.0
+   ],
+   [
+    "WR",
+    "Rashee Rice",
+    "KC - WR",
+    "Thu 5:20 pm @ Buf",
+    null,
+    5.0
+   ],
+   [
+    "WR",
+    "Luther Burden III",
+    "Chi - WR",
+    "Thu 10:00 am @ Det",
+    null,
+    7.0
+   ],
+   [
+    "TE",
+    "Darren Waller",
+    "Car - TE",
+    "Mon 5:15 pm @ TB",
+    null,
+    3.0
+   ],
+   [
+    "W/R/T",
+    "Antonio Williams",
+    "Was - WR",
+    "Sun 1:25 pm @ Ari",
+    null,
+    4.0
+   ],
+   [
+    "W/R/T",
+    "Pat Bryant",
+    "Den - WR",
+    "Fri 12:00 pm @ Pit",
+    null,
+    3.0
+   ],
+   [
+    "K",
+    "Brandon Aubrey",
+    "Dal - K",
+    "Thu 1:30 pm vs Phi",
+    null,
+    9.0
+   ],
+   [
+    "DEF",
+    "Vikings",
+    "Min - DEF",
+    "Sun 10:00 am vs Atl",
+    null,
+    7.0
+   ]
+  ],
+  "Lincoln Hawk": [
+   [
+    "QB",
+    "Trevor Lawrence",
+    "Jax - QB",
+    "Sun 10:00 am vs Ten",
+    null,
+    19.0
+   ],
+   [
+    "QB",
+    "Jayden Daniels",
+    "Was - QB",
+    "Sun 1:25 pm @ Ari",
+    null,
+    19.0
+   ],
+   [
+    "RB",
+    "Ollie Gordon II",
+    "Mia - RB",
+    "Sun 10:00 am vs NYJ",
+    null,
+    7.0
+   ],
+   [
+    "RB",
+    "Jonah Coleman",
+    "Den - RB",
+    "Fri 12:00 pm @ Pit",
+    null,
+    8.0
+   ],
+   [
+    "RB",
+    "Braelon Allen",
+    "NYJ - RB",
+    "Sun 10:00 am @ Mia",
+    null,
+    5.0
+   ],
+   [
+    "WR",
+    "DJ Moore",
+    "Buf - WR",
+    "Thu 5:20 pm vs KC",
+    null,
+    5.0
+   ],
+   [
+    "WR",
+    "Garrett Wilson",
+    "NYJ - WR",
+    "Sun 10:00 am @ Mia",
+    null,
+    7.0
+   ],
+   [
+    "WR",
+    "Tank Dell",
+    "Hou - WR",
+    "Sun 10:00 am vs Bal",
+    null,
+    3.0
+   ],
+   [
+    "TE",
+    "Isaiah Likely",
+    "NYG - TE",
+    "Sun 10:00 am @ Ind",
+    null,
+    6.0
+   ],
+   [
+    "W/R/T",
+    "Bijan Robinson",
+    "Atl - RB",
+    "Sun 10:00 am @ Min",
+    null,
+    11.0
+   ],
+   [
+    "W/R/T",
+    "Quinshon Judkins",
+    "Cle - RB",
+    "Sun 5:20 pm vs LV",
+    null,
+    7.0
+   ],
+   [
+    "K",
+    "Chase McLaughlin",
+    "TB - K",
+    "Mon 5:15 pm vs Car",
+    null,
+    9.0
+   ],
+   [
+    "DEF",
+    "Broncos",
+    "Den - DEF",
+    "Fri 12:00 pm @ Pit",
+    null,
+    7.0
+   ]
+  ],
+  "Maverick": [
+   [
+    "QB",
+    "Justin Herbert",
+    "LAC - QB",
+    "Sun 1:05 pm vs NE",
+    null,
+    13.0
+   ],
+   [
+    "QB",
+    "Aaron Rodgers",
+    "Pit - QB",
+    "Fri 12:00 pm vs Den",
+    null,
+    14.0
+   ],
+   [
+    "RB",
+    "Derrick Henry",
+    "Bal - RB",
+    "Sun 10:00 am @ Hou",
+    null,
+    7.0
+   ],
+   [
+    "RB",
+    "Bhayshul Tuten",
+    "Jax - RB",
+    "Sun 10:00 am vs Ten",
+    null,
+    12.0
+   ],
+   [
+    "RB",
+    "Cam Skattebo",
+    "NYG - RB",
+    "Sun 10:00 am @ Ind",
+    null,
+    10.0
+   ],
+   [
+    "WR",
+    "Tee Higgins",
+    "Cin - WR",
+    "Sun 10:00 am vs NO",
+    null,
+    9.0
+   ],
+   [
+    "WR",
+    "Nico Collins",
+    "Hou - WR",
+    "Sun 10:00 am vs Bal",
+    null,
+    8.0
+   ],
+   [
+    "WR",
+    "Carnell Tate",
+    "Ten - WR",
+    "Sun 10:00 am @ Jax",
+    null,
+    5.0
+   ],
+   [
+    "TE",
+    "Tyler Warren",
+    "Ind - TE",
+    "Sun 10:00 am vs NYG",
+    null,
+    4.0
+   ],
+   [
+    "W/R/T",
+    "Jordan Mason",
+    "Min - RB",
+    "Sun 10:00 am vs Atl",
+    null,
+    7.0
+   ],
+   [
+    "W/R/T",
+    "T.J. Hockenson",
+    "Min - TE",
+    "Sun 10:00 am vs Atl",
+    null,
+    5.0
+   ],
+   [
+    "K",
+    "Cam Little",
+    "Jax - K",
+    "Sun 10:00 am vs Ten",
+    null,
+    10.0
+   ],
+   [
+    "DEF",
+    "Texans",
+    "Hou - DEF",
+    "Sun 10:00 am vs Bal",
+    null,
+    8.0
+   ]
+  ],
+  "Miwok Indians": [
+   [
+    "QB",
+    "Cam Ward",
+    "Ten - QB",
+    "Sun 10:00 am @ Jax",
+    null,
+    12.0
+   ],
+   [
+    "QB",
+    "Deshaun Watson",
+    "Cle - QB",
+    "Sun 5:20 pm vs LV",
+    null,
+    17.0
+   ],
+   [
+    "RB",
+    "Aaron Jones Sr.",
+    "Min - RB",
+    "Sun 10:00 am vs Atl",
+    null,
+    5.0
+   ],
+   [
+    "RB",
+    "D'Andre Swift",
+    "Chi - RB",
+    "Thu 10:00 am @ Det",
+    null,
+    8.0
+   ],
+   [
+    "RB",
+    "Saquon Barkley",
+    "Phi - RB",
+    "Thu 1:30 pm @ Dal",
+    null,
+    7.0
+   ],
+   [
+    "WR",
+    "Amon-Ra St. Brown",
+    "Det - WR",
+    "Thu 10:00 am vs Chi",
+    null,
+    9.0
+   ],
+   [
+    "WR",
+    "Deebo Samuel Sr.",
+    "SF - WR",
+    "Sun 1:25 pm vs Sea",
+    null,
+    3.0
+   ],
+   [
+    "WR",
+    "KC Concepcion Jr.",
+    "Cle - WR",
+    "Sun 5:20 pm vs LV",
+    null,
+    5.0
+   ],
+   [
+    "TE",
+    "Sam LaPorta",
+    "Det - TE",
+    "Thu 10:00 am vs Chi",
+    null,
+    5.0
+   ],
+   [
+    "W/R/T",
+    "Tucker Kraft",
+    "GB - TE",
+    "Wed 5:00 pm @ LAR",
+    null,
+    4.0
+   ],
+   [
+    "W/R/T",
+    "Jacory Croskey-Merritt",
+    "Was - RB",
+    "Sun 1:25 pm @ Ari",
+    null,
+    4.0
+   ],
+   [
+    "K",
+    "Ka'imi Fairbairn",
+    "Hou - K",
+    "Sun 10:00 am vs Bal",
+    null,
+    9.0
+   ],
+   [
+    "DEF",
+    "Buccaneers",
+    "TB - DEF",
+    "Mon 5:15 pm vs Car",
+    null,
+    6.0
+   ]
+  ],
+  "Mooseknuckle's": [
+   [
+    "QB",
+    "Geno Smith",
+    "NYJ - QB",
+    "Sun 10:00 am @ Mia",
+    null,
+    15.0
+   ],
+   [
+    "QB",
+    "J.J. McCarthy",
+    "NYG - QB",
+    "Sun 10:00 am @ Ind",
+    null,
+    15.0
+   ],
+   [
+    "RB",
+    "Tony Pollard",
+    "Ten - RB",
+    "Sun 10:00 am @ Jax",
+    null,
+    7.0
+   ],
+   [
+    "RB",
+    "Kyle Monangai",
+    "Chi - RB",
+    "Thu 10:00 am @ Det",
+    null,
+    4.0
+   ],
+   [
+    "RB",
+    "Samaje Perine",
+    "Cin - RB",
+    "Sun 10:00 am vs NO",
+    null,
+    4.0
+   ],
+   [
+    "WR",
+    "Ja'Marr Chase",
+    "Cin - WR",
+    "Sun 10:00 am vs NO",
+    null,
+    13.0
+   ],
+   [
+    "WR",
+    "Tetairoa McMillan",
+    "Car - WR",
+    "Mon 5:15 pm @ TB",
+    null,
+    6.0
+   ],
+   [
+    "WR",
+    "Josh Downs",
+    "KC - WR",
+    "Thu 5:20 pm @ Buf",
+    null,
+    3.0
+   ],
+   [
+    "TE",
+    "Colston Loveland",
+    "Chi - TE",
+    "Thu 10:00 am @ Det",
+    null,
+    5.0
+   ],
+   [
+    "W/R/T",
+    "Stefon Diggs",
+    "Was - WR",
+    "Sun 1:25 pm @ Ari",
+    null,
+    7.0
+   ],
+   [
+    "W/R/T",
+    "Malik Nabers",
+    "NYG - WR",
+    "Sun 10:00 am @ Ind",
+    null,
+    6.0
+   ],
+   [
+    "K",
+    "Evan McPherson",
+    "Cin - K",
+    "Sun 10:00 am vs NO",
+    null,
+    9.0
+   ],
+   [
+    "DEF",
+    "Lions",
+    "Det - DEF",
+    "Thu 10:00 am vs Chi",
+    null,
+    6.0
+   ]
+  ],
+  "SHOW ME THE $$$$": [
+   [
+    "QB",
+    "Josh Allen",
+    "Buf - QB",
+    "Thu 5:20 pm vs KC",
+    null,
+    18.0
+   ],
+   [
+    "QB",
+    "Fernando Mendoza",
+    "LV - QB",
+    "Sun 5:20 pm @ Cle",
+    null,
+    13.0
+   ],
+   [
+    "RB",
+    "Breece Hall",
+    "NYJ - RB",
+    "Sun 10:00 am @ Mia",
+    null,
+    7.0
+   ],
+   [
+    "RB",
+    "Omarion Hampton",
+    "LAC - RB",
+    "Sun 1:05 pm vs NE",
+    null,
+    5.0
+   ],
+   [
+    "RB",
+    "Rico Dowdle",
+    "Pit - RB",
+    "Fri 12:00 pm vs Den",
+    null,
+    3.0
+   ],
+   [
+    "WR",
+    "Chris Olave",
+    "NO - WR",
+    "Sun 10:00 am @ Cin",
+    null,
+    6.0
+   ],
+   [
+    "WR",
+    "Caleb Douglas",
+    "Mia - WR",
+    "Sun 10:00 am vs NYJ",
+    null,
+    4.0
+   ],
+   [
+    "WR",
+    "Emeka Egbuka",
+    "TB - WR",
+    "Mon 5:15 pm vs Car",
+    null,
+    4.0
+   ],
+   [
+    "TE",
+    "George Kittle",
+    "SF - TE",
+    "Sun 1:25 pm vs Sea",
+    null,
+    5.0
+   ],
+   [
+    "W/R/T",
+    "Keon Coleman",
+    "Buf - WR",
+    "Thu 5:20 pm vs KC",
+    null,
+    3.0
+   ],
+   [
+    "W/R/T",
+    "Rome Odunze",
+    "Chi - WR",
+    "Thu 10:00 am @ Det",
+    null,
+    5.0
+   ],
+   [
+    "K",
+    "Tyler Bass",
+    "Buf - K",
+    "Thu 5:20 pm vs KC",
+    null,
+    8.0
+   ],
+   [
+    "DEF",
+    "Bears",
+    "Chi - DEF",
+    "Thu 10:00 am @ Det",
+    null,
+    6.0
+   ]
+  ]
+ },
+ "lineups_updated": "2026-11-24T14:10:06+00:00"
 }
