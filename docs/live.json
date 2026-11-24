@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T03:00:07+00:00",
+ "updated": "2026-11-24T03:10:06+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 11,
@@ -155,7 +155,7 @@
     "QB",
     "Joe Burrow",
     "Cin - QB",
-    "Q3 12:03, 10-7 @ Was",
+    "Q3 11:01, 10-10 @ Was",
     9.0,
     null
    ],
@@ -285,7 +285,7 @@
     "RB",
     "Chase Brown",
     "Cin - RB",
-    "Q3 12:03, 10-7 @ Was",
+    "Q3 11:01, 10-10 @ Was",
     0.0,
     null
    ],
@@ -325,7 +325,7 @@
     "TE",
     "Mike Gesicki",
     "Cin - TE",
-    "Q3 12:03, 10-7 @ Was",
+    "Q3 11:01, 10-10 @ Was",
     0.0,
     null
    ],
@@ -651,7 +651,7 @@
     "W/R/T",
     "Antonio Williams",
     "Was - WR",
-    "Q3 12:03, 7-10 vs Cin",
+    "Q3 11:01, 10-10 vs Cin",
     1.0,
     null
    ],
@@ -693,7 +693,7 @@
     "QB",
     "Jayden Daniels",
     "Was - QB",
-    "Q3 12:03, 7-10 vs Cin",
+    "Q3 11:01, 10-10 vs Cin",
     3.0,
     null
    ],
@@ -831,7 +831,7 @@
     "WR",
     "Tee Higgins",
     "Cin - WR",
-    "Q3 12:03, 10-7 @ Was",
+    "Q3 11:01, 10-10 @ Was",
     9.0,
     null
    ],
@@ -977,7 +977,7 @@
     "W/R/T",
     "Jacory Croskey-Merritt",
     "Was - RB",
-    "Q3 12:03, 7-10 vs Cin",
+    "Q3 11:01, 10-10 vs Cin",
     9.0,
     null
    ],
@@ -1035,7 +1035,7 @@
     "RB",
     "Samaje Perine",
     "Cin - RB",
-    "Q3 12:03, 10-7 @ Was",
+    "Q3 11:01, 10-10 @ Was",
     3.0,
     null
    ],
@@ -1043,7 +1043,7 @@
     "WR",
     "Ja'Marr Chase",
     "Cin - WR",
-    "Q3 12:03, 10-7 @ Was",
+    "Q3 11:01, 10-10 @ Was",
     1.0,
     null
    ],
@@ -1075,7 +1075,7 @@
     "W/R/T",
     "Stefon Diggs",
     "Was - WR",
-    "Q3 12:03, 7-10 vs Cin",
+    "Q3 11:01, 10-10 vs Cin",
     0.0,
     null
    ],
@@ -1091,7 +1091,7 @@
     "K",
     "Evan McPherson",
     "Cin - K",
-    "Q3 12:03, 10-7 @ Was",
+    "Q3 11:01, 10-10 @ Was",
     4.0,
     null
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-24T03:00:07+00:00"
+ "lineups_updated": "2026-11-24T03:10:06+00:00"
 }
