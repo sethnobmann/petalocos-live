@@ -772,7 +772,7 @@ function youCard() {
   if (g) {
     const away = g[0] === r.team, opp = away ? g[1] : g[0], o = live[opp];
     rows += L.cur && L.cur.week === L.next.week && L.cur.teams[r.team] && L.cur.teams[opp] ? liveBlock(r, opp, o)
-      : `<a class="yrow" href="${mlink(o.mgr)}"><span class="yk">Week ${L.next.week}</span>
+      : `<a class="yrow" href="#h2h-live"><span class="yk">Week ${L.next.week}</span>
       <span class="ym">${away ? "at" : "vs"} ${esc(opp)}<small>${esc(o.short)} · H2H ${recTxt(o)}</small></span>
       <span class="yv">up next</span><span class="chev">›</span></a>`;
   }
@@ -1260,6 +1260,7 @@ function route() {
   else if (h.startsWith("member-")) v = renderMember(h.slice(7));
   else if (h.startsWith("team-")) v = renderLineup(h.slice(5), lastTab);
   else if (h === "h2h") v = renderH2H();
+  else if (h === "h2h-live") { state.h2hTab = "live"; state.h2hWeek = null; v = renderH2H(); }  // Home's "up next" row
   else if (h === "champions") v = renderChampions();
   else if (h === "members") v = renderMembers();
   else if (h === "records") v = renderRecords();
