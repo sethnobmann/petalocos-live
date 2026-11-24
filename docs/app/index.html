@@ -386,9 +386,14 @@ a.yrow:active, button.yrow:active { background: rgba(255, 255, 255, 0.035); }
 .pmeta b { font-weight: 600; color: var(--pc); }
 .pgame { font-size: 14px; line-height: 1.25; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .lpts { font: 600 25px/1 var(--display); color: var(--text); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
-.lpts.up { color: var(--win); }
 .lpts.wait { color: var(--dim); }
+.lpts.live { color: var(--amber); }
 .lsub { margin-top: 4px; font: 11px var(--mono); color: var(--dim); text-align: right; white-space: nowrap; }
+.lsub.live { color: var(--amber); }
+/* a player whose game is on: orange edge, soft glow, and a bar for how much of the game is gone */
+.row.lrow.on { box-shadow: inset 3px 0 0 var(--orange); background: linear-gradient(90deg, rgba(242, 92, 42, 0.10), transparent 55%); }
+.gbar { margin-top: 6px; max-width: 150px; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, 0.1); overflow: hidden; }
+.gbar i { display: block; height: 100%; background: var(--orange); }
 .morelink {
   display: block; padding: 10px 14px; text-align: center; text-decoration: none;
   font: 12px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber);
@@ -602,7 +607,7 @@ function toast(msg) {
 }
 /* refresh: if a newer app is on the server, reload into it; otherwise pull the latest scores right now.
    Either way say what happened, so a tap never looks like nothing. */
-const BUILD_ID = "20261123175724";
+const BUILD_ID = "20261124033635";
 async function hardRefresh(btn) {
   if (btn.classList.contains("spin")) return;
   btn.classList.add("spin");
@@ -698,6 +703,16 @@ const gameText = st => (st || "")
   .replace(/(\d{1,2}:\d{2}) ?(am|pm)/i, (m, t, ap) => t + ap.toUpperCase())
   .replace(/ vs /, " v ")
   .replace(/([v@]) ([A-Za-z]{2,3})$/, (m, s, t) => `${s} ${t.toUpperCase()}`);
+/* a game status like "Q3 1:47, 17-13 @ Was" or "Halftime" means the game is being played */
+const gameOn = st => /^(Q[1-4]|OT|Half|End)/i.test(st || "");
+/* how much of the game is gone, 0-100, from the quarter and clock (OT counts as all of it) */
+function gameDone(st) {
+  if (/^Half/i.test(st)) return 50;
+  const m = (st || "").match(/^Q([1-4]) (\d+):(\d+)/);
+  if (!m) return 100;
+  const left = +m[2] + +m[3] / 60;
+  return Math.max(2, Math.min(100, Math.round(((+m[1] - 1) * 15 + 15 - left) / 60 * 100)));
+}
 function renderLineup(slug, from = "home") {
   const C = D.live.cur;
   if (!C || !C.lineups) return null;
@@ -710,15 +725,17 @@ function renderLineup(slug, from = "home") {
     <div class="h">Starters · Week ${C.week}${C.asOf !== LINEUP_AS_OF ? ` · players ${asOfText(LINEUP_AS_OF)}` : ""}</div>
     <div class="list lu">${rows.map(([slot, name, tp, st, pts, proj]) => {
       const [nfl = "", pp = slot] = tp.split(" - "), ppos = pp.split(",")[0];
-      const done = pts !== null;
+      /* three states: playing now (lit row, gold points, a bar for how much game is left),
+         final (plain white) and not started (gray projection) */
+      const on = gameOn(st), done = pts !== null;
       const num = done ? fmtPts(pts) : proj === null ? "–" : fmtPts(proj);
-      const cls = !done ? " wait" : proj !== null && pts >= proj ? " up" : "";
-      return `<div class="row lrow">
+      const cls = on ? " live" : !done ? " wait" : "";
+      return `<div class="row lrow${on ? " on" : ""}">
         <div class="ppill" style="--pc:${posColor(slot)}">${slot === "W/R/T" ? "WRT" : esc(slot)}</div>
         <div class="mid"><div class="pname">${esc(shortName(name, slot))}</div>
           <div class="pmeta" style="--pc:${posColor(ppos)}"><b>${esc(ppos)}</b> • ${esc(nfl.toUpperCase())}</div>
-          <div class="pgame">${esc(gameText(st))}</div></div>
-        <div><div class="lpts${cls}">${num}</div><div class="lsub">${done ? `proj ${proj === null ? "–" : fmtPts(proj)}` : "proj"}</div></div></div>`;
+          <div class="pgame">${esc(gameText(st))}</div>${on ? `<div class="gbar"><i style="width:${gameDone(st)}%"></i></div>` : ""}</div>
+        <div><div class="lpts${cls}">${num}</div><div class="lsub${on ? " live" : ""}">${on ? "live" : done ? "final" : "proj"}</div></div></div>`;
     }).join("")}</div>
     ${r ? `<a class="morelink" href="${mlink(r.mgr)}">${esc(r.mgr)}'s league history ›</a>` : ""}`;
   return {
