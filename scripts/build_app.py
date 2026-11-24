@@ -100,7 +100,7 @@ for m, rs in by_mgr.items():
     if m in s26:
         t = s26[m]
         now = {"team": t["Team Name"], "place": int(t["Place"]), "pts": int(t["Points"]),
-               "w": int(t["H2H W"]), "l": int(t["H2H L"])}
+               "w": int(t["H2H W"]), "l": int(t["H2H L"]), "t": int(t.get("H2H T") or 0)}
     members.append({
         "name": m, "slug": slug(m), "short": short.get(m, m.split()[0]), "ini": initials(m),
         "active": m in s26, "status": info["status"], "teams": info["teams"],
@@ -124,7 +124,7 @@ for m, t in s26.items():
     standings.append({
         "team": t["Team Name"], "mgr": m, "short": t["Short"], "pts": int(t["Points"]),
         "place": int(t["Place"]), "prev": int(t["Prev Place"]),
-        "w": int(t["H2H W"]), "l": int(t["H2H L"]), "streak": t["Streak"],
+        "w": int(t["H2H W"]), "l": int(t["H2H L"]), "t": int(t.get("H2H T") or 0), "streak": t["Streak"],
         "pf": int(t["PF"]), "pa": int(t["PA"]),
         "hp": int(t["H2H place"]), "hpp": int(t["H2H prev place"]), "form": t["Form"],
     })

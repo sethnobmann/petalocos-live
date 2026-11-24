@@ -137,15 +137,19 @@ def main():
 
     def wl(t, upto):
         g = [x for x in res[t] if x[0] <= upto]
-        return sum(1 for x in g if x[1] == "W"), sum(1 for x in g if x[1] == "L")
+        return tuple(sum(1 for x in g if x[1] == k) for k in "WLT")
 
-    h_key = {t: wl(t, last)[0] * 10000 + season[t] for t in mgr}
-    h_prev_key = {t: wl(t, last - 1)[0] * 10000 + prev[t] for t in mgr}
+    def wins(t, upto):  # a tie counts as half a win
+        w, _, tie = wl(t, upto)
+        return w + tie / 2
+
+    h_key = {t: wins(t, last) * 2 * 10000 + season[t] for t in mgr}
+    h_prev_key = {t: wins(t, last - 1) * 2 * 10000 + prev[t] for t in mgr}
     h_order = sorted(mgr, key=lambda t: -h_key[t])
     h_prev_order = sorted(mgr, key=lambda t: -h_prev_key[t])
     h_place = {t: i + 1 for i, t in enumerate(h_order)}
     h_prev_place = {t: i + 1 for i, t in enumerate(h_prev_order)}
-    top_w = wl(h_order[0], last)[0]
+    top_w = wins(h_order[0], last)
     rows = []
     for t in order:
         r = sorted(res[t])
@@ -173,14 +177,14 @@ def main():
             "Season": 2026, "Team Name": t, "Manager": mgr[t], "Short": SHORT[t], "Points": season[t],
             "Place": place[t], "Prev Place": prev_place[t], "Move": move, "Move code": code,
             "Back": season[t] - lead, "Back text": "" if season[t] == lead else f"-{lead - season[t]}",
-            "H2H W": W, "H2H L": L, "H2H key": W * 10000 + season[t], "Streak": streak,
+            "H2H W": W, "H2H L": L, "H2H T": T, "H2H key": int((W + T / 2) * 2 * 10000 + season[t]), "Streak": streak,
             "Form": "".join(x[1] for x in r[-5:]), "PF": season[t], "PA": sum(x[4] for x in r),
             "Last Week": last, "Last Week Pts": lp, "Last Week Rank": lr, "Next Opp": nxt.get(t, ""),
             "Through Week": last, "Record text": rec,
             "Row html": row_html(t, mgr[t], W, L, season[t], season[t] == lead, lead),
             "H2H place": h_place[t], "H2H prev place": h_prev_place[t],
             "H2H badge": BADGE.format(h_place[t], hcode),
-            "H2H html": h2h_html(t, mgr[t], W, L, streak, season[t], sum(x[4] for x in r), season[t], W == top_w, top_w - W),
+            "H2H html": h2h_html(t, mgr[t], W, L, streak, season[t], sum(x[4] for x in r), season[t], W + T / 2 == top_w, f"{top_w - W - T / 2:g}"),
         })
         print(f"{place[t]:2d} {move:3s} {t:18s} {season[t]:4d}  {rec:5s} {streak:3s} next: {nxt.get(t, '')}")
     out = os.path.join(D, "season_2026.csv")

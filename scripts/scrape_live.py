@@ -13,7 +13,10 @@ tmp/state.json keeps the last ESPN check ("nfl") so you can see why it ran or di
 While games are on it also loads the 10 team pages and adds each team's starters
 (points, projections, game status) to docs/live.json as "lineups", so the app's team
 page shows players live (scripts/lineups.py does the parsing; --no-lineups skips it).
-When Yahoo moves to a new week it also rolls last week's finals into
+When the last NFL game of the week ends (ESPN shows every game final) it locks the week's
+points in as finals and reruns H2H right away; when Yahoo then moves to the new week it fixes
+any team a late stat change moved, and rebuilds the app for the new week.
+If Yahoo moves on before that happened, it rolls last week's finals into
 data/weekly_scores_2026.csv and rebuilds the Glide tables with h2h.py. The Glide import
 itself is still a manual step.
 
@@ -87,9 +90,14 @@ def should_run(now, state, games=None):
         state["nfl"] = f"{now:%m-%d %H:%M} {on} on, {sum(1 for _, st in games if st == 'pre')} to come"
         if on:
             state["game_on"] = now.timestamp()
+            state["week_over"] = False
             return "game on"
         if state.get("game_on") and now.timestamp() - state["game_on"] < 30 * 60:
             return "wrap-up"
+        # every game of the NFL week has been played (Monday night is done): finalize once
+        state["week_over"] = bool(games) and all(st == "post" for _, st in games)
+        if state["week_over"] and state.get("sig") and state.get("final_week") != state["sig"][0]:
+            return "week over"
     elif in_window(now):  # ESPN unreachable: fall back to the usual kickoff windows
         state["nfl"] = f"{now:%m-%d %H:%M} ESPN unreachable, using fixed windows"
         return "window"
@@ -231,6 +239,64 @@ def try_roll(week, live, totals, change):
     return None
 
 
+def finalize(week, live):
+    """Every NFL game of the week has been played: lock this week's points in as finals and rerun
+    H2H, without waiting for Yahoo to move to the next week. Stat changes Yahoo makes later are
+    picked up by reconcile() when it does move."""
+    pts = {team: p for team, (p, _) in live.items()}
+    if len(pts) != 10 or any(p is None or p < 0 or p > 400 for p in pts.values()):
+        return f"week {week} points look wrong: {pts}"
+    from add_week import add_week
+
+    if not add_week(week, pts):
+        return f"week {week} is already in the file"
+    subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "h2h.py")], check=True, stdout=subprocess.DEVNULL)
+    return None
+
+
+def reconcile(week, live, totals, change):
+    """Yahoo just moved to `week` and week-1 was finalized early: compare it with Yahoo's own final
+    (season total - this week's points - the weeks before) and fix any team a stat change moved."""
+    path = os.path.join(ROOT, "data", "weekly_scores_2026.csv")
+    rows = load_csv("weekly_scores_2026.csv")
+    before = {}
+    for r in rows:
+        if int(r["Week"]) < week - 1:
+            before[r["Team Name"]] = before.get(r["Team Name"], 0) + int(r["Points"])
+    mine = {r["Team Name"]: int(r["Points"]) for r in rows if int(r["Week"]) == week - 1}
+    fixes = {}
+    for team, (pts, _) in live.items():
+        if totals.get(team) is None or team not in mine:
+            return None
+        f = totals[team] - pts - before.get(team, 0)
+        if change.get(team) is not None and abs(change[team] - f) > 0.01:
+            return None  # Yahoo's numbers don't agree with each other yet; try again next run
+        if abs(f - mine[team]) > 0.01:
+            fixes[team] = f
+    if not fixes:
+        return None
+    pts = {**mine, **fixes}
+    order = sorted(pts.items(), key=lambda kv: -kv[1])
+    rank, prev = {}, None
+    for i, (team, p) in enumerate(order):
+        rank[team] = rank[prev] if prev is not None and p == pts[prev] else i + 1
+        prev = team
+    raw = open(path, "rb").read()
+    nl = "\r\n" if b"\r\n" in raw else "\n"
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        rdr = csv.reader(f)
+        head = next(rdr)
+        body = [r for r in rdr if r]
+    wi, ti, pi, ri = head.index("Week"), head.index("Team Name"), head.index("Points"), head.index("Week Rank")
+    for r in body:
+        if int(r[wi]) == week - 1:
+            r[pi], r[ri] = str(round(pts[r[ti]])), str(rank[r[ti]])
+    with open(path, "w", newline="", encoding="utf-8-sig" if raw.startswith(b"\xef\xbb\xbf") else "utf-8") as f:
+        csv.writer(f, lineterminator=nl).writerows([head] + body)
+    subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "h2h.py")], check=True, stdout=subprocess.DEVNULL)
+    return ", ".join(f"{t} {mine[t]}→{round(v)}" for t, v in fixes.items())
+
+
 def build(week, live, note=None):
     managers = {r["team"]: r["manager"] for r in load_csv("managers.csv")}
     before, last = season_before(week)
@@ -353,6 +419,7 @@ def main():
         sys.exit(1)
 
     paths, note, rolled = ["docs/live.json"], None, False
+    new_week = bool(state.get("sig")) and state["sig"][0] != week
     _, last = season_before(week)
     if last < week - 1:
         note = try_roll(week, live, totals, change)
@@ -362,6 +429,23 @@ def main():
             log(f"rolled week {week - 1} into weekly_scores_2026.csv (Glide import still to do)")
         else:
             log(f"roll skipped: {note}")
+    elif last == week - 1 and new_week:
+        fixed = reconcile(week, live, totals, change)  # Yahoo's final for last week, after stat changes
+        if fixed:
+            rolled = True
+            paths.append("data")
+            log(f"week {week - 1} stat changes: {fixed}")
+    elif last == week - 1 and state.get("week_over") and state.get("final_week") != week:
+        note = finalize(week, live)  # Monday night is over: lock the week in and update H2H now
+        if note is None:
+            rolled = True
+            paths.append("data")
+            state["final_week"] = week
+            log(f"finalized week {week} after the last game")
+        else:
+            log(f"finalize skipped: {note}")
+    if season_before(week + 1)[1] >= week:  # this week is already in the file, by hand or above
+        state["final_week"] = week
 
     out = build(week, live, note)
     if why != "hourly probe" and not no_lineups:
@@ -383,7 +467,7 @@ def main():
             json.dump(out, f, indent=1)
     with open(STATE, "w") as f:
         json.dump(state, f)
-    if rolled:  # new week: rebuild the web app so standings, H2H and the bracket take in last week's finals
+    if rolled or new_week:  # rebuild the web app so standings, H2H and the bracket take in the finals, or the new week
         b = subprocess.run([sys.executable, os.path.join(ROOT, "scripts", "build_app.py")], capture_output=True, text=True)
         if b.returncode == 0:
             paths.append("docs/app")

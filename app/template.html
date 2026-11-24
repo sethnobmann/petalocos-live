@@ -563,6 +563,8 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;"
 const fmt = n => Number(n).toLocaleString("en-US");
 const ord = n => { const s = ["th", "st", "nd", "rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); };
 const wlc = (w, l) => (w > l ? "w" : w < l ? "l" : "e");
+/* an H2H record, with ties only when there are any: 6-4 or 6-4-1 */
+const recTxt = r => `${r.w}-${r.l}${r.t ? `-${r.t}` : ""}`;
 const memberBySlug = Object.fromEntries(D.members.map(m => [m.slug, m]));
 const memberByName = Object.fromEntries(D.members.map(m => [m.name, m]));
 const live = Object.fromEntries(D.live.standings.map(r => [r.team, r]));
@@ -771,13 +773,13 @@ function youCard() {
     const away = g[0] === r.team, opp = away ? g[1] : g[0], o = live[opp];
     rows += L.cur && L.cur.week === L.next.week && L.cur.teams[r.team] && L.cur.teams[opp] ? liveBlock(r, opp, o)
       : `<a class="yrow" href="${mlink(o.mgr)}"><span class="yk">Week ${L.next.week}</span>
-      <span class="ym">${away ? "at" : "vs"} ${esc(opp)}<small>${esc(o.short)} · H2H ${o.w}-${o.l}</small></span>
+      <span class="ym">${away ? "at" : "vs"} ${esc(opp)}<small>${esc(o.short)} · H2H ${recTxt(o)}</small></span>
       <span class="yv">up next</span><span class="chev">›</span></a>`;
   }
   return `<section class="you" aria-label="Your season">
     <div class="you-top"><div class="mid"><div class="eyebrow">${first} · your season</div><div class="name">${esc(r.team)}</div><div class="lede">${back}</div></div>
       <div class="badge ybadge${P === 1 ? " gold" : ""}"><b>${P}<sup>${ord(P).slice(String(P).length)}</sup></b>${lv ? "<i>live</i>" : ""}</div></div>
-    <div class="leds${lv ? "" : " two"}">${lv ? led(lv.wk, `Week ${L.cur.week}`) : ""}${led(pts, lv ? "Total" : "Points")}${led(`${r.w}-${r.l}`, lv ? `H2H ${ord(r.hp)}` : `H2H · ${ord(r.hp)}`, rec === "e" ? "" : rec)}</div>
+    <div class="leds${lv ? "" : " two"}">${lv ? led(lv.wk, `Week ${L.cur.week}`) : ""}${led(pts, lv ? "Total" : "Points")}${led(`${recTxt(r)}`, lv ? `H2H ${ord(r.hp)}` : `H2H · ${ord(r.hp)}`, rec === "e" ? "" : rec)}</div>
     <div class="yrows">${rows}</div>
   </section>`;
 }
@@ -793,7 +795,7 @@ function seasonStandings() {
       <div class="list">${lt.map(r => {
         const href = lineupHref(r.team) || mlink(r.mgr);
         return `${rowTag(href, r.mgr)}${placeCol(r.live, lead - r.total)}
-          <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)}</div><div class="note">H2H <span class="${wlc(r.w, r.l)}">${r.w}-${r.l}</span></div></div>
+          <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)}</div><div class="note">H2H <span class="${wlc(r.w, r.l)}">${recTxt(r)}</span></div></div>
           <div class="right sbig"><div class="pts">${r.total}<small>PTS</small></div><div class="rec wk">+${r.wk} <span>wk ${C.week}</span></div></div>${rowEnd(href)}`;
       }).join("")}</div>`;
   }
@@ -803,7 +805,7 @@ function seasonStandings() {
     const href = mlink(r.mgr);
     return `${rowTag(href, r.mgr)}${placeCol(r.place, lead - r.pts)}
       <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)}</div></div>
-      <div class="right"><div class="pts">${r.pts}<small>PTS</small></div><div class="rec ${wlc(r.w, r.l)}">H2H ${r.w}-${r.l}</div></div>${rowEnd(href)}`;
+      <div class="right"><div class="pts">${r.pts}<small>PTS</small></div><div class="rec ${wlc(r.w, r.l)}">H2H ${recTxt(r)}</div></div>${rowEnd(href)}`;
   }).join("")}</div>`;
 }
 /* while this week is live: each team's record if its game goes the way the odds say (live score + projection),
@@ -818,31 +820,31 @@ function liveH2H() {
     if (!me || !them) return { ...r, pw: r.w, pl: r.l, ppf: r.pf };
     const p = winChance(me[0], me[1], them[0], them[1]), win = p >= 0.5;
     return { ...r, opp: o, lv: me[0], ol: them[0], p, win, pw: r.w + (win ? 1 : 0), pl: r.l + (win ? 0 : 1), ppf: r.pf + me[0] };
-  }).sort((a, b) => b.pw - a.pw || b.ppf - a.ppf);
+  }).sort((a, b) => b.pw + (b.t || 0) / 2 - a.pw - (a.t || 0) / 2 || b.ppf - a.ppf);
   rows.forEach((r, i) => { r.pp = i + 1; });
   return rows;
 }
 function liveH2HRows(rows) {
-  const topW = rows[0].pw;
+  const topW = rows[0].pw + (rows[0].t || 0) / 2;
   return `<p class="hnote">Week ${D.live.cur.week} isn't final. This is the table if every game goes the way it's trending.</p><div class="list">${rows.map(r => {
-    const href = teamHref(r.team, r.mgr), o = r.opp ? live[r.opp] : null, back = topW - r.pw, wc = r.p >= 0.5 ? "w" : "l";
+    const href = teamHref(r.team, r.mgr), o = r.opp ? live[r.opp] : null, back = topW - r.pw - (r.t || 0) / 2, wc = r.p >= 0.5 ? "w" : "l";
     const place = `<div class="pcol"><div class="badge proj${r.pp === 1 ? " gold" : ""}"><b>${r.pp}<sup>${ord(r.pp).slice(String(r.pp).length)}</sup></b></div>${back > 0 ? `<div class="pback"><b>${back}</b> back</div>` : ""}</div>`;
     return `${rowTag(href, r.mgr, "hrow")}${place}
       <div class="team c2">${esc(r.team)}</div><div class="mgr c2">${esc(r.mgr)}</div>
       ${o ? `<div class="vsl c2">vs <b>${esc(o.short)}</b><span class="sc">${r.lv}-${r.ol}</span></div>` : ""}
-      <div class="hx"><div class="hx-now"><small>Now</small><b class="${wlc(r.w, r.l)}">${r.w}-${r.l}</b></div><div class="hx-box ${o ? wc : "e"}"><small>Proj</small><b>${r.pw}-${r.pl}</b>${o ? `<em>${pct(r.p)}<i>win</i></em>` : ""}</div></div>${rowEnd(href)}`;
+      <div class="hx"><div class="hx-now"><small>Now</small><b class="${wlc(r.w, r.l)}">${recTxt(r)}</b></div><div class="hx-box ${o ? wc : "e"}"><small>Proj</small><b>${recTxt({ w: r.pw, l: r.pl, t: r.t })}</b>${o ? `<em>${pct(r.p)}<i>win</i></em>` : ""}</div></div>${rowEnd(href)}`;
   }).join("")}</div>`;
 }
 function seasonH2H() {
   const lh = liveH2H();
   if (lh) return liveH2HRows(lh);
   const rows = D.live.standings.slice().sort((a, b) => a.hp - b.hp);
-  const topW = Math.max(...rows.map(r => r.w));
+  const topW = Math.max(...rows.map(r => r.w + (r.t || 0) / 2));
   return `<div class="list">${rows.map(r => {
-    const gb = topW - r.w, href = teamHref(r.team, r.mgr);
+    const gb = topW - r.w - (r.t || 0) / 2, href = teamHref(r.team, r.mgr);
     return `${rowTag(href, r.mgr)}${placeCol(r.hp, gb)}
-      <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)}</div><div class="note">PF ${r.pf} · PA ${r.pa}${r.streak ? ` (<span class="${r.streak[0] === "W" ? "w" : "l"}">${esc(r.streak)}</span>)` : ""}</div></div>
-      <div class="right"><div class="wl ${wlc(r.w, r.l)}">${r.w}-${r.l}</div><div class="rec e">${r.pts} PTS</div></div>${rowEnd(href)}`;
+      <div class="mid"><div class="team">${esc(r.team)}</div><div class="mgr">${esc(r.mgr)}</div><div class="note">PF ${r.pf} · PA ${r.pa}${r.streak ? ` (<span class="${r.streak[0] === "W" ? "w" : r.streak[0] === "L" ? "l" : "e"}">${esc(r.streak)}</span>)` : ""}</div></div>
+      <div class="right"><div class="wl ${wlc(r.w, r.l)}">${recTxt(r)}</div><div class="rec e">${r.pts} PTS</div></div>${rowEnd(href)}`;
   }).join("")}</div>`;
 }
 function weekScores(wk) {
@@ -866,9 +868,9 @@ function muSide(team, right, cls, inner, href0) {
 function weekGames(wk) {
   const games = D.live.games[wk] || [];
   return `<div class="list">${games.map(([away, ap, home, hp, winner, margin]) => mu(away, home, (team, right) => {
-    const won = winner === team, p = team === away ? ap : hp;
-    return muSide(team, right, won ? "win" : "lose",
-      `<div class="mu-score">${p}</div><div class="mu-res ${won ? "w" : "l"}">${won ? `W by ${margin}` : "L"}</div>`);
+    const won = winner === team, tie = !winner, p = team === away ? ap : hp;
+    return muSide(team, right, tie ? "" : won ? "win" : "lose",
+      `<div class="mu-score">${p}</div><div class="mu-res ${tie ? "e" : won ? "w" : "l"}">${tie ? "Tie" : won ? `W by ${margin}` : "L"}</div>`);
   })).join("")}</div>`;
 }
 /* future weeks: the schedule with each team's record now, its scoring average as the projection,
@@ -884,7 +886,7 @@ function futureGames(wk) {
   return `<p class="hnote">Projections are each team's scoring average so far.</p><div class="list">${games.map(([away, home]) => mu(away, home, (team, right) => {
     const opp = team === away ? home : away, p = chance(team, opp), t = live[team] || { w: 0, l: 0 };
     return muSide(team, right, "",
-      `<div class="mu-score ${wlc(t.w, t.l)}">${t.w}-${t.l}</div><div class="mu-res">proj ${Math.round(avg[team])} · <span class="${p >= 0.5 ? "w" : "l"}">${pct(p)}</span></div>`);
+      `<div class="mu-score ${wlc(t.w, t.l)}">${recTxt(t)}</div><div class="mu-res">proj ${Math.round(avg[team])} · <span class="${p >= 0.5 ? "w" : "l"}">${pct(p)}</span></div>`);
   })).join("")}</div>`;
 }
 const futureWeeks = () => {
@@ -902,7 +904,7 @@ function upNext() {
     }
     const t = live[team] || { w: 0, l: 0, pts: 0, place: 0 };
     return muSide(team, right, "",
-      `<div class="mu-score ${wlc(t.w, t.l)}">${t.w}-${t.l}</div><div class="mu-res">${t.pts} pts · ${ord(t.place)}</div>`);
+      `<div class="mu-score ${wlc(t.w, t.l)}">${recTxt(t)}</div><div class="mu-res">${t.pts} pts · ${ord(t.place)}</div>`);
   })).join("")}</div>`;
 }
 function renderHome() {
@@ -919,7 +921,7 @@ function mySchedule() {
     if (!o) return "";
     return `<a class="row srow" href="${teamHref(opp, o.mgr)}"><div class="yk">Week ${w}</div>
       <div class="mid"><div class="team">${away ? "at" : "vs"} ${esc(opp)}</div><div class="mgr">${esc(o.short)}</div></div>
-      <div class="right"><div class="rec ${wlc(o.w, o.l)}">${o.w}-${o.l}</div></div></a>`;
+      <div class="right"><div class="rec ${wlc(o.w, o.l)}">${recTxt(o)}</div></div></a>`;
   }).join("");
   return rows ? `<div class="h">Your schedule</div><div class="list">${rows}</div>` : "";
 }
@@ -947,7 +949,7 @@ function h2hOutlook() {
   });
   Object.keys(L.sched || {}).forEach(w => L.sched[w].forEach(([a, b]) => games.push([a, b, fav(a, b)])));
   const left = {}, exp = {}, pf = {}, made = {}, bye = {};
-  T.forEach(t => { left[t.team] = 0; exp[t.team] = t.w; made[t.team] = 0; bye[t.team] = 0; });
+  T.forEach(t => { left[t.team] = 0; exp[t.team] = t.w; made[t.team] = 0; bye[t.team] = 0; });  // exp: wins only; a tie counts half in the sort
   games.forEach(([a, b, p]) => { left[a]++; left[b]++; exp[a] += p; exp[b] += 1 - p; });
   const liveWk = C && L.next && C.week === L.next.week;
   T.forEach(t => {
@@ -956,7 +958,7 @@ function h2hOutlook() {
   });
   const N = 5000, rand = rng(20261109), teams = T.map(t => t.team);
   for (let i = 0; i < N; i++) {
-    const w = {}; T.forEach(t => { w[t.team] = t.w; });
+    const w = {}; T.forEach(t => { w[t.team] = t.w + (t.t || 0) / 2; });
     for (const [a, b, p] of games) w[rand() < p ? a : b]++;
     const order = teams.slice().sort((x, y) => w[y] - w[x] || pf[y] - pf[x]);
     for (let k = 0; k < 6; k++) made[order[k]]++;
@@ -965,7 +967,7 @@ function h2hOutlook() {
   const rows = T.map(t => {
     const n = t.w + t.l + left[t.team], pw = Math.round(exp[t.team]);
     return { ...t, pw, pl: n - pw, exp: exp[t.team], pf: pf[t.team], made: made[t.team] / N, bye: bye[t.team] / N };
-  }).sort((a, b) => b.pw - a.pw || b.pf - a.pf);
+  }).sort((a, b) => b.pw + (b.t || 0) / 2 - a.pw - (a.t || 0) / 2 || b.pf - a.pf);
   rows.forEach((r, i) => { r.seed = i + 1; });
   return (outlookCache = rows);
 }
@@ -989,7 +991,7 @@ function seedRows(rows) {
     const href = teamHref(r.team, r.mgr);
     return `${rowTag(href, r.mgr)}${badge(r.seed, r.seed <= 2)}
       <div class="mid"><div class="team">${esc(r.team)}${r.seed <= 2 ? '<span class="tag">BYE</span>' : ""}</div><div class="mgr">${esc(r.mgr)}</div>
-        <div class="note">Now ${r.w}-${r.l} · proj ${r.pw}-${r.pl}${r.seed <= 3 ? ` · bye ${odds(r.bye)}` : ""}</div></div>
+        <div class="note">Now ${recTxt(r)} · proj ${recTxt({ w: r.pw, l: r.pl, t: r.t })}${r.seed <= 3 ? ` · bye ${odds(r.bye)}` : ""}</div></div>
       <div class="right"><div class="pts">${odds(r.made)}<small>IN</small></div></div>${rowEnd(href)}`;
   }).join("");
 }
@@ -1171,7 +1173,7 @@ function renderMember(slug) {
   const team = m.now ? m.now.team : last[3];
   const avatar = `<div class="av big gold">${m.ini}</div>`;
   let body = "";
-  if (m.now) body += `<dl class="list">${kv("2026 so far", `<b>${ord(m.now.place)}</b> · ${m.now.pts} pts · H2H <span class="${wlc(m.now.w, m.now.l)}">${m.now.w}-${m.now.l}</span>`)}</dl>`;
+  if (m.now) body += `<dl class="list">${kv("2026 so far", `<b>${ord(m.now.place)}</b> · ${m.now.pts} pts · H2H <span class="${wlc(m.now.w, m.now.l)}">${recTxt(m.now)}</span>`)}</dl>`;
   const tt = (ys, label, kind) => `<div class="tt ${kind}">${kind === "h2h" ? MEDAL : CUP}<b>${ys.length}</b><span>${label}</span>
       <i>${ys.length ? ys.map(y => `’${String(y).slice(2)}`).join(" ") : "–"}</i></div>`;
   body += `<div class="tts">${tt(m.titles, "Championships", "pts")}${tt(m.h2h, "H2H titles", "h2h")}</div>
