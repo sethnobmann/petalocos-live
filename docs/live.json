@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T03:50:09+00:00",
+ "updated": "2026-11-24T04:00:09+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 11,
@@ -8,7 +8,7 @@
    "team": "dontmindme",
    "manager": "Seth Nobmann",
    "week_pts": 129.0,
-   "week_proj": 130.0,
+   "week_proj": 129.0,
    "season_pts": 1205.0,
    "week_rank": 1,
    "season_rank": 5
@@ -35,7 +35,7 @@
    "team": "Maverick",
    "manager": "Chris Scerri",
    "week_pts": 111.0,
-   "week_proj": 113.0,
+   "week_proj": 111.0,
    "season_pts": 1256.0,
    "week_rank": 4,
    "season_rank": 2
@@ -44,7 +44,7 @@
    "team": "Umbertos",
    "manager": "Rob Scerri",
    "week_pts": 111.0,
-   "week_proj": 115.0,
+   "week_proj": 112.0,
    "season_pts": 1332.0,
    "week_rank": 4,
    "season_rank": 1
@@ -70,18 +70,18 @@
   {
    "team": "Lincoln Hawk",
    "manager": "Brandon Martinez",
-   "week_pts": 88.0,
-   "week_proj": 92.0,
-   "season_pts": 1096.0,
+   "week_pts": 89.0,
+   "week_proj": 90.0,
+   "season_pts": 1097.0,
    "week_rank": 8,
    "season_rank": 9
   },
   {
    "team": "Mooseknuckle's",
    "manager": "Brian Lovrin",
-   "week_pts": 84.0,
-   "week_proj": 89.0,
-   "season_pts": 1216.0,
+   "week_pts": 86.0,
+   "week_proj": 87.0,
+   "season_pts": 1218.0,
    "week_rank": 9,
    "season_rank": 4
   },
@@ -103,7 +103,7 @@
    "away_manager": "Tony Oliverez",
    "home_pts": 129.0,
    "away_pts": 96.0,
-   "home_proj": 130.0,
+   "home_proj": 129.0,
    "away_proj": 96.0
   },
   {
@@ -113,8 +113,8 @@
    "away_manager": "Chris Scerri",
    "home_pts": 111.0,
    "away_pts": 111.0,
-   "home_proj": 115.0,
-   "away_proj": 113.0
+   "home_proj": 112.0,
+   "away_proj": 111.0
   },
   {
    "home": "SHOW ME THE $$$$",
@@ -131,9 +131,9 @@
    "away": "FOTY*",
    "home_manager": "Brian Lovrin",
    "away_manager": "Dave Abramson",
-   "home_pts": 84.0,
+   "home_pts": 86.0,
    "away_pts": 109.0,
-   "home_proj": 89.0,
+   "home_proj": 87.0,
    "away_proj": 110.0
   },
   {
@@ -142,9 +142,9 @@
    "home_manager": "Brandon Selvitella",
    "away_manager": "Brandon Martinez",
    "home_pts": 118.0,
-   "away_pts": 88.0,
+   "away_pts": 89.0,
    "home_proj": 118.0,
-   "away_proj": 92.0
+   "away_proj": 90.0
   }
  ],
  "unmapped_teams": [],
@@ -155,7 +155,7 @@
     "QB",
     "Joe Burrow",
     "Cin - QB",
-    "Q4 9:12, 17-16 @ Was",
+    "Q4 3:22, 17-16 @ Was",
     17.0,
     null
    ],
@@ -285,7 +285,7 @@
     "RB",
     "Chase Brown",
     "Cin - RB",
-    "Q4 9:12, 17-16 @ Was",
+    "Q4 3:22, 17-16 @ Was",
     1.0,
     null
    ],
@@ -325,7 +325,7 @@
     "TE",
     "Mike Gesicki",
     "Cin - TE",
-    "Q4 9:12, 17-16 @ Was",
+    "Q4 3:22, 17-16 @ Was",
     2.0,
     null
    ],
@@ -651,7 +651,7 @@
     "W/R/T",
     "Antonio Williams",
     "Was - WR",
-    "Q4 9:13, 16-17 vs Cin",
+    "Q4 3:22, 16-17 vs Cin",
     2.0,
     null
    ],
@@ -693,8 +693,8 @@
     "QB",
     "Jayden Daniels",
     "Was - QB",
-    "Q4 9:13, 16-17 vs Cin",
-    5.0,
+    "Q4 3:22, 16-17 vs Cin",
+    6.0,
     null
    ],
    [
@@ -831,7 +831,7 @@
     "WR",
     "Tee Higgins",
     "Cin - WR",
-    "Q4 9:13, 17-16 @ Was",
+    "Q4 3:22, 17-16 @ Was",
     9.0,
     null
    ],
@@ -977,7 +977,7 @@
     "W/R/T",
     "Jacory Croskey-Merritt",
     "Was - RB",
-    "Q4 9:13, 16-17 vs Cin",
+    "Q4 3:22, 16-17 vs Cin",
     10.0,
     null
    ],
@@ -1035,7 +1035,7 @@
     "RB",
     "Samaje Perine",
     "Cin - RB",
-    "Q4 9:13, 17-16 @ Was",
+    "Q4 3:15, 17-16 @ Was",
     4.0,
     null
    ],
@@ -1043,7 +1043,7 @@
     "WR",
     "Ja'Marr Chase",
     "Cin - WR",
-    "Q4 9:13, 17-16 @ Was",
+    "Q4 3:15, 17-16 @ Was",
     1.0,
     null
    ],
@@ -1075,8 +1075,8 @@
     "W/R/T",
     "Stefon Diggs",
     "Was - WR",
-    "Q4 9:13, 16-17 vs Cin",
-    0.0,
+    "Q4 3:15, 16-17 vs Cin",
+    2.0,
     null
    ],
    [
@@ -1091,7 +1091,7 @@
     "K",
     "Evan McPherson",
     "Cin - K",
-    "Q4 9:13, 17-16 @ Was",
+    "Q4 3:15, 17-16 @ Was",
     5.0,
     null
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-24T03:50:09+00:00"
+ "lineups_updated": "2026-11-24T04:00:09+00:00"
 }
