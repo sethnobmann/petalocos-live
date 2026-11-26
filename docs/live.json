@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T18:50:05+00:00",
+ "updated": "2026-11-26T19:00:09+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -8,7 +8,7 @@
    "team": "Umbertos",
    "manager": "Rob Scerri",
    "week_pts": 24.0,
-   "week_proj": 136.0,
+   "week_proj": 135.0,
    "season_pts": 1357.0,
    "week_rank": 1,
    "season_rank": 1
@@ -26,7 +26,7 @@
    "team": "dontmindme",
    "manager": "Seth Nobmann",
    "week_pts": 16.0,
-   "week_proj": 86.0,
+   "week_proj": 85.0,
    "season_pts": 1222.0,
    "week_rank": 3,
    "season_rank": 5
@@ -34,9 +34,9 @@
   {
    "team": "u got pzzzed",
    "manager": "Tony Oliverez",
-   "week_pts": 10.0,
+   "week_pts": 11.0,
    "week_proj": 113.0,
-   "season_pts": 1161.0,
+   "season_pts": 1162.0,
    "week_rank": 4,
    "season_rank": 6
   },
@@ -53,7 +53,7 @@
    "team": "Miwok Indians",
    "manager": "Brandon Selvitella",
    "week_pts": 3.0,
-   "week_proj": 97.0,
+   "week_proj": 96.0,
    "season_pts": 1073.0,
    "week_rank": 5,
    "season_rank": 10
@@ -71,7 +71,7 @@
    "team": "FOTY*",
    "manager": "Dave Abramson",
    "week_pts": 0.0,
-   "week_proj": 104.0,
+   "week_proj": 102.0,
    "season_pts": 1244.0,
    "week_rank": 8,
    "season_rank": 3
@@ -104,7 +104,7 @@
    "home_pts": 1.0,
    "away_pts": 16.0,
    "home_proj": 80.0,
-   "away_proj": 86.0
+   "away_proj": 85.0
   },
   {
    "home": "FOTY*",
@@ -113,7 +113,7 @@
    "away_manager": "Chris Scerri",
    "home_pts": 0.0,
    "away_pts": 3.0,
-   "home_proj": 104.0,
+   "home_proj": 102.0,
    "away_proj": 118.0
   },
   {
@@ -121,10 +121,10 @@
    "away": "Umbertos",
    "home_manager": "Tony Oliverez",
    "away_manager": "Rob Scerri",
-   "home_pts": 10.0,
+   "home_pts": 11.0,
    "away_pts": 24.0,
    "home_proj": 113.0,
-   "away_proj": 136.0
+   "away_proj": 135.0
   },
   {
    "home": "Lincoln Hawk",
@@ -144,7 +144,7 @@
    "home_pts": 20.0,
    "away_pts": 3.0,
    "home_proj": 92.0,
-   "away_proj": 97.0
+   "away_proj": 96.0
   }
  ],
  "unmapped_teams": [],
@@ -163,7 +163,7 @@
     "QB",
     "Jared Goff",
     "Det - QB",
-    "Q2 11:01, 10-0 vs Chi",
+    "Q2 8:09, 10-3 vs Chi",
     1.0,
     null
    ],
@@ -301,7 +301,7 @@
     "WR",
     "Jameson Williams",
     "Det - WR",
-    "Q2 11:01, 10-0 vs Chi",
+    "Q2 8:09, 10-3 vs Chi",
     0.0,
     null
    ],
@@ -349,7 +349,7 @@
     "K",
     "Jake Bates",
     "Det - K",
-    "Q2 11:01, 10-0 vs Chi",
+    "Q2 8:09, 10-3 vs Chi",
     4.0,
     null
    ],
@@ -489,8 +489,8 @@
     "RB",
     "Jahmyr Gibbs",
     "Det - RB",
-    "Q2 11:01, 10-0 vs Chi",
-    10.0,
+    "Q2 8:09, 10-3 vs Chi",
+    11.0,
     null
    ],
    [
@@ -587,7 +587,7 @@
     "QB",
     "Caleb Williams",
     "Chi - QB",
-    "Q2 11:01, 0-10 @ Det",
+    "Q2 8:09, 3-10 @ Det",
     0.0,
     null
    ],
@@ -627,7 +627,7 @@
     "WR",
     "Luther Burden III",
     "Chi - WR",
-    "Q2 11:01, 0-10 @ Det",
+    "Q2 8:09, 3-10 @ Det",
     0.0,
     null
    ],
@@ -921,7 +921,7 @@
     "RB",
     "D'Andre Swift",
     "Chi - RB",
-    "Q2 10:56, 0-10 @ Det",
+    "Q2 8:09, 3-10 @ Det",
     0.0,
     null
    ],
@@ -937,7 +937,7 @@
     "WR",
     "Amon-Ra St. Brown",
     "Det - WR",
-    "Q2 10:56, 10-0 vs Chi",
+    "Q2 8:09, 10-3 vs Chi",
     3.0,
     null
    ],
@@ -961,7 +961,7 @@
     "TE",
     "Sam LaPorta",
     "Det - TE",
-    "Q2 10:56, 10-0 vs Chi",
+    "Q2 8:09, 10-3 vs Chi",
     0.0,
     null
    ],
@@ -1027,7 +1027,7 @@
     "RB",
     "Kyle Monangai",
     "Chi - RB",
-    "Q2 10:56, 0-10 @ Det",
+    "Q2 8:09, 3-10 @ Det",
     0.0,
     null
    ],
@@ -1067,7 +1067,7 @@
     "TE",
     "Colston Loveland",
     "Chi - TE",
-    "Q2 10:56, 0-10 @ Det",
+    "Q2 8:09, 3-10 @ Det",
     0.0,
     null
    ],
@@ -1181,7 +1181,7 @@
     "W/R/T",
     "Rome Odunze",
     "Chi - WR",
-    "Q2 10:52, 3-10 @ Det",
+    "Q2 8:09, 3-10 @ Det",
     0.0,
     null
    ],
@@ -1205,11 +1205,11 @@
     "DEF",
     "Bears",
     "Chi - DEF",
-    "Q2 10:52, 3-10 @ Det",
+    "Q2 8:09, 3-10 @ Det",
     0.0,
     null
    ]
   ]
  },
- "lineups_updated": "2026-11-26T18:50:05+00:00"
+ "lineups_updated": "2026-11-26T19:00:09+00:00"
 }
