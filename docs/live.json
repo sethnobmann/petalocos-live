@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T01:30:23+00:00",
+ "updated": "2026-11-26T01:40:10+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -8,7 +8,7 @@
    "team": "FANTASY KING",
    "manager": "Chris King",
    "week_pts": 0.0,
-   "week_proj": 96.0,
+   "week_proj": 94.0,
    "season_pts": 1112.0,
    "week_rank": 1,
    "season_rank": 8
@@ -62,7 +62,7 @@
    "team": "SHOW ME THE $$$$",
    "manager": "CJ Nelson",
    "week_pts": 0.0,
-   "week_proj": 96.0,
+   "week_proj": 95.0,
    "season_pts": 1149.0,
    "week_rank": 1,
    "season_rank": 7
@@ -80,7 +80,7 @@
    "team": "dontmindme",
    "manager": "Seth Nobmann",
    "week_pts": 0.0,
-   "week_proj": 95.0,
+   "week_proj": 93.0,
    "season_pts": 1206.0,
    "week_rank": 1,
    "season_rank": 5
@@ -103,8 +103,8 @@
    "away_manager": "Seth Nobmann",
    "home_pts": 0.0,
    "away_pts": 0.0,
-   "home_proj": 96.0,
-   "away_proj": 95.0
+   "home_proj": 95.0,
+   "away_proj": 93.0
   },
   {
    "home": "FOTY*",
@@ -143,7 +143,7 @@
    "away_manager": "Brandon Selvitella",
    "home_pts": 0.0,
    "away_pts": 0.0,
-   "home_proj": 96.0,
+   "home_proj": 94.0,
    "away_proj": 96.0
   }
  ],
@@ -227,7 +227,7 @@
     "W/R/T",
     "Blake Corum",
     "LAR - RB",
-    "Q1 8:06, 3-0 vs GB",
+    "Q1 3:54, 3-0 vs GB",
     0.0,
     null
    ],
@@ -269,7 +269,7 @@
     "QB",
     "Matthew Stafford",
     "LAR - QB",
-    "Q1 7:48, 3-0 vs GB",
+    "Q1 3:15, 3-0 vs GB",
     0.0,
     null
    ],
@@ -293,7 +293,7 @@
     "RB",
     "Kyren Williams",
     "LAR - RB",
-    "Q1 7:48, 3-0 vs GB",
+    "Q1 3:15, 3-0 vs GB",
     0.0,
     null
    ],
@@ -375,7 +375,7 @@
     "QB",
     "Jordan Love",
     "GB - QB",
-    "Q1 8:06, 0-3 @ LAR",
+    "Q1 3:15, 0-3 @ LAR",
     0.0,
     null
    ],
@@ -423,7 +423,7 @@
     "WR",
     "Christian Watson",
     "GB - WR",
-    "Q1 8:06, 0-3 @ LAR",
+    "Q1 3:15, 0-3 @ LAR",
     0.0,
     null
    ],
@@ -871,7 +871,7 @@
     "W/R/T",
     "Konata Mumpfield",
     "LAR - WR",
-    "Q1 8:06, 3-0 vs GB",
+    "Q1 3:12, 6-0 vs GB",
     0.0,
     null
    ],
@@ -1165,7 +1165,7 @@
     "WR",
     "Matthew Golden",
     "GB - WR",
-    "Q1 7:28, 0-3 @ LAR",
+    "Q1 3:12, 0-6 @ LAR",
     0.0,
     null
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-26T01:30:23+00:00"
+ "lineups_updated": "2026-11-26T01:40:10+00:00"
 }
