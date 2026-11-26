@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T03:00:06+00:00",
+ "updated": "2026-11-26T03:10:25+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -16,20 +16,29 @@
   {
    "team": "dontmindme",
    "manager": "Seth Nobmann",
-   "week_pts": 9.0,
-   "week_proj": 97.0,
-   "season_pts": 1215.0,
+   "week_pts": 10.0,
+   "week_proj": 94.0,
+   "season_pts": 1216.0,
    "week_rank": 2,
    "season_rank": 5
   },
   {
    "team": "Maverick",
    "manager": "Chris Scerri",
-   "week_pts": 1.0,
+   "week_pts": 2.0,
    "week_proj": 119.0,
-   "season_pts": 1258.0,
+   "season_pts": 1259.0,
    "week_rank": 3,
    "season_rank": 2
+  },
+  {
+   "team": "Umbertos",
+   "manager": "Rob Scerri",
+   "week_pts": 2.0,
+   "week_proj": 117.0,
+   "season_pts": 1335.0,
+   "week_rank": 3,
+   "season_rank": 1
   },
   {
    "team": "SHOW ME THE $$$$",
@@ -37,17 +46,8 @@
    "week_pts": 1.0,
    "week_proj": 94.0,
    "season_pts": 1150.0,
-   "week_rank": 3,
+   "week_rank": 5,
    "season_rank": 7
-  },
-  {
-   "team": "Umbertos",
-   "manager": "Rob Scerri",
-   "week_pts": 1.0,
-   "week_proj": 116.0,
-   "season_pts": 1334.0,
-   "week_rank": 3,
-   "season_rank": 1
   },
   {
    "team": "FOTY*",
@@ -102,9 +102,9 @@
    "home_manager": "CJ Nelson",
    "away_manager": "Seth Nobmann",
    "home_pts": 1.0,
-   "away_pts": 9.0,
+   "away_pts": 10.0,
    "home_proj": 94.0,
-   "away_proj": 97.0
+   "away_proj": 94.0
   },
   {
    "home": "FOTY*",
@@ -112,7 +112,7 @@
    "home_manager": "Dave Abramson",
    "away_manager": "Chris Scerri",
    "home_pts": 0.0,
-   "away_pts": 1.0,
+   "away_pts": 2.0,
    "home_proj": 112.0,
    "away_proj": 119.0
   },
@@ -122,9 +122,9 @@
    "home_manager": "Tony Oliverez",
    "away_manager": "Rob Scerri",
    "home_pts": 0.0,
-   "away_pts": 1.0,
+   "away_pts": 2.0,
    "home_proj": 103.0,
-   "away_proj": 116.0
+   "away_proj": 117.0
   },
   {
    "home": "Lincoln Hawk",
@@ -227,8 +227,8 @@
     "W/R/T",
     "Blake Corum",
     "LAR - RB",
-    "Half, 13-13 vs GB",
-    1.0,
+    "Q3 11:00, 13-13 vs GB",
+    2.0,
     null
    ],
    [
@@ -269,8 +269,8 @@
     "QB",
     "Matthew Stafford",
     "LAR - QB",
-    "Half, 13-13 vs GB",
-    1.0,
+    "Q3 11:22, 13-13 vs GB",
+    2.0,
     null
    ],
    [
@@ -293,7 +293,7 @@
     "RB",
     "Kyren Williams",
     "LAR - RB",
-    "Half, 13-13 vs GB",
+    "Q3 11:22, 13-13 vs GB",
     8.0,
     null
    ],
@@ -375,7 +375,7 @@
     "QB",
     "Jordan Love",
     "GB - QB",
-    "Half, 13-13 @ LAR",
+    "Q3 11:22, 13-13 @ LAR",
     9.0,
     null
    ],
@@ -423,7 +423,7 @@
     "WR",
     "Christian Watson",
     "GB - WR",
-    "Half, 13-13 @ LAR",
+    "Q3 11:22, 13-13 @ LAR",
     11.0,
     null
    ],
@@ -871,8 +871,8 @@
     "W/R/T",
     "Konata Mumpfield",
     "LAR - WR",
-    "Half, 13-13 vs GB",
-    1.0,
+    "Q3 10:39, 13-13 vs GB",
+    2.0,
     null
    ],
    [
@@ -1165,7 +1165,7 @@
     "WR",
     "Matthew Golden",
     "GB - WR",
-    "Half, 13-13 @ LAR",
+    "Q3 10:39, 13-13 @ LAR",
     1.0,
     null
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-26T03:00:06+00:00"
+ "lineups_updated": "2026-11-26T03:10:25+00:00"
 }
