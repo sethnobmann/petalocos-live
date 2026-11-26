@@ -1,16 +1,25 @@
 {
- "updated": "2026-11-26T23:20:08+00:00",
+ "updated": "2026-11-26T23:30:10+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
  "teams": [
+  {
+   "team": "FOTY*",
+   "manager": "Dave Abramson",
+   "week_pts": 54.0,
+   "week_proj": 133.0,
+   "season_pts": 1298.0,
+   "week_rank": 1,
+   "season_rank": 2
+  },
   {
    "team": "Umbertos",
    "manager": "Rob Scerri",
    "week_pts": 49.0,
    "week_proj": 133.0,
    "season_pts": 1382.0,
-   "week_rank": 1,
+   "week_rank": 2,
    "season_rank": 1
   },
   {
@@ -19,17 +28,17 @@
    "week_pts": 48.0,
    "week_proj": 129.0,
    "season_pts": 1199.0,
-   "week_rank": 2,
+   "week_rank": 3,
    "season_rank": 6
   },
   {
-   "team": "FOTY*",
-   "manager": "Dave Abramson",
-   "week_pts": 44.0,
-   "week_proj": 123.0,
-   "season_pts": 1288.0,
-   "week_rank": 3,
-   "season_rank": 2
+   "team": "dontmindme",
+   "manager": "Seth Nobmann",
+   "week_pts": 40.0,
+   "week_proj": 92.0,
+   "season_pts": 1246.0,
+   "week_rank": 4,
+   "season_rank": 4
   },
   {
    "team": "Miwok Indians",
@@ -37,17 +46,8 @@
    "week_pts": 34.0,
    "week_proj": 104.0,
    "season_pts": 1104.0,
-   "week_rank": 4,
-   "season_rank": 9
-  },
-  {
-   "team": "dontmindme",
-   "manager": "Seth Nobmann",
-   "week_pts": 33.0,
-   "week_proj": 85.0,
-   "season_pts": 1239.0,
    "week_rank": 5,
-   "season_rank": 4
+   "season_rank": 9
   },
   {
    "team": "SHOW ME THE $$$$",
@@ -74,7 +74,7 @@
    "week_proj": 107.0,
    "season_pts": 1239.0,
    "week_rank": 8,
-   "season_rank": 4
+   "season_rank": 5
   },
   {
    "team": "Maverick",
@@ -102,18 +102,18 @@
    "home_manager": "CJ Nelson",
    "away_manager": "Seth Nobmann",
    "home_pts": 24.0,
-   "away_pts": 33.0,
+   "away_pts": 40.0,
    "home_proj": 103.0,
-   "away_proj": 85.0
+   "away_proj": 92.0
   },
   {
    "home": "FOTY*",
    "away": "Maverick",
    "home_manager": "Dave Abramson",
    "away_manager": "Chris Scerri",
-   "home_pts": 44.0,
+   "home_pts": 54.0,
    "away_pts": 3.0,
-   "home_proj": 123.0,
+   "home_proj": 133.0,
    "away_proj": 118.0
   },
   {
@@ -195,7 +195,7 @@
     "WR",
     "CeeDee Lamb",
     "Dal - WR",
-    "Q2 0:20, 21-10 vs Phi",
+    "Half, 28-10 vs Phi",
     2.0,
     null
    ],
@@ -211,7 +211,7 @@
     "WR",
     "DeVonta Smith",
     "Phi - WR",
-    "Q2 0:20, 10-21 @ Dal",
+    "Half, 10-28 @ Dal",
     12.0,
     null
    ],
@@ -251,7 +251,7 @@
     "DEF",
     "Eagles",
     "Phi - DEF",
-    "Q2 0:20, 10-21 @ Dal",
+    "Half, 10-28 @ Dal",
     0.0,
     null
    ]
@@ -261,8 +261,8 @@
     "QB",
     "Dak Prescott",
     "Dal - QB",
-    "Q2 0:20, 21-10 vs Phi",
-    8.0,
+    "Half, 28-10 vs Phi",
+    15.0,
     null
    ],
    [
@@ -513,7 +513,7 @@
     "WR",
     "George Pickens",
     "Dal - WR",
-    "Q2 0:20, 21-10 vs Phi",
+    "Half, 28-10 vs Phi",
     2.0,
     null
    ],
@@ -537,7 +537,7 @@
     "TE",
     "Dallas Goedert",
     "Phi - TE",
-    "Q2 0:20, 10-21 @ Dal",
+    "Half, 10-28 @ Dal",
     0.0,
     null
    ],
@@ -595,8 +595,8 @@
     "RB",
     "Javonte Williams",
     "Dal - RB",
-    "Q2 0:20, 21-10 vs Phi",
-    19.0,
+    "Half, 28-10 vs Phi",
+    28.0,
     null
    ],
    [
@@ -667,8 +667,8 @@
     "K",
     "Brandon Aubrey",
     "Dal - K",
-    "Q2 0:20, 21-10 vs Phi",
-    3.0,
+    "Half, 28-10 vs Phi",
+    4.0,
     null
    ],
    [
@@ -929,7 +929,7 @@
     "RB",
     "Saquon Barkley",
     "Phi - RB",
-    "Q2 0:20, 10-21 @ Dal",
+    "Half, 10-28 @ Dal",
     0.0,
     null
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-26T23:20:08+00:00"
+ "lineups_updated": "2026-11-26T23:30:10+00:00"
 }
