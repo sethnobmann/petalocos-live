@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T21:10:11+00:00",
+ "updated": "2026-11-26T21:20:10+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -17,7 +17,7 @@
    "team": "Umbertos",
    "manager": "Rob Scerri",
    "week_pts": 34.0,
-   "week_proj": 134.0,
+   "week_proj": 133.0,
    "season_pts": 1367.0,
    "week_rank": 2,
    "season_rank": 1
@@ -25,9 +25,9 @@
   {
    "team": "Miwok Indians",
    "manager": "Brandon Selvitella",
-   "week_pts": 31.0,
+   "week_pts": 32.0,
    "week_proj": 106.0,
-   "season_pts": 1101.0,
+   "season_pts": 1102.0,
    "week_rank": 3,
    "season_rank": 9
   },
@@ -53,7 +53,7 @@
    "team": "FOTY*",
    "manager": "Dave Abramson",
    "week_pts": 16.0,
-   "week_proj": 103.0,
+   "week_proj": 102.0,
    "season_pts": 1260.0,
    "week_rank": 6,
    "season_rank": 2
@@ -70,10 +70,10 @@
   {
    "team": "SHOW ME THE $$$$",
    "manager": "CJ Nelson",
-   "week_pts": 15.0,
-   "week_proj": 94.0,
-   "season_pts": 1164.0,
-   "week_rank": 8,
+   "week_pts": 16.0,
+   "week_proj": 95.0,
+   "season_pts": 1165.0,
+   "week_rank": 6,
    "season_rank": 7
   },
   {
@@ -101,9 +101,9 @@
    "away": "dontmindme",
    "home_manager": "CJ Nelson",
    "away_manager": "Seth Nobmann",
-   "home_pts": 15.0,
+   "home_pts": 16.0,
    "away_pts": 24.0,
-   "home_proj": 94.0,
+   "home_proj": 95.0,
    "away_proj": 85.0
   },
   {
@@ -113,7 +113,7 @@
    "away_manager": "Chris Scerri",
    "home_pts": 16.0,
    "away_pts": 3.0,
-   "home_proj": 103.0,
+   "home_proj": 102.0,
    "away_proj": 118.0
   },
   {
@@ -124,7 +124,7 @@
    "home_pts": 46.0,
    "away_pts": 34.0,
    "home_proj": 136.0,
-   "away_proj": 134.0
+   "away_proj": 133.0
   },
   {
    "home": "Lincoln Hawk",
@@ -142,7 +142,7 @@
    "home_manager": "Chris King",
    "away_manager": "Brandon Selvitella",
    "home_pts": 20.0,
-   "away_pts": 31.0,
+   "away_pts": 32.0,
    "home_proj": 92.0,
    "away_proj": 106.0
   }
@@ -163,7 +163,7 @@
     "QB",
     "Jared Goff",
     "Det - QB",
-    "Q4 2:34, 35-32 vs Chi",
+    "Q4 1:27, 35-32 vs Chi",
     11.0,
     null
    ],
@@ -301,7 +301,7 @@
     "WR",
     "Jameson Williams",
     "Det - WR",
-    "Q4 2:34, 35-32 vs Chi",
+    "Q4 1:27, 35-32 vs Chi",
     2.0,
     null
    ],
@@ -349,7 +349,7 @@
     "K",
     "Jake Bates",
     "Det - K",
-    "Q4 2:34, 35-32 vs Chi",
+    "Q4 1:27, 35-32 vs Chi",
     10.0,
     null
    ],
@@ -489,7 +489,7 @@
     "RB",
     "Jahmyr Gibbs",
     "Det - RB",
-    "Q4 2:34, 35-32 vs Chi",
+    "Q4 1:27, 35-32 vs Chi",
     46.0,
     null
    ],
@@ -587,7 +587,7 @@
     "QB",
     "Caleb Williams",
     "Chi - QB",
-    "Q4 2:25, 32-35 @ Det",
+    "Q4 1:27, 32-35 @ Det",
     14.0,
     null
    ],
@@ -627,7 +627,7 @@
     "WR",
     "Luther Burden III",
     "Chi - WR",
-    "Q4 2:25, 32-35 @ Det",
+    "Q4 1:27, 32-35 @ Det",
     2.0,
     null
    ],
@@ -921,8 +921,8 @@
     "RB",
     "D'Andre Swift",
     "Chi - RB",
-    "Q4 2:25, 32-35 @ Det",
-    13.0,
+    "Q4 1:27, 32-35 @ Det",
+    14.0,
     null
    ],
    [
@@ -937,7 +937,7 @@
     "WR",
     "Amon-Ra St. Brown",
     "Det - WR",
-    "Q4 2:25, 35-32 vs Chi",
+    "Q4 1:27, 35-32 vs Chi",
     8.0,
     null
    ],
@@ -961,7 +961,7 @@
     "TE",
     "Sam LaPorta",
     "Det - TE",
-    "Q4 2:25, 35-32 vs Chi",
+    "Q4 1:27, 35-32 vs Chi",
     10.0,
     null
    ],
@@ -1027,7 +1027,7 @@
     "RB",
     "Kyle Monangai",
     "Chi - RB",
-    "Q4 2:31, 32-35 @ Det",
+    "Q4 1:27, 32-35 @ Det",
     16.0,
     null
    ],
@@ -1067,7 +1067,7 @@
     "TE",
     "Colston Loveland",
     "Chi - TE",
-    "Q4 2:31, 32-35 @ Det",
+    "Q4 1:27, 32-35 @ Det",
     0.0,
     null
    ],
@@ -1181,8 +1181,8 @@
     "W/R/T",
     "Rome Odunze",
     "Chi - WR",
-    "Q4 2:31, 32-35 @ Det",
-    11.0,
+    "Q4 1:27, 32-35 @ Det",
+    12.0,
     null
    ],
    [
@@ -1205,11 +1205,11 @@
     "DEF",
     "Bears",
     "Chi - DEF",
-    "Q4 2:31, 32-35 @ Det",
+    "Q4 1:27, 32-35 @ Det",
     3.0,
     null
    ]
   ]
  },
- "lineups_updated": "2026-11-26T21:10:11+00:00"
+ "lineups_updated": "2026-11-26T21:20:10+00:00"
 }
