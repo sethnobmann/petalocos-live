@@ -1,26 +1,26 @@
 {
- "updated": "2026-11-26T02:00:08+00:00",
+ "updated": "2026-11-26T02:10:10+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
  "teams": [
   {
+   "team": "FANTASY KING",
+   "manager": "Chris King",
+   "week_pts": 19.0,
+   "week_proj": 111.0,
+   "season_pts": 1131.0,
+   "week_rank": 1,
+   "season_rank": 8
+  },
+  {
    "team": "dontmindme",
    "manager": "Seth Nobmann",
    "week_pts": 9.0,
-   "week_proj": 101.0,
+   "week_proj": 98.0,
    "season_pts": 1215.0,
-   "week_rank": 1,
-   "season_rank": 5
-  },
-  {
-   "team": "FANTASY KING",
-   "manager": "Chris King",
-   "week_pts": 2.0,
-   "week_proj": 93.0,
-   "season_pts": 1114.0,
    "week_rank": 2,
-   "season_rank": 8
+   "season_rank": 5
   },
   {
    "team": "Maverick",
@@ -32,12 +32,21 @@
    "season_rank": 2
   },
   {
+   "team": "SHOW ME THE $$$$",
+   "manager": "CJ Nelson",
+   "week_pts": 1.0,
+   "week_proj": 96.0,
+   "season_pts": 1150.0,
+   "week_rank": 3,
+   "season_rank": 7
+  },
+  {
    "team": "FOTY*",
    "manager": "Dave Abramson",
    "week_pts": 0.0,
    "week_proj": 112.0,
    "season_pts": 1244.0,
-   "week_rank": 4,
+   "week_rank": 5,
    "season_rank": 3
   },
   {
@@ -46,7 +55,7 @@
    "week_pts": 0.0,
    "week_proj": 114.0,
    "season_pts": 1098.0,
-   "week_rank": 4,
+   "week_rank": 5,
    "season_rank": 9
   },
   {
@@ -55,7 +64,7 @@
    "week_pts": 0.0,
    "week_proj": 96.0,
    "season_pts": 1070.0,
-   "week_rank": 4,
+   "week_rank": 5,
    "season_rank": 10
   },
   {
@@ -64,17 +73,8 @@
    "week_pts": 0.0,
    "week_proj": 100.0,
    "season_pts": 1223.0,
-   "week_rank": 4,
+   "week_rank": 5,
    "season_rank": 4
-  },
-  {
-   "team": "SHOW ME THE $$$$",
-   "manager": "CJ Nelson",
-   "week_pts": 0.0,
-   "week_proj": 94.0,
-   "season_pts": 1149.0,
-   "week_rank": 4,
-   "season_rank": 7
   },
   {
    "team": "Umbertos",
@@ -82,7 +82,7 @@
    "week_pts": 0.0,
    "week_proj": 117.0,
    "season_pts": 1333.0,
-   "week_rank": 4,
+   "week_rank": 5,
    "season_rank": 1
   },
   {
@@ -91,7 +91,7 @@
    "week_pts": 0.0,
    "week_proj": 103.0,
    "season_pts": 1151.0,
-   "week_rank": 4,
+   "week_rank": 5,
    "season_rank": 6
   }
  ],
@@ -101,10 +101,10 @@
    "away": "dontmindme",
    "home_manager": "CJ Nelson",
    "away_manager": "Seth Nobmann",
-   "home_pts": 0.0,
+   "home_pts": 1.0,
    "away_pts": 9.0,
-   "home_proj": 94.0,
-   "away_proj": 101.0
+   "home_proj": 96.0,
+   "away_proj": 98.0
   },
   {
    "home": "FOTY*",
@@ -141,9 +141,9 @@
    "away": "Miwok Indians",
    "home_manager": "Chris King",
    "away_manager": "Brandon Selvitella",
-   "home_pts": 2.0,
+   "home_pts": 19.0,
    "away_pts": 0.0,
-   "home_proj": 93.0,
+   "home_proj": 111.0,
    "away_proj": 96.0
   }
  ],
@@ -227,7 +227,7 @@
     "W/R/T",
     "Blake Corum",
     "LAR - RB",
-    "Q2 11:29, 12-3 vs GB",
+    "Q2 8:06, 13-10 vs GB",
     0.0,
     null
    ],
@@ -269,7 +269,7 @@
     "QB",
     "Matthew Stafford",
     "LAR - QB",
-    "Q2 11:29, 12-3 vs GB",
+    "Q2 8:06, 13-10 vs GB",
     1.0,
     null
    ],
@@ -293,7 +293,7 @@
     "RB",
     "Kyren Williams",
     "LAR - RB",
-    "Q2 11:29, 12-3 vs GB",
+    "Q2 8:06, 13-10 vs GB",
     8.0,
     null
    ],
@@ -375,8 +375,8 @@
     "QB",
     "Jordan Love",
     "GB - QB",
-    "Q2 11:29, 3-12 @ LAR",
-    1.0,
+    "Q2 8:06, 10-13 @ LAR",
+    8.0,
     null
    ],
    [
@@ -423,8 +423,8 @@
     "WR",
     "Christian Watson",
     "GB - WR",
-    "Q2 11:29, 3-12 @ LAR",
-    1.0,
+    "Q2 8:06, 10-13 @ LAR",
+    11.0,
     null
    ],
    [
@@ -871,7 +871,7 @@
     "W/R/T",
     "Konata Mumpfield",
     "LAR - WR",
-    "Q2 11:29, 13-3 vs GB",
+    "Q2 8:06, 13-10 vs GB",
     1.0,
     null
    ],
@@ -1165,8 +1165,8 @@
     "WR",
     "Matthew Golden",
     "GB - WR",
-    "Q2 11:29, 3-13 @ LAR",
-    0.0,
+    "Q2 8:06, 10-13 @ LAR",
+    1.0,
     null
    ],
    [
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-26T02:00:08+00:00"
+ "lineups_updated": "2026-11-26T02:10:10+00:00"
 }
