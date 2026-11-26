@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T20:20:10+00:00",
+ "updated": "2026-11-26T20:30:13+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -14,12 +14,21 @@
    "season_rank": 1
   },
   {
+   "team": "Miwok Indians",
+   "manager": "Brandon Selvitella",
+   "week_pts": 30.0,
+   "week_proj": 113.0,
+   "season_pts": 1100.0,
+   "week_rank": 2,
+   "season_rank": 9
+  },
+  {
    "team": "u got pzzzed",
    "manager": "Tony Oliverez",
    "week_pts": 21.0,
    "week_proj": 115.0,
    "season_pts": 1172.0,
-   "week_rank": 2,
+   "week_rank": 3,
    "season_rank": 6
   },
   {
@@ -28,25 +37,16 @@
    "week_pts": 20.0,
    "week_proj": 92.0,
    "season_pts": 1132.0,
-   "week_rank": 3,
-   "season_rank": 8
-  },
-  {
-   "team": "Miwok Indians",
-   "manager": "Brandon Selvitella",
-   "week_pts": 19.0,
-   "week_proj": 102.0,
-   "season_pts": 1089.0,
    "week_rank": 4,
-   "season_rank": 10
+   "season_rank": 8
   },
   {
    "team": "dontmindme",
    "manager": "Seth Nobmann",
    "week_pts": 19.0,
-   "week_proj": 85.0,
+   "week_proj": 84.0,
    "season_pts": 1225.0,
-   "week_rank": 4,
+   "week_rank": 5,
    "season_rank": 5
   },
   {
@@ -61,9 +61,9 @@
   {
    "team": "FOTY*",
    "manager": "Dave Abramson",
-   "week_pts": 4.0,
+   "week_pts": 5.0,
    "week_proj": 98.0,
-   "season_pts": 1248.0,
+   "season_pts": 1249.0,
    "week_rank": 7,
    "season_rank": 3
   },
@@ -92,7 +92,7 @@
    "week_proj": 114.0,
    "season_pts": 1098.0,
    "week_rank": 10,
-   "season_rank": 9
+   "season_rank": 10
   }
  ],
  "matchups": [
@@ -104,14 +104,14 @@
    "home_pts": 2.0,
    "away_pts": 19.0,
    "home_proj": 82.0,
-   "away_proj": 85.0
+   "away_proj": 84.0
   },
   {
    "home": "FOTY*",
    "away": "Maverick",
    "home_manager": "Dave Abramson",
    "away_manager": "Chris Scerri",
-   "home_pts": 4.0,
+   "home_pts": 5.0,
    "away_pts": 3.0,
    "home_proj": 98.0,
    "away_proj": 118.0
@@ -142,9 +142,9 @@
    "home_manager": "Chris King",
    "away_manager": "Brandon Selvitella",
    "home_pts": 20.0,
-   "away_pts": 19.0,
+   "away_pts": 30.0,
    "home_proj": 92.0,
-   "away_proj": 102.0
+   "away_proj": 113.0
   }
  ],
  "unmapped_teams": [],
@@ -163,7 +163,7 @@
     "QB",
     "Jared Goff",
     "Det - QB",
-    "Q3 5:45, 26-17 vs Chi",
+    "Q3 3:09, 26-24 vs Chi",
     10.0,
     null
    ],
@@ -301,7 +301,7 @@
     "WR",
     "Jameson Williams",
     "Det - WR",
-    "Q3 5:45, 26-17 vs Chi",
+    "Q3 3:09, 26-24 vs Chi",
     1.0,
     null
    ],
@@ -349,7 +349,7 @@
     "K",
     "Jake Bates",
     "Det - K",
-    "Q3 5:45, 26-17 vs Chi",
+    "Q3 3:09, 26-24 vs Chi",
     6.0,
     null
    ],
@@ -489,7 +489,7 @@
     "RB",
     "Jahmyr Gibbs",
     "Det - RB",
-    "Q3 5:45, 26-17 vs Chi",
+    "Q3 3:09, 26-24 vs Chi",
     21.0,
     null
    ],
@@ -587,8 +587,8 @@
     "QB",
     "Caleb Williams",
     "Chi - QB",
-    "Q3 5:45, 17-26 @ Det",
-    3.0,
+    "Q3 3:09, 24-26 @ Det",
+    4.0,
     null
    ],
    [
@@ -627,7 +627,7 @@
     "WR",
     "Luther Burden III",
     "Chi - WR",
-    "Q3 5:45, 17-26 @ Det",
+    "Q3 3:09, 24-26 @ Det",
     1.0,
     null
    ],
@@ -921,8 +921,8 @@
     "RB",
     "D'Andre Swift",
     "Chi - RB",
-    "Q3 5:45, 17-26 @ Det",
-    2.0,
+    "Q3 3:09, 24-26 @ Det",
+    13.0,
     null
    ],
    [
@@ -937,7 +937,7 @@
     "WR",
     "Amon-Ra St. Brown",
     "Det - WR",
-    "Q3 5:45, 26-17 vs Chi",
+    "Q3 3:09, 26-24 vs Chi",
     7.0,
     null
    ],
@@ -961,7 +961,7 @@
     "TE",
     "Sam LaPorta",
     "Det - TE",
-    "Q3 5:45, 26-17 vs Chi",
+    "Q3 3:09, 26-24 vs Chi",
     10.0,
     null
    ],
@@ -1027,7 +1027,7 @@
     "RB",
     "Kyle Monangai",
     "Chi - RB",
-    "Q3 5:45, 17-26 @ Det",
+    "Q3 3:09, 24-26 @ Det",
     16.0,
     null
    ],
@@ -1067,7 +1067,7 @@
     "TE",
     "Colston Loveland",
     "Chi - TE",
-    "Q3 5:45, 17-26 @ Det",
+    "Q3 3:09, 24-26 @ Det",
     0.0,
     null
    ],
@@ -1181,7 +1181,7 @@
     "W/R/T",
     "Rome Odunze",
     "Chi - WR",
-    "Q3 5:45, 17-26 @ Det",
+    "Q3 3:09, 24-26 @ Det",
     0.0,
     null
    ],
@@ -1205,11 +1205,11 @@
     "DEF",
     "Bears",
     "Chi - DEF",
-    "Q3 5:45, 17-26 @ Det",
+    "Q3 3:09, 24-26 @ Det",
     1.0,
     null
    ]
   ]
  },
- "lineups_updated": "2026-11-26T20:20:10+00:00"
+ "lineups_updated": "2026-11-26T20:30:13+00:00"
 }
