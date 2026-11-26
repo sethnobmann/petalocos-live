@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T22:00:07+00:00",
+ "updated": "2026-11-26T22:10:09+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -17,7 +17,7 @@
    "team": "Umbertos",
    "manager": "Rob Scerri",
    "week_pts": 36.0,
-   "week_proj": 122.0,
+   "week_proj": 123.0,
    "season_pts": 1369.0,
    "week_rank": 2,
    "season_rank": 1
@@ -44,7 +44,7 @@
    "team": "dontmindme",
    "manager": "Seth Nobmann",
    "week_pts": 25.0,
-   "week_proj": 84.0,
+   "week_proj": 83.0,
    "season_pts": 1231.0,
    "week_rank": 5,
    "season_rank": 5
@@ -104,7 +104,7 @@
    "home_pts": 24.0,
    "away_pts": 25.0,
    "home_proj": 103.0,
-   "away_proj": 84.0
+   "away_proj": 83.0
   },
   {
    "home": "FOTY*",
@@ -124,7 +124,7 @@
    "home_pts": 46.0,
    "away_pts": 36.0,
    "home_proj": 134.0,
-   "away_proj": 122.0
+   "away_proj": 123.0
   },
   {
    "home": "Lincoln Hawk",
@@ -195,7 +195,7 @@
     "WR",
     "CeeDee Lamb",
     "Dal - WR",
-    "Q1 8:50, 7-0 vs Phi",
+    "Q1 6:37, 7-0 vs Phi",
     1.0,
     null
    ],
@@ -211,7 +211,7 @@
     "WR",
     "DeVonta Smith",
     "Phi - WR",
-    "Q1 8:50, 0-7 @ Dal",
+    "Q1 6:37, 0-7 @ Dal",
     0.0,
     null
    ],
@@ -251,7 +251,7 @@
     "DEF",
     "Eagles",
     "Phi - DEF",
-    "Q1 8:50, 0-7 @ Dal",
+    "Q1 6:37, 0-7 @ Dal",
     0.0,
     null
    ]
@@ -261,7 +261,7 @@
     "QB",
     "Dak Prescott",
     "Dal - QB",
-    "Q1 8:50, 7-0 vs Phi",
+    "Q1 6:37, 7-0 vs Phi",
     0.0,
     null
    ],
@@ -513,7 +513,7 @@
     "WR",
     "George Pickens",
     "Dal - WR",
-    "Q1 8:50, 7-0 vs Phi",
+    "Q1 6:37, 7-0 vs Phi",
     0.0,
     null
    ],
@@ -537,7 +537,7 @@
     "TE",
     "Dallas Goedert",
     "Phi - TE",
-    "Q1 8:50, 0-7 @ Dal",
+    "Q1 6:37, 0-7 @ Dal",
     0.0,
     null
    ],
@@ -595,7 +595,7 @@
     "RB",
     "Javonte Williams",
     "Dal - RB",
-    "Q1 8:50, 7-0 vs Phi",
+    "Q1 6:37, 7-0 vs Phi",
     9.0,
     null
    ],
@@ -667,7 +667,7 @@
     "K",
     "Brandon Aubrey",
     "Dal - K",
-    "Q1 8:50, 7-0 vs Phi",
+    "Q1 6:37, 7-0 vs Phi",
     1.0,
     null
    ],
@@ -929,7 +929,7 @@
     "RB",
     "Saquon Barkley",
     "Phi - RB",
-    "Q1 8:50, 0-7 @ Dal",
+    "Q1 6:37, 0-7 @ Dal",
     0.0,
     null
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-26T22:00:07+00:00"
+ "lineups_updated": "2026-11-26T22:10:09+00:00"
 }
