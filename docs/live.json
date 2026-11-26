@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T04:30:09+00:00",
+ "updated": "2026-11-26T04:40:13+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -89,7 +89,7 @@
    "team": "u got pzzzed",
    "manager": "Tony Oliverez",
    "week_pts": 0.0,
-   "week_proj": 103.0,
+   "week_proj": 104.0,
    "season_pts": 1151.0,
    "week_rank": 6,
    "season_rank": 6
@@ -123,7 +123,7 @@
    "away_manager": "Rob Scerri",
    "home_pts": 0.0,
    "away_pts": 23.0,
-   "home_proj": 103.0,
+   "home_proj": 104.0,
    "away_proj": 135.0
   },
   {
@@ -227,9 +227,9 @@
     "W/R/T",
     "Blake Corum",
     "LAR - RB",
-    "Q4 0:20, 26-13 vs GB",
+    "Final W 26-13 vs GB",
     23.0,
-    null
+    6.0
    ],
    [
     "W/R/T",
@@ -269,9 +269,9 @@
     "QB",
     "Matthew Stafford",
     "LAR - QB",
-    "Q4 0:20, 26-13 vs GB",
+    "Final W 26-13 vs GB",
     2.0,
-    null
+    14.0
    ],
    [
     "RB",
@@ -293,9 +293,9 @@
     "RB",
     "Kyren Williams",
     "LAR - RB",
-    "Q4 0:20, 26-13 vs GB",
+    "Final W 26-13 vs GB",
     10.0,
-    null
+    8.0
    ],
    [
     "WR",
@@ -375,9 +375,9 @@
     "QB",
     "Jordan Love",
     "GB - QB",
-    "Q4 0:20, 13-26 @ LAR",
+    "Final L 13-26 @ LAR",
     9.0,
-    null
+    16.0
    ],
    [
     "RB",
@@ -423,9 +423,9 @@
     "WR",
     "Christian Watson",
     "GB - WR",
-    "Q4 0:20, 13-26 @ LAR",
+    "Final L 13-26 @ LAR",
     11.0,
-    null
+    0.0
    ],
    [
     "TE",
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-26T04:30:09+00:00"
+ "lineups_updated": "2026-11-26T04:40:13+00:00"
 }
