@@ -66,16 +66,17 @@ ESPN = "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
 
 
 def nfl_games():
-    """This NFL week's games as [(kickoff, state)] from ESPN's public scoreboard, state being
+    """(NFL week number, [(kickoff, state)]) from ESPN's public scoreboard, state being
     "pre", "in" or "post". None if it can't be read, and the old fixed windows take over."""
     import urllib.request
     try:
         req = urllib.request.Request(ESPN, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=15) as r:
             j = json.load(r)
-        return [(datetime.fromisoformat(ev["date"].replace("Z", "+00:00")),
-                 ((ev.get("status") or {}).get("type") or {}).get("state"))
-                for ev in j.get("events", [])]
+        return (j.get("week") or {}).get("number"), [
+            (datetime.fromisoformat(ev["date"].replace("Z", "+00:00")),
+             ((ev.get("status") or {}).get("type") or {}).get("state"))
+            for ev in j.get("events", [])]
     except Exception:
         return None
 
@@ -84,8 +85,11 @@ def should_run(now, state, games=None):
     """Scrape only while an NFL game is being played (ESPN says so), plus half an hour after the
     last one ends for late stat changes. Outside that, one quiet look an hour, which only
     commits if Yahoo's numbers moved (a stat correction, or the new week)."""
-    games = nfl_games() if games is None else games
-    if games is not None:
+    yahoo_week = (state.get("sig") or [None])[0]
+    got = nfl_games() if games is None else (yahoo_week, games)
+    if got is not None:
+        nfl_week, games = got
+        state["nfl_week"] = nfl_week
         on = sum(1 for _, st in games if st == "in")
         state["nfl"] = f"{now:%m-%d %H:%M} {on} on, {sum(1 for _, st in games if st == 'pre')} to come"
         if on:
@@ -95,7 +99,10 @@ def should_run(now, state, games=None):
         if state.get("game_on") and now.timestamp() - state["game_on"] < 30 * 60:
             return "wrap-up"
         # every game of the NFL week has been played (Monday night is done): finalize once
-        state["week_over"] = bool(games) and all(st == "post" for _, st in games)
+        # ESPN keeps showing last week's finished games into Tuesday, after Yahoo has moved on:
+        # only call it over when ESPN's week is the week Yahoo is on
+        state["week_over"] = (bool(games) and all(st == "post" for _, st in games)
+                              and nfl_week is not None and nfl_week == yahoo_week)
         if state["week_over"] and state.get("sig") and state.get("final_week") != state["sig"][0]:
             return "week over"
     elif in_window(now):  # ESPN unreachable: fall back to the usual kickoff windows
@@ -244,8 +251,8 @@ def finalize(week, live):
     H2H, without waiting for Yahoo to move to the next week. Stat changes Yahoo makes later are
     picked up by reconcile() when it does move."""
     pts = {team: p for team, (p, _) in live.items()}
-    if len(pts) != 10 or any(p is None or p < 0 or p > 400 for p in pts.values()):
-        return f"week {week} points look wrong: {pts}"
+    if len(pts) != 10 or any(p is None or p <= 0 or p > 400 for p in pts.values()):
+        return f"week {week} points look wrong (a team at 0 means the week hasn't been played): {pts}"
     from add_week import add_week
 
     if not add_week(week, pts):
@@ -438,7 +445,8 @@ def main():
             rolled = True
             paths.append("data")
             log(f"week {week - 1} stat changes: {fixed}")
-    elif last == week - 1 and state.get("week_over") and state.get("final_week") != week:
+    elif (last == week - 1 and state.get("week_over") and state.get("nfl_week") == week
+          and state.get("final_week") != week):
         note = finalize(week, live)  # Monday night is over: lock the week in and update H2H now
         if note is None:
             rolled = True
