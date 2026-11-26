@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T19:10:09+00:00",
+ "updated": "2026-11-26T19:20:09+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -7,9 +7,9 @@
   {
    "team": "Umbertos",
    "manager": "Rob Scerri",
-   "week_pts": 24.0,
+   "week_pts": 25.0,
    "week_proj": 134.0,
-   "season_pts": 1357.0,
+   "season_pts": 1358.0,
    "week_rank": 1,
    "season_rank": 1
   },
@@ -26,7 +26,7 @@
    "team": "dontmindme",
    "manager": "Seth Nobmann",
    "week_pts": 16.0,
-   "week_proj": 84.0,
+   "week_proj": 83.0,
    "season_pts": 1222.0,
    "week_rank": 3,
    "season_rank": 5
@@ -44,7 +44,7 @@
    "team": "Mooseknuckle's",
    "manager": "Brian Lovrin",
    "week_pts": 8.0,
-   "week_proj": 102.0,
+   "week_proj": 101.0,
    "season_pts": 1231.0,
    "week_rank": 5,
    "season_rank": 4
@@ -52,9 +52,9 @@
   {
    "team": "Miwok Indians",
    "manager": "Brandon Selvitella",
-   "week_pts": 5.0,
-   "week_proj": 97.0,
-   "season_pts": 1075.0,
+   "week_pts": 6.0,
+   "week_proj": 98.0,
+   "season_pts": 1076.0,
    "week_rank": 6,
    "season_rank": 10
   },
@@ -79,10 +79,10 @@
   {
    "team": "SHOW ME THE $$$$",
    "manager": "CJ Nelson",
-   "week_pts": 1.0,
+   "week_pts": 2.0,
    "week_proj": 81.0,
-   "season_pts": 1150.0,
-   "week_rank": 9,
+   "season_pts": 1151.0,
+   "week_rank": 8,
    "season_rank": 7
   },
   {
@@ -101,10 +101,10 @@
    "away": "dontmindme",
    "home_manager": "CJ Nelson",
    "away_manager": "Seth Nobmann",
-   "home_pts": 1.0,
+   "home_pts": 2.0,
    "away_pts": 16.0,
    "home_proj": 81.0,
-   "away_proj": 84.0
+   "away_proj": 83.0
   },
   {
    "home": "FOTY*",
@@ -122,7 +122,7 @@
    "home_manager": "Tony Oliverez",
    "away_manager": "Rob Scerri",
    "home_pts": 11.0,
-   "away_pts": 24.0,
+   "away_pts": 25.0,
    "home_proj": 112.0,
    "away_proj": 134.0
   },
@@ -134,7 +134,7 @@
    "home_pts": 0.0,
    "away_pts": 8.0,
    "home_proj": 114.0,
-   "away_proj": 102.0
+   "away_proj": 101.0
   },
   {
    "home": "FANTASY KING",
@@ -142,9 +142,9 @@
    "home_manager": "Chris King",
    "away_manager": "Brandon Selvitella",
    "home_pts": 20.0,
-   "away_pts": 5.0,
+   "away_pts": 6.0,
    "home_proj": 92.0,
-   "away_proj": 97.0
+   "away_proj": 98.0
   }
  ],
  "unmapped_teams": [],
@@ -163,8 +163,8 @@
     "QB",
     "Jared Goff",
     "Det - QB",
-    "Q2 4:07, 10-10 vs Chi",
-    1.0,
+    "Q2 2:00, 10-10 vs Chi",
+    2.0,
     null
    ],
    [
@@ -301,7 +301,7 @@
     "WR",
     "Jameson Williams",
     "Det - WR",
-    "Q2 4:07, 10-10 vs Chi",
+    "Q2 2:00, 10-10 vs Chi",
     0.0,
     null
    ],
@@ -349,7 +349,7 @@
     "K",
     "Jake Bates",
     "Det - K",
-    "Q2 4:07, 10-10 vs Chi",
+    "Q2 2:00, 10-10 vs Chi",
     4.0,
     null
    ],
@@ -489,7 +489,7 @@
     "RB",
     "Jahmyr Gibbs",
     "Det - RB",
-    "Q2 4:07, 10-10 vs Chi",
+    "Q2 2:00, 10-10 vs Chi",
     11.0,
     null
    ],
@@ -587,7 +587,7 @@
     "QB",
     "Caleb Williams",
     "Chi - QB",
-    "Q2 4:07, 10-10 @ Det",
+    "Q2 2:00, 10-10 @ Det",
     2.0,
     null
    ],
@@ -627,7 +627,7 @@
     "WR",
     "Luther Burden III",
     "Chi - WR",
-    "Q2 4:07, 10-10 @ Det",
+    "Q2 2:00, 10-10 @ Det",
     0.0,
     null
    ],
@@ -921,7 +921,7 @@
     "RB",
     "D'Andre Swift",
     "Chi - RB",
-    "Q2 4:07, 10-10 @ Det",
+    "Q2 2:00, 10-10 @ Det",
     2.0,
     null
    ],
@@ -937,8 +937,8 @@
     "WR",
     "Amon-Ra St. Brown",
     "Det - WR",
-    "Q2 4:07, 10-10 vs Chi",
-    3.0,
+    "Q2 2:00, 10-10 vs Chi",
+    4.0,
     null
    ],
    [
@@ -961,7 +961,7 @@
     "TE",
     "Sam LaPorta",
     "Det - TE",
-    "Q2 4:07, 10-10 vs Chi",
+    "Q2 2:00, 10-10 vs Chi",
     0.0,
     null
    ],
@@ -1027,7 +1027,7 @@
     "RB",
     "Kyle Monangai",
     "Chi - RB",
-    "Q2 4:07, 10-10 @ Det",
+    "Q2 2:00, 10-10 @ Det",
     8.0,
     null
    ],
@@ -1067,7 +1067,7 @@
     "TE",
     "Colston Loveland",
     "Chi - TE",
-    "Q2 4:07, 10-10 @ Det",
+    "Q2 2:00, 10-10 @ Det",
     0.0,
     null
    ],
@@ -1181,7 +1181,7 @@
     "W/R/T",
     "Rome Odunze",
     "Chi - WR",
-    "Q2 4:07, 10-10 @ Det",
+    "Q2 2:00, 10-10 @ Det",
     0.0,
     null
    ],
@@ -1205,11 +1205,11 @@
     "DEF",
     "Bears",
     "Chi - DEF",
-    "Q2 4:07, 10-10 @ Det",
-    0.0,
+    "Q2 2:00, 10-10 @ Det",
+    1.0,
     null
    ]
   ]
  },
- "lineups_updated": "2026-11-26T19:10:09+00:00"
+ "lineups_updated": "2026-11-26T19:20:09+00:00"
 }
