@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T21:30:12+00:00",
+ "updated": "2026-11-26T21:40:12+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -16,20 +16,29 @@
   {
    "team": "Umbertos",
    "manager": "Rob Scerri",
-   "week_pts": 34.0,
-   "week_proj": 133.0,
-   "season_pts": 1367.0,
+   "week_pts": 35.0,
+   "week_proj": 134.0,
+   "season_pts": 1368.0,
    "week_rank": 2,
    "season_rank": 1
   },
   {
    "team": "Miwok Indians",
    "manager": "Brandon Selvitella",
-   "week_pts": 33.0,
-   "week_proj": 107.0,
-   "season_pts": 1103.0,
+   "week_pts": 34.0,
+   "week_proj": 108.0,
+   "season_pts": 1104.0,
    "week_rank": 3,
    "season_rank": 9
+  },
+  {
+   "team": "dontmindme",
+   "manager": "Seth Nobmann",
+   "week_pts": 25.0,
+   "week_proj": 85.0,
+   "season_pts": 1231.0,
+   "week_rank": 4,
+   "season_rank": 5
   },
   {
    "team": "SHOW ME THE $$$$",
@@ -37,17 +46,8 @@
    "week_pts": 24.0,
    "week_proj": 103.0,
    "season_pts": 1173.0,
-   "week_rank": 4,
+   "week_rank": 5,
    "season_rank": 7
-  },
-  {
-   "team": "dontmindme",
-   "manager": "Seth Nobmann",
-   "week_pts": 24.0,
-   "week_proj": 84.0,
-   "season_pts": 1230.0,
-   "week_rank": 4,
-   "season_rank": 5
   },
   {
    "team": "FOTY*",
@@ -102,9 +102,9 @@
    "home_manager": "CJ Nelson",
    "away_manager": "Seth Nobmann",
    "home_pts": 24.0,
-   "away_pts": 24.0,
+   "away_pts": 25.0,
    "home_proj": 103.0,
-   "away_proj": 84.0
+   "away_proj": 85.0
   },
   {
    "home": "FOTY*",
@@ -122,9 +122,9 @@
    "home_manager": "Tony Oliverez",
    "away_manager": "Rob Scerri",
    "home_pts": 46.0,
-   "away_pts": 34.0,
+   "away_pts": 35.0,
    "home_proj": 136.0,
-   "away_proj": 133.0
+   "away_proj": 134.0
   },
   {
    "home": "Lincoln Hawk",
@@ -142,9 +142,9 @@
    "home_manager": "Chris King",
    "away_manager": "Brandon Selvitella",
    "home_pts": 20.0,
-   "away_pts": 33.0,
+   "away_pts": 34.0,
    "home_proj": 92.0,
-   "away_proj": 107.0
+   "away_proj": 108.0
   }
  ],
  "unmapped_teams": [],
@@ -163,9 +163,9 @@
     "QB",
     "Jared Goff",
     "Det - QB",
-    "Q4 0:03, 35-39 vs Chi",
-    11.0,
-    null
+    "Final L 35-39 vs Chi",
+    12.0,
+    18.0
    ],
    [
     "RB",
@@ -301,9 +301,9 @@
     "WR",
     "Jameson Williams",
     "Det - WR",
-    "Q4 0:03, 35-39 vs Chi",
-    2.0,
-    null
+    "Final L 35-39 vs Chi",
+    3.0,
+    6.0
    ],
    [
     "WR",
@@ -349,9 +349,9 @@
     "K",
     "Jake Bates",
     "Det - K",
-    "Q4 0:03, 35-39 vs Chi",
+    "Final L 35-39 vs Chi",
     10.0,
-    null
+    8.0
    ],
    [
     "DEF",
@@ -489,9 +489,9 @@
     "RB",
     "Jahmyr Gibbs",
     "Det - RB",
-    "Q4 0:03, 35-39 vs Chi",
+    "Final L 35-39 vs Chi",
     46.0,
-    null
+    15.0
    ],
    [
     "RB",
@@ -587,9 +587,9 @@
     "QB",
     "Caleb Williams",
     "Chi - QB",
-    "Q4 0:03, 39-35 @ Det",
+    "Final W 39-35 @ Det",
     20.0,
-    null
+    19.0
    ],
    [
     "RB",
@@ -627,9 +627,9 @@
     "WR",
     "Luther Burden III",
     "Chi - WR",
-    "Q4 0:03, 39-35 @ Det",
+    "Final W 39-35 @ Det",
     2.0,
-    null
+    7.0
    ],
    [
     "WR",
@@ -921,9 +921,9 @@
     "RB",
     "D'Andre Swift",
     "Chi - RB",
-    "Q4 0:03, 39-35 @ Det",
+    "Final W 39-35 @ Det",
     15.0,
-    null
+    8.0
    ],
    [
     "RB",
@@ -937,9 +937,9 @@
     "WR",
     "Amon-Ra St. Brown",
     "Det - WR",
-    "Q4 0:03, 35-39 vs Chi",
-    8.0,
-    null
+    "Final L 35-39 vs Chi",
+    9.0,
+    9.0
    ],
    [
     "WR",
@@ -961,9 +961,9 @@
     "TE",
     "Sam LaPorta",
     "Det - TE",
-    "Q4 0:03, 35-39 vs Chi",
+    "Final L 35-39 vs Chi",
     10.0,
-    null
+    5.0
    ],
    [
     "W/R/T",
@@ -1027,9 +1027,9 @@
     "RB",
     "Kyle Monangai",
     "Chi - RB",
-    "Q4 0:03, 39-35 @ Det",
+    "Final W 39-35 @ Det",
     16.0,
-    null
+    4.0
    ],
    [
     "RB",
@@ -1067,9 +1067,9 @@
     "TE",
     "Colston Loveland",
     "Chi - TE",
-    "Q4 0:03, 39-35 @ Det",
+    "Final W 39-35 @ Det",
     0.0,
-    null
+    0.0
    ],
    [
     "W/R/T",
@@ -1181,9 +1181,9 @@
     "W/R/T",
     "Rome Odunze",
     "Chi - WR",
-    "Q4 0:03, 39-35 @ Det",
+    "Final W 39-35 @ Det",
     20.0,
-    null
+    5.0
    ],
    [
     "W/R/T",
@@ -1205,11 +1205,11 @@
     "DEF",
     "Bears",
     "Chi - DEF",
-    "Q4 0:03, 39-35 @ Det",
+    "Final W 39-35 @ Det",
     3.0,
-    null
+    6.0
    ]
   ]
  },
- "lineups_updated": "2026-11-26T21:30:12+00:00"
+ "lineups_updated": "2026-11-26T21:40:12+00:00"
 }
