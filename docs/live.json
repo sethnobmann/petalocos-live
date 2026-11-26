@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T04:50:09+00:00",
+ "updated": "2026-11-26T18:10:07+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -8,7 +8,7 @@
    "team": "Umbertos",
    "manager": "Rob Scerri",
    "week_pts": 23.0,
-   "week_proj": 135.0,
+   "week_proj": 140.0,
    "season_pts": 1356.0,
    "week_rank": 1,
    "season_rank": 1
@@ -17,7 +17,7 @@
    "team": "FANTASY KING",
    "manager": "Chris King",
    "week_pts": 20.0,
-   "week_proj": 94.0,
+   "week_proj": 92.0,
    "season_pts": 1132.0,
    "week_rank": 2,
    "season_rank": 8
@@ -32,30 +32,48 @@
    "season_rank": 5
   },
   {
+   "team": "SHOW ME THE $$$$",
+   "manager": "CJ Nelson",
+   "week_pts": 11.0,
+   "week_proj": 90.0,
+   "season_pts": 1160.0,
+   "week_rank": 4,
+   "season_rank": 6
+  },
+  {
    "team": "Maverick",
    "manager": "Chris Scerri",
    "week_pts": 3.0,
    "week_proj": 118.0,
    "season_pts": 1260.0,
-   "week_rank": 4,
+   "week_rank": 5,
    "season_rank": 2
   },
   {
-   "team": "SHOW ME THE $$$$",
-   "manager": "CJ Nelson",
+   "team": "Miwok Indians",
+   "manager": "Brandon Selvitella",
+   "week_pts": 2.0,
+   "week_proj": 100.0,
+   "season_pts": 1072.0,
+   "week_rank": 6,
+   "season_rank": 10
+  },
+  {
+   "team": "u got pzzzed",
+   "manager": "Tony Oliverez",
    "week_pts": 1.0,
-   "week_proj": 90.0,
-   "season_pts": 1150.0,
-   "week_rank": 5,
+   "week_proj": 107.0,
+   "season_pts": 1152.0,
+   "week_rank": 7,
    "season_rank": 7
   },
   {
    "team": "FOTY*",
    "manager": "Dave Abramson",
    "week_pts": 0.0,
-   "week_proj": 112.0,
+   "week_proj": 109.0,
    "season_pts": 1244.0,
-   "week_rank": 6,
+   "week_rank": 8,
    "season_rank": 3
   },
   {
@@ -64,17 +82,8 @@
    "week_pts": 0.0,
    "week_proj": 114.0,
    "season_pts": 1098.0,
-   "week_rank": 6,
+   "week_rank": 8,
    "season_rank": 9
-  },
-  {
-   "team": "Miwok Indians",
-   "manager": "Brandon Selvitella",
-   "week_pts": 0.0,
-   "week_proj": 97.0,
-   "season_pts": 1070.0,
-   "week_rank": 6,
-   "season_rank": 10
   },
   {
    "team": "Mooseknuckle's",
@@ -82,17 +91,8 @@
    "week_pts": 0.0,
    "week_proj": 100.0,
    "season_pts": 1223.0,
-   "week_rank": 6,
+   "week_rank": 8,
    "season_rank": 4
-  },
-  {
-   "team": "u got pzzzed",
-   "manager": "Tony Oliverez",
-   "week_pts": 0.0,
-   "week_proj": 104.0,
-   "season_pts": 1151.0,
-   "week_rank": 6,
-   "season_rank": 6
   }
  ],
  "matchups": [
@@ -101,7 +101,7 @@
    "away": "dontmindme",
    "home_manager": "CJ Nelson",
    "away_manager": "Seth Nobmann",
-   "home_pts": 1.0,
+   "home_pts": 11.0,
    "away_pts": 12.0,
    "home_proj": 90.0,
    "away_proj": 86.0
@@ -113,7 +113,7 @@
    "away_manager": "Chris Scerri",
    "home_pts": 0.0,
    "away_pts": 3.0,
-   "home_proj": 112.0,
+   "home_proj": 109.0,
    "away_proj": 118.0
   },
   {
@@ -121,10 +121,10 @@
    "away": "Umbertos",
    "home_manager": "Tony Oliverez",
    "away_manager": "Rob Scerri",
-   "home_pts": 0.0,
+   "home_pts": 1.0,
    "away_pts": 23.0,
-   "home_proj": 104.0,
-   "away_proj": 135.0
+   "home_proj": 107.0,
+   "away_proj": 140.0
   },
   {
    "home": "Lincoln Hawk",
@@ -142,9 +142,9 @@
    "home_manager": "Chris King",
    "away_manager": "Brandon Selvitella",
    "home_pts": 20.0,
-   "away_pts": 0.0,
-   "home_proj": 94.0,
-   "away_proj": 97.0
+   "away_pts": 2.0,
+   "home_proj": 92.0,
+   "away_proj": 100.0
   }
  ],
  "unmapped_teams": [],
@@ -163,9 +163,9 @@
     "QB",
     "Jared Goff",
     "Det - QB",
-    "Thu 10:00 am vs Chi",
-    null,
-    17.0
+    "Q1 11:28, 3-0 vs Chi",
+    0.0,
+    null
    ],
    [
     "RB",
@@ -197,7 +197,7 @@
     "Dal - WR",
     "Thu 1:30 pm vs Phi",
     null,
-    10.0
+    13.0
    ],
    [
     "WR",
@@ -213,7 +213,7 @@
     "Phi - WR",
     "Thu 1:30 pm @ Dal",
     null,
-    6.0
+    7.0
    ],
    [
     "TE",
@@ -301,9 +301,9 @@
     "WR",
     "Jameson Williams",
     "Det - WR",
-    "Thu 10:00 am vs Chi",
-    null,
-    6.0
+    "Q1 11:28, 3-0 vs Chi",
+    0.0,
+    null
    ],
    [
     "WR",
@@ -349,9 +349,9 @@
     "K",
     "Jake Bates",
     "Det - K",
-    "Thu 10:00 am vs Chi",
-    null,
-    8.0
+    "Q1 11:28, 3-0 vs Chi",
+    3.0,
+    null
    ],
    [
     "DEF",
@@ -385,7 +385,7 @@
     "Ind - RB",
     "Sun 10:00 am vs NYG",
     null,
-    8.0
+    9.0
    ],
    [
     "RB",
@@ -393,7 +393,7 @@
     "Ari - RB",
     "Sun 1:25 pm vs Was",
     null,
-    5.0
+    4.0
    ],
    [
     "RB",
@@ -445,11 +445,11 @@
    ],
    [
     "W/R/T",
-    "Juwan Johnson",
-    "NO - TE",
-    "Sun 10:00 am @ Cin",
+    "(Empty)",
+    "",
+    "",
     null,
-    3.0
+    null
    ],
    [
     "K",
@@ -461,11 +461,11 @@
    ],
    [
     "DEF",
-    "Chiefs",
-    "KC - DEF",
-    "Thu 5:20 pm @ Buf",
+    "Commanders",
+    "Was - DEF",
+    "Sun 1:25 pm @ Ari",
     null,
-    6.0
+    7.0
    ]
   ],
   "u got pzzzed": [
@@ -489,9 +489,9 @@
     "RB",
     "Jahmyr Gibbs",
     "Det - RB",
-    "Thu 10:00 am vs Chi",
-    null,
-    15.0
+    "Q1 11:28, 3-0 vs Chi",
+    1.0,
+    null
    ],
    [
     "RB",
@@ -515,7 +515,7 @@
     "Dal - WR",
     "Thu 1:30 pm vs Phi",
     null,
-    7.0
+    8.0
    ],
    [
     "WR",
@@ -587,9 +587,9 @@
     "QB",
     "Caleb Williams",
     "Chi - QB",
-    "Thu 10:00 am @ Det",
-    null,
-    19.0
+    "Q1 11:28, 0-3 @ Det",
+    0.0,
+    null
    ],
    [
     "RB",
@@ -627,9 +627,9 @@
     "WR",
     "Luther Burden III",
     "Chi - WR",
-    "Thu 10:00 am @ Det",
-    null,
-    7.0
+    "Q1 11:28, 0-3 @ Det",
+    0.0,
+    null
    ],
    [
     "WR",
@@ -921,9 +921,9 @@
     "RB",
     "D'Andre Swift",
     "Chi - RB",
-    "Thu 10:00 am @ Det",
-    null,
-    8.0
+    "Q1 11:28, 0-3 @ Det",
+    0.0,
+    null
    ],
    [
     "RB",
@@ -937,9 +937,9 @@
     "WR",
     "Amon-Ra St. Brown",
     "Det - WR",
-    "Thu 10:00 am vs Chi",
-    null,
-    9.0
+    "Q1 11:28, 3-0 vs Chi",
+    2.0,
+    null
    ],
    [
     "WR",
@@ -961,9 +961,9 @@
     "TE",
     "Sam LaPorta",
     "Det - TE",
-    "Thu 10:00 am vs Chi",
-    null,
-    5.0
+    "Q1 11:28, 3-0 vs Chi",
+    0.0,
+    null
    ],
    [
     "W/R/T",
@@ -1027,9 +1027,9 @@
     "RB",
     "Kyle Monangai",
     "Chi - RB",
-    "Thu 10:00 am @ Det",
-    null,
-    4.0
+    "Q1 11:28, 0-3 @ Det",
+    0.0,
+    null
    ],
    [
     "RB",
@@ -1067,9 +1067,9 @@
     "TE",
     "Colston Loveland",
     "Chi - TE",
-    "Thu 10:00 am @ Det",
-    null,
-    5.0
+    "Q1 11:28, 0-3 @ Det",
+    0.0,
+    null
    ],
    [
     "W/R/T",
@@ -1181,9 +1181,9 @@
     "W/R/T",
     "Rome Odunze",
     "Chi - WR",
-    "Thu 10:00 am @ Det",
-    null,
-    5.0
+    "Q1 11:28, 0-3 @ Det",
+    0.0,
+    null
    ],
    [
     "W/R/T",
@@ -1205,11 +1205,11 @@
     "DEF",
     "Bears",
     "Chi - DEF",
-    "Thu 10:00 am @ Det",
-    null,
-    6.0
+    "Q1 11:28, 0-3 @ Det",
+    5.0,
+    null
    ]
   ]
  },
- "lineups_updated": "2026-11-26T04:50:09+00:00"
+ "lineups_updated": "2026-11-26T18:10:07+00:00"
 }
