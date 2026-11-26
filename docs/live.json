@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T03:50:10+00:00",
+ "updated": "2026-11-26T04:00:16+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -16,9 +16,9 @@
   {
    "team": "Umbertos",
    "manager": "Rob Scerri",
-   "week_pts": 12.0,
-   "week_proj": 128.0,
-   "season_pts": 1345.0,
+   "week_pts": 17.0,
+   "week_proj": 131.0,
+   "season_pts": 1350.0,
    "week_rank": 2,
    "season_rank": 1
   },
@@ -71,7 +71,7 @@
    "team": "Miwok Indians",
    "manager": "Brandon Selvitella",
    "week_pts": 0.0,
-   "week_proj": 96.0,
+   "week_proj": 97.0,
    "season_pts": 1070.0,
    "week_rank": 6,
    "season_rank": 10
@@ -122,9 +122,9 @@
    "home_manager": "Tony Oliverez",
    "away_manager": "Rob Scerri",
    "home_pts": 0.0,
-   "away_pts": 12.0,
+   "away_pts": 17.0,
    "home_proj": 103.0,
-   "away_proj": 128.0
+   "away_proj": 131.0
   },
   {
    "home": "Lincoln Hawk",
@@ -144,7 +144,7 @@
    "home_pts": 20.0,
    "away_pts": 0.0,
    "home_proj": 97.0,
-   "away_proj": 96.0
+   "away_proj": 97.0
   }
  ],
  "unmapped_teams": [],
@@ -227,8 +227,8 @@
     "W/R/T",
     "Blake Corum",
     "LAR - RB",
-    "Q4 12:46, 20-13 vs GB",
-    12.0,
+    "Q4 8:54, 20-13 vs GB",
+    17.0,
     null
    ],
    [
@@ -269,7 +269,7 @@
     "QB",
     "Matthew Stafford",
     "LAR - QB",
-    "Q4 12:46, 20-13 vs GB",
+    "Q4 8:54, 20-13 vs GB",
     2.0,
     null
    ],
@@ -293,7 +293,7 @@
     "RB",
     "Kyren Williams",
     "LAR - RB",
-    "Q4 12:46, 20-13 vs GB",
+    "Q4 8:54, 20-13 vs GB",
     9.0,
     null
    ],
@@ -375,7 +375,7 @@
     "QB",
     "Jordan Love",
     "GB - QB",
-    "Q4 12:46, 13-20 @ LAR",
+    "Q4 8:54, 13-20 @ LAR",
     9.0,
     null
    ],
@@ -423,7 +423,7 @@
     "WR",
     "Christian Watson",
     "GB - WR",
-    "Q4 12:46, 13-20 @ LAR",
+    "Q4 8:54, 13-20 @ LAR",
     11.0,
     null
    ],
@@ -871,7 +871,7 @@
     "W/R/T",
     "Konata Mumpfield",
     "LAR - WR",
-    "Q4 12:46, 20-13 vs GB",
+    "Q4 8:37, 20-13 vs GB",
     3.0,
     null
    ],
@@ -931,7 +931,7 @@
     "Phi - RB",
     "Thu 1:30 pm @ Dal",
     null,
-    7.0
+    8.0
    ],
    [
     "WR",
@@ -1165,7 +1165,7 @@
     "WR",
     "Matthew Golden",
     "GB - WR",
-    "Q4 12:42, 13-20 @ LAR",
+    "Q4 8:54, 13-20 @ LAR",
     1.0,
     null
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-26T03:50:10+00:00"
+ "lineups_updated": "2026-11-26T04:00:16+00:00"
 }
