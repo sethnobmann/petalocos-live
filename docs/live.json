@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T02:10:10+00:00",
+ "updated": "2026-11-26T02:20:08+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -8,7 +8,7 @@
    "team": "FANTASY KING",
    "manager": "Chris King",
    "week_pts": 19.0,
-   "week_proj": 111.0,
+   "week_proj": 109.0,
    "season_pts": 1131.0,
    "week_rank": 1,
    "season_rank": 8
@@ -35,7 +35,7 @@
    "team": "SHOW ME THE $$$$",
    "manager": "CJ Nelson",
    "week_pts": 1.0,
-   "week_proj": 96.0,
+   "week_proj": 95.0,
    "season_pts": 1150.0,
    "week_rank": 3,
    "season_rank": 7
@@ -103,7 +103,7 @@
    "away_manager": "Seth Nobmann",
    "home_pts": 1.0,
    "away_pts": 9.0,
-   "home_proj": 96.0,
+   "home_proj": 95.0,
    "away_proj": 98.0
   },
   {
@@ -143,7 +143,7 @@
    "away_manager": "Brandon Selvitella",
    "home_pts": 19.0,
    "away_pts": 0.0,
-   "home_proj": 111.0,
+   "home_proj": 109.0,
    "away_proj": 96.0
   }
  ],
@@ -227,7 +227,7 @@
     "W/R/T",
     "Blake Corum",
     "LAR - RB",
-    "Q2 8:06, 13-10 vs GB",
+    "Q2 5:29, 13-10 vs GB",
     0.0,
     null
    ],
@@ -269,7 +269,7 @@
     "QB",
     "Matthew Stafford",
     "LAR - QB",
-    "Q2 8:06, 13-10 vs GB",
+    "Q2 5:29, 13-10 vs GB",
     1.0,
     null
    ],
@@ -293,7 +293,7 @@
     "RB",
     "Kyren Williams",
     "LAR - RB",
-    "Q2 8:06, 13-10 vs GB",
+    "Q2 5:29, 13-10 vs GB",
     8.0,
     null
    ],
@@ -375,7 +375,7 @@
     "QB",
     "Jordan Love",
     "GB - QB",
-    "Q2 8:06, 10-13 @ LAR",
+    "Q2 5:29, 10-13 @ LAR",
     8.0,
     null
    ],
@@ -423,7 +423,7 @@
     "WR",
     "Christian Watson",
     "GB - WR",
-    "Q2 8:06, 10-13 @ LAR",
+    "Q2 5:29, 10-13 @ LAR",
     11.0,
     null
    ],
@@ -871,7 +871,7 @@
     "W/R/T",
     "Konata Mumpfield",
     "LAR - WR",
-    "Q2 8:06, 13-10 vs GB",
+    "Q2 4:45, 13-10 vs GB",
     1.0,
     null
    ],
@@ -1165,7 +1165,7 @@
     "WR",
     "Matthew Golden",
     "GB - WR",
-    "Q2 8:06, 10-13 @ LAR",
+    "Q2 4:45, 10-13 @ LAR",
     1.0,
     null
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-26T02:10:10+00:00"
+ "lineups_updated": "2026-11-26T02:20:08+00:00"
 }
