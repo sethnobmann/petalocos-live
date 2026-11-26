@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T19:20:09+00:00",
+ "updated": "2026-11-26T19:30:12+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -8,7 +8,7 @@
    "team": "Umbertos",
    "manager": "Rob Scerri",
    "week_pts": 25.0,
-   "week_proj": 134.0,
+   "week_proj": 133.0,
    "season_pts": 1358.0,
    "week_rank": 1,
    "season_rank": 1
@@ -53,7 +53,7 @@
    "team": "Miwok Indians",
    "manager": "Brandon Selvitella",
    "week_pts": 6.0,
-   "week_proj": 98.0,
+   "week_proj": 97.0,
    "season_pts": 1076.0,
    "week_rank": 6,
    "season_rank": 10
@@ -71,7 +71,7 @@
    "team": "FOTY*",
    "manager": "Dave Abramson",
    "week_pts": 2.0,
-   "week_proj": 102.0,
+   "week_proj": 100.0,
    "season_pts": 1246.0,
    "week_rank": 8,
    "season_rank": 3
@@ -113,7 +113,7 @@
    "away_manager": "Chris Scerri",
    "home_pts": 2.0,
    "away_pts": 3.0,
-   "home_proj": 102.0,
+   "home_proj": 100.0,
    "away_proj": 118.0
   },
   {
@@ -124,7 +124,7 @@
    "home_pts": 11.0,
    "away_pts": 25.0,
    "home_proj": 112.0,
-   "away_proj": 134.0
+   "away_proj": 133.0
   },
   {
    "home": "Lincoln Hawk",
@@ -144,7 +144,7 @@
    "home_pts": 20.0,
    "away_pts": 6.0,
    "home_proj": 92.0,
-   "away_proj": 98.0
+   "away_proj": 97.0
   }
  ],
  "unmapped_teams": [],
@@ -163,7 +163,7 @@
     "QB",
     "Jared Goff",
     "Det - QB",
-    "Q2 2:00, 10-10 vs Chi",
+    "Q2 0:28, 12-10 vs Chi",
     2.0,
     null
    ],
@@ -301,7 +301,7 @@
     "WR",
     "Jameson Williams",
     "Det - WR",
-    "Q2 2:00, 10-10 vs Chi",
+    "Q2 0:28, 12-10 vs Chi",
     0.0,
     null
    ],
@@ -349,7 +349,7 @@
     "K",
     "Jake Bates",
     "Det - K",
-    "Q2 2:00, 10-10 vs Chi",
+    "Q2 0:28, 12-10 vs Chi",
     4.0,
     null
    ],
@@ -489,7 +489,7 @@
     "RB",
     "Jahmyr Gibbs",
     "Det - RB",
-    "Q2 2:00, 10-10 vs Chi",
+    "Q2 0:28, 12-10 vs Chi",
     11.0,
     null
    ],
@@ -587,7 +587,7 @@
     "QB",
     "Caleb Williams",
     "Chi - QB",
-    "Q2 2:00, 10-10 @ Det",
+    "Q2 0:28, 10-12 @ Det",
     2.0,
     null
    ],
@@ -627,7 +627,7 @@
     "WR",
     "Luther Burden III",
     "Chi - WR",
-    "Q2 2:00, 10-10 @ Det",
+    "Q2 0:28, 10-12 @ Det",
     0.0,
     null
    ],
@@ -921,7 +921,7 @@
     "RB",
     "D'Andre Swift",
     "Chi - RB",
-    "Q2 2:00, 10-10 @ Det",
+    "Q2 0:28, 10-12 @ Det",
     2.0,
     null
    ],
@@ -937,7 +937,7 @@
     "WR",
     "Amon-Ra St. Brown",
     "Det - WR",
-    "Q2 2:00, 10-10 vs Chi",
+    "Q2 0:28, 12-10 vs Chi",
     4.0,
     null
    ],
@@ -961,7 +961,7 @@
     "TE",
     "Sam LaPorta",
     "Det - TE",
-    "Q2 2:00, 10-10 vs Chi",
+    "Q2 0:28, 12-10 vs Chi",
     0.0,
     null
    ],
@@ -979,7 +979,7 @@
     "LAC - WR",
     "Sun 1:05 pm vs NE",
     null,
-    5.0
+    4.0
    ],
    [
     "K",
@@ -1027,7 +1027,7 @@
     "RB",
     "Kyle Monangai",
     "Chi - RB",
-    "Q2 2:00, 10-10 @ Det",
+    "Q2 0:28, 10-12 @ Det",
     8.0,
     null
    ],
@@ -1067,7 +1067,7 @@
     "TE",
     "Colston Loveland",
     "Chi - TE",
-    "Q2 2:00, 10-10 @ Det",
+    "Q2 0:28, 10-12 @ Det",
     0.0,
     null
    ],
@@ -1143,7 +1143,7 @@
     "NE - RB",
     "Sun 1:05 pm @ LAC",
     null,
-    6.0
+    7.0
    ],
    [
     "WR",
@@ -1181,7 +1181,7 @@
     "W/R/T",
     "Rome Odunze",
     "Chi - WR",
-    "Q2 2:00, 10-10 @ Det",
+    "Q2 0:28, 10-12 @ Det",
     0.0,
     null
    ],
@@ -1205,11 +1205,11 @@
     "DEF",
     "Bears",
     "Chi - DEF",
-    "Q2 2:00, 10-10 @ Det",
+    "Q2 0:28, 10-12 @ Det",
     1.0,
     null
    ]
   ]
  },
- "lineups_updated": "2026-11-26T19:20:09+00:00"
+ "lineups_updated": "2026-11-26T19:30:12+00:00"
 }
