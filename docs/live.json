@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T21:00:08+00:00",
+ "updated": "2026-11-27T21:10:11+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -16,9 +16,9 @@
   {
    "team": "u got pzzzed",
    "manager": "Tony Oliverez",
-   "week_pts": 69.0,
-   "week_proj": 123.0,
-   "season_pts": 1220.0,
+   "week_pts": 70.0,
+   "week_proj": 124.0,
+   "season_pts": 1221.0,
    "week_rank": 2,
    "season_rank": 6
   },
@@ -79,9 +79,9 @@
   {
    "team": "Maverick",
    "manager": "Chris Scerri",
-   "week_pts": 10.0,
-   "week_proj": 116.0,
-   "season_pts": 1267.0,
+   "week_pts": 11.0,
+   "week_proj": 117.0,
+   "season_pts": 1268.0,
    "week_rank": 9,
    "season_rank": 3
   },
@@ -112,18 +112,18 @@
    "home_manager": "Dave Abramson",
    "away_manager": "Chris Scerri",
    "home_pts": 67.0,
-   "away_pts": 10.0,
+   "away_pts": 11.0,
    "home_proj": 105.0,
-   "away_proj": 116.0
+   "away_proj": 117.0
   },
   {
    "home": "u got pzzzed",
    "away": "Umbertos",
    "home_manager": "Tony Oliverez",
    "away_manager": "Rob Scerri",
-   "home_pts": 69.0,
+   "home_pts": 70.0,
    "away_pts": 125.0,
-   "home_proj": 123.0,
+   "home_proj": 124.0,
    "away_proj": 172.0
   },
   {
@@ -473,7 +473,7 @@
     "QB",
     "Bo Nix",
     "Den - QB",
-    "Q2 5:06, 5-14 @ Pit",
+    "Q2 2:00, 5-14 @ Pit",
     1.0,
     null
    ],
@@ -497,8 +497,8 @@
     "RB",
     "Jaylen Warren",
     "Pit - RB",
-    "Q2 5:06, 14-5 vs Den",
-    0.0,
+    "Q2 2:00, 14-5 vs Den",
+    1.0,
     null
    ],
    [
@@ -529,7 +529,7 @@
     "WR",
     "Jaylen Waddle",
     "Den - WR",
-    "Q2 5:06, 5-14 @ Pit",
+    "Q2 2:00, 5-14 @ Pit",
     0.0,
     null
    ],
@@ -561,7 +561,7 @@
     "K",
     "Chris Boswell",
     "Pit - K",
-    "Q2 5:06, 14-5 vs Den",
+    "Q2 2:00, 14-5 vs Den",
     2.0,
     null
    ],
@@ -569,7 +569,7 @@
     "DEF",
     "Steelers",
     "Pit - DEF",
-    "Q2 5:06, 14-5 vs Den",
+    "Q2 2:00, 14-5 vs Den",
     17.0,
     null
    ]
@@ -709,7 +709,7 @@
     "RB",
     "Jonah Coleman",
     "Den - RB",
-    "Q2 5:06, 5-14 @ Pit",
+    "Q2 2:00, 5-14 @ Pit",
     0.0,
     null
    ],
@@ -781,7 +781,7 @@
     "DEF",
     "Broncos",
     "Den - DEF",
-    "Q2 5:06, 5-14 @ Pit",
+    "Q2 2:00, 5-14 @ Pit",
     6.0,
     null
    ]
@@ -799,8 +799,8 @@
     "QB",
     "Mason Rudolph",
     "Pit - QB",
-    "Q2 5:06, 14-5 vs Den",
-    7.0,
+    "Q2 2:00, 14-5 vs Den",
+    8.0,
     null
    ],
    [
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-27T21:00:08+00:00"
+ "lineups_updated": "2026-11-27T21:10:11+00:00"
 }
