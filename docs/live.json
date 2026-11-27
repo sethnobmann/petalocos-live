@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T02:00:10+00:00",
+ "updated": "2026-11-27T02:10:06+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -7,9 +7,9 @@
   {
    "team": "Umbertos",
    "manager": "Rob Scerri",
-   "week_pts": 95.0,
-   "week_proj": 165.0,
-   "season_pts": 1428.0,
+   "week_pts": 104.0,
+   "week_proj": 173.0,
+   "season_pts": 1437.0,
    "week_rank": 1,
    "season_rank": 1
   },
@@ -52,9 +52,9 @@
   {
    "team": "SHOW ME THE $$$$",
    "manager": "CJ Nelson",
-   "week_pts": 24.0,
-   "week_proj": 94.0,
-   "season_pts": 1173.0,
+   "week_pts": 25.0,
+   "week_proj": 95.0,
+   "season_pts": 1174.0,
    "week_rank": 6,
    "season_rank": 7
   },
@@ -101,9 +101,9 @@
    "away": "dontmindme",
    "home_manager": "CJ Nelson",
    "away_manager": "Seth Nobmann",
-   "home_pts": 24.0,
+   "home_pts": 25.0,
    "away_pts": 50.0,
-   "home_proj": 94.0,
+   "home_proj": 95.0,
    "away_proj": 91.0
   },
   {
@@ -122,9 +122,9 @@
    "home_manager": "Tony Oliverez",
    "away_manager": "Rob Scerri",
    "home_pts": 49.0,
-   "away_pts": 95.0,
+   "away_pts": 104.0,
    "home_proj": 126.0,
-   "away_proj": 165.0
+   "away_proj": 173.0
   },
   {
    "home": "Lincoln Hawk",
@@ -171,15 +171,15 @@
     "RB",
     "James Cook III",
     "Buf - RB",
-    "Q1 0:00, 0-0 vs KC",
-    1.0,
+    "Q2 14:24, 7-0 vs KC",
+    10.0,
     null
    ],
    [
     "RB",
     "Emmett Johnson",
     "KC - RB",
-    "Q1 0:00, 0-0 @ Buf",
+    "Q2 14:24, 0-7 @ Buf",
     0.0,
     null
    ],
@@ -243,7 +243,7 @@
     "K",
     "Harrison Butker",
     "KC - K",
-    "Q1 0:00, 0-0 @ Buf",
+    "Q2 14:24, 0-7 @ Buf",
     0.0,
     null
    ],
@@ -341,7 +341,7 @@
     "W/R/T",
     "Travis Kelce",
     "KC - TE",
-    "Q1 0:00, 0-0 @ Buf",
+    "Q2 14:24, 0-7 @ Buf",
     0.0,
     null
    ],
@@ -579,7 +579,7 @@
     "QB",
     "Patrick Mahomes",
     "KC - QB",
-    "Q1 0:00, 0-0 @ Buf",
+    "Q2 14:24, 0-7 @ Buf",
     0.0,
     null
    ],
@@ -635,7 +635,7 @@
     "WR",
     "Rashee Rice",
     "KC - WR",
-    "Q1 0:00, 0-0 @ Buf",
+    "Q2 14:24, 0-7 @ Buf",
     0.0,
     null
    ],
@@ -725,7 +725,7 @@
     "WR",
     "DJ Moore",
     "Buf - WR",
-    "Q1 0:00, 0-0 vs KC",
+    "Q2 14:24, 7-0 vs KC",
     0.0,
     null
    ],
@@ -1083,7 +1083,7 @@
     "W/R/T",
     "Josh Downs",
     "KC - WR",
-    "Q1 0:00, 0-0 @ Buf",
+    "Q2 13:53, 0-7 @ Buf",
     0.0,
     null
    ],
@@ -1109,7 +1109,7 @@
     "QB",
     "Josh Allen",
     "Buf - QB",
-    "Q1 0:00, 0-0 vs KC",
+    "Q2 13:53, 7-0 vs KC",
     0.0,
     null
    ],
@@ -1197,8 +1197,8 @@
     "K",
     "Tyler Bass",
     "Buf - K",
-    "Q1 0:00, 0-0 vs KC",
-    0.0,
+    "Q2 13:53, 7-0 vs KC",
+    1.0,
     null
    ],
    [
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-27T02:00:10+00:00"
+ "lineups_updated": "2026-11-27T02:10:06+00:00"
 }
