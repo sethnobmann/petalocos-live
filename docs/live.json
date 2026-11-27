@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T21:30:13+00:00",
+ "updated": "2026-11-27T21:40:12+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -17,7 +17,7 @@
    "team": "u got pzzzed",
    "manager": "Tony Oliverez",
    "week_pts": 85.0,
-   "week_proj": 139.0,
+   "week_proj": 137.0,
    "season_pts": 1236.0,
    "week_rank": 2,
    "season_rank": 6
@@ -123,7 +123,7 @@
    "away_manager": "Rob Scerri",
    "home_pts": 85.0,
    "away_pts": 125.0,
-   "home_proj": 139.0,
+   "home_proj": 137.0,
    "away_proj": 172.0
   },
   {
@@ -473,7 +473,7 @@
     "QB",
     "Bo Nix",
     "Den - QB",
-    "Half, 5-24 @ Pit",
+    "Q3 14:01, 5-24 @ Pit",
     1.0,
     null
    ],
@@ -497,7 +497,7 @@
     "RB",
     "Jaylen Warren",
     "Pit - RB",
-    "Half, 24-5 vs Den",
+    "Q3 14:01, 24-5 vs Den",
     1.0,
     null
    ],
@@ -529,7 +529,7 @@
     "WR",
     "Jaylen Waddle",
     "Den - WR",
-    "Half, 5-24 @ Pit",
+    "Q3 14:01, 5-24 @ Pit",
     0.0,
     null
    ],
@@ -561,7 +561,7 @@
     "K",
     "Chris Boswell",
     "Pit - K",
-    "Half, 24-5 vs Den",
+    "Q3 14:01, 24-5 vs Den",
     7.0,
     null
    ],
@@ -569,7 +569,7 @@
     "DEF",
     "Steelers",
     "Pit - DEF",
-    "Half, 24-5 vs Den",
+    "Q3 14:01, 24-5 vs Den",
     27.0,
     null
    ]
@@ -709,7 +709,7 @@
     "RB",
     "Jonah Coleman",
     "Den - RB",
-    "Half, 5-24 @ Pit",
+    "Q3 14:01, 5-24 @ Pit",
     0.0,
     null
    ],
@@ -781,7 +781,7 @@
     "DEF",
     "Broncos",
     "Den - DEF",
-    "Half, 5-24 @ Pit",
+    "Q3 14:01, 5-24 @ Pit",
     6.0,
     null
    ]
@@ -799,7 +799,7 @@
     "QB",
     "Mason Rudolph",
     "Pit - QB",
-    "Half, 24-5 vs Den",
+    "Q3 14:01, 24-5 vs Den",
     8.0,
     null
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-27T21:30:13+00:00"
+ "lineups_updated": "2026-11-27T21:40:12+00:00"
 }
