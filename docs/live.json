@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T01:10:08+00:00",
+ "updated": "2026-11-27T01:20:12+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -8,7 +8,7 @@
    "team": "Umbertos",
    "manager": "Rob Scerri",
    "week_pts": 85.0,
-   "week_proj": 159.0,
+   "week_proj": 158.0,
    "season_pts": 1418.0,
    "week_rank": 1,
    "season_rank": 1
@@ -17,7 +17,7 @@
    "team": "FOTY*",
    "manager": "Dave Abramson",
    "week_pts": 61.0,
-   "week_proj": 127.0,
+   "week_proj": 131.0,
    "season_pts": 1305.0,
    "week_rank": 2,
    "season_rank": 2
@@ -26,7 +26,7 @@
    "team": "dontmindme",
    "manager": "Seth Nobmann",
    "week_pts": 50.0,
-   "week_proj": 93.0,
+   "week_proj": 92.0,
    "season_pts": 1256.0,
    "week_rank": 3,
    "season_rank": 4
@@ -53,7 +53,7 @@
    "team": "SHOW ME THE $$$$",
    "manager": "CJ Nelson",
    "week_pts": 24.0,
-   "week_proj": 103.0,
+   "week_proj": 101.0,
    "season_pts": 1173.0,
    "week_rank": 6,
    "season_rank": 7
@@ -62,7 +62,7 @@
    "team": "FANTASY KING",
    "manager": "Chris King",
    "week_pts": 20.0,
-   "week_proj": 91.0,
+   "week_proj": 92.0,
    "season_pts": 1132.0,
    "week_rank": 7,
    "season_rank": 8
@@ -103,8 +103,8 @@
    "away_manager": "Seth Nobmann",
    "home_pts": 24.0,
    "away_pts": 50.0,
-   "home_proj": 103.0,
-   "away_proj": 93.0
+   "home_proj": 101.0,
+   "away_proj": 92.0
   },
   {
    "home": "FOTY*",
@@ -113,7 +113,7 @@
    "away_manager": "Chris Scerri",
    "home_pts": 61.0,
    "away_pts": 3.0,
-   "home_proj": 127.0,
+   "home_proj": 131.0,
    "away_proj": 118.0
   },
   {
@@ -124,7 +124,7 @@
    "home_pts": 49.0,
    "away_pts": 85.0,
    "home_proj": 126.0,
-   "away_proj": 159.0
+   "away_proj": 158.0
   },
   {
    "home": "Lincoln Hawk",
@@ -143,7 +143,7 @@
    "away_manager": "Brandon Selvitella",
    "home_pts": 20.0,
    "away_pts": 34.0,
-   "home_proj": 91.0,
+   "home_proj": 92.0,
    "away_proj": 100.0
   }
  ],
@@ -181,7 +181,7 @@
     "KC - RB",
     "Thu 5:20 pm @ Buf",
     null,
-    12.0
+    11.0
    ],
    [
     "RB",
@@ -195,7 +195,7 @@
     "WR",
     "CeeDee Lamb",
     "Dal - WR",
-    "Q4 2:17, 38-30 vs Phi",
+    "Q4 1:44, 38-36 vs Phi",
     8.0,
     null
    ],
@@ -211,7 +211,7 @@
     "WR",
     "DeVonta Smith",
     "Phi - WR",
-    "Q4 2:17, 30-38 @ Dal",
+    "Q4 1:44, 36-38 @ Dal",
     30.0,
     null
    ],
@@ -251,7 +251,7 @@
     "DEF",
     "Eagles",
     "Phi - DEF",
-    "Q4 2:17, 30-38 @ Dal",
+    "Q4 1:44, 36-38 @ Dal",
     12.0,
     null
    ]
@@ -261,7 +261,7 @@
     "QB",
     "Dak Prescott",
     "Dal - QB",
-    "Q4 2:17, 38-30 vs Phi",
+    "Q4 1:44, 38-36 vs Phi",
     25.0,
     null
    ],
@@ -393,7 +393,7 @@
     "Ari - RB",
     "Sun 1:25 pm vs Was",
     null,
-    4.0
+    5.0
    ],
    [
     "RB",
@@ -513,7 +513,7 @@
     "WR",
     "George Pickens",
     "Dal - WR",
-    "Q4 2:17, 38-30 vs Phi",
+    "Q4 1:44, 38-36 vs Phi",
     3.0,
     null
    ],
@@ -537,7 +537,7 @@
     "TE",
     "Dallas Goedert",
     "Phi - TE",
-    "Q4 2:17, 30-38 @ Dal",
+    "Q4 1:44, 36-38 @ Dal",
     0.0,
     null
    ],
@@ -595,7 +595,7 @@
     "RB",
     "Javonte Williams",
     "Dal - RB",
-    "Q4 2:17, 38-30 vs Phi",
+    "Q4 1:44, 38-36 vs Phi",
     29.0,
     null
    ],
@@ -621,7 +621,7 @@
     "Jax - WR",
     "Sun 10:00 am vs Ten",
     null,
-    9.0
+    10.0
    ],
    [
     "WR",
@@ -667,7 +667,7 @@
     "K",
     "Brandon Aubrey",
     "Dal - K",
-    "Q4 2:17, 38-30 vs Phi",
+    "Q4 1:44, 38-36 vs Phi",
     10.0,
     null
    ],
@@ -929,7 +929,7 @@
     "RB",
     "Saquon Barkley",
     "Phi - RB",
-    "Q4 2:17, 30-38 @ Dal",
+    "Q4 1:44, 36-38 @ Dal",
     0.0,
     null
    ],
@@ -1119,7 +1119,7 @@
     "LV - QB",
     "Sun 5:20 pm @ Cle",
     null,
-    12.0
+    11.0
    ],
    [
     "RB",
@@ -1135,7 +1135,7 @@
     "LAC - RB",
     "Sun 1:05 pm vs NE",
     null,
-    6.0
+    5.0
    ],
    [
     "RB",
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-27T01:10:08+00:00"
+ "lineups_updated": "2026-11-27T01:20:12+00:00"
 }
