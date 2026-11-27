@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T03:50:08+00:00",
+ "updated": "2026-11-27T04:00:10+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -8,7 +8,7 @@
    "team": "Umbertos",
    "manager": "Rob Scerri",
    "week_pts": 125.0,
-   "week_proj": 175.0,
+   "week_proj": 174.0,
    "season_pts": 1458.0,
    "week_rank": 1,
    "season_rank": 1
@@ -16,9 +16,9 @@
   {
    "team": "FOTY*",
    "manager": "Dave Abramson",
-   "week_pts": 66.0,
-   "week_proj": 118.0,
-   "season_pts": 1310.0,
+   "week_pts": 67.0,
+   "week_proj": 116.0,
+   "season_pts": 1311.0,
    "week_rank": 2,
    "season_rank": 2
   },
@@ -53,7 +53,7 @@
    "team": "SHOW ME THE $$$$",
    "manager": "CJ Nelson",
    "week_pts": 33.0,
-   "week_proj": 89.0,
+   "week_proj": 86.0,
    "season_pts": 1182.0,
    "week_rank": 6,
    "season_rank": 7
@@ -89,7 +89,7 @@
    "team": "Lincoln Hawk",
    "manager": "Brandon Martinez",
    "week_pts": 0.0,
-   "week_proj": 110.0,
+   "week_proj": 109.0,
    "season_pts": 1098.0,
    "week_rank": 10,
    "season_rank": 10
@@ -103,7 +103,7 @@
    "away_manager": "Seth Nobmann",
    "home_pts": 33.0,
    "away_pts": 53.0,
-   "home_proj": 89.0,
+   "home_proj": 86.0,
    "away_proj": 91.0
   },
   {
@@ -111,9 +111,9 @@
    "away": "Maverick",
    "home_manager": "Dave Abramson",
    "away_manager": "Chris Scerri",
-   "home_pts": 66.0,
+   "home_pts": 67.0,
    "away_pts": 3.0,
-   "home_proj": 118.0,
+   "home_proj": 116.0,
    "away_proj": 118.0
   },
   {
@@ -124,7 +124,7 @@
    "home_pts": 49.0,
    "away_pts": 125.0,
    "home_proj": 126.0,
-   "away_proj": 175.0
+   "away_proj": 174.0
   },
   {
    "home": "Lincoln Hawk",
@@ -133,7 +133,7 @@
    "away_manager": "Brian Lovrin",
    "home_pts": 0.0,
    "away_pts": 16.0,
-   "home_proj": 110.0,
+   "home_proj": 109.0,
    "away_proj": 104.0
   },
   {
@@ -171,7 +171,7 @@
     "RB",
     "James Cook III",
     "Buf - RB",
-    "Q4 11:23, 10-10 vs KC",
+    "Q4 5:56, 10-10 vs KC",
     15.0,
     null
    ],
@@ -179,7 +179,7 @@
     "RB",
     "Emmett Johnson",
     "KC - RB",
-    "Q4 11:23, 10-10 @ Buf",
+    "Q4 5:56, 10-10 @ Buf",
     12.0,
     null
    ],
@@ -243,7 +243,7 @@
     "K",
     "Harrison Butker",
     "KC - K",
-    "Q4 11:23, 10-10 @ Buf",
+    "Q4 5:56, 10-10 @ Buf",
     4.0,
     null
    ],
@@ -341,7 +341,7 @@
     "W/R/T",
     "Travis Kelce",
     "KC - TE",
-    "Q4 11:23, 10-10 @ Buf",
+    "Q4 5:56, 10-10 @ Buf",
     3.0,
     null
    ],
@@ -579,8 +579,8 @@
     "QB",
     "Patrick Mahomes",
     "KC - QB",
-    "Q4 11:23, 10-10 @ Buf",
-    2.0,
+    "Q4 5:56, 10-10 @ Buf",
+    3.0,
     null
    ],
    [
@@ -635,7 +635,7 @@
     "WR",
     "Rashee Rice",
     "KC - WR",
-    "Q4 11:23, 10-10 @ Buf",
+    "Q4 5:56, 10-10 @ Buf",
     0.0,
     null
    ],
@@ -725,7 +725,7 @@
     "WR",
     "DJ Moore",
     "Buf - WR",
-    "Q4 11:23, 10-10 vs KC",
+    "Q4 5:56, 10-10 vs KC",
     0.0,
     null
    ],
@@ -1083,7 +1083,7 @@
     "W/R/T",
     "Josh Downs",
     "KC - WR",
-    "Q4 11:23, 10-10 @ Buf",
+    "Q4 5:56, 10-10 @ Buf",
     0.0,
     null
    ],
@@ -1109,7 +1109,7 @@
     "QB",
     "Josh Allen",
     "Buf - QB",
-    "Q4 11:23, 10-10 vs KC",
+    "Q4 5:56, 10-10 vs KC",
     3.0,
     null
    ],
@@ -1119,7 +1119,7 @@
     "LV - QB",
     "Sun 5:20 pm @ Cle",
     null,
-    11.0
+    12.0
    ],
    [
     "RB",
@@ -1197,7 +1197,7 @@
     "K",
     "Tyler Bass",
     "Buf - K",
-    "Q4 11:23, 10-10 vs KC",
+    "Q4 5:56, 10-10 vs KC",
     6.0,
     null
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-27T03:50:08+00:00"
+ "lineups_updated": "2026-11-27T04:00:10+00:00"
 }
