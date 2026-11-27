@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T04:50:04+00:00",
+ "updated": "2026-11-27T20:10:08+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -8,7 +8,7 @@
    "team": "Umbertos",
    "manager": "Rob Scerri",
    "week_pts": 125.0,
-   "week_proj": 171.0,
+   "week_proj": 172.0,
    "season_pts": 1458.0,
    "week_rank": 1,
    "season_rank": 1
@@ -17,10 +17,19 @@
    "team": "FOTY*",
    "manager": "Dave Abramson",
    "week_pts": 67.0,
-   "week_proj": 114.0,
+   "week_proj": 105.0,
    "season_pts": 1311.0,
    "week_rank": 2,
    "season_rank": 2
+  },
+  {
+   "team": "u got pzzzed",
+   "manager": "Tony Oliverez",
+   "week_pts": 59.0,
+   "week_proj": 123.0,
+   "season_pts": 1210.0,
+   "week_rank": 3,
+   "season_rank": 6
   },
   {
    "team": "dontmindme",
@@ -28,23 +37,14 @@
    "week_pts": 53.0,
    "week_proj": 91.0,
    "season_pts": 1259.0,
-   "week_rank": 3,
-   "season_rank": 4
-  },
-  {
-   "team": "u got pzzzed",
-   "manager": "Tony Oliverez",
-   "week_pts": 49.0,
-   "week_proj": 126.0,
-   "season_pts": 1200.0,
    "week_rank": 4,
-   "season_rank": 6
+   "season_rank": 4
   },
   {
    "team": "SHOW ME THE $$$$",
    "manager": "CJ Nelson",
    "week_pts": 38.0,
-   "week_proj": 90.0,
+   "week_proj": 89.0,
    "season_pts": 1187.0,
    "week_rank": 5,
    "season_rank": 7
@@ -56,7 +56,7 @@
    "week_proj": 100.0,
    "season_pts": 1104.0,
    "week_rank": 6,
-   "season_rank": 9
+   "season_rank": 10
   },
   {
    "team": "FANTASY KING",
@@ -77,22 +77,22 @@
    "season_rank": 5
   },
   {
+   "team": "Lincoln Hawk",
+   "manager": "Brandon Martinez",
+   "week_pts": 10.0,
+   "week_proj": 110.0,
+   "season_pts": 1108.0,
+   "week_rank": 9,
+   "season_rank": 9
+  },
+  {
    "team": "Maverick",
    "manager": "Chris Scerri",
    "week_pts": 3.0,
-   "week_proj": 118.0,
+   "week_proj": 113.0,
    "season_pts": 1260.0,
-   "week_rank": 9,
-   "season_rank": 3
-  },
-  {
-   "team": "Lincoln Hawk",
-   "manager": "Brandon Martinez",
-   "week_pts": 0.0,
-   "week_proj": 109.0,
-   "season_pts": 1098.0,
    "week_rank": 10,
-   "season_rank": 10
+   "season_rank": 3
   }
  ],
  "matchups": [
@@ -103,7 +103,7 @@
    "away_manager": "Seth Nobmann",
    "home_pts": 38.0,
    "away_pts": 53.0,
-   "home_proj": 90.0,
+   "home_proj": 89.0,
    "away_proj": 91.0
   },
   {
@@ -113,27 +113,27 @@
    "away_manager": "Chris Scerri",
    "home_pts": 67.0,
    "away_pts": 3.0,
-   "home_proj": 114.0,
-   "away_proj": 118.0
+   "home_proj": 105.0,
+   "away_proj": 113.0
   },
   {
    "home": "u got pzzzed",
    "away": "Umbertos",
    "home_manager": "Tony Oliverez",
    "away_manager": "Rob Scerri",
-   "home_pts": 49.0,
+   "home_pts": 59.0,
    "away_pts": 125.0,
-   "home_proj": 126.0,
-   "away_proj": 171.0
+   "home_proj": 123.0,
+   "away_proj": 172.0
   },
   {
    "home": "Lincoln Hawk",
    "away": "Mooseknuckle's",
    "home_manager": "Brandon Martinez",
    "away_manager": "Brian Lovrin",
-   "home_pts": 0.0,
+   "home_pts": 10.0,
    "away_pts": 16.0,
-   "home_proj": 109.0,
+   "home_proj": 110.0,
    "away_proj": 104.0
   },
   {
@@ -165,7 +165,7 @@
     "Det - QB",
     "Final L 35-39 vs Chi",
     12.0,
-    18.0
+    17.0
    ],
    [
     "RB",
@@ -205,7 +205,7 @@
     "Jax - WR",
     "Sun 10:00 am vs Ten",
     null,
-    5.0
+    6.0
    ],
    [
     "WR",
@@ -471,17 +471,17 @@
   "u got pzzzed": [
    [
     "QB",
-    "Jacoby Brissett",
-    "Bal - QB",
-    "Sun 10:00 am @ Hou",
-    null,
-    12.0
+    "Bo Nix",
+    "Den - QB",
+    "Q1 9:56, 0-0 @ Pit",
+    0.0,
+    null
    ],
    [
     "QB",
-    "Bo Nix",
-    "Den - QB",
-    "Fri 12:00 pm @ Pit",
+    "Sam Darnold",
+    "Sea - QB",
+    "Sun 1:25 pm @ SF",
     null,
     13.0
    ],
@@ -497,9 +497,9 @@
     "RB",
     "Jaylen Warren",
     "Pit - RB",
-    "Fri 12:00 pm vs Den",
-    null,
-    7.0
+    "Q1 9:56, 0-0 vs Den",
+    0.0,
+    null
    ],
    [
     "RB",
@@ -529,9 +529,9 @@
     "WR",
     "Jaylen Waddle",
     "Den - WR",
-    "Fri 12:00 pm @ Pit",
-    null,
-    4.0
+    "Q1 9:56, 0-0 @ Pit",
+    0.0,
+    null
    ],
    [
     "TE",
@@ -551,27 +551,27 @@
    ],
    [
     "W/R/T",
-    "Denzel Boston",
-    "Cle - WR",
-    "Sun 5:20 pm vs LV",
+    "Justice Hill",
+    "Bal - RB",
+    "Sun 10:00 am @ Hou",
     null,
-    5.0
+    3.0
    ],
    [
     "K",
     "Chris Boswell",
     "Pit - K",
-    "Fri 12:00 pm vs Den",
-    null,
-    7.0
+    "Q1 9:56, 0-0 vs Den",
+    0.0,
+    null
    ],
    [
     "DEF",
     "Steelers",
     "Pit - DEF",
-    "Fri 12:00 pm vs Den",
-    null,
-    5.0
+    "Q1 9:56, 0-0 vs Den",
+    10.0,
+    null
    ]
   ],
   "FOTY*": [
@@ -605,7 +605,7 @@
     "LV - RB",
     "Sun 5:20 pm @ Cle",
     null,
-    7.0
+    6.0
    ],
    [
     "RB",
@@ -614,14 +614,6 @@
     "Sun 1:25 pm vs Sea",
     null,
     9.0
-   ],
-   [
-    "WR",
-    "Parker Washington",
-    "Jax - WR",
-    "Sun 10:00 am vs Ten",
-    null,
-    10.0
    ],
    [
     "WR",
@@ -638,6 +630,14 @@
     "Final L 10-13 @ Buf",
     0.0,
     5.0
+   ],
+   [
+    "WR",
+    "Drake London",
+    "Atl - WR",
+    "Sun 10:00 am @ Min",
+    null,
+    6.0
    ],
    [
     "TE",
@@ -657,11 +657,11 @@
    ],
    [
     "W/R/T",
-    "Drake London",
-    "Atl - WR",
-    "Sun 10:00 am @ Min",
+    "Alvin Kamara",
+    "NO - RB",
+    "Sun 10:00 am @ Cin",
     null,
-    6.0
+    2.0
    ],
    [
     "K",
@@ -695,7 +695,7 @@
     "Was - QB",
     "Sun 1:25 pm @ Ari",
     null,
-    19.0
+    18.0
    ],
    [
     "RB",
@@ -709,9 +709,9 @@
     "RB",
     "Jonah Coleman",
     "Den - RB",
-    "Fri 12:00 pm @ Pit",
-    null,
-    10.0
+    "Q1 9:56, 0-0 @ Pit",
+    0.0,
+    null
    ],
    [
     "RB",
@@ -735,13 +735,13 @@
     "NYJ - WR",
     "Sun 10:00 am @ Mia",
     null,
-    6.0
+    7.0
    ],
    [
     "WR",
-    "Tank Dell",
-    "Hou - WR",
-    "Sun 10:00 am vs Bal",
+    "Brian Thomas Jr.",
+    "Jax - WR",
+    "Sun 10:00 am vs Ten",
     null,
     3.0
    ],
@@ -781,20 +781,12 @@
     "DEF",
     "Broncos",
     "Den - DEF",
-    "Fri 12:00 pm @ Pit",
-    null,
-    7.0
+    "Q1 9:56, 0-0 @ Pit",
+    10.0,
+    null
    ]
   ],
   "Maverick": [
-   [
-    "QB",
-    "Justin Herbert",
-    "LAC - QB",
-    "Sun 1:05 pm vs NE",
-    null,
-    13.0
-   ],
    [
     "QB",
     "Baker Mayfield",
@@ -802,6 +794,14 @@
     "Mon 5:15 pm vs Car",
     null,
     14.0
+   ],
+   [
+    "QB",
+    "Mason Rudolph",
+    "Pit - QB",
+    "Q1 9:56, 0-0 vs Den",
+    0.0,
+    null
    ],
    [
     "RB",
@@ -813,17 +813,17 @@
    ],
    [
     "RB",
-    "Bhayshul Tuten",
-    "Jax - RB",
-    "Sun 10:00 am vs Ten",
-    null,
-    11.0
-   ],
-   [
-    "RB",
     "Cam Skattebo",
     "NYG - RB",
     "Sun 10:00 am @ Ind",
+    null,
+    9.0
+   ],
+   [
+    "RB",
+    "Bhayshul Tuten",
+    "Jax - RB",
+    "Sun 10:00 am vs Ten",
     null,
     11.0
    ],
@@ -889,7 +889,7 @@
     "Jax - DEF",
     "Sun 10:00 am vs Ten",
     null,
-    8.0
+    7.0
    ]
   ],
   "Miwok Indians": [
@@ -1119,7 +1119,7 @@
     "LV - QB",
     "Sun 5:20 pm @ Cle",
     null,
-    12.0
+    11.0
    ],
    [
     "RB",
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-27T04:50:04+00:00"
+ "lineups_updated": "2026-11-27T20:10:08+00:00"
 }
