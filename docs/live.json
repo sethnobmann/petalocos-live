@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T04:20:13+00:00",
+ "updated": "2026-11-27T04:30:07+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -41,22 +41,22 @@
    "season_rank": 6
   },
   {
+   "team": "SHOW ME THE $$$$",
+   "manager": "CJ Nelson",
+   "week_pts": 38.0,
+   "week_proj": 90.0,
+   "season_pts": 1187.0,
+   "week_rank": 5,
+   "season_rank": 7
+  },
+  {
    "team": "Miwok Indians",
    "manager": "Brandon Selvitella",
    "week_pts": 34.0,
    "week_proj": 100.0,
    "season_pts": 1104.0,
-   "week_rank": 5,
-   "season_rank": 9
-  },
-  {
-   "team": "SHOW ME THE $$$$",
-   "manager": "CJ Nelson",
-   "week_pts": 33.0,
-   "week_proj": 85.0,
-   "season_pts": 1182.0,
    "week_rank": 6,
-   "season_rank": 7
+   "season_rank": 9
   },
   {
    "team": "FANTASY KING",
@@ -101,9 +101,9 @@
    "away": "dontmindme",
    "home_manager": "CJ Nelson",
    "away_manager": "Seth Nobmann",
-   "home_pts": 33.0,
+   "home_pts": 38.0,
    "away_pts": 53.0,
-   "home_proj": 85.0,
+   "home_proj": 90.0,
    "away_proj": 91.0
   },
   {
@@ -171,17 +171,17 @@
     "RB",
     "James Cook III",
     "Buf - RB",
-    "Q4 0:46, 10-10 vs KC",
+    "Final W 13-10 vs KC",
     15.0,
-    null
+    9.0
    ],
    [
     "RB",
     "Emmett Johnson",
     "KC - RB",
-    "Q4 0:46, 10-10 @ Buf",
+    "Final L 10-13 @ Buf",
     12.0,
-    null
+    11.0
    ],
    [
     "RB",
@@ -243,9 +243,9 @@
     "K",
     "Harrison Butker",
     "KC - K",
-    "Q4 0:46, 10-10 @ Buf",
+    "Final L 10-13 @ Buf",
     4.0,
-    null
+    7.0
    ],
    [
     "DEF",
@@ -341,9 +341,9 @@
     "W/R/T",
     "Travis Kelce",
     "KC - TE",
-    "Q4 0:46, 10-10 @ Buf",
+    "Final L 10-13 @ Buf",
     3.0,
-    null
+    4.0
    ],
    [
     "K",
@@ -579,9 +579,9 @@
     "QB",
     "Patrick Mahomes",
     "KC - QB",
-    "Q4 0:38, 10-10 @ Buf",
+    "Final L 10-13 @ Buf",
     3.0,
-    null
+    15.0
    ],
    [
     "QB",
@@ -635,9 +635,9 @@
     "WR",
     "Rashee Rice",
     "KC - WR",
-    "Q4 0:38, 10-10 @ Buf",
+    "Final L 10-13 @ Buf",
     0.0,
-    null
+    5.0
    ],
    [
     "TE",
@@ -725,9 +725,9 @@
     "WR",
     "DJ Moore",
     "Buf - WR",
-    "Q4 0:38, 10-10 vs KC",
+    "Final W 13-10 vs KC",
     0.0,
-    null
+    5.0
    ],
    [
     "WR",
@@ -1083,9 +1083,9 @@
     "W/R/T",
     "Josh Downs",
     "KC - WR",
-    "Q4 0:38, 10-10 @ Buf",
+    "Final L 10-13 @ Buf",
     0.0,
-    null
+    3.0
    ],
    [
     "K",
@@ -1109,9 +1109,9 @@
     "QB",
     "Josh Allen",
     "Buf - QB",
-    "Q4 0:38, 10-10 vs KC",
+    "Final W 13-10 vs KC",
     3.0,
-    null
+    18.0
    ],
    [
     "QB",
@@ -1197,9 +1197,9 @@
     "K",
     "Tyler Bass",
     "Buf - K",
-    "Q4 0:38, 10-10 vs KC",
-    6.0,
-    null
+    "Final W 13-10 vs KC",
+    11.0,
+    8.0
    ],
    [
     "DEF",
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-27T04:20:13+00:00"
+ "lineups_updated": "2026-11-27T04:30:07+00:00"
 }
