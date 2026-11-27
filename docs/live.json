@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T01:30:10+00:00",
+ "updated": "2026-11-27T01:40:08+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -7,9 +7,9 @@
   {
    "team": "Umbertos",
    "manager": "Rob Scerri",
-   "week_pts": 92.0,
-   "week_proj": 165.0,
-   "season_pts": 1425.0,
+   "week_pts": 94.0,
+   "week_proj": 166.0,
+   "season_pts": 1427.0,
    "week_rank": 1,
    "season_rank": 1
   },
@@ -17,7 +17,7 @@
    "team": "FOTY*",
    "manager": "Dave Abramson",
    "week_pts": 64.0,
-   "week_proj": 131.0,
+   "week_proj": 129.0,
    "season_pts": 1308.0,
    "week_rank": 2,
    "season_rank": 2
@@ -53,7 +53,7 @@
    "team": "SHOW ME THE $$$$",
    "manager": "CJ Nelson",
    "week_pts": 24.0,
-   "week_proj": 101.0,
+   "week_proj": 98.0,
    "season_pts": 1173.0,
    "week_rank": 6,
    "season_rank": 7
@@ -103,7 +103,7 @@
    "away_manager": "Seth Nobmann",
    "home_pts": 24.0,
    "away_pts": 50.0,
-   "home_proj": 101.0,
+   "home_proj": 98.0,
    "away_proj": 92.0
   },
   {
@@ -113,7 +113,7 @@
    "away_manager": "Chris Scerri",
    "home_pts": 64.0,
    "away_pts": 3.0,
-   "home_proj": 131.0,
+   "home_proj": 129.0,
    "away_proj": 118.0
   },
   {
@@ -122,9 +122,9 @@
    "home_manager": "Tony Oliverez",
    "away_manager": "Rob Scerri",
    "home_pts": 49.0,
-   "away_pts": 92.0,
+   "away_pts": 94.0,
    "home_proj": 126.0,
-   "away_proj": 165.0
+   "away_proj": 166.0
   },
   {
    "home": "Lincoln Hawk",
@@ -171,7 +171,7 @@
     "RB",
     "James Cook III",
     "Buf - RB",
-    "Q1 14:53, 0-0 vs KC",
+    "Q1 8:54, 0-0 vs KC",
     0.0,
     null
    ],
@@ -179,7 +179,7 @@
     "RB",
     "Emmett Johnson",
     "KC - RB",
-    "Q1 14:53, 0-0 @ Buf",
+    "Q1 8:54, 0-0 @ Buf",
     0.0,
     null
    ],
@@ -195,9 +195,9 @@
     "WR",
     "CeeDee Lamb",
     "Dal - WR",
-    "Q4 0:11, 38-36 vs Phi",
+    "Final L 38-39 vs Phi",
     8.0,
-    null
+    13.0
    ],
    [
     "WR",
@@ -211,9 +211,9 @@
     "WR",
     "DeVonta Smith",
     "Phi - WR",
-    "Q4 0:11, 36-38 @ Dal",
+    "Final W 39-38 @ Dal",
     36.0,
-    null
+    7.0
    ],
    [
     "TE",
@@ -243,7 +243,7 @@
     "K",
     "Harrison Butker",
     "KC - K",
-    "Q1 14:53, 0-0 @ Buf",
+    "Q1 8:54, 0-0 @ Buf",
     0.0,
     null
    ],
@@ -251,9 +251,9 @@
     "DEF",
     "Eagles",
     "Phi - DEF",
-    "Q4 0:11, 36-38 @ Dal",
-    13.0,
-    null
+    "Final W 39-38 @ Dal",
+    15.0,
+    5.0
    ]
   ],
   "dontmindme": [
@@ -261,9 +261,9 @@
     "QB",
     "Dak Prescott",
     "Dal - QB",
-    "Q4 0:11, 38-36 vs Phi",
+    "Final L 38-39 vs Phi",
     25.0,
-    null
+    18.0
    ],
    [
     "QB",
@@ -341,7 +341,7 @@
     "W/R/T",
     "Travis Kelce",
     "KC - TE",
-    "Q1 14:53, 0-0 @ Buf",
+    "Q1 8:54, 0-0 @ Buf",
     0.0,
     null
    ],
@@ -513,9 +513,9 @@
     "WR",
     "George Pickens",
     "Dal - WR",
-    "Q4 0:11, 38-36 vs Phi",
+    "Final L 38-39 vs Phi",
     3.0,
-    null
+    8.0
    ],
    [
     "WR",
@@ -537,9 +537,9 @@
     "TE",
     "Dallas Goedert",
     "Phi - TE",
-    "Q4 0:11, 36-38 @ Dal",
+    "Final W 39-38 @ Dal",
     0.0,
-    null
+    0.0
    ],
    [
     "W/R/T",
@@ -579,7 +579,7 @@
     "QB",
     "Patrick Mahomes",
     "KC - QB",
-    "Q1 14:53, 0-0 @ Buf",
+    "Q1 8:54, 0-0 @ Buf",
     0.0,
     null
    ],
@@ -595,9 +595,9 @@
     "RB",
     "Javonte Williams",
     "Dal - RB",
-    "Q4 0:07, 38-36 vs Phi",
+    "Final L 38-39 vs Phi",
     32.0,
-    null
+    11.0
    ],
    [
     "RB",
@@ -635,7 +635,7 @@
     "WR",
     "Rashee Rice",
     "KC - WR",
-    "Q1 14:53, 0-0 @ Buf",
+    "Q1 8:54, 0-0 @ Buf",
     0.0,
     null
    ],
@@ -667,9 +667,9 @@
     "K",
     "Brandon Aubrey",
     "Dal - K",
-    "Q4 0:07, 38-36 vs Phi",
+    "Final L 38-39 vs Phi",
     10.0,
-    null
+    9.0
    ],
    [
     "DEF",
@@ -725,7 +725,7 @@
     "WR",
     "DJ Moore",
     "Buf - WR",
-    "Q1 14:53, 0-0 vs KC",
+    "Q1 8:54, 0-0 vs KC",
     0.0,
     null
    ],
@@ -929,9 +929,9 @@
     "RB",
     "Saquon Barkley",
     "Phi - RB",
-    "Q4 0:07, 36-38 @ Dal",
+    "Final W 39-38 @ Dal",
     0.0,
-    null
+    8.0
    ],
    [
     "WR",
@@ -1083,7 +1083,7 @@
     "W/R/T",
     "Josh Downs",
     "KC - WR",
-    "Q1 14:53, 0-0 @ Buf",
+    "Q1 8:54, 0-0 @ Buf",
     0.0,
     null
    ],
@@ -1109,7 +1109,7 @@
     "QB",
     "Josh Allen",
     "Buf - QB",
-    "Q1 14:11, 0-0 vs KC",
+    "Q1 8:54, 0-0 vs KC",
     0.0,
     null
    ],
@@ -1197,7 +1197,7 @@
     "K",
     "Tyler Bass",
     "Buf - K",
-    "Q1 14:11, 0-0 vs KC",
+    "Q1 8:54, 0-0 vs KC",
     0.0,
     null
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-27T01:30:10+00:00"
+ "lineups_updated": "2026-11-27T01:40:08+00:00"
 }
