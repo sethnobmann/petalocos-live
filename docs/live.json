@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T21:20:10+00:00",
+ "updated": "2026-11-27T21:30:13+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -17,7 +17,7 @@
    "team": "u got pzzzed",
    "manager": "Tony Oliverez",
    "week_pts": 85.0,
-   "week_proj": 138.0,
+   "week_proj": 139.0,
    "season_pts": 1236.0,
    "week_rank": 2,
    "season_rank": 6
@@ -80,7 +80,7 @@
    "team": "Maverick",
    "manager": "Chris Scerri",
    "week_pts": 11.0,
-   "week_proj": 106.0,
+   "week_proj": 104.0,
    "season_pts": 1268.0,
    "week_rank": 9,
    "season_rank": 3
@@ -89,7 +89,7 @@
    "team": "Lincoln Hawk",
    "manager": "Brandon Martinez",
    "week_pts": 6.0,
-   "week_proj": 103.0,
+   "week_proj": 104.0,
    "season_pts": 1104.0,
    "week_rank": 10,
    "season_rank": 9
@@ -114,7 +114,7 @@
    "home_pts": 67.0,
    "away_pts": 11.0,
    "home_proj": 105.0,
-   "away_proj": 106.0
+   "away_proj": 104.0
   },
   {
    "home": "u got pzzzed",
@@ -123,7 +123,7 @@
    "away_manager": "Rob Scerri",
    "home_pts": 85.0,
    "away_pts": 125.0,
-   "home_proj": 138.0,
+   "home_proj": 139.0,
    "away_proj": 172.0
   },
   {
@@ -133,7 +133,7 @@
    "away_manager": "Brian Lovrin",
    "home_pts": 6.0,
    "away_pts": 16.0,
-   "home_proj": 103.0,
+   "home_proj": 104.0,
    "away_proj": 104.0
   },
   {
@@ -473,7 +473,7 @@
     "QB",
     "Bo Nix",
     "Den - QB",
-    "Q2 0:30, 5-24 @ Pit",
+    "Half, 5-24 @ Pit",
     1.0,
     null
    ],
@@ -497,7 +497,7 @@
     "RB",
     "Jaylen Warren",
     "Pit - RB",
-    "Q2 0:30, 24-5 vs Den",
+    "Half, 24-5 vs Den",
     1.0,
     null
    ],
@@ -529,7 +529,7 @@
     "WR",
     "Jaylen Waddle",
     "Den - WR",
-    "Q2 0:30, 5-24 @ Pit",
+    "Half, 5-24 @ Pit",
     0.0,
     null
    ],
@@ -561,7 +561,7 @@
     "K",
     "Chris Boswell",
     "Pit - K",
-    "Q2 0:30, 24-5 vs Den",
+    "Half, 24-5 vs Den",
     7.0,
     null
    ],
@@ -569,7 +569,7 @@
     "DEF",
     "Steelers",
     "Pit - DEF",
-    "Q2 0:30, 24-5 vs Den",
+    "Half, 24-5 vs Den",
     27.0,
     null
    ]
@@ -687,7 +687,7 @@
     "Jax - QB",
     "Sun 10:00 am vs Ten",
     null,
-    19.0
+    20.0
    ],
    [
     "QB",
@@ -709,7 +709,7 @@
     "RB",
     "Jonah Coleman",
     "Den - RB",
-    "Q2 0:30, 5-24 @ Pit",
+    "Half, 5-24 @ Pit",
     0.0,
     null
    ],
@@ -781,7 +781,7 @@
     "DEF",
     "Broncos",
     "Den - DEF",
-    "Q2 0:30, 5-24 @ Pit",
+    "Half, 5-24 @ Pit",
     6.0,
     null
    ]
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-27T21:20:10+00:00"
+ "lineups_updated": "2026-11-27T21:30:13+00:00"
 }
