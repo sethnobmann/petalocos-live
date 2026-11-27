@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T22:30:04+00:00",
+ "updated": "2026-11-27T22:40:11+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -16,9 +16,9 @@
   {
    "team": "u got pzzzed",
    "manager": "Tony Oliverez",
-   "week_pts": 90.0,
-   "week_proj": 135.0,
-   "season_pts": 1241.0,
+   "week_pts": 95.0,
+   "week_proj": 138.0,
+   "season_pts": 1246.0,
    "week_rank": 2,
    "season_rank": 5
   },
@@ -26,7 +26,7 @@
    "team": "FOTY*",
    "manager": "Dave Abramson",
    "week_pts": 67.0,
-   "week_proj": 105.0,
+   "week_proj": 107.0,
    "season_pts": 1311.0,
    "week_rank": 3,
    "season_rank": 2
@@ -44,7 +44,7 @@
    "team": "SHOW ME THE $$$$",
    "manager": "CJ Nelson",
    "week_pts": 38.0,
-   "week_proj": 89.0,
+   "week_proj": 90.0,
    "season_pts": 1187.0,
    "week_rank": 5,
    "season_rank": 7
@@ -62,7 +62,7 @@
    "team": "FANTASY KING",
    "manager": "Chris King",
    "week_pts": 20.0,
-   "week_proj": 94.0,
+   "week_proj": 79.0,
    "season_pts": 1132.0,
    "week_rank": 7,
    "season_rank": 8
@@ -77,22 +77,22 @@
    "season_rank": 6
   },
   {
+   "team": "Lincoln Hawk",
+   "manager": "Brandon Martinez",
+   "week_pts": 11.0,
+   "week_proj": 104.0,
+   "season_pts": 1109.0,
+   "week_rank": 9,
+   "season_rank": 9
+  },
+  {
    "team": "Maverick",
    "manager": "Chris Scerri",
    "week_pts": 11.0,
-   "week_proj": 103.0,
+   "week_proj": 102.0,
    "season_pts": 1268.0,
    "week_rank": 9,
    "season_rank": 3
-  },
-  {
-   "team": "Lincoln Hawk",
-   "manager": "Brandon Martinez",
-   "week_pts": 10.0,
-   "week_proj": 103.0,
-   "season_pts": 1108.0,
-   "week_rank": 10,
-   "season_rank": 9
   }
  ],
  "matchups": [
@@ -103,7 +103,7 @@
    "away_manager": "Seth Nobmann",
    "home_pts": 38.0,
    "away_pts": 53.0,
-   "home_proj": 89.0,
+   "home_proj": 90.0,
    "away_proj": 91.0
   },
   {
@@ -113,17 +113,17 @@
    "away_manager": "Chris Scerri",
    "home_pts": 67.0,
    "away_pts": 11.0,
-   "home_proj": 105.0,
-   "away_proj": 103.0
+   "home_proj": 107.0,
+   "away_proj": 102.0
   },
   {
    "home": "u got pzzzed",
    "away": "Umbertos",
    "home_manager": "Tony Oliverez",
    "away_manager": "Rob Scerri",
-   "home_pts": 90.0,
+   "home_pts": 95.0,
    "away_pts": 125.0,
-   "home_proj": 135.0,
+   "home_proj": 138.0,
    "away_proj": 172.0
   },
   {
@@ -131,9 +131,9 @@
    "away": "Mooseknuckle's",
    "home_manager": "Brandon Martinez",
    "away_manager": "Brian Lovrin",
-   "home_pts": 10.0,
+   "home_pts": 11.0,
    "away_pts": 16.0,
-   "home_proj": 103.0,
+   "home_proj": 104.0,
    "away_proj": 104.0
   },
   {
@@ -143,7 +143,7 @@
    "away_manager": "Brandon Selvitella",
    "home_pts": 20.0,
    "away_pts": 34.0,
-   "home_proj": 94.0,
+   "home_proj": 79.0,
    "away_proj": 100.0
   }
  ],
@@ -473,8 +473,8 @@
     "QB",
     "Bo Nix",
     "Den - QB",
-    "Q4 10:44, 5-27 @ Pit",
-    2.0,
+    "Q4 8:52, 5-27 @ Pit",
+    3.0,
     null
    ],
    [
@@ -497,7 +497,7 @@
     "RB",
     "Jaylen Warren",
     "Pit - RB",
-    "Q4 10:44, 27-5 vs Den",
+    "Q4 8:52, 27-5 vs Den",
     1.0,
     null
    ],
@@ -529,8 +529,8 @@
     "WR",
     "Jaylen Waddle",
     "Den - WR",
-    "Q4 10:44, 5-27 @ Pit",
-    1.0,
+    "Q4 8:52, 5-27 @ Pit",
+    2.0,
     null
    ],
    [
@@ -561,7 +561,7 @@
     "K",
     "Chris Boswell",
     "Pit - K",
-    "Q4 10:44, 27-5 vs Den",
+    "Q4 8:52, 27-5 vs Den",
     10.0,
     null
    ],
@@ -569,8 +569,8 @@
     "DEF",
     "Steelers",
     "Pit - DEF",
-    "Q4 10:44, 27-5 vs Den",
-    27.0,
+    "Q4 8:52, 27-5 vs Den",
+    30.0,
     null
    ]
   ],
@@ -709,8 +709,8 @@
     "RB",
     "Jonah Coleman",
     "Den - RB",
-    "Q4 10:44, 5-27 @ Pit",
-    2.0,
+    "Q4 8:52, 5-27 @ Pit",
+    3.0,
     null
    ],
    [
@@ -781,7 +781,7 @@
     "DEF",
     "Broncos",
     "Den - DEF",
-    "Q4 10:44, 5-27 @ Pit",
+    "Q4 8:52, 5-27 @ Pit",
     8.0,
     null
    ]
@@ -799,7 +799,7 @@
     "QB",
     "Mason Rudolph",
     "Pit - QB",
-    "Q4 10:44, 27-5 vs Den",
+    "Q4 8:52, 27-5 vs Den",
     8.0,
     null
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-27T22:30:04+00:00"
+ "lineups_updated": "2026-11-27T22:40:11+00:00"
 }
