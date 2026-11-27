@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T20:20:14+00:00",
+ "updated": "2026-11-27T20:30:08+00:00",
  "league": "Petalocos",
  "season": "2026",
  "week": 12,
@@ -14,22 +14,22 @@
    "season_rank": 1
   },
   {
+   "team": "u got pzzzed",
+   "manager": "Tony Oliverez",
+   "week_pts": 71.0,
+   "week_proj": 132.0,
+   "season_pts": 1222.0,
+   "week_rank": 2,
+   "season_rank": 6
+  },
+  {
    "team": "FOTY*",
    "manager": "Dave Abramson",
    "week_pts": 67.0,
    "week_proj": 105.0,
    "season_pts": 1311.0,
-   "week_rank": 2,
-   "season_rank": 2
-  },
-  {
-   "team": "u got pzzzed",
-   "manager": "Tony Oliverez",
-   "week_pts": 59.0,
-   "week_proj": 121.0,
-   "season_pts": 1210.0,
    "week_rank": 3,
-   "season_rank": 6
+   "season_rank": 2
   },
   {
    "team": "dontmindme",
@@ -56,7 +56,7 @@
    "week_proj": 100.0,
    "season_pts": 1104.0,
    "week_rank": 6,
-   "season_rank": 10
+   "season_rank": 9
   },
   {
    "team": "FANTASY KING",
@@ -79,9 +79,9 @@
   {
    "team": "Lincoln Hawk",
    "manager": "Brandon Martinez",
-   "week_pts": 11.0,
-   "week_proj": 110.0,
-   "season_pts": 1109.0,
+   "week_pts": 6.0,
+   "week_proj": 104.0,
+   "season_pts": 1104.0,
    "week_rank": 9,
    "season_rank": 9
   },
@@ -89,7 +89,7 @@
    "team": "Maverick",
    "manager": "Chris Scerri",
    "week_pts": 3.0,
-   "week_proj": 113.0,
+   "week_proj": 112.0,
    "season_pts": 1260.0,
    "week_rank": 10,
    "season_rank": 3
@@ -114,16 +114,16 @@
    "home_pts": 67.0,
    "away_pts": 3.0,
    "home_proj": 105.0,
-   "away_proj": 113.0
+   "away_proj": 112.0
   },
   {
    "home": "u got pzzzed",
    "away": "Umbertos",
    "home_manager": "Tony Oliverez",
    "away_manager": "Rob Scerri",
-   "home_pts": 59.0,
+   "home_pts": 71.0,
    "away_pts": 125.0,
-   "home_proj": 121.0,
+   "home_proj": 132.0,
    "away_proj": 172.0
   },
   {
@@ -131,9 +131,9 @@
    "away": "Mooseknuckle's",
    "home_manager": "Brandon Martinez",
    "away_manager": "Brian Lovrin",
-   "home_pts": 11.0,
+   "home_pts": 6.0,
    "away_pts": 16.0,
-   "home_proj": 110.0,
+   "home_proj": 104.0,
    "away_proj": 104.0
   },
   {
@@ -473,7 +473,7 @@
     "QB",
     "Bo Nix",
     "Den - QB",
-    "Q1 6:54, 0-0 @ Pit",
+    "Q1 4:38, 0-7 @ Pit",
     0.0,
     null
    ],
@@ -497,7 +497,7 @@
     "RB",
     "Jaylen Warren",
     "Pit - RB",
-    "Q1 6:54, 0-0 vs Den",
+    "Q1 4:38, 7-0 vs Den",
     0.0,
     null
    ],
@@ -529,7 +529,7 @@
     "WR",
     "Jaylen Waddle",
     "Den - WR",
-    "Q1 6:54, 0-0 @ Pit",
+    "Q1 4:38, 0-7 @ Pit",
     0.0,
     null
    ],
@@ -561,16 +561,16 @@
     "K",
     "Chris Boswell",
     "Pit - K",
-    "Q1 6:54, 0-0 vs Den",
-    0.0,
+    "Q1 4:38, 7-0 vs Den",
+    1.0,
     null
    ],
    [
     "DEF",
     "Steelers",
     "Pit - DEF",
-    "Q1 6:54, 0-0 vs Den",
-    10.0,
+    "Q1 4:38, 7-0 vs Den",
+    21.0,
     null
    ]
   ],
@@ -709,7 +709,7 @@
     "RB",
     "Jonah Coleman",
     "Den - RB",
-    "Q1 6:54, 0-0 @ Pit",
+    "Q1 4:38, 0-7 @ Pit",
     0.0,
     null
    ],
@@ -781,8 +781,8 @@
     "DEF",
     "Broncos",
     "Den - DEF",
-    "Q1 6:54, 0-0 @ Pit",
-    11.0,
+    "Q1 4:38, 0-7 @ Pit",
+    6.0,
     null
    ]
   ],
@@ -799,7 +799,7 @@
     "QB",
     "Mason Rudolph",
     "Pit - QB",
-    "Q1 6:54, 0-0 vs Den",
+    "Q1 4:38, 7-0 vs Den",
     0.0,
     null
    ],
@@ -1211,5 +1211,5 @@
    ]
   ]
  },
- "lineups_updated": "2026-11-27T20:20:14+00:00"
+ "lineups_updated": "2026-11-27T20:30:08+00:00"
 }
